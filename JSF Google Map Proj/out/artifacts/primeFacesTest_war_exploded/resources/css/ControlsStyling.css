@@ -1,0 +1,35 @@
+.zoomoutControl, .zoominControl {
+    background-color: #fff;
+    border: solid 2px #fff;
+    width: 50px;
+    text-align: center;
+    border-bottom: 2px;
+    cursor:pointer;
+}
+/*.zoomoutUI, .zoominUI {*/
+    /*text-align: center;*/
+/*}*/
+.zoomoutText, .zoominText {
+    font-size: 2.5rem;
+}
+.zoominControl {
+    border-radius: 15px 15px 0px 0px;
+    border-bottom: 2px solid #c3c6cc;
+}
+.zoomoutControl {
+    border-radius: 0px 0px 15px 15px;
+}
+.centerLoc {
+    background-color: #fff;
+    border: solid 2px #fff;
+    width: 50px;
+    text-align: center;
+    border-bottom: 2px;
+    cursor:pointer;
+    border-radius: 15px 15px 15px 15px;
+    margin-bottom: 2%;
+}
+#formSubmitToilet {
+    display:none;
+}
+

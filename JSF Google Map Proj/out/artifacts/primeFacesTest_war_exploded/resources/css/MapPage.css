@@ -1,0 +1,32 @@
+body {
+    background-color: black;
+}
+
+html,body {
+  height:100%;
+}
+body {
+    background-color:#eaebed;
+}
+#displayedMap {
+    border-color: black;
+    border-bottom-style: solid;
+    border-radius: 5px;
+    height:90%;
+    width:100%;
+}
+#bar {
+    height: 10%;
+    width: 100%;
+    display:inline-block;
+}
+.barfunct {
+    float:right;
+    margin-top:10px;
+}
+#AppTitle {
+    font-family: "Arial Black";
+    font-size: 60px;
+    width: 25%;
+    height: 100%;
+}

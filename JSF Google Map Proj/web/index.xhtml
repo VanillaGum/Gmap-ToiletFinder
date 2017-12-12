@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   <h:head>
+      <script type="text/javascript"
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS0zuLmLKaB_9hJ_2GCuBwrY10js68UTM">
+      </script>
+      <link rel="stylesheet" type="text/css" href="resources/css/MapPage.css"/>
+      <link rel="stylesheet" type="text/css" href="resources/css/ControlsStyling.css"/>
+   </h:head>
+
+   <h:body>
+      <div id="bar">
+         <h:outputLabel id="AppTitle">Toilet Finder</h:outputLabel>
+         <h:graphicImage value="images/search_icon.png" styleClass="barfunct"></h:graphicImage>
+         <h:graphicImage value="images/filter_icon.png" styleClass="barfunct"></h:graphicImage>
+         <h:graphicImage value="images/profile_icon.png" styleClass="barfunct"></h:graphicImage>
+      </div>
+      <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
+              style="width:100%;height:90%" disableDefaultUI="true"
+              model="#{mapController.displayMap}">
+            <div>Hello</div>
+      </p:gmap>
+         <!--<p:remoteCommand name="remoteCommandFunctionName" partialSubmit="true" process="@this" action="#{Mapcontroller.setUserLocMark}"/>-->
+
+      <!--Custom Controls For Google Map-->
+      <div id="zoomoutControl" class="zoomoutControl" onclick="zoomOut()">
+         <div id="zoomoutUI" class="zoomoutUI">
+            <div id="zoomoutText" class="zoomoutText"> - </div>
+         </div>
+      </div>
+      <div id="zoominControl" class="zoominControl" onclick="zoomIn()">
+            <div id="zoominText" class="zoominText"> + </div>
+      </div>
+      <div id="centerLoc" class="centerLoc" onclick="goToUserLoc()">
+         <div id="centerImg" class="centerImg">
+            <!--<h:graphicImage></h:graphicImage>-->
+            Center Map
+         </div>
+      </div>
+
+      <div id="addToilet" class="addToilet">
+            <h:form id="formSubmitToilet">
+               <h:inputHidden id="locLng" value="#{mapController.locLng}" />
+               <h:inputHidden id="locLat" value="#{mapController.locLat}" />
+               <h:commandButton value="Add Toilet" onclick="addToiletLoc()" id="toiletSubmit">
+                  <f:ajax execute="@form" render="@none" />
+               </h:commandButton>
+               <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}"/>
+            </h:form>
+      </div>
+      <script type="text/javascript">
+          mapdis = null;
+          $(function() {
+              mapdis = PF('mapDisplay').getMap();
+              if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(function (position) {
+                      //Set Map View User Current Loc
+                      var poslat = position.coords.latitude;
+                      var poslng = position.coords.longitude;
+                      mapdis.setCenter(new google.maps.LatLng(poslat, poslng));
+                      //Display Marker At User Position
+                      var marker = new google.maps.Marker({
+                           position:{lat:poslat,lng:poslng},
+                           map:mapdis,
+                           title:"User Loc"
+                      });
+                  });
+              }
+            drawMapUi();
+          });
+         //Draw Map User Interface for non-logged in users
+         function drawMapUi() {
+             var zoomoutControl = $("#zoomoutControl");
+             var zoominControl = $("#zoominControl");
+             var centerControl = $("#centerLoc");
+             var toiletControl = $("#addToilet");
+             mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(zoomoutControl[0]);
+             mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(zoominControl[0]);
+             mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControl[0]);
+             mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(toiletControl[0]);
+         }
+         //Draw Map User Interfaces for logged in users
+         function drawUserMapUi() {
+//             For Logged In Users
+             mapdis.controls.clear()
+         }
+         //Zooms in Map
+         function zoomIn() {
+             mapdis.setZoom((mapdis.getZoom() + 1));
+         }
+         //Zooms Out Map
+          function zoomOut() {
+              mapdis.setZoom((mapdis.getZoom() - 1));
+          }
+          //Move Map Position To User
+          function goToUserLoc() {
+              navigator.geolocation.getCurrentPosition(function (position) {
+                  var poslat = position.coords.latitude;
+                  var poslng = position.coords.longitude;
+                  mapdis.setCenter(new google.maps.LatLng(poslat, poslng));
+              });
+          }
+          function addToiletLoc() {
+              navigator.geolocation.getCurrentPosition(function (position) {
+                  var poslat = position.coords.latitude;
+                  var poslng = position.coords.longitude;
+                  alert("Latitude:" + poslat + "\n Longitude:" + poslng);
+                  document.getElementById("formSubmitToilet:locLng").value = poslng;
+                  document.getElementById("formSubmitToilet:locLat").value = poslat;
+                  tsubmit();
+              })
+          }
+      </script>
+   </h:body>
+</html>
