@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="toilet_finder@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="toilet_finder">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="events"/>
+    <schema id="4" parent="1" name="examevent"/>
+    <schema id="5" parent="1" name="helperdb"/>
+    <schema id="6" parent="1" name="information_schema"/>
+    <schema id="7" parent="1" name="mysql"/>
+    <schema id="8" parent="1" name="performance_schema"/>
+    <schema id="9" parent="1" name="sakila"/>
+    <schema id="10" parent="1" name="school"/>
+    <schema id="11" parent="1" name="student_tracker"/>
+    <schema id="12" parent="1" name="sys"/>
+    <schema id="13" parent="1" name="tasklist"/>
+    <schema id="14" parent="1" name="track club"/>
+    <schema id="15" parent="1" name="world"/>
+    <table id="16" parent="2" name="toilet"/>
+    <column id="17" parent="16" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="18" parent="16" name="name">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="19" parent="16" name="latitude">
+      <Position>3</Position>
+      <DataType>double|0</DataType>
+    </column>
+    <column id="20" parent="16" name="longitude">
+      <Position>4</Position>
+      <DataType>double|0</DataType>
+    </column>
+    <index id="21" parent="16" name="id">
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="22" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="23" parent="16" name="id">
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>id</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>

@@ -24,10 +24,10 @@
       </div>
       <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
               style="width:100%;height:90%" disableDefaultUI="true"
-              model="#{mapController.displayMap}">
+              model="#{mapController.displayMap}"
+              onPointClick="addLocMarker(event)">
             <div>Hello</div>
       </p:gmap>
-         <!--<p:remoteCommand name="remoteCommandFunctionName" partialSubmit="true" process="@this" action="#{Mapcontroller.setUserLocMark}"/>-->
 
       <!--Custom Controls For Google Map-->
       <div id="zoomoutControl" class="zoomoutControl" onclick="zoomOut()">
@@ -44,19 +44,37 @@
             Center Map
          </div>
       </div>
-
       <div id="addToilet" class="addToilet">
             <h:form id="formSubmitToilet">
                <h:inputHidden id="locLng" value="#{mapController.locLng}" />
                <h:inputHidden id="locLat" value="#{mapController.locLat}" />
-               <h:commandButton value="Add Toilet" onclick="addToiletLoc()" id="toiletSubmit">
-                  <f:ajax execute="@form" render="@none" />
-               </h:commandButton>
+               <!--Was In Command Button Temp Removed-->
+               <!--onclick="addToiletLoc()"-->
+               <p:commandButton value="Add Toilet"
+                                id="toiletSubmit">
+                  <p:confirm header="Confirmation" message="Do you want to use current location or select a location?"/>
+                  <!--<f:ajax execute="@form" render="@none" />-->
+               </p:commandButton>
+               <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                     <p:commandButton value="Use current location" type="button" onclick="setMarkerAddType(1)" styleClass="ui-confirmdialog-no"/>
+                     <p:commandButton value="Select Location on map" type="button" onclick="setMarkerAddType(2)" styleClass="ui-confirmdialog-no"/>
+               </p:confirmDialog>
                <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}"/>
             </h:form>
       </div>
       <script type="text/javascript">
           mapdis = null;
+          addMarker = 0;
+          confirmationMarker = null;
+          confirmationMarkerLat = 0;
+          confirmationMarkerLng = 0;
+          confirmationInfowindow = null;
+          var contentItem = '<div>' +
+              '         <button onclick="removeLocMarker()">Confirm Location</button>' +
+              '      </div>'
+          confirmationInfowindow = new google.maps.InfoWindow({
+              content: contentItem
+          });
           $(function() {
               mapdis = PF('mapDisplay').getMap();
               if (navigator.geolocation) {
@@ -75,6 +93,39 @@
               }
             drawMapUi();
           });
+          function setMarkerAddType(num) {
+              if (num == 1) {
+                  addToiletLoc();
+              }else {
+                  addMarker = 2;
+              }
+          }
+          function addLocMarker(event) {
+               if(addMarker == 2) {
+                     if (confirmationMarker == null) {
+                         confirmationMarkerLat=event.latLng.lat();
+                         confirmationMarkerLng= event.latLng.lng();
+                         confirmationMarker = new google.maps.Marker( {
+                            position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
+                            map:mapdis
+                         });
+                         confirmationMarker.addListener('click', function() {
+                             confirmationInfowindow.open(mapdis, confirmationMarker);
+                         });
+                         confirmationInfowindow.open(mapdis,confirmationMarker)
+                     }
+               }
+          }
+          function removeLocMarker() {
+              confirmationInfowindow.close();
+              confirmationMarker.setMap(null);
+              confirmationMarker = null;
+              //alert("Latitude:" + confirmationMarkerLat + "\n Longitude:" + confirmationMarkerLng);
+              document.getElementById("formSubmitToilet:locLng").value = confirmationMarkerLng;
+              document.getElementById("formSubmitToilet:locLat").value = confirmationMarkerLat;
+              tsubmit();
+          }
+          //-Start of Map Ui-//
          //Draw Map User Interface for non-logged in users
          function drawMapUi() {
              var zoomoutControl = $("#zoomoutControl");
@@ -107,6 +158,7 @@
                   mapdis.setCenter(new google.maps.LatLng(poslat, poslng));
               });
           }
+          //-End Of Map Ui-//
           function addToiletLoc() {
               navigator.geolocation.getCurrentPosition(function (position) {
                   var poslat = position.coords.latitude;
@@ -115,8 +167,11 @@
                   document.getElementById("formSubmitToilet:locLng").value = poslng;
                   document.getElementById("formSubmitToilet:locLat").value = poslat;
                   tsubmit();
-              })
+              });
           }
       </script>
+      <!--<div>-->
+         <!--<button onclick="removeLocMarker()">Confirm Location</button>-->
+      <!--</div>-->
    </h:body>
 </html>

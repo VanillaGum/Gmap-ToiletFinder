@@ -6,9 +6,6 @@
     border-bottom: 2px;
     cursor:pointer;
 }
-/*.zoomoutUI, .zoominUI {*/
-    /*text-align: center;*/
-/*}*/
 .zoomoutText, .zoominText {
     font-size: 2.5rem;
 }
@@ -29,7 +26,13 @@
     border-radius: 15px 15px 15px 15px;
     margin-bottom: 2%;
 }
-#formSubmitToilet {
-    display:none;
+#addToilet{
+    background-color: #fff;
+    border: solid 2px #fff;
+    width: 50px;
+    text-align: center;
+    border-bottom: 2px;
+    cursor:pointer;
+    border-radius: 15px 15px 15px 15px;
+    margin-bottom: 2%;
 }
-

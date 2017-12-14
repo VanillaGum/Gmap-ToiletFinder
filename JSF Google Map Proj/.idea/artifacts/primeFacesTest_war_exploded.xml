@@ -9,8 +9,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="PrimeFaces-6.1" />
-          <element id="library" level="project" name="Hibernate 5.2.12-5.2.12" />
-          <element id="library" level="project" name="JPA 2.0-2.0" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.40-bin" />
         </element>
       </element>
     </root>

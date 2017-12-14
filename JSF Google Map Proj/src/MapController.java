@@ -16,8 +16,8 @@ import java.util.Map;
 @ManagedBean
 public class MapController {
     private MapModel displayMap;
-    private double locLng;
-    private double locLat;
+    private double locLng = 0;
+    private double locLat = 0;
     @PostConstruct
     public void init() {
         displayMap = new DefaultMapModel();
@@ -27,8 +27,7 @@ public class MapController {
         //displayMap.addOverlay(new Marker(coords2,"Female Toilet", null,"images/toilet_female.png"));
         Marker m = new Marker(coords1,"Male Toilet","images/toilet_male.png","images/toilet_male.png");
         createMarker(1.350208, 103.874409,"IDK",null,0);
-        List<Marker> markers = displayMap.getMarkers();
-        displayMap.getMarkers().removeAll(markers);
+        getToiletLoc();
    }
     public void setUserLocMark() {
 
@@ -44,6 +43,14 @@ public class MapController {
         System.out.println("Displaying Marker");
         RequestContext requestContext = RequestContext.getCurrentInstance();
     }
+    public void createMarkerList(List<Marker> mList, Object dataz, int IconNo) {
+
+        for(int i=0; i< mList.size();i++) {
+            Marker m = mList.get(i);
+            m.setIcon(getImages(IconNo));
+            displayMap.addOverlay(m);
+        }
+    }
     public String getImages(int ImgNo) {
         switch (ImgNo) {
             case 0:
@@ -55,6 +62,11 @@ public class MapController {
         }
         return "";
     }
+    public void removeAllMarkers() {
+        System.out.println("Hey Removing All Markers");
+        List<Marker> mRemoveList = displayMap.getMarkers();
+        displayMap.getMarkers().removeAll(mRemoveList);
+    }
     public MapModel getDisplayMap() {
         return displayMap;
     }
@@ -62,8 +74,17 @@ public class MapController {
     public void addToiletLoc() {
         System.out.println("Longitude:" + locLng);
         System.out.println("Latitude:" + locLat);
+        TestDatabaseClass tdc = new TestDatabaseClass();
+        tdc.InsertValue(locLat,locLng);
+        createMarker(locLat,locLng,"Test",null,1);
     }
-
+    public void getToiletLoc() {
+        TestDatabaseClass tdc = new TestDatabaseClass();
+        List<Marker> mList = tdc.DisplayMarker();
+        if (mList.size() > 0) {
+            createMarkerList(mList,null,0);
+        }
+    }
     public void setLocLng(double locLng) {
         this.locLng = locLng;
     }
