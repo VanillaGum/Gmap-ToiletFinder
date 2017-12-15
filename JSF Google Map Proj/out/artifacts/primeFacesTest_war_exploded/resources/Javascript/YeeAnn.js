@@ -1,7 +1,13 @@
 // <![CDATA[
 function initialize() {
 
-    var map = PF('mapDisplay').getMap();
+    var mapOptions = {
+        center: new google.maps.LatLng(1.348041667, 103.8198361),
+        zoom: 13,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById('displayedMap'),
+        mapOptions);
 
     var input = /** @type {HTMLInputElement} */(document.getElementById('searchTextField'));
     var autocomplete = new google.maps.places.Autocomplete(input);
@@ -13,7 +19,7 @@ function initialize() {
         map: map
     });
 
-    map.addListener(autocomplete, 'place_changed', function () {
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
         infowindow.close();
         marker.setVisible(false);
         input.className = '';
