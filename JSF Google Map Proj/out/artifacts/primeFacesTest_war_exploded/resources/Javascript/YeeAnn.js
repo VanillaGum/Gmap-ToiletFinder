@@ -6,10 +6,9 @@ function initialize() {
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById('displayedMap'),
-        mapOptions);
-
-    var input = /** @type {HTMLInputElement} */(document.getElementById('searchTextField'));
+    //var map = google.maps.Map(document.getElementById('displayedMap'));
+    map = PF('mapDisplay').getMap();
+    var input = (document.getElementById('searchTextField'));
     var autocomplete = new google.maps.places.Autocomplete(input);
 
     autocomplete.bindTo('bounds', map);
@@ -19,7 +18,7 @@ function initialize() {
         map: map
     });
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+    map.addListener(autocomplete, 'place_changed', function () {
         infowindow.close();
         marker.setVisible(false);
         input.className = '';

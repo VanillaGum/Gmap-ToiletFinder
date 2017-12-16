@@ -6,8 +6,8 @@ function initialize() {
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = document.getElementById('displayedMap');
-
+    //var map = google.maps.Map(document.getElementById('displayedMap'));
+    map = PF('mapDisplay').getMap();
     var input = (document.getElementById('searchTextField'));
     var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -18,7 +18,7 @@ function initialize() {
         map: map
     });
 
-    map.event.addListener(autocomplete, 'place_changed', function () {
+    map.addListener(autocomplete, 'place_changed', function () {
         infowindow.close();
         marker.setVisible(false);
         input.className = '';
