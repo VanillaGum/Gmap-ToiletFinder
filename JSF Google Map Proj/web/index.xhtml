@@ -9,7 +9,7 @@
 
    <h:head>
       <script type="text/javascript"
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS0zuLmLKaB_9hJ_2GCuBwrY10js68UTM">
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIhNGkh_sKo3rekCxuwz4ZQhlBZmM5UM0&amp;libraries=places">
       </script>
       <link rel="stylesheet" type="text/css" href="resources/css/MapPage.css"/>
       <link rel="stylesheet" type="text/css" href="resources/css/ControlsStyling.css"/>
@@ -18,9 +18,22 @@
    <h:body>
       <div id="bar">
          <h:outputLabel id="AppTitle">Toilet Finder</h:outputLabel>
-         <h:graphicImage value="images/search_icon.png" styleClass="barfunct"></h:graphicImage>
+         <h:graphicImage value="images/search_icon.png" styleClass="barfunct" onclick="openSearch()"></h:graphicImage>
          <h:graphicImage value="images/filter_icon.png" styleClass="barfunct"></h:graphicImage>
          <h:graphicImage value="images/profile_icon.png" styleClass="barfunct"></h:graphicImage>
+      </div>
+      <div id="searchBar">
+         <input id="searchTextField" type="text" size="50"></input>
+         <input type="radio" name="type" id="changetype-all" checked="checked"></input>
+         <label for="changetype-all">All</label>
+
+         <input type="radio" name="type" id="changetype-establishment"></input>
+         <label for="changetype-establishment">Establishments</label>
+
+         <input type="radio" name="type" id="changetype-geocode"></input>
+         <label for="changetype-geocode">Geocodes</label>
+
+         <button id="cancelButton" onclick="closeSearch()" style="height: 100%; width: 67.391px; margin: 0; float:right;">Cancel</button>
       </div>
       <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
               style="width:100%;height:90%" disableDefaultUI="true"
@@ -63,6 +76,7 @@
             </h:form>
       </div>
       <script type="text/javascript" src="resources/Javascript/Ivan's.js"></script>
+      <script type="text/javascript" src="resources/Javascript/YeeAnn.js"></script>
       <!--<div>-->
          <!--<button onclick="removeLocMarker()">Confirm Location</button>-->
       <!--</div>-->

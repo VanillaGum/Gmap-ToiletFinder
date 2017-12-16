@@ -20,6 +20,13 @@ body {
     width: 100%;
     display:inline-block;
 }
+
+#searchBar {
+    height: 10%;
+    width: 100%;
+    display:none;
+}
+
 .barfunct {
     float:right;
     margin-top:10px;
@@ -28,5 +35,18 @@ body {
     font-family: "Arial Black";
     font-size: 60px;
     width: 25%;
+    height: 100%;
+}
+
+input {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+input.notfound {
+    border: 2px solid rgba(255, 0, 0, 0.4);
+}
+
+#searchTextField {
+    width: 82%;
     height: 100%;
 }
