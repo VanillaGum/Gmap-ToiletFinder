@@ -65,6 +65,11 @@ public class MapController {
     public void removeAllMarkers() {
         System.out.println("Hey Removing All Markers");
         List<Marker> mRemoveList = displayMap.getMarkers();
+        if (mRemoveList.size() >0 ) {
+            System.out.println("Marker List Is Not Empty");
+        }else {
+            System.out.println("Marker List Is Empty");
+        }
         displayMap.getMarkers().removeAll(mRemoveList);
     }
     public MapModel getDisplayMap() {
