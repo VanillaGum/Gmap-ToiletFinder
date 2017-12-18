@@ -20,20 +20,9 @@ public class MapController {
     private double locLat = 0;
     @PostConstruct
     public void init() {
-        System.out.println("Making new map model");
-        SingletonMapController smc = SingletonMapController.getInstance();
-        if (smc.mapCheck() == true) {
-            displayMap = smc.getDisplayMap();
-            System.out.println(displayMap);
-        }else {
             displayMap = new DefaultMapModel();
-            smc.setDisplayMap(displayMap);
-            System.out.println("Setting display Map");
-        }
         LatLng coords1= new LatLng(1.379008, 103.849602);
         LatLng coords2= new LatLng(1.379351, 103.850085);
-        //displayMap.addOverlay(new Marker(new LatLng(1.379008, 103.849602),"Male Toilet","images/toilet_male.png","images/toilet_male.png"));
-        //displayMap.addOverlay(new Marker(coords2,"Female Toilet", null,"images/toilet_female.png"));
         Marker m = new Marker(coords1,"Male Toilet","images/toilet_male.png","images/toilet_male.png");
         createMarker(1.350208, 103.874409,"IDK",null,0);
         getToiletLoc();
@@ -88,10 +77,8 @@ public class MapController {
     public void addToiletLoc() {
         System.out.println("Longitude:" + locLng);
         System.out.println("Latitude:" + locLat);
-
         TestDatabaseClass tdc = new TestDatabaseClass();
         tdc.InsertValue(locLat,locLng);
-//        createMarker(locLat, locLng,"Test",null,1);
     }
     public void getToiletLoc() {
         TestDatabaseClass tdc = new TestDatabaseClass();

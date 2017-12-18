@@ -55,6 +55,12 @@ function removeLocMarker() {
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
+    alert(mapdis);
+    new google.maps.Marker( {
+        position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
+        map:mapdis,
+        icon:"images/toilet_female.png"
+    });
     //alert("Latitude:" + confirmationMarkerLat + "\n Longitude:" + confirmationMarkerLng);
     document.getElementById("formSubmitToilet:locLng").value = confirmationMarkerLng;
     document.getElementById("formSubmitToilet:locLat").value = confirmationMarkerLat;

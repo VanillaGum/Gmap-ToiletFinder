@@ -21,20 +21,4 @@ final public class SingletonMapController {
         }
         return instance;
     }
-    public boolean mapCheck() {
-        if (displayMap == null) {
-            return false;
-        }else {
-            return true;
-        }
-    }
-    public MapModel getDisplayMap() {
-        return displayMap;
-    }
-
-    public void setDisplayMap(MapModel displayMap) {
-        if (this.displayMap == null) {
-            this.displayMap = displayMap;
-        }
-    }
 }
