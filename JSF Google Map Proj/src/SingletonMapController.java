@@ -15,10 +15,25 @@ final public class SingletonMapController {
     private MapModel displayMap;
     private SingletonMapController() {
     }
+    public boolean checkMapModel() {
+        if (displayMap != null) {
+            return true;
+        }else {
+            return false;
+        }
+    }
     public static SingletonMapController getInstance() {
         if (instance == null) {
             instance = new SingletonMapController();
         }
         return instance;
+    }
+
+    public MapModel getDisplayMap() {
+        return displayMap;
+    }
+
+    public void setDisplayMap(MapModel displayMap) {
+        this.displayMap = displayMap;
     }
 }

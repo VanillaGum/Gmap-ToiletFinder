@@ -1,4 +1,7 @@
+
+
 import com.sun.javafx.collections.MappingChange;
+import org.apache.tools.ant.util.optional.JavaxScriptRunner;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -6,21 +9,36 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.DependsOn;
+import javax.ejb.Singleton;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+@SessionScoped
 @ManagedBean
+@DependsOn("SingletonMapController")
 public class MapController {
     private MapModel displayMap;
     private double locLng = 0;
     private double locLat = 0;
     @PostConstruct
     public void init() {
+        SingletonMapController smc = SingletonMapController.getInstance();
+        if (smc.checkMapModel()) {
+            //If True Means There is already a map created
+            //Get Map
+            displayMap = smc.getDisplayMap();
+        }else {
             displayMap = new DefaultMapModel();
+            smc.setDisplayMap(displayMap);
+        }
+        displayMap = new DefaultMapModel();
+        System.out.println("Init Map:"+displayMap);
         LatLng coords1= new LatLng(1.379008, 103.849602);
         LatLng coords2= new LatLng(1.379351, 103.850085);
         Marker m = new Marker(coords1,"Male Toilet","images/toilet_male.png","images/toilet_male.png");
@@ -38,8 +56,6 @@ public class MapController {
     public void createMarker(double latitude,double longitude,String title,Object dataz, int IconNo) {
         LatLng coords1= new LatLng(latitude, longitude);
         displayMap.addOverlay(new Marker(coords1, title, null, getImages(IconNo)));
-        System.out.println("Displaying Marker");
-        RequestContext requestContext = RequestContext.getCurrentInstance();
     }
     public void createMarkerList(List<Marker> mList, Object dataz, int IconNo) {
 
@@ -61,28 +77,40 @@ public class MapController {
         return "";
     }
     public void removeAllMarkers() {
-        System.out.println("Hey Removing All Markers");
-        List<Marker> mRemoveList = displayMap.getMarkers();
-        if (mRemoveList.size() >0 ) {
-            System.out.println("Marker List Is Not Empty");
-        }else {
-            System.out.println("Marker List Is Empty");
-        }
-        displayMap.getMarkers().removeAll(mRemoveList);
+//        System.out.println("Hey Removing All Markers");
+        List<Marker> mRemoveList = new ArrayList<>();
+        mRemoveList = displayMap.getMarkers();
+//        if (mRemoveList.size() >0 ) {
+//            System.out.println("Marker List Is Not Empty");
+//            for (Marker m:mRemoveList) {
+//                System.out.println(m);
+//            }
+//        }else {
+//            System.out.println("Marker List Is Empty");
+//        }
+        System.out.println("Remove Marker Map:"+displayMap);
+        displayMap.getMarkers().clear();
     }
     public MapModel getDisplayMap() {
         return displayMap;
     }
 
     public void addToiletLoc() {
-        System.out.println("Longitude:" + locLng);
-        System.out.println("Latitude:" + locLat);
         TestDatabaseClass tdc = new TestDatabaseClass();
         tdc.InsertValue(locLat,locLng);
+        removeAllMarkers();
+        getToiletLoc();
     }
     public void getToiletLoc() {
         TestDatabaseClass tdc = new TestDatabaseClass();
         List<Marker> mList = tdc.DisplayMarker();
+        //Test Passed
+        //        int i= 0;
+//        for (Marker m:mList) {
+//            i++;
+//            System.out.println("Marker:"+i);
+//        }
+        
         if (mList.size() > 0) {
             createMarkerList(mList,null,0);
         }

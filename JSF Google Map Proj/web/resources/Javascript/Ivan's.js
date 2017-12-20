@@ -56,11 +56,11 @@ function removeLocMarker() {
     confirmationMarker.setMap(null);
     confirmationMarker = null;
     alert(mapdis);
-    new google.maps.Marker( {
-        position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
-        map:mapdis,
-        icon:"images/toilet_female.png"
-    });
+    // new google.maps.Marker( {
+    //     position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
+    //     map:mapdis,
+    //     icon:"images/toilet_female.png"
+    // });
     //alert("Latitude:" + confirmationMarkerLat + "\n Longitude:" + confirmationMarkerLng);
     document.getElementById("formSubmitToilet:locLng").value = confirmationMarkerLng;
     document.getElementById("formSubmitToilet:locLat").value = confirmationMarkerLat;
@@ -97,6 +97,7 @@ function goToUserLoc() {
         var poslat = position.coords.latitude;
         var poslng = position.coords.longitude;
         mapdis.setCenter(new google.maps.LatLng(poslat, poslng));
+        mapdis.setZoom(7);
     });
 }
 //-End Of Map Ui-//
@@ -109,4 +110,7 @@ function addToiletLoc() {
         document.getElementById("formSubmitToilet:locLat").value = poslat;
         tsubmit();
     });
+}
+function destroyAllMarkers() {
+
 }
