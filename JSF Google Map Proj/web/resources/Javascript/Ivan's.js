@@ -4,6 +4,7 @@ confirmationMarker = null;
 confirmationMarkerLat = 0;
 confirmationMarkerLng = 0;
 confirmationInfowindow = null;
+imageList = ["images/toilet_male.png","images/toilet_female.png"];
 var contentItem = '<div>' +
     '         <button onclick="removeLocMarker()">Confirm Location</button>' +
     '      </div>'
@@ -22,9 +23,11 @@ $(function() {
             var marker = new google.maps.Marker({
                 position:{lat:poslat,lng:poslng},
                 map:mapdis,
-                title:"User Loc"
+                title:"User Loc",
+                icon:"images/toilet_female.png"
             });
         });
+
     }
     drawMapUi();
 });
@@ -110,7 +113,4 @@ function addToiletLoc() {
         document.getElementById("formSubmitToilet:locLat").value = poslat;
         tsubmit();
     });
-}
-function destroyAllMarkers() {
-
 }

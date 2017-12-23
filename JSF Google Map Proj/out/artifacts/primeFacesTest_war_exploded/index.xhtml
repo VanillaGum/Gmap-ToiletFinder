@@ -35,13 +35,13 @@
 
          <button id="cancelButton" onclick="closeSearch()" style="height: 100%; width: 67.391px; margin: 0; float:right;">Cancel</button>
       </div>
-      <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
-              style="width:100%;height:90%" disableDefaultUI="true"
-              model="#{mapController.displayMap}"
-              onPointClick="addLocMarker(event)">
-            <div>Hello</div>
-      </p:gmap>
-
+         <!--For Having Map Model IN MapController-->
+         <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
+                 style="width:100%;height:90%" disableDefaultUI="true"
+                 onPointClick="addLocMarker(event)"
+                 fitBounds="false">
+            <!--<p:ajax event="stateChange" listener="#{mapController.onStateChange}" update="displayedMap"/>-->
+         </p:gmap>
       <!--Custom Controls For Google Map-->
       <div id="zoomoutControl" class="zoomoutControl" onclick="zoomOut()">
          <div id="zoomoutUI" class="zoomoutUI">
@@ -72,9 +72,11 @@
                      <p:commandButton value="Use current location" type="button" onclick="setMarkerAddType(1)" styleClass="ui-confirmdialog-no"/>
                      <p:commandButton value="Select Location on map" type="button" onclick="setMarkerAddType(2)" styleClass="ui-confirmdialog-no"/>
                </p:confirmDialog>
-               <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}"/>
+               <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}">
+               </p:remoteCommand>
             </h:form>
       </div>
+      <script type="text/javascript" src="resources/Javascript/Controller's.js"></script>
       <script type="text/javascript" src="resources/Javascript/Ivan's.js"></script>
       <script type="text/javascript" src="resources/Javascript/YeeAnn.js"></script>
       <!--<div>-->
