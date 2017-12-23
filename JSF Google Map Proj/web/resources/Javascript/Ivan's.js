@@ -5,7 +5,7 @@ confirmationMarkerLat = 0;
 confirmationMarkerLng = 0;
 confirmationInfowindow = null;
 imageList = ["images/toilet_male.png","images/toilet_female.png"];
-var contentItem = '<div>' +
+var contentItem = '<div id="confirmBox">' +
     '         <button onclick="removeLocMarker()">Confirm Location</button>' +
     '      </div>'
 confirmationInfowindow = new google.maps.InfoWindow({
@@ -27,7 +27,6 @@ $(function() {
                 icon:"images/toilet_female.png"
             });
         });
-
     }
     drawMapUi();
 });
@@ -58,7 +57,6 @@ function removeLocMarker() {
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
-    alert(mapdis);
     // new google.maps.Marker( {
     //     position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
     //     map:mapdis,
@@ -108,7 +106,6 @@ function addToiletLoc() {
     navigator.geolocation.getCurrentPosition(function (position) {
         var poslat = position.coords.latitude;
         var poslng = position.coords.longitude;
-        alert("Latitude:" + poslat + "\n Longitude:" + poslng);
         document.getElementById("formSubmitToilet:locLng").value = poslng;
         document.getElementById("formSubmitToilet:locLat").value = poslat;
         tsubmit();

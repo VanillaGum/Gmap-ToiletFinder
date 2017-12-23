@@ -16,14 +16,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-@SessionScoped
+
 @ManagedBean
 public class MapController implements Serializable{
     private double locLng = 0;
     private double locLat = 0;
+    private List<Marker> initMarkerList = new ArrayList<>();
     @PostConstruct
     public void init() {
-        getToiletLoc();
+        initToiletLoc();
    }
     public void setUserLocMark() {
 
@@ -44,6 +45,7 @@ public class MapController implements Serializable{
                 + "markers.push(newMarker);");
     }
     public void createMarkerList(List<Marker> mList, Object dataz, int IconNo) {
+        RequestContext.getCurrentInstance().execute("clearMarkerList();");
         for (Marker m:mList) {
             RequestContext.getCurrentInstance().execute("var newMarker = " +
                     "new google.maps.Marker({ " +
@@ -71,15 +73,15 @@ public class MapController implements Serializable{
         tdc.InsertValue(locLat,locLng);
         createMarker(locLat,locLng,"hello",null,1);
     }
-    public void getToiletLoc() {
+    public void initToiletLoc() {
         TestDatabaseClass tdc = new TestDatabaseClass();
         List<Marker> mList = tdc.DisplayMarker();
         //Test Passed
-        //        int i= 0;
-//        for (Marker m:mList) {
-//            i++;
-//            System.out.println("Marker:"+i);
-//        }
+                int i= 0;
+        for (Marker m:mList) {
+            i++;
+            System.out.println("Marker:"+i);
+        }
         
         if (mList.size() > 0) {
             createMarkerList(mList,null,0);
