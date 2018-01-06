@@ -53,6 +53,7 @@ function addLocMarker(event) {
                 position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
                 map:mapdis
             });
+            mapdis.setCenter(new google.maps.LatLng(confirmationMarkerLat,confirmationMarkerLng));
             switch(userLevel) {
                 case 0:
                     confirmationMarker.addListener('click', function() {

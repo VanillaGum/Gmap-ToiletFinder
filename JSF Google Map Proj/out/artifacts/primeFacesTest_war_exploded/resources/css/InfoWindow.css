@@ -10,3 +10,7 @@
 .femaleToiletSelectIcon-selected {
     opacity: 1;
 }
+.addToiletSubmitd {
+    width:100%;
+    display:inline-block;
+}
