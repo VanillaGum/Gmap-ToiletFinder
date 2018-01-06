@@ -1,20 +1,32 @@
 .zoomoutControl, .zoominControl {
-    background-color: #fff;
-    border: solid 2px #fff;
-    width: 50px;
+    /*background-color: #fff;*/
+    /*border: solid 2px #fff;*/
+    /*width: 50px;*/
     text-align: center;
-    border-bottom: 2px;
+    /*border-bottom: 2px;*/
+    /*cursor:pointer;*/
+    background-color:#f9f9f9;
+    border-radius:6px;
+    border:1px solid #dcdcdc;
+    display:inline-block;
     cursor:pointer;
-}
-.zoomoutText, .zoominText {
-    font-size: 2.5rem;
+    color:#666666;
+    font-family:Arial;
+    font-size:2.5rem;
+    font-weight:bold;
+    padding:7px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+    width: 40px;
 }
 .zoominControl {
     border-radius: 15px 15px 0px 0px;
     border-bottom: 2px solid #c3c6cc;
+    background:linear-gradient(to top, #e0e0e0 5%, #bcbcbc 100%);
 }
 .zoomoutControl {
     border-radius: 0px 0px 15px 15px;
+    background:linear-gradient(to bottom, #e0e0e0 5%, #bcbcbc 100%);
 }
 .centerLoc {
     background-color: #fff;

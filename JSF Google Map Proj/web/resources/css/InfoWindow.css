@@ -1,5 +1,12 @@
-#confirmBox {
-    background:black;
-    width:500px;
-    height:500px;
+.maleToiletSelectIcon-unselected {
+    opacity: 0.4;
+}
+.femaleToiletSelectIcon-unselected {
+    opacity: 0.4;
+}
+.maleToiletSelectIcon-selected {
+    opactiy: 1;
+}
+.femaleToiletSelectIcon-selected {
+    opacity: 1;
 }

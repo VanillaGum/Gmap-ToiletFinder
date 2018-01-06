@@ -21,6 +21,7 @@ import java.util.Map;
 public class MapController implements Serializable{
     private double locLng = 0;
     private double locLat = 0;
+    private int toiletGender = 0;
     private List<Marker> initMarkerList = new ArrayList<>();
     @PostConstruct
     public void init() {
@@ -71,7 +72,7 @@ public class MapController implements Serializable{
     public void addToiletLoc() {
         TestDatabaseClass tdc = new TestDatabaseClass();
         tdc.InsertValue(locLat,locLng);
-        createMarker(locLat,locLng,"hello",null,1);
+        createMarker(locLat,locLng,"hello",null,toiletGender);
     }
     public void initToiletLoc() {
         TestDatabaseClass tdc = new TestDatabaseClass();
@@ -105,5 +106,9 @@ public class MapController implements Serializable{
     public double getLocLat() {
         return locLat;
     }
+
+    public int getToiletGender() { return toiletGender; }
+
+    public void setToiletGender(int toiletGender) { this.toiletGender = toiletGender; }
 }
 

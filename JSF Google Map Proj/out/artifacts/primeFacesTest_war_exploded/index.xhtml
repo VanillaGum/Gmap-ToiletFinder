@@ -58,10 +58,13 @@
             Center Map
          </div>
       </div>
+
+      <!--Add Toilet Stuff-->
       <div id="addToilet" class="addToilet">
             <h:form id="formSubmitToilet">
                <h:inputHidden id="locLng" value="#{mapController.locLng}" />
                <h:inputHidden id="locLat" value="#{mapController.locLat}" />
+               <h:inputHidden id="toiletGender" value="#{mapController.toiletGender}" />
                <!--Was In Command Button Temp Removed-->
                <!--onclick="addToiletLoc()"-->
                <p:commandButton value="Add Toilet"
@@ -77,6 +80,37 @@
                </p:remoteCommand>
             </h:form>
       </div>
+      <div style="display:none;">
+         <div id="confirmBox0">
+            <!--Add Uneditable Stars Rating Here-->
+
+            <img id="maleIcon0" class="maleToiletSelectIcon-unselected" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px" onclick="changeIconSelection(0)"/>
+            <img id="femaleIcon0" class="femaleToiletSelectIcon-unselected" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6" onclick="changeIconSelection(1)"/>
+            <form action="">
+               <input id="toiletGenderSelect0" type="hidden" value="-1"/>
+            </form>
+            <button onclick="removeLocMarker()">Confirm Location</button>
+         </div>
+         <div id="confirmBox1">
+            <form action="">
+               <select id="toiletGenderSelect1">
+                  <option value="0">Male</option>
+                  <option value="1">Female</option>
+               </select>
+            </form>
+            <button onclick="removeLocMarker()">Confirm Location</button>
+         </div>
+         <div id="confirmBox2">
+            <form action="">
+               <select id="toiletGenderSelect2">
+                  <option value="0">Male</option>
+                  <option value="1">Female</option>
+               </select>
+            </form>
+            <button onclick="removeLocMarker()">Confirm Location</button>
+         </div>
+      </div>
+      
       <script type="text/javascript" src="resources/Javascript/Controller's.js"></script>
       <script type="text/javascript" src="resources/Javascript/Ivan's.js"></script>
       <script type="text/javascript" src="resources/Javascript/YeeAnn.js"></script>

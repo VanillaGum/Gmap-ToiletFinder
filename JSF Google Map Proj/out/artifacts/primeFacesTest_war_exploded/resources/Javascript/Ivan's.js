@@ -1,15 +1,22 @@
-mapdis = null;
-addMarker = 0;
-confirmationMarker = null;
-confirmationMarkerLat = 0;
-confirmationMarkerLng = 0;
-confirmationInfowindow = null;
-imageList = ["images/toilet_male.png","images/toilet_female.png"];
-var contentItem = '<div id="confirmBox">' +
-    '         <button onclick="removeLocMarker()">Confirm Location</button>' +
-    '      </div>'
+userLevel = 0 //Permission Level Of User
+//0 = Not Logged In
+//1 = Logged in User
+//2 = Trusted Logged In User/Admin
+mapdis = null; //Reference to map in here
+addMarker = 0; //Marker Type To Add
+confirmationMarker = null; //Put Toilet Confirmation Marker Here
+confirmationMarkerLat = 0; //Latitude of Confirmation marker
+confirmationMarkerLng = 0; //Longitude of Confirmation marker
+confirmationInfowindow = null; //Infowindow for confirmation marker
+imageList = ["images/toilet_male.png","images/toilet_female.png"]; //To Instantiate The Images(Had image loading issues)
 confirmationInfowindow = new google.maps.InfoWindow({
-    content: contentItem
+    content: document.getElementById("confirmBox0")
+});
+confirmationInfowindow1 = new google.maps.InfoWindow({
+    content: document.getElementById("confirmBox1")
+});
+confirmationInfowindow2 = new google.maps.InfoWindow({
+    content: document.getElementById("confirmBox2")
 });
 $(function() {
     mapdis = PF('mapDisplay').getMap();
@@ -46,27 +53,75 @@ function addLocMarker(event) {
                 position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
                 map:mapdis
             });
-            confirmationMarker.addListener('click', function() {
-                confirmationInfowindow.open(mapdis, confirmationMarker);
-            });
-            confirmationInfowindow.open(mapdis,confirmationMarker)
+            switch(userLevel) {
+                case 0:
+                    confirmationMarker.addListener('click', function() {
+                        confirmationInfowindow.open(mapdis, confirmationMarker);
+                    });
+                    confirmationInfowindow.open(mapdis,confirmationMarker);
+                    break;
+                case 1:
+                    confirmationMarker.addListener('click', function() {
+                        confirmationInfowindow1.open(mapdis, confirmationMarker);
+                    });
+                    confirmationInfowindow1.open(mapdis,confirmationMarker);
+                    break;
+                case 2:
+                    confirmationMarker.addListener('click', function() {
+                        confirmationInfowindow2.open(mapdis, confirmationMarker);
+                    });
+                    confirmationInfowindow2.open(mapdis,confirmationMarker);
+                    break;
+            }
         }
     }
 }
 function removeLocMarker() {
-    confirmationInfowindow.close();
-    confirmationMarker.setMap(null);
-    confirmationMarker = null;
-    // new google.maps.Marker( {
-    //     position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
-    //     map:mapdis,
-    //     icon:"images/toilet_female.png"
-    // });
-    //alert("Latitude:" + confirmationMarkerLat + "\n Longitude:" + confirmationMarkerLng);
+    //Submit Info About Toilet
     document.getElementById("formSubmitToilet:locLng").value = confirmationMarkerLng;
     document.getElementById("formSubmitToilet:locLat").value = confirmationMarkerLat;
+    if (userLevel == 0) {
+        document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect0").value;
+        //Close The Marker And Infowindow
+        confirmationInfowindow.close();
+    }else if (userLevel == 1){
+        document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect1").value;
+        //Close The Marker And Infowindow
+        confirmationInfowindow1.close();
+    }else {
+        document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect2").value;
+        //Close The Marker And Infowindow
+        confirmationInfowindow2.close();
+    }
+    confirmationMarker.setMap(null);
+    confirmationMarker = null;
+    //Initiate the ManagedBean MapController AddToilet function
     tsubmit();
 }
+function changeIconSelection(no) {
+    switch(userLevel) {
+        case 0:
+            inputChange = document.getElementById("toiletGenderSelect0");
+            switch(no) {
+                case 0:
+                    document.getElementById("maleIcon0").className = "maleToiletSelectIcon-selected";
+                    document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
+                    inputChange.value = 0;
+                    break;
+                case 1:
+                    document.getElementById("maleIcon0").className = "maleToiletSelectIcon-unselected";
+                    document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-selected";
+                    inputChange.value = 1;
+                    break;
+            }
+            break;
+        case 1:
+            switch(no) {
+
+            }
+    }
+}
+
 //-Start of Map Ui-//
 //Draw Map User Interface for non-logged in users
 function drawMapUi() {
