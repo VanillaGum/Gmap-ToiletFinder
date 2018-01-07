@@ -66,12 +66,41 @@ public class MapController implements Serializable{
         }
         return "";
     }
+    public String getImages(MarkerData m) {
+        if (m.isGenderM() == true) {
+            int iconNo = m.getIconNo();
+            switch(iconNo) {
+                case -1:
+                    return "images/toilet_male.png";
+                case 0:
+
+                case 1:
+
+                case 2:
+
+                case 3:
+
+                case 4:
+
+                case 5:
+            }
+        }
+        return null;
+    }
     public void removeAllMarkers() {
 
     }
     public void addToiletLoc() {
+        boolean genderM= false;
+        if (toiletGender == 0) {
+            genderM = true;
+        }else {
+            genderM = false;
+        }
+        MarkerData md = new MarkerData(new LatLng(locLat,locLng),genderM);
+        System.out.println(locLat + "Lng:" + locLng);
         TestDatabaseClass tdc = new TestDatabaseClass();
-        tdc.InsertValue(locLat,locLng);
+        tdc.suggestToiletLoc(md);
         createMarker(locLat,locLng,"hello",null,toiletGender);
     }
     public void initToiletLoc() {

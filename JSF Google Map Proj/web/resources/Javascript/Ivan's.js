@@ -81,18 +81,22 @@ function removeLocMarker() {
     //Submit Info About Toilet
     document.getElementById("formSubmitToilet:locLng").value = confirmationMarkerLng;
     document.getElementById("formSubmitToilet:locLat").value = confirmationMarkerLat;
-    if (userLevel == 0) {
-        document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect0").value;
-        //Close The Marker And Infowindow
-        confirmationInfowindow.close();
-    }else if (userLevel == 1){
-        document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect1").value;
-        //Close The Marker And Infowindow
-        confirmationInfowindow1.close();
-    }else {
-        document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect2").value;
-        //Close The Marker And Infowindow
-        confirmationInfowindow2.close();
+    switch(userLevel){
+        case 0:
+            document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect0").value;
+            //Close The Marker And Infowindow
+            confirmationInfowindow.close();
+            break;
+        case 1:
+            document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect1").value;
+            //Close The Marker And Infowindow
+            confirmationInfowindow1.close();
+            break;
+        case 2:
+            document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect2").value;
+            //Close The Marker And Infowindow
+            confirmationInfowindow2.close();
+            break;
     }
     confirmationMarker.setMap(null);
     confirmationMarker = null;
