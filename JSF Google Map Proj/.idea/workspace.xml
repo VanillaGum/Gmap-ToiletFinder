@@ -6,24 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4c28cfe-ab85-49c9-8ec4-bf3a80a3ed0a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MarkerData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MapController.class" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MapController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MarkerEntity.class" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MarkerEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/TestDatabaseClass.class" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/TestDatabaseClass.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Toilet Finder Project/MapController.class" afterPath="$PROJECT_DIR$/out/production/Toilet Finder Project/MapController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Toilet Finder Project/MarkerEntity.class" afterPath="$PROJECT_DIR$/out/production/Toilet Finder Project/MarkerEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Toilet Finder Project/TestDatabaseClass.class" afterPath="$PROJECT_DIR$/out/production/Toilet Finder Project/TestDatabaseClass.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/index.xhtml" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/index.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/resources/Javascript/Ivan's.js" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/resources/Javascript/Ivan's.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MapController.java" afterPath="$PROJECT_DIR$/src/MapController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MarkerEntity.java" afterPath="$PROJECT_DIR$/src/MarkerEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TestDatabaseClass.java" afterPath="$PROJECT_DIR$/src/TestDatabaseClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/index.xhtml" afterPath="$PROJECT_DIR$/web/index.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resources/Javascript/Ivan's.js" afterPath="$PROJECT_DIR$/web/resources/Javascript/Ivan's.js" />
-    </list>
+    <list default="true" id="e4c28cfe-ab85-49c9-8ec4-bf3a80a3ed0a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -126,8 +109,8 @@
       <file leaf-file-name="TestDatabaseClass.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TestDatabaseClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="809">
-              <caret line="127" column="54" lean-forward="false" selection-start-line="127" selection-start-column="54" selection-end-line="127" selection-end-column="54" />
+            <state relative-caret-position="54">
+              <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <marker date="1515323525018" expanded="true" signature="831:857" ph="INSERT INTO toilet_request... " />
@@ -651,7 +634,7 @@
       <workItem from="1515261773290" duration="1471000" />
       <workItem from="1515301507496" duration="9984000" />
       <workItem from="1515316450588" duration="6976000" />
-      <workItem from="1515335551504" duration="129000" />
+      <workItem from="1515335551504" duration="221000" />
     </task>
     <task id="LOCAL-00001" summary="Autocomplete Broke Main Map due to it creating a entire new map again, remove re-creating map autocomplete broke.">
       <created>1513409877165</created>
@@ -664,7 +647,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161831000" />
+    <option name="totallyTimeSpent" value="161923000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -677,7 +660,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3015351" sideWeight="0.546875" order="7" side_tool="true" content_ui="tabs" />
@@ -1066,8 +1048,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TestDatabaseClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="809">
-          <caret line="127" column="54" lean-forward="false" selection-start-line="127" selection-start-column="54" selection-end-line="127" selection-end-column="54" />
+        <state relative-caret-position="54">
+          <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <marker date="1515323525018" expanded="true" signature="831:857" ph="INSERT INTO toilet_request... " />
