@@ -5,10 +5,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestDatabaseClass {
+public class DatabaseClass {
     String dburl = "jdbc:mysql://localhost:3306/toilet_finder";
     private Connection conn;
-    public TestDatabaseClass() {
+    public DatabaseClass() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         }
@@ -45,7 +45,7 @@ public class TestDatabaseClass {
             }else {
                 addToiletSuggestion.setInt(4, 0);
             }
-            addToiletSuggestion.setBoolean(5,m.isGenderM());
+            addToiletSuggestion.setInt(5,m.getGenderM());
             int checkExecuted = addToiletSuggestion.executeUpdate();
             if (checkExecuted != 0) {
                 ResultSet toiletRequestInfo = addToiletSuggestion.getGeneratedKeys();
@@ -98,14 +98,20 @@ public class TestDatabaseClass {
         //If Approval Of Toilet High Enough
         //Call This Method
         try {
+                //Get Info Of Approved Toilet
                 PreparedStatement getApprovedToilet = conn.prepareStatement("SELECT * FROM toilet_request WHERE id=?;");
                 getApprovedToilet.setInt(1,approvedToiletId);
                 ResultSet approvedToilet = getApprovedToilet.executeQuery();
 
+                //Write
                 PreparedStatement createToilet = conn.prepareStatement("INSERT INTO toilet (latitude,longitude) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
                 PreparedStatement createToiletInfo = conn.prepareStatement("INSERT INTO toilet_info (toilet_id,rating, amt_of_rating, genderM) VALUES (?,?,?,?)");
 
+                //Delete Toilet That Has Been Approved
+                PreparedStatement deleteToiletApproved = conn.prepareStatement("DELETE FROM toilet_request WHERE id=?;");
+
                 while(approvedToilet.next()) {
+
                     createToilet.setDouble(1, approvedToilet.getDouble("latitude"));
                     createToilet.setDouble(2, approvedToilet.getDouble("longitude"));
                     int affectedRows = createToilet.executeUpdate();
@@ -115,17 +121,23 @@ public class TestDatabaseClass {
                         //Failed Insert
                     }else {
                         try {
+                            //Get Id Of Toilet to create Toilet Info Table On
                             getToiletId = createToilet.getGeneratedKeys();
                         } catch (SQLException e1) {
                             e1.printStackTrace();
                         }
                         if (getToiletId.next()) {
+                            //Creating toilet Successful
                             createToiletInfo.setInt(1, getToiletId.getInt(1));
+                            createToiletInfo.setInt(2, approvedToilet.getInt("rating"));
+                            createToiletInfo.setInt(3, approvedToilet.getInt("amt_of_rating"));
+                            createToiletInfo.setBoolean(4, approvedToilet.getBoolean("genderM"));
+                            createToiletInfo.executeUpdate();
+
+                            //Delete Approved Toilet
+                            deleteToiletApproved.setInt(1,approvedToiletId);
+                            deleteToiletApproved.executeUpdate();
                         }
-                        createToiletInfo.setInt(2, approvedToilet.getInt("rating"));
-                        createToiletInfo.setInt(3, approvedToilet.getInt("amt_of_rating"));
-                        createToiletInfo.setBoolean(4, approvedToilet.getBoolean("genderM"));
-                        createToiletInfo.executeUpdate();
                     }
                 }
         }catch (SQLException e) {
@@ -149,6 +161,7 @@ public class TestDatabaseClass {
             List<Marker> mList= new ArrayList<>();
             PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet");
             PreparedStatement getToiletInfo = conn.prepareStatement( "SELECT * FROM toilet_info WHERE toilet_id= ?");
+            PreparedStatement getToiletSuggested = conn.prepareStatement("");
             ResultSet rs = getToilets.executeQuery();
             while(rs.next()) {
                 getToiletInfo.setInt( 1 , rs.getInt("id"));

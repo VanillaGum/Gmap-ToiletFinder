@@ -2,15 +2,12 @@
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.map.StateChangeEvent;
-import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
-import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -67,44 +64,63 @@ public class MapController implements Serializable{
         return "";
     }
     public String getImages(MarkerData m) {
-        if (m.isGenderM() == true) {
-            int iconNo = m.getIconNo();
-            switch(iconNo) {
-                case -1:
-                    return "images/toilet_male.png";
-                case 0:
+        int iconNo = m.getIconNo();
+        switch(m.getGenderM()) {
+            case 0:
+                //Female Gender
+                switch(iconNo) {
+                    case -1:
+                        return "images/toilet_female.png";
+                    case 0:
 
-                case 1:
+                    case 1:
 
-                case 2:
+                    case 2:
 
-                case 3:
+                    case 3:
 
-                case 4:
+                    case 4:
 
-                case 5:
-            }
+                    case 5:
+                }
+                break;
+            case 1:
+                //Male Gender
+                switch(iconNo) {
+                    case -1:
+                        return "images/toilet_male.png";
+                    case 0:
+
+                    case 1:
+
+                    case 2:
+
+                    case 3:
+
+                    case 4:
+
+                    case 5:
+                }
+                break;
+            case 2:
+                //Both Genders
+                break;
         }
         return null;
     }
+
     public void removeAllMarkers() {
 
     }
     public void addToiletLoc() {
-        boolean genderM= false;
-        if (toiletGender == 0) {
-            genderM = true;
-        }else {
-            genderM = false;
-        }
-        MarkerData md = new MarkerData(new LatLng(locLat,locLng),genderM);
+        MarkerData md = new MarkerData(new LatLng(locLat,locLng),toiletGender);
         System.out.println(locLat + "Lng:" + locLng);
-        TestDatabaseClass tdc = new TestDatabaseClass();
+        DatabaseClass tdc = new DatabaseClass();
         tdc.suggestToiletLoc(md);
         createMarker(locLat,locLng,"hello",null,toiletGender);
     }
     public void initToiletLoc() {
-        TestDatabaseClass tdc = new TestDatabaseClass();
+        DatabaseClass tdc = new DatabaseClass();
         List<Marker> mList = tdc.DisplayMarker();
         //Test Passed
                 int i= 0;

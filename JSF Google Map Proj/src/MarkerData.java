@@ -13,9 +13,9 @@ public class MarkerData {
 
     private String title;
 
-    private boolean genderM;
+    private int genderM;
 
-    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, Boolean genderM) {
+    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM) {
         this.latlng = latlng;
         this.rating = rating;
         this.amt_of_ratings = amt_of_ratings;
@@ -25,11 +25,11 @@ public class MarkerData {
         this.iconNo = iconNoInit();
     }
     //Used For Constructing a Object For Suggesting Toilet Loc
-    public MarkerData(LatLng latlng, Boolean genderM) {
+    public MarkerData(LatLng latlng, int genderM) {
         this.latlng = latlng;
         this.genderM = genderM;
     }
-    public MarkerData(LatLng latlng, int rating, boolean genderM) {
+    public MarkerData(LatLng latlng, int rating, int genderM) {
         this.latlng = latlng;
         this.rating = rating;
         this.genderM = genderM;
@@ -105,11 +105,11 @@ public class MarkerData {
         this.title = title;
     }
 
-    public boolean isGenderM() {
+    public int getGenderM() {
         return genderM;
     }
 
-    public void setGenderM(boolean genderM) {
+    public void setGenderM(int genderM) {
         this.genderM = genderM;
     }
 }
