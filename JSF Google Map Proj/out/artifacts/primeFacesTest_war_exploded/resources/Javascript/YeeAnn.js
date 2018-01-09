@@ -18,7 +18,7 @@ function initialize() {
         map: map
     });
 
-    map.addListener(autocomplete, 'place_changed', function () {
+    autocomplete.addListener('place_changed', function () {
         infowindow.close();
         marker.setVisible(false);
         input.className = '';
@@ -31,7 +31,7 @@ function initialize() {
 
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
+            //map.fitBounds(place.geometry.viewport);
         } else {
             map.setCenter(place.geometry.location);
             map.setZoom(17);  // Why 17? Because it looks good.

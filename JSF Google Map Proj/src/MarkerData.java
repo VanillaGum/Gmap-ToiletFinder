@@ -1,4 +1,3 @@
-import org.apache.tools.ant.taskdefs.Pack;
 import org.primefaces.model.map.LatLng;
 
 public class MarkerData {
