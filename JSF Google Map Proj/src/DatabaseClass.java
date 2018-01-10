@@ -156,12 +156,10 @@ public class DatabaseClass {
             e.printStackTrace();
         }
     }
-    public List<List> DisplayMarker() {
+    public List<MarkerData> approvedToiletMarkers() {
         try {
-            List<List> toiletMarkerList = new ArrayList<>();
             List<MarkerData> mList= new ArrayList<>();
             PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet t INNER JOIN toilet_info ti ON ti.toilet_id = t.id;");
-            PreparedStatement getToiletSuggested = conn.prepareStatement("SELECT * FROm toilet_request;");
             ResultSet toilets = getToilets.executeQuery();
             while(toilets.next()) {
                 //Toilet Table
@@ -179,12 +177,38 @@ public class DatabaseClass {
                 MarkerData m = new MarkerData(new LatLng(latitude,longitude),rating,amt_of_rating, name, genderM, toiletId, toiletInfoId);
                 mList.add(m);
             }
-            toiletMarkerList.add(mList);
-            return toiletMarkerList;
+            return mList;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+    public List<MarkerData> requestedToiletMarkers() {
+        try {
+            List<MarkerData> mList= new ArrayList<>();
+            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet_info;");
+            ResultSet toilets = getToilets.executeQuery();
+            while(toilets.next()) {
+                // Edit This
+                //Toilet Table
+                int toiletId = toilets.getInt(1);
+                String name = toilets.getString("name");
+                double latitude = toilets.getDouble("latitude");
+                double longitude = toilets.getDouble("Longitude");
 
+                //ToiletInfo Table
+                int toiletInfoId = toilets.getInt(5);
+                int rating = toilets.getInt("rating");
+                int amt_of_rating = toilets.getInt("amt_of_rating");
+                int genderM = toilets.getInt("genderM");
+
+                MarkerData m = new MarkerData(new LatLng(latitude,longitude),rating,amt_of_rating, name, genderM, toiletId, toiletInfoId);
+                mList.add(m);
+            }
+            return mList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+}
