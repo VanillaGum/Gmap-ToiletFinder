@@ -120,20 +120,7 @@ public class DatabaseClass {
             PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_request_info " +
                     "Set approval = approval + ?" +
                     "WHERE toilet_request_id = toiletId");
-
-            UserController uc = new UserController();
-            int userLevel = uc.getUserLevel();
-            switch(userLevel) {
-                case 0:
-                    //Anonymous User
-                    upvoteToilet.setInt(1,1);
-                case 1:
-                    //Logged In User
-                    upvoteToilet.setInt(1,2);
-                case 2:
-                    //Trusted/ Admin User
-                    upvoteToilet.setInt(1,6);
-            }
+            upvoteToilet.setInt(1,userApprovalAmt());
 
             upvoteToilet.executeUpdate();
         } catch (SQLException e) {
