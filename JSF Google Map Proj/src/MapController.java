@@ -121,16 +121,9 @@ public class MapController implements Serializable{
     }
     public void initToiletLoc() {
         DatabaseClass tdc = new DatabaseClass();
-        //Test Passed
-                int i= 0;
-        for (Marker m:mList) {
-            i++;
-            System.out.println("Marker:"+i);
-        }
-        
-        if (mList.size() > 0) {
-            createMarkerList(mList,null,0);
-        }
+//        if (mList.size() > 0) {
+//            createMarkerList(mList,null,0);
+//        }
     }
     public void onStateChange(StateChangeEvent event) {
 

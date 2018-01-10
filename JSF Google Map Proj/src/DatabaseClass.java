@@ -5,9 +5,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/* TO DO LIST
+   Add Method To Accept Grouping Of Toilet/ (Male And Female Toilets Suggestions)
+   Add New Class That Extends MarkerData, MarkerDataGroup, MarkerDataGroupRequest
+ */
+
+
 public class DatabaseClass {
     String dburl = "jdbc:mysql://localhost:3306/toilet_finder";
     private Connection conn;
+    int userLevel;
     public DatabaseClass() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -21,62 +28,113 @@ public class DatabaseClass {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        UserController uc = UserController.getInstance();
+        userLevel = uc.getUserLevel();
     }
+
     public void suggestToiletLoc(MarkerData m) {
         try {
             PreparedStatement addToiletSuggestion = conn.prepareStatement("INSERT INTO toilet_request" +
-                    "(latitude,longitude,approval,rating,genderM) VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                    "(latitude,longitude) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement addToiletSuggestionInfo = conn.prepareStatement("INSERT INTO toilet_request_info" +
+                    "(toilet_request_id,approval,rating,amt_of_rating,genderM) VALUES (?,?,?,?,?)");
+
             addToiletSuggestion.setDouble(1, m.getLatlng().getLat());
             addToiletSuggestion.setDouble(2, m.getLatlng().getLng());
+            addToiletSuggestion.executeUpdate();
 
-            UserController uc = new UserController();
-            int userLevel = uc.getUserLevel();
-            switch(userLevel) {
-                case 0:
-                    addToiletSuggestion.setInt(3,1);
-                case 1:
-                    addToiletSuggestion.setInt(3,2);
-                case 2:
-                    addToiletSuggestion.setInt(3,6);
+            ResultSet toiletSuggestionId = addToiletSuggestion.getGeneratedKeys();
+            int suggestedToiletId = 0;
+            while (toiletSuggestionId.next()) {
+                //Get New Suggested Toilet Id
+                suggestedToiletId = toiletSuggestionId.getInt(1);
             }
 
+            //Add New Suggested Toilet Id
+            addToiletSuggestionInfo.setInt(1, suggestedToiletId);
+
+            //Add Approval For Newly Suggested Toilet
+            addToiletSuggestionInfo.setInt(2, userApprovalAmt());
+
+            //Add Rating For Suggested Toilet
             if (m.getRating() != -1) {
-                addToiletSuggestion.setInt(4, m.getRating());
+                //Add Rating
+                addToiletSuggestionInfo.setInt(3, m.getRating());
+                addToiletSuggestionInfo.setInt(4, 1);
             }else {
-                addToiletSuggestion.setInt(4, 0);
+                //User didnt rate or Not Allowed To Rate(Anonymous Users)
+                addToiletSuggestionInfo.setInt(3, 0);
+                addToiletSuggestionInfo.setInt(4,0);
             }
-            addToiletSuggestion.setInt(5,m.getGenderM());
-            int checkExecuted = addToiletSuggestion.executeUpdate();
-            if (checkExecuted != 0) {
-                ResultSet toiletRequestInfo = addToiletSuggestion.getGeneratedKeys();
-                approvalCheck(toiletRequestInfo);
+
+            //Get Gender
+            addToiletSuggestionInfo.setInt(5,m.getGenderM());
+
+            addToiletSuggestionInfo.executeUpdate();
+
+            if (userLevel == 2) {
+                createToilet(suggestedToiletId);
             }
+
         }catch(SQLException se) {
             se.printStackTrace();
         }
     }
-    public void approvalCheck(ResultSet toiletRequestId) {
+
+    //Check If Toilet Approval Rating Equal Or Greater Than 6
+    public void approvalCheck(int toiletRequestId) {
         try {
-            while (toiletRequestId.next()) {
-                PreparedStatement getToiletApproval = conn.prepareStatement("SELECT approval FROM toilet_request WHERE id = ?;");
-                getToiletApproval.setInt(1,toiletRequestId.getInt(1));
-                ResultSet toiletApproval= getToiletApproval.executeQuery();
-                while (toiletApproval.next()) {
-                    int approval = toiletApproval.getInt("approval");
-                    if (approval >= 6) {
-                        createToilet(toiletRequestId.getInt(1));
-                    }
+            PreparedStatement getToiletApproval = conn.prepareStatement("SELECT approval FROM toilet_request WHERE id = ?;");
+            getToiletApproval.setInt(1,toiletRequestId);
+            ResultSet toiletApproval= getToiletApproval.executeQuery();
+            while (toiletApproval.next()) {
+                int approval = toiletApproval.getInt("approval");
+
+                if (approval >= 6) {
+                    //Toilet Approved
+                    createToilet(toiletRequestId);
                 }
             }
         }catch(SQLException se) {
                 se.printStackTrace();
             }
     }
-    public void upvoteToilet(int toiletId, int approvalAmt) {
+
+    public int userApprovalAmt() {
+        switch(userLevel) {
+            case 0:
+                //Anonymous User
+                return 1;
+            case 1:
+                //Logged In User
+                return 2;
+            case 2:
+                //Trusted/ Admin User
+                return 6;
+        }
+        return 0;
+    }
+
+    public void upvoteToilet(int toiletId) {
         try {
-            PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_request " +
-                    "Set approval = approval + ?");
-            upvoteToilet.setInt(1,approvalAmt);
+            PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_request_info " +
+                    "Set approval = approval + ?" +
+                    "WHERE toilet_request_id = toiletId");
+
+            UserController uc = new UserController();
+            int userLevel = uc.getUserLevel();
+            switch(userLevel) {
+                case 0:
+                    //Anonymous User
+                    upvoteToilet.setInt(1,1);
+                case 1:
+                    //Logged In User
+                    upvoteToilet.setInt(1,2);
+                case 2:
+                    //Trusted/ Admin User
+                    upvoteToilet.setInt(1,6);
+            }
+
             upvoteToilet.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,12 +152,11 @@ public class DatabaseClass {
         }
     }
 
+    //Toilet Approval Greater Or Equal To 6
     public void createToilet(int approvedToiletId) {
-        //If Approval Of Toilet High Enough
-        //Call This Method
         try {
                 //Get Info Of Approved Toilet
-                PreparedStatement getApprovedToilet = conn.prepareStatement("SELECT * FROM toilet_request WHERE id=?;");
+                PreparedStatement getApprovedToilet = conn.prepareStatement("SELECT * FROM toilet_request tr INNER JOIN toilet_request_info tri ON tri.toilet_request_id = tr.id WHERE tr.id=?;");
                 getApprovedToilet.setInt(1,approvedToiletId);
                 ResultSet approvedToilet = getApprovedToilet.executeQuery();
 
@@ -131,7 +188,7 @@ public class DatabaseClass {
                             createToiletInfo.setInt(1, getToiletId.getInt(1));
                             createToiletInfo.setInt(2, approvedToilet.getInt("rating"));
                             createToiletInfo.setInt(3, approvedToilet.getInt("amt_of_rating"));
-                            createToiletInfo.setBoolean(4, approvedToilet.getBoolean("genderM"));
+                            createToiletInfo.setInt(4, approvedToilet.getInt("genderM"));
                             createToiletInfo.executeUpdate();
 
                             //Delete Approved Toilet
@@ -186,11 +243,10 @@ public class DatabaseClass {
     public List<MarkerData> requestedToiletMarkers() {
         try {
             List<MarkerData> mList= new ArrayList<>();
-            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet_info;");
+            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet_request tr INNER JOIN toilet_request_info tri ON tri.toilet_request_id = tr.id ;");
             ResultSet toilets = getToilets.executeQuery();
             while(toilets.next()) {
-                // Edit This
-                //Toilet Table
+                //Toilet Request Table
                 int toiletId = toilets.getInt(1);
                 String name = toilets.getString("name");
                 double latitude = toilets.getDouble("latitude");
