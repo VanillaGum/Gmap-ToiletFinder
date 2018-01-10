@@ -109,13 +109,14 @@ function changeIconSelection(no) {
             inputChange = document.getElementById("toiletGenderSelect0");
             switch(no) {
                 case 0:
-                    document.getElementById("maleIcon0").className = "maleToiletSelectIcon-selected";
-                    document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
-                    inputChange.value = 0;
-                    break;
-                case 1:
                     document.getElementById("maleIcon0").className = "maleToiletSelectIcon-unselected";
                     document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-selected";
+                    inputChange.value = 0;
+                    break;
+                    break;
+                case 1:
+                    document.getElementById("maleIcon0").className = "maleToiletSelectIcon-selected";
+                    document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
                     inputChange.value = 1;
                     break;
             }

@@ -15,6 +15,23 @@ public class MarkerData {
 
     private int genderM;
 
+    private int toiletId;
+
+    private int toiletInfoId;
+
+    public MarkerData() {
+    }
+
+    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM, int toiletId, int toiletInfoId) {
+        this.latlng = latlng;
+        this.rating = rating;
+        this.amt_of_ratings = amt_of_ratings;
+        this.title = title;
+        this.genderM = genderM;
+        this.toiletId = toiletId;
+        this.toiletInfoId = toiletInfoId;
+    }
+
     public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM) {
         this.latlng = latlng;
         this.rating = rating;

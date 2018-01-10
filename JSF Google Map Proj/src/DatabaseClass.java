@@ -156,24 +156,31 @@ public class DatabaseClass {
             e.printStackTrace();
         }
     }
-    public List<Marker> DisplayMarker() {
+    public List<List> DisplayMarker() {
         try {
-            List<Marker> mList= new ArrayList<>();
-            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet");
-            PreparedStatement getToiletInfo = conn.prepareStatement( "SELECT * FROM toilet_info WHERE toilet_id= ?");
-            PreparedStatement getToiletSuggested = conn.prepareStatement("");
-            ResultSet rs = getToilets.executeQuery();
-            while(rs.next()) {
-                getToiletInfo.setInt( 1 , rs.getInt("id"));
-                ResultSet rs2 = getToiletInfo.executeQuery();
+            List<List> toiletMarkerList = new ArrayList<>();
+            List<MarkerData> mList= new ArrayList<>();
+            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet t INNER JOIN toilet_info ti ON ti.toilet_id = t.id;");
+            PreparedStatement getToiletSuggested = conn.prepareStatement("SELECT * FROm toilet_request;");
+            ResultSet toilets = getToilets.executeQuery();
+            while(toilets.next()) {
+                //Toilet Table
+                int toiletId = toilets.getInt(1);
+                String name = toilets.getString("name");
+                double latitude = toilets.getDouble("latitude");
+                double longitude = toilets.getDouble("Longitude");
 
-                String name = rs.getString("name");
-                double latitude = rs.getDouble("latitude");
-                double longitude = rs.getDouble("Longitude");
-                Marker m = new Marker(new LatLng(latitude,longitude),name);
+                //ToiletInfo Table
+                int toiletInfoId = toilets.getInt(5);
+                int rating = toilets.getInt("rating");
+                int amt_of_rating = toilets.getInt("amt_of_rating");
+                int genderM = toilets.getInt("genderM");
+
+                MarkerData m = new MarkerData(new LatLng(latitude,longitude),rating,amt_of_rating, name, genderM, toiletId, toiletInfoId);
                 mList.add(m);
             }
-            return mList;
+            toiletMarkerList.add(mList);
+            return toiletMarkerList;
         } catch (SQLException e) {
             e.printStackTrace();
         }

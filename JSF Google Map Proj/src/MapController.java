@@ -121,7 +121,6 @@ public class MapController implements Serializable{
     }
     public void initToiletLoc() {
         DatabaseClass tdc = new DatabaseClass();
-        List<Marker> mList = tdc.DisplayMarker();
         //Test Passed
                 int i= 0;
         for (Marker m:mList) {
