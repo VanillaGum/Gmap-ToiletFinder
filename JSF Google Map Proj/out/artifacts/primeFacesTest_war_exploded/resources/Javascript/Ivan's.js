@@ -77,6 +77,8 @@ function addLocMarker(event) {
         }
     }
 }
+
+//Remove Toilet Suggestion Marker When Confirmed
 function removeLocMarker() {
     //Submit Info About Toilet
     document.getElementById("formSubmitToilet:locLng").value = confirmationMarkerLng;
@@ -103,6 +105,14 @@ function removeLocMarker() {
     //Initiate the ManagedBean MapController AddToilet function
     tsubmit();
 }
+
+//Suggesting Location Cancelled
+function cancelLocMarker() {
+    confirmationMarker.setMap(null);
+    confirmationMarker = null;
+}
+
+
 function changeIconSelection(no) {
     switch(userLevel) {
         case 0:

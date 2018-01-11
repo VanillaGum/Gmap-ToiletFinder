@@ -4,11 +4,23 @@ import java.util.List;
 
 public class MarkerEntity {
     //Use this to get data And make markers
+
+    DatabaseClass dc;
+    public MarkerEntity() {
+        dc = new DatabaseClass();
+    }
+
+    //Get Approved Toilet Markers
     public List<MarkerData> getApprovedMarkers() {
         return null;
     }
 
+    //Get Requested Toilet Markers
     public List<MarkerRequestData> getRequestedMarkers() {
         return null;
+    }
+
+    public void createSingleMarker(MarkerData md) {
+        dc.suggestToiletLoc(md);
     }
 }

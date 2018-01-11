@@ -19,6 +19,9 @@ public class MapController implements Serializable{
     private double locLng = 0;
     private double locLat = 0;
     private int toiletGender = 0;
+    private int genderM = 0;
+    private int genderF = 0;
+
     private List<Marker> initMarkerList = new ArrayList<>();
     @PostConstruct
     public void init() {
@@ -56,9 +59,9 @@ public class MapController implements Serializable{
     public String getImages(int ImgNo) {
         switch (ImgNo) {
             case 0:
-                return "images/toilet_male.png";
-            case 1:
                 return "images/toilet_female.png";
+            case 1:
+                return "images/toilet_male.png";
             case 2:
         }
         return "";
@@ -114,16 +117,12 @@ public class MapController implements Serializable{
     }
     public void addToiletLoc() {
         MarkerData md = new MarkerData(new LatLng(locLat,locLng),toiletGender);
-        System.out.println(locLat + "Lng:" + locLng);
         DatabaseClass tdc = new DatabaseClass();
         tdc.suggestToiletLoc(md);
         createMarker(locLat,locLng,"hello",null,toiletGender);
     }
     public void initToiletLoc() {
-        DatabaseClass tdc = new DatabaseClass();
-//        if (mList.size() > 0) {
-//            createMarkerList(mList,null,0);
-//        }
+
     }
     public void onStateChange(StateChangeEvent event) {
 

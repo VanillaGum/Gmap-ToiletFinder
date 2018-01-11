@@ -9,7 +9,7 @@ public class MarkerData {
 
     private int amt_of_ratings;
 
-    private double avg_rating = -1;
+    private double avg_rating = 0;
 
     private String title;
 

@@ -115,6 +115,7 @@ public class DatabaseClass {
         return 0;
     }
 
+    //Method call for when a User upvotes the toilet
     public void upvoteToilet(int toiletId) {
         try {
             PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_request_info " +
@@ -128,12 +129,29 @@ public class DatabaseClass {
         }
     }
 
-    public void flagToilet(int toiletId, int removalValue) {
+    //When user Flags toilet for removal
+    public void flagToilet(int toiletId) {
         try {
             PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_request " +
                     "Set removal_flag = removal_flag + ?");
-            upvoteToilet.setInt(1,removalValue);
+            PreparedStatement checkToiletRemoval = conn.prepareStatement( "SELECT removal_flags FROM toilet_request" +
+                    "WHERE id=?");
+
+            //Removal Amount Will Follow Approval Amount(6 removal_flags = removed)
+            upvoteToilet.setInt(1,userApprovalAmt());
             upvoteToilet.executeUpdate();
+
+            checkToiletRemoval.setInt(1, toiletId);
+            ResultSet removal_flags = checkToiletRemoval.executeQuery();
+            int removalAmt = 0;
+
+            while (removal_flags.next()) {
+                removalAmt = removal_flags.getInt("removal_flags");
+            }
+
+            if (removalAmt >= 6) {
+                PreparedStatement removeToiletSuggestion = conn.prepareStatement("DELETE FROM toilet_request");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -153,6 +171,7 @@ public class DatabaseClass {
 
                 //Delete Toilet That Has Been Approved
                 PreparedStatement deleteToiletApproved = conn.prepareStatement("DELETE FROM toilet_request WHERE id=?;");
+                PreparedStatement deleteToiletApprovedInfo = conn.prepareStatement( "DELETE FROM toilet_request_info WHERE toilet_request_id=?;");
 
                 while(approvedToilet.next()) {
 
@@ -180,7 +199,9 @@ public class DatabaseClass {
 
                             //Delete Approved Toilet
                             deleteToiletApproved.setInt(1,approvedToiletId);
+                            deleteToiletApprovedInfo.setInt(1,approvedToiletId);
                             deleteToiletApproved.executeUpdate();
+                            deleteToiletApprovedInfo.executeUpdate();
                         }
                     }
                 }

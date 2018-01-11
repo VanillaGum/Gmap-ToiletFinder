@@ -77,6 +77,8 @@ function addLocMarker(event) {
         }
     }
 }
+
+//Remove Toilet Suggestion Marker When Confirmed
 function removeLocMarker() {
     //Submit Info About Toilet
     document.getElementById("formSubmitToilet:locLng").value = confirmationMarkerLng;
@@ -103,21 +105,37 @@ function removeLocMarker() {
     //Initiate the ManagedBean MapController AddToilet function
     tsubmit();
 }
+
+//Suggesting Location Cancelled
+function cancelLocMarker() {
+    confirmationMarker.setMap(null);
+    confirmationMarker = null;
+}
+
+genderM = 0;
+genderF = 0;
 function changeIconSelection(no) {
     switch(userLevel) {
         case 0:
             inputChange = document.getElementById("toiletGenderSelect0");
             switch(no) {
                 case 0:
-                    document.getElementById("maleIcon0").className = "maleToiletSelectIcon-unselected";
-                    document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-selected";
+                    if (genderF == 0) {
+                        document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-selected";
+                        genderF = 1;
+                        document.getElementById("formSubmitToilet:genderF").value = 1;
+                    }else {
+                        document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
+                        genderF = 0;
+                        document.getElementById("formSubmitToilet:genderF").value = 0;
+                    }
                     inputChange.value = 0;
-                    break;
                     break;
                 case 1:
                     document.getElementById("maleIcon0").className = "maleToiletSelectIcon-selected";
                     document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
                     inputChange.value = 1;
+                    genderM = 1;
                     break;
             }
             break;
