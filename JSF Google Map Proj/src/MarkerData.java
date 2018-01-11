@@ -41,12 +41,9 @@ public class MarkerData {
         avg_rating = this.rating/this.amt_of_ratings;
         this.iconNo = iconNoInit();
     }
-    //Used For Constructing a Object For Suggesting Toilet Loc
-    public MarkerData(LatLng latlng, int genderM) {
-        this.latlng = latlng;
-        this.genderM = genderM;
-    }
-    public MarkerData(LatLng latlng, int rating, int genderM) {
+
+    //For Suggesting Toilet Loc
+    public MarkerData(LatLng latlng, int genderM, int rating) {
         this.latlng = latlng;
         this.rating = rating;
         this.genderM = genderM;

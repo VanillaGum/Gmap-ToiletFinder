@@ -209,18 +209,8 @@ public class DatabaseClass {
             e.printStackTrace();
         }
     }
-    public void InsertValue(double lat, double lng){
-        try {
-            PreparedStatement ps = conn.prepareStatement("Insert INTO toilet " +
-                    "(name,latitude,longitude) VALUES (?,?,?)");
-            ps.setString(1,"Male Test Toilet");
-            ps.setDouble(2,lat);
-            ps.setDouble(3,lng);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
+    //Get Approved Toilet Markers
     public List<MarkerData> approvedToiletMarkers() {
         try {
             List<MarkerData> mList= new ArrayList<>();

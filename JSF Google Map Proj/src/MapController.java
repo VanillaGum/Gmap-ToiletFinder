@@ -21,6 +21,7 @@ public class MapController implements Serializable{
     private int toiletGender = 0;
     private int genderM = 0;
     private int genderF = 0;
+    private int rating = 0;
 
     private List<Marker> initMarkerList = new ArrayList<>();
     @PostConstruct
@@ -116,10 +117,10 @@ public class MapController implements Serializable{
 
     }
     public void addToiletLoc() {
-        MarkerData md = new MarkerData(new LatLng(locLat,locLng),toiletGender);
+        MarkerData md = new MarkerData( new LatLng(locLat,locLng), toiletGender, rating);
         MarkerEntity me = new MarkerEntity();
         me.createSingleMarker(md);
-        System.out.println(genderF +" |" + genderM);
+        System.out.println("Rating:" + rating);
 
         if (genderM == 1 && genderF == 0) {
             createMarker(locLat,locLng,"hello",null,1);
@@ -159,12 +160,12 @@ public class MapController implements Serializable{
 
     public void setGenderM(int genderM) { this.genderM = genderM;}
 
-    public int getGenderF() {
-        return genderF;
-    }
+    public int getGenderF() { return genderF; }
 
-    public void setGenderF(int genderF) {
-        this.genderF = genderF;
-    }
+    public void setGenderF(int genderF) { this.genderF = genderF; }
+
+    public int getRating() { return rating; }
+
+    public void setRating(int rating) { this.rating = rating; }
 }
 

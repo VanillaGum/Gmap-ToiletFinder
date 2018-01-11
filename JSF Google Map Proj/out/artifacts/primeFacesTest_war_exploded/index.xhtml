@@ -67,6 +67,7 @@
                <h:inputHidden id="toiletGender" value="#{mapController.toiletGender}" />
                <h:inputHidden id="genderM" value="#{mapController.genderM}"/>
                <h:inputHidden id="genderF" value="#{mapController.genderF}"/>
+               <h:inputHidden id="rating" value="#{mapController.rating}"/>
                <!--Was In Command Button Temp Removed-->
                <!--onclick="addToiletLoc()"-->
                <p:commandButton value="Add Toilet"
@@ -85,7 +86,17 @@
       <div style="display:none;">
          <div id="confirmBox0">
             <!--Add Uneditable Stars Rating Here-->
+            <!--Temp Star Rating-->
+            <select id="rating_select">
+               <option value="-1">Select A Rating</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+            </select>
 
+            <!--Gender Selection-->
             <img id="maleIcon0" class="maleToiletSelectIcon-unselected" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px" onclick="changeIconSelection(1)"/>
             <img id="femaleIcon0" class="femaleToiletSelectIcon-unselected" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6" onclick="changeIconSelection(0)"/>
             <form action="">
@@ -93,7 +104,7 @@
                <input id="rating0" type="hidden" value="-1"/>
             </form>
             <div class="addToiletSubmit">
-               <button onclick="removeLocMarker()">Confirm</button>
+               <button onclick="toiletSuggestionConfirmed()">Confirm</button>
                <button onclick="cancelLocMarker()">Cancel</button>
             </div>
          </div>

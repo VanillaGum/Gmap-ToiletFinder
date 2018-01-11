@@ -12,7 +12,7 @@ public class UserController {
         return instance;
     }
 
-    private int userLevel=0;
+    private int userLevel=2;
 
 
     public int getUserLevel() {
