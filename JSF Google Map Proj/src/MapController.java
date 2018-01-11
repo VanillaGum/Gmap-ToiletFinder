@@ -117,9 +117,17 @@ public class MapController implements Serializable{
     }
     public void addToiletLoc() {
         MarkerData md = new MarkerData(new LatLng(locLat,locLng),toiletGender);
-        DatabaseClass tdc = new DatabaseClass();
-        tdc.suggestToiletLoc(md);
-        createMarker(locLat,locLng,"hello",null,toiletGender);
+        MarkerEntity me = new MarkerEntity();
+        me.createSingleMarker(md);
+        System.out.println(genderF +" |" + genderM);
+
+        if (genderM == 1 && genderF == 0) {
+            createMarker(locLat,locLng,"hello",null,1);
+        }else if (genderM == 0 && genderF == 1){
+            createMarker(locLat,locLng,"hello",null,0);
+        }else if(genderM == 1 && genderF == 1) {
+            createMarker(locLat,locLng,"hello",null,2);
+        }
     }
     public void initToiletLoc() {
 
@@ -146,5 +154,17 @@ public class MapController implements Serializable{
     public int getToiletGender() { return toiletGender; }
 
     public void setToiletGender(int toiletGender) { this.toiletGender = toiletGender; }
+
+    public int getGenderM() { return genderM;}
+
+    public void setGenderM(int genderM) { this.genderM = genderM;}
+
+    public int getGenderF() {
+        return genderF;
+    }
+
+    public void setGenderF(int genderF) {
+        this.genderF = genderF;
+    }
 }
 

@@ -112,21 +112,31 @@ function cancelLocMarker() {
     confirmationMarker = null;
 }
 
-
 function changeIconSelection(no) {
+    genderM = document.getElementById("formSubmitToilet:genderM").value;
+    genderF = document.getElementById("formSubmitToilet:genderF").value;
     switch(userLevel) {
         case 0:
             inputChange = document.getElementById("toiletGenderSelect0");
             switch(no) {
                 case 0:
-                    document.getElementById("maleIcon0").className = "maleToiletSelectIcon-unselected";
-                    document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-selected";
+                    if (genderF == 0) {
+                        document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-selected";
+                        document.getElementById("formSubmitToilet:genderF").value = 1;
+                    } else {
+                        document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
+                        document.getElementById("formSubmitToilet:genderF").value = 0;
+                    }
                     inputChange.value = 0;
                     break;
-                    break;
                 case 1:
-                    document.getElementById("maleIcon0").className = "maleToiletSelectIcon-selected";
-                    document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
+                    if (genderM == 0) {
+                        document.getElementById("maleIcon0").className = "maleToiletSelectIcon-selected";
+                        document.getElementById("formSubmitToilet:genderM").value = 1;
+                    }else {
+                        document.getElementById("maleIcon0").className = "femaleToiletSelectIcon-unselected";
+                        document.getElementById("formSubmitToilet:genderM").value = 0;
+                    }
                     inputChange.value = 1;
                     break;
             }

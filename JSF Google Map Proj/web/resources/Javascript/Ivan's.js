@@ -112,9 +112,9 @@ function cancelLocMarker() {
     confirmationMarker = null;
 }
 
-genderM = 0;
-genderF = 0;
 function changeIconSelection(no) {
+    genderM = document.getElementById("formSubmitToilet:genderM").value;
+    genderF = document.getElementById("formSubmitToilet:genderF").value;
     switch(userLevel) {
         case 0:
             inputChange = document.getElementById("toiletGenderSelect0");
@@ -122,20 +122,22 @@ function changeIconSelection(no) {
                 case 0:
                     if (genderF == 0) {
                         document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-selected";
-                        genderF = 1;
                         document.getElementById("formSubmitToilet:genderF").value = 1;
-                    }else {
+                    } else {
                         document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
-                        genderF = 0;
                         document.getElementById("formSubmitToilet:genderF").value = 0;
                     }
                     inputChange.value = 0;
                     break;
                 case 1:
-                    document.getElementById("maleIcon0").className = "maleToiletSelectIcon-selected";
-                    document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
+                    if (genderM == 0) {
+                        document.getElementById("maleIcon0").className = "maleToiletSelectIcon-selected";
+                        document.getElementById("formSubmitToilet:genderM").value = 1;
+                    }else {
+                        document.getElementById("maleIcon0").className = "femaleToiletSelectIcon-unselected";
+                        document.getElementById("formSubmitToilet:genderM").value = 0;
+                    }
                     inputChange.value = 1;
-                    genderM = 1;
                     break;
             }
             break;
