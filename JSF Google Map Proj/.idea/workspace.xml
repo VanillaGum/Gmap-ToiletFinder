@@ -7,13 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4c28cfe-ab85-49c9-8ec4-bf3a80a3ed0a" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/index.xhtml" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/index.xhtml" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/resources/css/InfoWindow.css" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/resources/css/InfoWindow.css" />
       <change beforePath="$PROJECT_DIR$/src/DatabaseClass.java" afterPath="$PROJECT_DIR$/src/DatabaseClass.java" />
       <change beforePath="$PROJECT_DIR$/src/MapController.java" afterPath="$PROJECT_DIR$/src/MapController.java" />
-      <change beforePath="$PROJECT_DIR$/src/MarkerData.java" afterPath="$PROJECT_DIR$/src/MarkerData.java" />
-      <change beforePath="$PROJECT_DIR$/src/UserController.java" afterPath="$PROJECT_DIR$/src/UserController.java" />
+      <change beforePath="$PROJECT_DIR$/src/MarkerEntity.java" afterPath="$PROJECT_DIR$/src/MarkerEntity.java" />
       <change beforePath="$PROJECT_DIR$/web/index.xhtml" afterPath="$PROJECT_DIR$/web/index.xhtml" />
       <change beforePath="$PROJECT_DIR$/web/resources/Javascript/Ivan's.js" afterPath="$PROJECT_DIR$/web/resources/Javascript/Ivan's.js" />
-      <change beforePath="$PROJECT_DIR$/web/resources/Javascript/YeeAnn.js" afterPath="$PROJECT_DIR$/web/resources/Javascript/YeeAnn.js" />
+      <change beforePath="$PROJECT_DIR$/web/resources/css/InfoWindow.css" afterPath="$PROJECT_DIR$/web/resources/css/InfoWindow.css" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,11 +42,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="index.xhtml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.xhtml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/index.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-688">
-              <caret line="64" column="71" lean-forward="false" selection-start-line="64" selection-start-column="71" selection-end-line="64" selection-end-column="71" />
+            <state relative-caret-position="-443">
+              <caret line="75" column="66" lean-forward="true" selection-start-line="75" selection-start-column="66" selection-end-line="75" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InfoWindow.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/resources/css/InfoWindow.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="20" column="15" lean-forward="false" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -53,18 +65,31 @@
       <file leaf-file-name="Ivan's.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/resources/Javascript/Ivan's.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="125" column="81" lean-forward="true" selection-start-line="125" selection-start-column="24" selection-end-line="125" selection-end-column="81" />
+            <state relative-caret-position="528">
+              <caret line="155" column="35" lean-forward="false" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MapController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MapController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="124" column="43" lean-forward="true" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#795#796#0" expanded="true" />
+                <element signature="e#830#831#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -73,8 +98,8 @@
       <file leaf-file-name="MarkerData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MarkerData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+            <state relative-caret-position="1386">
+              <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -83,18 +108,16 @@
       <file leaf-file-name="MarkerEntity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MarkerEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+            <state relative-caret-position="495">
+              <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#186#187#0" expanded="true" />
                 <element signature="e#226#227#0" expanded="true" />
-                <element signature="e#312#313#0" expanded="true" />
-                <element signature="e#339#340#0" expanded="true" />
-                <element signature="e#434#435#0" expanded="true" />
-                <element signature="e#461#462#0" expanded="true" />
-                <element signature="e#514#515#0" expanded="true" />
-                <element signature="e#553#554#0" expanded="true" />
+                <element signature="e#495#496#0" expanded="true" />
+                <element signature="e#522#523#0" expanded="true" />
+                <element signature="e#575#576#0" expanded="true" />
+                <element signature="e#614#615#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,24 +126,24 @@
       <file leaf-file-name="DatabaseClass.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DatabaseClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1056">
-              <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+            <state relative-caret-position="4559">
+              <caret line="240" column="32" lean-forward="false" selection-start-line="240" selection-start-column="32" selection-end-line="240" selection-end-column="32" />
               <folding>
-                <marker date="1515661243582" expanded="true" signature="1124:1208" ph="INSERT INTO toilet_request... " />
-                <marker date="1515661243582" expanded="true" signature="1324:1456" ph="INSERT INTO toilet_request_info... " />
-                <marker date="1515661243582" expanded="true" signature="3155:3203" ph="SELECT appro... toilet_request" />
-                <marker date="1515661243582" expanded="true" signature="4219:4357" ph="UPDATE toilet_request_info... " />
-                <marker date="1515661243582" expanded="true" signature="4709:4791" ph="UPDATE toilet_request... " />
-                <marker date="1515661243582" expanded="true" signature="4870:4890" ph="SELECT remov... " />
-                <marker date="1515661243582" expanded="true" signature="4870:4945" ph="SELECT remov... toilet_requestWHERE" />
-                <marker date="1515661243582" expanded="true" signature="5532:5558" ph="DELETE FROM toilet_request... " />
-                <marker date="1515661243582" expanded="true" signature="5895:6008" ph="SELECT * FRO... toilet_request" />
-                <marker date="1515661243582" expanded="true" signature="6249:6300" ph="INSERT INTO toilet... " />
-                <marker date="1515661243582" expanded="true" signature="6413:6496" ph="INSERT INTO toilet_info... " />
-                <marker date="1515661243582" expanded="true" signature="6636:6673" ph="DELETE FROM toilet_request... " />
-                <marker date="1515661243582" expanded="true" signature="6763:6820" ph="DELETE FROM toilet_request_info... " />
-                <marker date="1515661243582" expanded="true" signature="8866:8937" ph="SELECT * FRO... toilet" />
-                <marker date="1515661243582" expanded="true" signature="10083:10182" ph="SELECT * FRO... toilet_request" />
+                <marker date="1515666585803" expanded="true" signature="1124:1208" ph="INSERT INTO toilet_request... " />
+                <marker date="1515666585803" expanded="true" signature="1324:1456" ph="INSERT INTO toilet_request_info... " />
+                <marker date="1515666585803" expanded="true" signature="3155:3203" ph="SELECT appro... toilet_request" />
+                <marker date="1515666585803" expanded="true" signature="4219:4357" ph="UPDATE toilet_request_info... " />
+                <marker date="1515666585803" expanded="true" signature="4709:4791" ph="UPDATE toilet_request... " />
+                <marker date="1515666585803" expanded="true" signature="4870:4890" ph="SELECT remov... " />
+                <marker date="1515666585803" expanded="true" signature="4870:4945" ph="SELECT remov... toilet_requestWHERE" />
+                <marker date="1515666585803" expanded="true" signature="5532:5558" ph="DELETE FROM toilet_request... " />
+                <marker date="1515666585803" expanded="true" signature="5895:6008" ph="SELECT * FRO... toilet_request" />
+                <marker date="1515666585803" expanded="true" signature="6249:6300" ph="INSERT INTO toilet... " />
+                <marker date="1515666585803" expanded="true" signature="6413:6496" ph="INSERT INTO toilet_info... " />
+                <marker date="1515666585803" expanded="true" signature="6636:6673" ph="DELETE FROM toilet_request... " />
+                <marker date="1515666585803" expanded="true" signature="6763:6820" ph="DELETE FROM toilet_request_info... " />
+                <marker date="1515666585803" expanded="true" signature="8869:8940" ph="SELECT * FRO... toilet" />
+                <marker date="1515666585803" expanded="true" signature="10089:10188" ph="SELECT * FRO... toilet_request" />
               </folding>
             </state>
           </provider>
@@ -181,18 +204,18 @@
         <option value="$PROJECT_DIR$/lib/primefaces-6.1-sources.jar!/org/primefaces/model/map/MapModel.java" />
         <option value="$PROJECT_DIR$/lib/primefaces-6.1-sources.jar!/org/primefaces/model/map/Marker.java" />
         <option value="$PROJECT_DIR$/web/resources/css/ControlsStyling.css" />
-        <option value="$PROJECT_DIR$/web/resources/css/InfoWindow.css" />
         <option value="$PROJECT_DIR$/src/TestDatabaseClass.java" />
         <option value="$PROJECT_DIR$/src/MarkerRequestData.java" />
         <option value="$PROJECT_DIR$/web/resources/Javascript/Controller's.js" />
-        <option value="$PROJECT_DIR$/src/MarkerEntity.java" />
         <option value="$PROJECT_DIR$/web/resources/Javascript/YeeAnn.js" />
-        <option value="$PROJECT_DIR$/src/DatabaseClass.java" />
-        <option value="$PROJECT_DIR$/web/resources/Javascript/Ivan's.js" />
-        <option value="$PROJECT_DIR$/web/index.xhtml" />
         <option value="$PROJECT_DIR$/src/MarkerData.java" />
         <option value="$PROJECT_DIR$/src/UserController.java" />
+        <option value="$PROJECT_DIR$/web/resources/css/InfoWindow.css" />
+        <option value="$PROJECT_DIR$/web/index.xhtml" />
+        <option value="$PROJECT_DIR$/src/DatabaseClass.java" />
+        <option value="$PROJECT_DIR$/src/MarkerEntity.java" />
         <option value="$PROJECT_DIR$/src/MapController.java" />
+        <option value="$PROJECT_DIR$/web/resources/Javascript/Ivan's.js" />
       </list>
     </option>
   </component>
@@ -237,7 +260,8 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -325,8 +349,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -625,7 +648,8 @@
       <workItem from="1515552535403" duration="1174000" />
       <workItem from="1515594183833" duration="325000" />
       <workItem from="1515645781526" duration="3745000" />
-      <workItem from="1515659422020" duration="3016000" />
+      <workItem from="1515659422020" duration="5133000" />
+      <workItem from="1515666300205" duration="2293000" />
     </task>
     <task id="LOCAL-00001" summary="Autocomplete Broke Main Map due to it creating a entire new map again, remove re-creating map autocomplete broke.">
       <created>1513409877165</created>
@@ -638,7 +662,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192783000" />
+    <option name="totallyTimeSpent" value="197193000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -653,7 +677,7 @@
     <frame x="-13" y="-13" width="3226" height="1746" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3116622" sideWeight="0.3033419" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3116622" sideWeight="0.30976865" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32809773" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928804" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -665,15 +689,15 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991228" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32809773" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2989276" sideWeight="0.43155527" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2989276" sideWeight="0.42673522" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3116622" sideWeight="0.6966581" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116622" sideWeight="0.6902314" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32809773" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20758355" sideWeight="0.49659202" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21047558" sideWeight="0.49659202" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20469151" sideWeight="0.50340796" order="2" side_tool="true" content_ui="tabs" />
@@ -870,20 +894,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SingletonMapController.java" />
-    <entry file="file://$PROJECT_DIR$/web/resources/css/MapPage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-564">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/resources/css/ControlsStyling.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/images/Female Icon Empty.png" />
     <entry file="file://$PROJECT_DIR$/web/images/toilet_female.png">
       <provider selected="true" editor-type-id="images">
@@ -933,24 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MarkerEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#186#187#0" expanded="true" />
-            <element signature="e#226#227#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
-            <element signature="e#339#340#0" expanded="true" />
-            <element signature="e#434#435#0" expanded="true" />
-            <element signature="e#461#462#0" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
-            <element signature="e#553#554#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/resources/Javascript/YeeAnn.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-679">
@@ -959,58 +951,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/resources/css/InfoWindow.css">
+    <entry file="file://$PROJECT_DIR$/web/resources/css/ControlsStyling.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
-          <folding />
+        <state relative-caret-position="213">
+          <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DatabaseClass.java">
+    <entry file="file://$PROJECT_DIR$/web/resources/css/MapPage.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+        <state relative-caret-position="33">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MarkerEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
           <folding>
-            <marker date="1515661243582" expanded="true" signature="1124:1208" ph="INSERT INTO toilet_request... " />
-            <marker date="1515661243582" expanded="true" signature="1324:1456" ph="INSERT INTO toilet_request_info... " />
-            <marker date="1515661243582" expanded="true" signature="3155:3203" ph="SELECT appro... toilet_request" />
-            <marker date="1515661243582" expanded="true" signature="4219:4357" ph="UPDATE toilet_request_info... " />
-            <marker date="1515661243582" expanded="true" signature="4709:4791" ph="UPDATE toilet_request... " />
-            <marker date="1515661243582" expanded="true" signature="4870:4890" ph="SELECT remov... " />
-            <marker date="1515661243582" expanded="true" signature="4870:4945" ph="SELECT remov... toilet_requestWHERE" />
-            <marker date="1515661243582" expanded="true" signature="5532:5558" ph="DELETE FROM toilet_request... " />
-            <marker date="1515661243582" expanded="true" signature="5895:6008" ph="SELECT * FRO... toilet_request" />
-            <marker date="1515661243582" expanded="true" signature="6249:6300" ph="INSERT INTO toilet... " />
-            <marker date="1515661243582" expanded="true" signature="6413:6496" ph="INSERT INTO toilet_info... " />
-            <marker date="1515661243582" expanded="true" signature="6636:6673" ph="DELETE FROM toilet_request... " />
-            <marker date="1515661243582" expanded="true" signature="6763:6820" ph="DELETE FROM toilet_request_info... " />
-            <marker date="1515661243582" expanded="true" signature="8866:8937" ph="SELECT * FRO... toilet" />
-            <marker date="1515661243582" expanded="true" signature="10083:10182" ph="SELECT * FRO... toilet_request" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#186#187#0" expanded="true" />
+            <element signature="e#226#227#0" expanded="true" />
+            <element signature="e#495#496#0" expanded="true" />
+            <element signature="e#522#523#0" expanded="true" />
+            <element signature="e#575#576#0" expanded="true" />
+            <element signature="e#614#615#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/resources/Javascript/Ivan's.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="125" column="81" lean-forward="true" selection-start-line="125" selection-start-column="24" selection-end-line="125" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-688">
-          <caret line="64" column="71" lean-forward="false" selection-start-line="64" selection-start-column="71" selection-end-line="64" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MarkerData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+        <state relative-caret-position="1386">
+          <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1023,10 +997,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DatabaseClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4559">
+          <caret line="240" column="32" lean-forward="false" selection-start-line="240" selection-start-column="32" selection-end-line="240" selection-end-column="32" />
+          <folding>
+            <marker date="1515666585803" expanded="true" signature="1124:1208" ph="INSERT INTO toilet_request... " />
+            <marker date="1515666585803" expanded="true" signature="1324:1456" ph="INSERT INTO toilet_request_info... " />
+            <marker date="1515666585803" expanded="true" signature="3155:3203" ph="SELECT appro... toilet_request" />
+            <marker date="1515666585803" expanded="true" signature="4219:4357" ph="UPDATE toilet_request_info... " />
+            <marker date="1515666585803" expanded="true" signature="4709:4791" ph="UPDATE toilet_request... " />
+            <marker date="1515666585803" expanded="true" signature="4870:4890" ph="SELECT remov... " />
+            <marker date="1515666585803" expanded="true" signature="4870:4945" ph="SELECT remov... toilet_requestWHERE" />
+            <marker date="1515666585803" expanded="true" signature="5532:5558" ph="DELETE FROM toilet_request... " />
+            <marker date="1515666585803" expanded="true" signature="5895:6008" ph="SELECT * FRO... toilet_request" />
+            <marker date="1515666585803" expanded="true" signature="6249:6300" ph="INSERT INTO toilet... " />
+            <marker date="1515666585803" expanded="true" signature="6413:6496" ph="INSERT INTO toilet_info... " />
+            <marker date="1515666585803" expanded="true" signature="6636:6673" ph="DELETE FROM toilet_request... " />
+            <marker date="1515666585803" expanded="true" signature="6763:6820" ph="DELETE FROM toilet_request_info... " />
+            <marker date="1515666585803" expanded="true" signature="8869:8940" ph="SELECT * FRO... toilet" />
+            <marker date="1515666585803" expanded="true" signature="10089:10188" ph="SELECT * FRO... toilet_request" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/resources/css/InfoWindow.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="20" column="15" lean-forward="false" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MapController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="124" column="43" lean-forward="true" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#795#796#0" expanded="true" />
+            <element signature="e#830#831#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/resources/Javascript/Ivan's.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="155" column="35" lean-forward="false" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-443">
+          <caret line="75" column="66" lean-forward="true" selection-start-line="75" selection-start-column="66" selection-end-line="75" selection-end-column="66" />
           <folding />
         </state>
       </provider>

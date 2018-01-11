@@ -29,7 +29,7 @@ CREATE TABLE `toilet` (
   `longitude` double DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `toilet` (
 
 LOCK TABLES `toilet` WRITE;
 /*!40000 ALTER TABLE `toilet` DISABLE KEYS */;
-INSERT INTO `toilet` VALUES (1,NULL,1.4033967888631766,103.92199516296387),(2,NULL,1.3814566682988083,103.85809421539307),(3,NULL,1.384060909285942,103.82380485534668);
+INSERT INTO `toilet` VALUES (1,NULL,1.3839067272586263,103.86483192443848),(2,NULL,1.3773425857522492,103.8933277130127);
 /*!40000 ALTER TABLE `toilet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,9 +55,10 @@ CREATE TABLE `toilet_info` (
   `rating` int(11) DEFAULT '0',
   `amt_of_rating` int(11) DEFAULT '0',
   `genderM` tinyint(1) NOT NULL,
+  `toilet_group` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +67,7 @@ CREATE TABLE `toilet_info` (
 
 LOCK TABLES `toilet_info` WRITE;
 /*!40000 ALTER TABLE `toilet_info` DISABLE KEYS */;
-INSERT INTO `toilet_info` VALUES (1,1,0,0,0),(2,2,0,0,0),(3,3,0,0,1),(4,3,0,0,0);
+INSERT INTO `toilet_info` VALUES (1,1,4,1,1,0),(2,2,3,1,1,0);
 /*!40000 ALTER TABLE `toilet_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,14 +82,9 @@ CREATE TABLE `toilet_request` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
-  `approval` int(11) DEFAULT '0',
-  `rating` int(11) DEFAULT '0',
-  `amt_of_rating` int(11) DEFAULT '0',
-  `genderM` tinyint(1) NOT NULL,
-  `removal_flags` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,8 +93,39 @@ CREATE TABLE `toilet_request` (
 
 LOCK TABLES `toilet_request` WRITE;
 /*!40000 ALTER TABLE `toilet_request` DISABLE KEYS */;
-INSERT INTO `toilet_request` VALUES (1,1.4033967888631766,103.92199516296387,6,0,0,0,0);
+INSERT INTO `toilet_request` VALUES (1,1.3823876985756578,103.8592529296875),(2,1.3844041318498561,103.86320114135742),(3,1.3823018928664086,103.85921001434326),(4,1.4059533141519138,103.87487411499023),(5,1.3791257387299976,103.85269224643707),(6,1.3892266717560315,103.86131286621094),(7,1.3882399087608555,103.81831169128418),(8,1.3884973252341084,103.87255668640137),(9,1.3912430992034028,103.8731575012207),(10,1.384249949844868,103.86435985565186),(11,1.3858373536597723,103.85921001434326),(12,1.388951826126219,103.86560440063477),(13,1.3843786583018942,103.85616302490234),(14,1.3882399087608555,103.86633396148682),(15,1.3851938117008136,103.86054039001465);
 /*!40000 ALTER TABLE `toilet_request` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `toilet_request_info`
+--
+
+DROP TABLE IF EXISTS `toilet_request_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `toilet_request_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `toilet_request_id` int(11) NOT NULL,
+  `approval` int(11) NOT NULL DEFAULT '0',
+  `rating` int(11) DEFAULT '0',
+  `amt_of_rating` int(11) DEFAULT '0',
+  `genderM` tinyint(1) NOT NULL,
+  `removal_flags` int(11) DEFAULT '0',
+  `toilet_group` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `toilet_request_info`
+--
+
+LOCK TABLES `toilet_request_info` WRITE;
+/*!40000 ALTER TABLE `toilet_request_info` DISABLE KEYS */;
+INSERT INTO `toilet_request_info` VALUES (1,1,1,0,0,1,0,0),(2,2,1,0,0,1,0,0),(3,3,1,0,0,1,0,0),(4,4,1,0,0,1,0,0),(5,5,1,0,0,1,0,0),(6,6,1,0,0,1,0,0),(7,7,1,0,0,1,0,0),(8,8,1,0,0,1,0,0),(9,9,1,0,0,1,0,0),(10,10,1,0,0,1,0,0),(11,11,1,0,0,1,0,0),(12,12,1,0,0,0,0,0),(13,13,1,0,0,1,0,0),(14,14,1,0,0,1,0,0),(15,15,1,0,0,-1,0,0);
+/*!40000 ALTER TABLE `toilet_request_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -110,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-10 17:35:11
+-- Dump completed on 2018-01-11 20:42:07

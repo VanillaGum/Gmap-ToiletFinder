@@ -26,7 +26,7 @@ public class MapController implements Serializable{
     private List<Marker> initMarkerList = new ArrayList<>();
     @PostConstruct
     public void init() {
-        initToiletLoc();
+        getApprovedToilets();
    }
     public void setUserLocMark() {
 
@@ -46,14 +46,14 @@ public class MapController implements Serializable{
                 "icon:'"+getImages(IconNo)+"'});"
                 + "markers.push(newMarker);");
     }
-    public void createMarkerList(List<Marker> mList, Object dataz, int IconNo) {
+    public void createMarkerList(List<MarkerData> mList) {
         RequestContext.getCurrentInstance().execute("clearMarkerList();");
-        for (Marker m:mList) {
+        for (MarkerData m:mList) {
             RequestContext.getCurrentInstance().execute("var newMarker = " +
                     "new google.maps.Marker({ " +
                     "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
                     "map:PF('mapDisplay').getMap()," +
-                    "icon:'"+getImages(IconNo)+"'});"
+                    "icon:'"+getImages(m.getIconNo())+"'});"
                     + "markers.push(newMarker);");
         }
     }
@@ -117,10 +117,10 @@ public class MapController implements Serializable{
 
     }
     public void addToiletLoc() {
-        MarkerData md = new MarkerData( new LatLng(locLat,locLng), toiletGender, rating);
-        MarkerEntity me = new MarkerEntity();
-        me.createSingleMarker(md);
-        System.out.println("Rating:" + rating);
+        System.out.println("Rating:" + rating + "|" +"Gender: M|" +genderM+ " F|" + genderF);
+//        MarkerData md = new MarkerData( new LatLng(locLat,locLng), toiletGender, rating);
+//        MarkerEntity me = new MarkerEntity();
+//        me.createSingleMarker(md);
 
         if (genderM == 1 && genderF == 0) {
             createMarker(locLat,locLng,"hello",null,1);
@@ -130,8 +130,10 @@ public class MapController implements Serializable{
             createMarker(locLat,locLng,"hello",null,2);
         }
     }
-    public void initToiletLoc() {
-
+    public void getApprovedToilets() {
+        MarkerEntity me = new MarkerEntity();
+        List<MarkerData> mdL = me.getApprovedMarkers();
+        createMarkerList(mdL);
     }
     public void onStateChange(StateChangeEvent event) {
 

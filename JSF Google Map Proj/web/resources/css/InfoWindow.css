@@ -14,3 +14,9 @@
     width:100%;
     display:inline-block;
 }
+.upvote-unselected {
+    opacity: 0.4;
+}
+.upvote-selected {
+    opacity: 1;
+}

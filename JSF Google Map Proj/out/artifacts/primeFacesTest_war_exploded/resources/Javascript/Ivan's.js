@@ -88,30 +88,29 @@ function toiletSuggestionConfirmed() {
         case 0:
             document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect0").value;
             //Close The Marker And Infowindow
-            confirmationInfowindow.close();
             break;
         case 1:
             document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect1").value;
             //Close The Marker And Infowindow
-            confirmationInfowindow1.close();
             break;
         case 2:
             document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect2").value;
             //Close The Marker And Infowindow
-            confirmationInfowindow2.close();
             break;
     }
-    confirmationMarker.setMap(null);
-    confirmationMarker = null;
     //Initiate the ManagedBean MapController AddToilet function
     tsubmit();
+
+    resetInfoWindow();
 }
 
 //Suggesting Location Cancelled
 function cancelLocMarker() {
+    confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
 }
+
 
 function changeIconSelection(no) {
     genderM = document.getElementById("formSubmitToilet:genderM").value;
@@ -148,6 +147,20 @@ function changeIconSelection(no) {
             }
     }
 }
+
+//Reset InfoWindows
+function resetInfoWindow() {
+    document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
+    document.getElementById("maleIcon0").className = "femaleToiletSelectIcon-unselected";
+
+    confirmationInfowindow.close();
+    confirmationMarker.setMap(null);
+    confirmationMarker = null;
+}
+
+//Upvoting Toilet Suggestion
+
+
 
 //-Start of Map Ui-//
 //Draw Map User Interface for non-logged in users

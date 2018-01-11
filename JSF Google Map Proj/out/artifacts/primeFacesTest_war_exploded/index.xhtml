@@ -83,6 +83,8 @@
                </p:remoteCommand>
             </h:form>
       </div>
+
+      <!--Suggesting Toilets-->
       <div style="display:none;">
          <div id="confirmBox0">
             <!--Add Uneditable Stars Rating Here-->
@@ -95,7 +97,7 @@
                <option value="4">4</option>
                <option value="5">5</option>
             </select>
-
+            <img class="upvote upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="10.24" height="10.29" onclick="upvote()"/>
             <!--Gender Selection-->
             <img id="maleIcon0" class="maleToiletSelectIcon-unselected" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px" onclick="changeIconSelection(1)"/>
             <img id="femaleIcon0" class="femaleToiletSelectIcon-unselected" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6" onclick="changeIconSelection(0)"/>
@@ -127,7 +129,11 @@
             <button onclick="removeLocMarker()">Confirm Location</button>
          </div>
       </div>
-      
+      //Displaying Toilet Suggestions
+      <div style="display:none;">
+
+      </div>
+
       <script type="text/javascript" src="resources/Javascript/Controller's.js"></script>
       <script type="text/javascript" src="resources/Javascript/Ivan's.js"></script>
       <script type="text/javascript" src="resources/Javascript/YeeAnn.js"></script>

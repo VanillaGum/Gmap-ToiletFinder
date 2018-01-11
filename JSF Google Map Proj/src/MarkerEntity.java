@@ -12,7 +12,8 @@ public class MarkerEntity {
 
     //Get Approved Toilet Markers
     public List<MarkerData> getApprovedMarkers() {
-        return null;
+        List<MarkerData> mdL = dc.getApprovedToiletMarkers();
+        return mdL;
     }
 
     //Get Requested Toilet Markers

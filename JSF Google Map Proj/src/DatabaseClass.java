@@ -211,7 +211,7 @@ public class DatabaseClass {
     }
 
     //Get Approved Toilet Markers
-    public List<MarkerData> approvedToiletMarkers() {
+    public List<MarkerData> getApprovedToiletMarkers() {
         try {
             List<MarkerData> mList= new ArrayList<>();
             PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet t INNER JOIN toilet_info ti ON ti.toilet_id = t.id;");
@@ -238,7 +238,7 @@ public class DatabaseClass {
         }
         return null;
     }
-    public List<MarkerData> requestedToiletMarkers() {
+    public List<MarkerData> getRequestedToiletMarkers() {
         try {
             List<MarkerData> mList= new ArrayList<>();
             PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet_request tr INNER JOIN toilet_request_info tri ON tri.toilet_request_id = tr.id ;");
