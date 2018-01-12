@@ -113,53 +113,77 @@ function cancelLocMarker() {
 
 
 function changeIconSelection(no) {
-    genderM = document.getElementById("formSubmitToilet:genderM").value;
-    genderF = document.getElementById("formSubmitToilet:genderF").value;
-    switch(userLevel) {
+    switch(no) {
         case 0:
-            inputChange = document.getElementById("toiletGenderSelect0");
-            switch(no) {
-                case 0:
-                    if (genderF == 0) {
-                        document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-selected";
-                        document.getElementById("formSubmitToilet:genderF").value = 1;
-                    } else {
-                        document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
-                        document.getElementById("formSubmitToilet:genderF").value = 0;
-                    }
-                    inputChange.value = 0;
-                    break;
-                case 1:
-                    if (genderM == 0) {
-                        document.getElementById("maleIcon0").className = "maleToiletSelectIcon-selected";
-                        document.getElementById("formSubmitToilet:genderM").value = 1;
-                    }else {
-                        document.getElementById("maleIcon0").className = "femaleToiletSelectIcon-unselected";
-                        document.getElementById("formSubmitToilet:genderM").value = 0;
-                    }
-                    inputChange.value = 1;
-                    break;
+            //Female Toilet Selection
+            var femaleToiletCheck= document.getElementsByClassName("femaleToiletSelectIcon-unselected");
+            var femaleToiletImage = document.getElementsByClassName("fToilet");
+            var femaleToiletUnselected = "femaleToiletSelectIcon-unselected";
+            var femaleToiletSelected = "femaleToiletSelectIcon-selected";
+            var femaleToiletDefault = "fToilet ";
+            if (femaleToiletCheck.length > 0) {
+                //Unselected Image change to selected
+                femaleToiletImage[0].className = femaleToiletDefault + femaleToiletSelected;
+                document.getElementById("formSubmitToilet:genderF").value = 1;
+            } else {
+                //Selected Image change to unselected
+                femaleToiletImage[0].className = femaleToiletDefault + femaleToiletUnselected;
+                document.getElementById("formSubmitToilet:genderF").value = 0;
             }
             break;
         case 1:
-            switch(no) {
-
+            //Male Toilet Selection
+            var maleToiletCheck= document.getElementsByClassName("maleToiletSelectIcon-unselected");
+            var maleToiletImage = document.getElementsByClassName("mToilet");
+            var maleToiletUnselected = "maleToiletSelectIcon-unselected";
+            var maleToiletSelected = "maleToiletSelectIcon-selected";
+            var maleToiletDefault = "mToilet ";
+            if (maleToiletCheck.length > 0) {
+                //Unselected Image change to selected
+                maleToiletImage[0].className = maleToiletDefault + maleToiletSelected;
+                document.getElementById("formSubmitToilet:genderM").value = 1;
+            } else {
+                //Selected Image change to unselected
+                maleToiletImage[0].className = maleToiletDefault + maleToiletUnselected;
+                document.getElementById("formSubmitToilet:genderM").value = 0;
             }
+            break;
     }
 }
 
 //Reset InfoWindows
 function resetInfoWindow() {
-    document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
-    document.getElementById("maleIcon0").className = "femaleToiletSelectIcon-unselected";
+    switch(userLevel) {
+        case 0:
+            document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
+            document.getElementById("maleIcon0").className = "femaleToiletSelectIcon-unselected";
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
 
+    }
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
 }
 
 //Upvoting Toilet Suggestion
-
+function upvoteToiletSuggestion() {
+    var upvoted = document.getElementById("formSubmitToilet:upvote").value;
+    var defaultClass = "upvote ";
+    var unselected = "upvote-unselected";
+    var selected = "upvote-selected";
+    var upvoteElementList = document.getElementsByClassName("upvote");
+    if (upvoted == 0) {
+        upvoteElementList[0].className = defaultClass +  selected;
+        document.getElementById("formSubmitToilet:upvote").value = 1;
+    }else {
+        upvoteElementList[0].className = defaultClass + unselected;
+        document.getElementById("formSubmitToilet:upvote").value = 0;
+    }
+}
 
 
 //-Start of Map Ui-//

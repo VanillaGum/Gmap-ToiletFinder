@@ -22,6 +22,7 @@ public class MapController implements Serializable{
     private int genderM = 0;
     private int genderF = 0;
     private int rating = 0;
+    private int upvote = 0;
 
     private List<Marker> initMarkerList = new ArrayList<>();
     @PostConstruct
@@ -169,5 +170,9 @@ public class MapController implements Serializable{
     public int getRating() { return rating; }
 
     public void setRating(int rating) { this.rating = rating; }
+
+    public int getUpvote() { return upvote; }
+
+    public void setUpvote(int upvote) { this.upvote = upvote; }
 }
 
