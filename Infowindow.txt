@@ -1,2 +1,6 @@
 Set Id Of The Div and then put the button submit as the id 
 Use that id and select the rest of the elements inside the infowindow
+
+
+Id For Normal InfoWindow Marker = AM1
+ID for Request Infowindow Marker = RM1
