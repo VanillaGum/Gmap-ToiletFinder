@@ -54,7 +54,7 @@ public class MapController implements Serializable{
                     "new google.maps.Marker({ " +
                     "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
                     "map:PF('mapDisplay').getMap()," +
-                    "icon:'"+getImages(m.getIconNo())+"'});"
+                    "icon:'"+getImages(m)+"'});"
                     + "markers.push(newMarker);");
         }
     }
@@ -67,6 +67,16 @@ public class MapController implements Serializable{
             case 2:
         }
         return "";
+    }
+    public String getRequestImages(int gender) {
+        switch (gender) {
+            case 0:
+                return "images/toilet_female_request.png";
+            case 1:
+                return "images/toilet_male_request.png";
+            case 2:
+        }
+        return null;
     }
     public String getImages(MarkerData m) {
         int iconNo = m.getIconNo();

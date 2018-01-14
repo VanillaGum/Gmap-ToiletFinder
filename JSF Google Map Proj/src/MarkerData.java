@@ -30,6 +30,8 @@ public class MarkerData {
         this.genderM = genderM;
         this.toiletId = toiletId;
         this.toiletInfoId = toiletInfoId;
+        avg_rating = getAvgRating();
+        this.iconNo = iconNoInit();
     }
 
     public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM) {
@@ -40,6 +42,14 @@ public class MarkerData {
         this.genderM = genderM;
         avg_rating = this.rating/this.amt_of_ratings;
         this.iconNo = iconNoInit();
+    }
+
+    public MarkerData(LatLng latlng, String title, int genderM, int toiletId, int toiletInfoId) {
+        this.latlng = latlng;
+        this.title = title;
+        this.genderM = genderM;
+        this.toiletId = toiletId;
+        this.toiletInfoId = toiletInfoId;
     }
 
     //For Suggesting Toilet Loc
@@ -71,6 +81,15 @@ public class MarkerData {
         }
     }
 
+    public int getAvgRating() {
+        try {
+            return (rating/amt_of_ratings);
+        }catch (ArithmeticException e) {
+            //Will Run If Amt Of Rating = 0
+            //Because cannot divide any number by 0
+            return -1;
+        }
+    }
     public LatLng getLatlng() {
         return latlng;
     }

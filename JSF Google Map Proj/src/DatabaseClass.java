@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class DatabaseClass {
-    String dburl = "jdbc:mysql://localhost:3306/toilet_finder";
+    String dburl = "jdbc:mysql://localhost:3306/map_proj";
     private Connection conn;
     int userLevel;
     public DatabaseClass() {
@@ -249,14 +249,11 @@ public class DatabaseClass {
                 String name = toilets.getString("name");
                 double latitude = toilets.getDouble("latitude");
                 double longitude = toilets.getDouble("Longitude");
-
                 //ToiletInfo Table
                 int toiletInfoId = toilets.getInt(5);
-                int rating = toilets.getInt("rating");
-                int amt_of_rating = toilets.getInt("amt_of_rating");
                 int genderM = toilets.getInt("genderM");
 
-                MarkerData m = new MarkerData(new LatLng(latitude,longitude),rating,amt_of_rating, name, genderM, toiletId, toiletInfoId);
+                MarkerData m = new MarkerData(new LatLng(latitude,longitude), name, genderM, toiletId, toiletInfoId);
                 mList.add(m);
             }
             return mList;
