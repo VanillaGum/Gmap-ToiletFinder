@@ -23,7 +23,7 @@ public class MapController implements Serializable{
     private int genderF = 0;
     private int rating = 0;
     private int upvote = 0;
-
+    private MarkerEntity me;
     private List<Marker> initMarkerList = new ArrayList<>();
     @PostConstruct
     public void init() {
@@ -40,12 +40,20 @@ public class MapController implements Serializable{
     public void createMarker(double latitude,double longitude,String title,Object dataz, int IconNo) {
         //Maybe Add Field For Title
         //Add
-        RequestContext.getCurrentInstance().execute("var newMarker = " +
-                "new google.maps.Marker({ " +
-                "position:new google.maps.LatLng(" + latitude + ", " + longitude + "), " +
-                "map:PF('mapDisplay').getMap()," +
-                "icon:'"+getImages(IconNo)+"'});"
-                + "markers.push(newMarker);");
+        System.out.println(getImages(IconNo));
+//        RequestContext.getCurrentInstance().execute(
+//                "var newMarker = null;" +
+//                "var newMarker = " +
+//                "new google.maps.Marker({ " +
+//                "position:new google.maps.LatLng(" + latitude + ", " + longitude + "), " +
+//                "map:PF('mapDisplay').getMap()," +
+//                "icon:'"+getImages(IconNo)+"'});"
+//                + "markers.push(newMarker);");
+//        RequestContext.getCurrentInstance().execute("markers.push(new google.maps.Marker({ " +
+//                "position:new google.maps.LatLng(" + latitude + ", " + longitude + "), " +
+//                "map:PF('mapDisplay').getMap(), " +
+//                "icon:'"+getImages(IconNo)+"' }));");
+        RequestContext.getCurrentInstance().execute("addNewMarker("+latitude+","+longitude+"," +getImages(IconNo) + " );");
     }
     public void createMarkerList(List<MarkerData> mList) {
         RequestContext.getCurrentInstance().execute("clearMarkerList();");
@@ -65,6 +73,7 @@ public class MapController implements Serializable{
             case 1:
                 return "images/toilet_male.png";
             case 2:
+                return "images/toilet_female.png";
         }
         return "";
     }
@@ -129,17 +138,17 @@ public class MapController implements Serializable{
     }
     public void addToiletLoc() {
         System.out.println("Rating:" + rating + "|" +"Gender: M|" +genderM+ " F|" + genderF);
-//        MarkerData md = new MarkerData( new LatLng(locLat,locLng), toiletGender, rating);
-//        MarkerEntity me = new MarkerEntity();
-//        me.createSingleMarker(md);
+//        if (genderM == 1 && genderF == 0) {
+//            createMarker(locLat,locLng,"hello",null,1);
+//            //Add Male Toilet
+//        }else if (genderM == 0 && genderF == 1){
+//            createMarker(locLat,locLng,"hello",null,0);
+//            //Add Female Toilet
+//        }else if(genderM == 1 && genderF == 1) {
+//            //Add Both Male And Female Toilet
+//            createMarker(locLat,locLng,"hello",null,2);
+//        }
 
-        if (genderM == 1 && genderF == 0) {
-            createMarker(locLat,locLng,"hello",null,1);
-        }else if (genderM == 0 && genderF == 1){
-            createMarker(locLat,locLng,"hello",null,0);
-        }else if(genderM == 1 && genderF == 1) {
-            createMarker(locLat,locLng,"hello",null,2);
-        }
     }
     public void getApprovedToilets() {
         MarkerEntity me = new MarkerEntity();

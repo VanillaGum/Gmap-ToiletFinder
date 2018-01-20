@@ -155,8 +155,9 @@ function changeIconSelection(no) {
 function resetInfoWindow() {
     switch(userLevel) {
         case 0:
-            document.getElementById("femaleIcon0").className = "femaleToiletSelectIcon-unselected";
-            document.getElementById("maleIcon0").className = "femaleToiletSelectIcon-unselected";
+            document.getElementById("femaleIcon0").className = "fToilet femaleToiletSelectIcon-unselected";
+            document.getElementById("maleIcon0").className = "mToilet maleToiletSelectIcon-unselected";
+            document.getElementById("rating_select").value = -1;
             break;
         case 1:
             break;
@@ -166,6 +167,8 @@ function resetInfoWindow() {
     }
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
+    confirmationMarker = null;
+
 }
 
 //Upvoting Toilet Suggestion
