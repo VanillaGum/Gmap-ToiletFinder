@@ -166,7 +166,6 @@ function resetInfoWindow() {
     }
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
-    confirmationMarker = null;
 }
 
 //Upvoting Toilet Suggestion
