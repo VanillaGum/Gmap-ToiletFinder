@@ -56,18 +56,18 @@ public class MapController implements Serializable{
     public void displaySuggestedMarkers() {
         for (MarkerData m:ml.getSuggestedMarkers()) {
                 RequestContext.getCurrentInstance().execute(
-                                "var infowindow"+m.getRating()+" = new google.maps.InfoWindow({" +
-                                "   content:createInfoWindow("+m.getRating()+","+m.getGenderM()+")" +
+                                "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
+                                "   content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+")" +
                                 "});" +
-                        "var newMarker"+m.getRating()+" = " +
+                        "var newMarker"+m.getRandomId()+" = " +
                         "new google.maps.Marker({ " +
                         "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
                         "map:PF('mapDisplay').getMap()," +
                         "icon:'"+m.getImage()+"'});" +
-                                "newMarker"+m.getRating()+".addListener('click',function() {" +
-                                "   infowindow"+m.getRating()+".open(map,newMarker"+m.getRating()+");" +
+                                "newMarker"+m.getRandomId()+".addListener('click',function() {" +
+                                "   infowindow"+m.getRandomId()+".open(map,newMarker"+m.getRandomId()+");" +
                                 "});"
-                        + "markers.push(newMarker"+m.getRating()+");");
+                        + "markers.push(newMarker"+m.getRandomId()+");");
         }
     }
     public void displaySuggestionMarkers(List<MarkerData> mList) {

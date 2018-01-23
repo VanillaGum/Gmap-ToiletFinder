@@ -1,5 +1,7 @@
 import org.primefaces.model.map.LatLng;
 
+import java.util.UUID;
+
 public class MarkerData {
     private LatLng latlng;
 
@@ -14,12 +16,17 @@ public class MarkerData {
     private String title;
 
     private int genderM;
+    //0 = Female
+    //1 = Male
+    //2 = Both
 
     private int toiletId;
 
     private int toiletInfoId;
 
     private String image;
+
+    private String randomId;
     public MarkerData() {
     }
 
@@ -60,6 +67,7 @@ public class MarkerData {
         this.latlng = latlng;
         this.rating = rating;
         this.genderM = genderM;
+        this.randomId = genRandomId();
         this.iconNo = -1;
         this.image = getImageString();
     }
@@ -204,5 +212,17 @@ public class MarkerData {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getRandomId() {
+        return randomId;
+    }
+
+    public void setRandomId(String randomId) {
+        this.randomId = randomId;
+    }
+
+    private String genRandomId() {
+        return UUID.randomUUID().toString().replace("-", "");
     }
 }
