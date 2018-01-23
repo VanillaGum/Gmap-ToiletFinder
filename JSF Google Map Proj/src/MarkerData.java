@@ -26,7 +26,7 @@ public class MarkerData {
 
     private String image;
 
-    private String randomId;
+    private int randomId;
     public MarkerData() {
     }
 
@@ -67,7 +67,8 @@ public class MarkerData {
         this.latlng = latlng;
         this.rating = rating;
         this.genderM = genderM;
-        this.randomId = genRandomId();
+        MarkerList m = MarkerList.getInstance();
+        this.randomId = m.getUniqueId();
         this.iconNo = -1;
         this.image = getImageString();
     }
@@ -214,15 +215,11 @@ public class MarkerData {
         this.image = image;
     }
 
-    public String getRandomId() {
+    public int getRandomId() {
         return randomId;
     }
 
-    public void setRandomId(String randomId) {
+    public void setRandomId(int randomId) {
         this.randomId = randomId;
-    }
-
-    private String genRandomId() {
-        return UUID.randomUUID().toString().replace("-", "");
     }
 }

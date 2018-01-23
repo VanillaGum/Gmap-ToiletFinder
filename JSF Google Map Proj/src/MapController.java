@@ -106,24 +106,20 @@ public class MapController implements Serializable{
 
     }
     public void addToiletLoc() {
+        MarkerData newMarker= null;
         System.out.println("Rating:" + rating + "|" +"Gender: M|" +genderM+ " F|" + genderF);
         if (genderM == 1 && genderF == 0) {
             //Add Male Toilet
-            MarkerData newMarker = new MarkerData(new LatLng(locLat,locLng),1, rating);
-            ml.addSuggestedMarker(newMarker);
-            displaySuggestedMarkers();
+            newMarker = new MarkerData(new LatLng(locLat,locLng),1, rating);
         }else if (genderM == 0 && genderF == 1){
             //Add Female Toilet
-            MarkerData newMarker = new MarkerData(new LatLng(locLat,locLng),0, rating);
-            ml.addApprovedMarker(newMarker);
-            displayApprovedMarker();
+            newMarker = new MarkerData(new LatLng(locLat,locLng),0, rating);
         }else if(genderM == 1 && genderF == 1) {
             //Add male and female toilet
-            MarkerData newMarker = new MarkerData(new LatLng(locLat,locLng),2, rating);
-            ml.addApprovedMarker(newMarker);
-            displayApprovedMarker();
+            newMarker = new MarkerData(new LatLng(locLat,locLng),2, rating);
         }
-
+        ml.addSuggestedMarker(newMarker);
+        displaySuggestedMarkers();
     }
     public void onStateChange(StateChangeEvent event) {
 

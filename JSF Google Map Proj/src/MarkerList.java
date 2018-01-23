@@ -16,6 +16,9 @@ public class MarkerList {
     private List<MarkerData> suggestedMarkers = new ArrayList<>();
     //Suggested Markers From Database
     private List<MarkerData> suggestionMarkers = new ArrayList<>();
+
+    private int uniqueId = 0;
+
     protected MarkerList() {
     }
     @PostConstruct
@@ -67,5 +70,10 @@ public class MarkerList {
             MarkerEntity me = new MarkerEntity();
             instance.setApprovedMarkers(me.getApprovedMarkers());
 //        }
+    }
+
+    public int getUniqueId() {
+        this.uniqueId++;
+        return uniqueId;
     }
 }
