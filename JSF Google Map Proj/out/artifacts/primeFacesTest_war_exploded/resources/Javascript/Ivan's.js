@@ -100,7 +100,6 @@ function toiletSuggestionConfirmed() {
     }
     //Initiate the ManagedBean MapController AddToilet function
     tsubmit();
-
     resetInfoWindow();
 }
 
@@ -157,7 +156,7 @@ function resetInfoWindow() {
         case 0:
             document.getElementById("femaleIcon0").className = "fToilet femaleToiletSelectIcon-unselected";
             document.getElementById("maleIcon0").className = "mToilet maleToiletSelectIcon-unselected";
-            $("#rating_select").selectedIndex = 0;
+            document.getElementById("rating_select").value = -1;
             break;
         case 1:
             break;
@@ -168,7 +167,7 @@ function resetInfoWindow() {
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
-
+    addMarker=0;
 }
 
 //Upvoting Toilet Suggestion

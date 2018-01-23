@@ -100,7 +100,6 @@ function toiletSuggestionConfirmed() {
     }
     //Initiate the ManagedBean MapController AddToilet function
     tsubmit();
-
     resetInfoWindow();
 }
 
@@ -168,7 +167,7 @@ function resetInfoWindow() {
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
-
+    addMarker=0;
 }
 
 //Upvoting Toilet Suggestion

@@ -19,9 +19,11 @@ public class MarkerData {
 
     private int toiletInfoId;
 
+    private String image;
     public MarkerData() {
     }
 
+    //For Database Usage
     public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM, int toiletId, int toiletInfoId) {
         this.latlng = latlng;
         this.rating = rating;
@@ -32,6 +34,7 @@ public class MarkerData {
         this.toiletInfoId = toiletInfoId;
         avg_rating = getAvgRating();
         this.iconNo = iconNoInit();
+        this.image = getImageString();
     }
 
     public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM) {
@@ -57,10 +60,12 @@ public class MarkerData {
         this.latlng = latlng;
         this.rating = rating;
         this.genderM = genderM;
+        this.iconNo = -1;
+        this.image = getImageString();
     }
     //End of Suggesting Toilet Loc Constructors
 
-    public int iconNoInit() {
+    private int iconNoInit() {
         if (avg_rating != -1) {
             if (avg_rating >= 4.8) {
                 return 5;
@@ -81,7 +86,7 @@ public class MarkerData {
         }
     }
 
-    public int getAvgRating() {
+    private int getAvgRating() {
         try {
             return (rating/amt_of_ratings);
         }catch (ArithmeticException e) {
@@ -90,6 +95,53 @@ public class MarkerData {
             return -1;
         }
     }
+
+    //Set Image
+    private String getImageString() {
+        switch(this.getGenderM()) {
+            case 0:
+                //Female Gender
+                switch(this.iconNo) {
+                    case -1:
+                        return "images/toilet_female.png";
+                    case 0:
+
+                    case 1:
+
+                    case 2:
+
+                    case 3:
+
+                    case 4:
+
+                    case 5:
+                }
+                break;
+            case 1:
+                //Male Gender
+                switch(this.iconNo) {
+                    case -1:
+                        return "images/toilet_male.png";
+                    case 0:
+
+                    case 1:
+
+                    case 2:
+
+                    case 3:
+
+                    case 4:
+
+                    case 5:
+                }
+                break;
+            case 2:
+                //Both Genders
+                return "images/toilet_female.png";
+        }
+        return null;
+    }
+
     public LatLng getLatlng() {
         return latlng;
     }
@@ -144,5 +196,13 @@ public class MarkerData {
 
     public void setGenderM(int genderM) {
         this.genderM = genderM;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

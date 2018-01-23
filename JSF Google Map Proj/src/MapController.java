@@ -24,10 +24,11 @@ public class MapController implements Serializable{
     private int rating = 0;
     private int upvote = 0;
     private MarkerEntity me;
-    private List<Marker> initMarkerList = new ArrayList<>();
+    private MarkerList ml;
     @PostConstruct
     public void init() {
-        getApprovedToilets();
+        ml = MarkerList.getInstance();
+        displayApprovedMarker();
    }
     public void setUserLocMark() {
 
@@ -36,33 +37,47 @@ public class MapController implements Serializable{
         Float lat = (Float) map.get("latval");
         Float lng = (Float) map.get("lngval");
     }
-    //Works
-    public void createMarker(double latitude,double longitude,String title,Object dataz, int IconNo) {
-        //Maybe Add Field For Title
-        //Add
-        System.out.println(getImages(IconNo));
-//        RequestContext.getCurrentInstance().execute(
-//                "var newMarker = null;" +
-//                "var newMarker = " +
-//                "new google.maps.Marker({ " +
-//                "position:new google.maps.LatLng(" + latitude + ", " + longitude + "), " +
-//                "map:PF('mapDisplay').getMap()," +
-//                "icon:'"+getImages(IconNo)+"'});"
-//                + "markers.push(newMarker);");
-//        RequestContext.getCurrentInstance().execute("markers.push(new google.maps.Marker({ " +
-//                "position:new google.maps.LatLng(" + latitude + ", " + longitude + "), " +
-//                "map:PF('mapDisplay').getMap(), " +
-//                "icon:'"+getImages(IconNo)+"' }));");
-        RequestContext.getCurrentInstance().execute("addNewMarker("+latitude+","+longitude+"," +getImages(IconNo) + " );");
+    public void displayApprovedMarker() {
+        RequestContext.getCurrentInstance().execute("clearMarkerList();");
+        for (MarkerData m: ml.getApprovedMarkers()) {
+//            RequestContext.getCurrentInstance().execute("var newMarker = " +
+//                    "new google.maps.Marker({ " +
+//                    "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
+//                    "map:PF('mapDisplay').getMap()," +
+//                    "icon:'"+m.getImage()+"'});"
+//                    + "markers.push(newMarker);");
+            RequestContext.getCurrentInstance().execute("markers.push(" +
+                    "new google.maps.Marker({ " +
+                    "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
+                    "map:PF('mapDisplay').getMap()," +
+                    "icon:'"+m.getImage()+"'}));");
+        }
     }
-    public void createMarkerList(List<MarkerData> mList) {
+    public void displaySuggestedMarkers() {
+        for (MarkerData m:ml.getSuggestedMarkers()) {
+                RequestContext.getCurrentInstance().execute(
+                                "var infowindow"+m.getRating()+" = new google.maps.InfoWindow({" +
+                                "   content:createInfoWindow("+m.getRating()+","+m.getGenderM()+")" +
+                                "});" +
+                        "var newMarker"+m.getRating()+" = " +
+                        "new google.maps.Marker({ " +
+                        "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
+                        "map:PF('mapDisplay').getMap()," +
+                        "icon:'"+m.getImage()+"'});" +
+                                "newMarker"+m.getRating()+".addListener('click',function() {" +
+                                "   infowindow"+m.getRating()+".open(map,newMarker"+m.getRating()+");" +
+                                "});"
+                        + "markers.push(newMarker"+m.getRating()+");");
+        }
+    }
+    public void displaySuggestionMarkers(List<MarkerData> mList) {
         RequestContext.getCurrentInstance().execute("clearMarkerList();");
         for (MarkerData m:mList) {
             RequestContext.getCurrentInstance().execute("var newMarker = " +
                     "new google.maps.Marker({ " +
                     "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
                     "map:PF('mapDisplay').getMap()," +
-                    "icon:'"+getImages(m)+"'});"
+                    "icon:'"+m.getImage()+"'});"
                     + "markers.push(newMarker);");
         }
     }
@@ -87,73 +102,28 @@ public class MapController implements Serializable{
         }
         return null;
     }
-    public String getImages(MarkerData m) {
-        int iconNo = m.getIconNo();
-        switch(m.getGenderM()) {
-            case 0:
-                //Female Gender
-                switch(iconNo) {
-                    case -1:
-                        return "images/toilet_female.png";
-                    case 0:
-
-                    case 1:
-
-                    case 2:
-
-                    case 3:
-
-                    case 4:
-
-                    case 5:
-                }
-                break;
-            case 1:
-                //Male Gender
-                switch(iconNo) {
-                    case -1:
-                        return "images/toilet_male.png";
-                    case 0:
-
-                    case 1:
-
-                    case 2:
-
-                    case 3:
-
-                    case 4:
-
-                    case 5:
-                }
-                break;
-            case 2:
-                //Both Genders
-                break;
-        }
-        return null;
-    }
-
     public void removeAllMarkers() {
 
     }
     public void addToiletLoc() {
         System.out.println("Rating:" + rating + "|" +"Gender: M|" +genderM+ " F|" + genderF);
-//        if (genderM == 1 && genderF == 0) {
-//            createMarker(locLat,locLng,"hello",null,1);
-//            //Add Male Toilet
-//        }else if (genderM == 0 && genderF == 1){
-//            createMarker(locLat,locLng,"hello",null,0);
-//            //Add Female Toilet
-//        }else if(genderM == 1 && genderF == 1) {
-//            //Add Both Male And Female Toilet
-//            createMarker(locLat,locLng,"hello",null,2);
-//        }
+        if (genderM == 1 && genderF == 0) {
+            //Add Male Toilet
+            MarkerData newMarker = new MarkerData(new LatLng(locLat,locLng),1, rating);
+            ml.addSuggestedMarker(newMarker);
+            displaySuggestedMarkers();
+        }else if (genderM == 0 && genderF == 1){
+            //Add Female Toilet
+            MarkerData newMarker = new MarkerData(new LatLng(locLat,locLng),0, rating);
+            ml.addApprovedMarker(newMarker);
+            displayApprovedMarker();
+        }else if(genderM == 1 && genderF == 1) {
+            //Add male and female toilet
+            MarkerData newMarker = new MarkerData(new LatLng(locLat,locLng),2, rating);
+            ml.addApprovedMarker(newMarker);
+            displayApprovedMarker();
+        }
 
-    }
-    public void getApprovedToilets() {
-        MarkerEntity me = new MarkerEntity();
-        List<MarkerData> mdL = me.getApprovedMarkers();
-        createMarkerList(mdL);
     }
     public void onStateChange(StateChangeEvent event) {
 
