@@ -22,7 +22,6 @@ function createSuggestionInfoWindow(id,rating,genderM) {
         mClass = "maleToiletSelectIcon-selected";
         fClass = "femaleToiletSelectIcon-unselected";
     }else if (genderM == 0){
-        alert("female toilet");
         mClass = "maleToiletSelectIcon-unselected";
         fClass = "femaleToiletSelectIcon-selected";
     }

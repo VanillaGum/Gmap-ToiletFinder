@@ -87,3 +87,12 @@ function closeSearch() {
     document.getElementById("searchBar").style.display = "none";
     return false;
 }
+function openFilter() {
+    document.getElementById("bar").style.display = "none";
+    document.getElementById("filterBar").style.display = "inline-block";
+}
+function closeFilter() {
+    document.getElementById("bar").style.display = "inline-block";
+    document.getElementById("filterBar").style.display = "none";
+    return false;
+}

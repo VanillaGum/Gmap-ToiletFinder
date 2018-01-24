@@ -27,6 +27,12 @@ body {
     display:none;
 }
 
+#filterBar {
+    height: 10%;
+    width: 100%;
+    display:none;
+}
+
 .barfunct {
     float:right;
     margin-top:10px;

@@ -20,7 +20,7 @@
       <div id="bar">
          <h:outputLabel id="AppTitle">Toilet Finder</h:outputLabel>
          <h:graphicImage value="images/search_icon.png" styleClass="barfunct" onclick="openSearch()"></h:graphicImage>
-         <h:graphicImage value="images/filter_icon.png" styleClass="barfunct"></h:graphicImage>
+         <h:graphicImage value="images/filter_icon.png" styleClass="barfunct" onclick="openFilter()"></h:graphicImage>
          <h:graphicImage value="images/profile_icon.png" styleClass="barfunct"></h:graphicImage>
       </div>
       <div id="searchBar">
@@ -35,6 +35,9 @@
          <label for="changetype-geocode">Geocodes</label>
 
          <button id="cancelButton" onclick="closeSearch()" style="height: 100%; width: 67.391px; margin: 0; float:right;">Cancel</button>
+      </div>
+      <div id="filterBar">
+         <button id="cancelButton" onclick="closeFilter()" style="height: 100%; width: 67.391px; margin: 0; float:right;">Cancel</button>
       </div>
          <!--For Having Map Model IN MapController-->
          <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
