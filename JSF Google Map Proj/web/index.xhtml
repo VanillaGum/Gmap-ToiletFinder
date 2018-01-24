@@ -72,6 +72,7 @@
                <h:inputHidden id="genderF" value="#{mapController.genderF}"/>
                <h:inputHidden id="rating" value="#{mapController.rating}"/>
                <h:inputHidden id="upvote" value="#{mapController.upvote}"/>
+               <h:inputHidden id="upvoteToiletId" value="#{mapController.upvoteToiletId}"/>
                <!--Was In Command Button Temp Removed-->
                <!--onclick="addToiletLoc()"-->
                <p:commandButton value="Add Toilet"
@@ -84,6 +85,7 @@
                      <p:commandButton value="Select Location on map" type="button" onclick="setMarkerAddType(2)" styleClass="ui-confirmdialog-no"/>
                </p:confirmDialog>
                <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}">
+               <p:remoteCommand name="upvoteSubmit" actionListener="#{mapController.upvoteToilet}"/>
                </p:remoteCommand>
             </h:form>
       </div>

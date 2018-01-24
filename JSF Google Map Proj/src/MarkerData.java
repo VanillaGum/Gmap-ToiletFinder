@@ -55,10 +55,10 @@ public class MarkerData {
 //        this.iconNo = iconNoInit();
 //    }
 
-    //Database suggested toilets
-    public MarkerData(LatLng latlng, String title, int genderM, int toiletId, int toiletInfoId) {
+    //Database suggestiontoilets
+    public MarkerData(LatLng latlng, int rating, int genderM, int toiletId, int toiletInfoId) {
         this.latlng = latlng;
-        this.title = title;
+        this.rating = rating;
         this.genderM = genderM;
         this.toiletId = toiletId;
         this.toiletInfoId = toiletInfoId;
@@ -231,5 +231,21 @@ public class MarkerData {
 
     public void setRandomId(int randomId) {
         this.randomId = randomId;
+    }
+
+    public int getToiletId() {
+        return toiletId;
+    }
+
+    public void setToiletId(int toiletId) {
+        this.toiletId = toiletId;
+    }
+
+    public int getToiletInfoId() {
+        return toiletInfoId;
+    }
+
+    public void setToiletInfoId(int toiletInfoId) {
+        this.toiletInfoId = toiletInfoId;
     }
 }

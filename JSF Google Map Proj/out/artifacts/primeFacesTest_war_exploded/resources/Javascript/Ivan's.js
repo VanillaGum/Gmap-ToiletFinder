@@ -170,22 +170,6 @@ function resetInfoWindow() {
     addMarker=0;
 }
 
-//Upvoting Toilet Suggestion
-function upvoteToiletSuggestion() {
-    var upvoted = document.getElementById("formSubmitToilet:upvote").value;
-    var defaultClass = "upvote ";
-    var unselected = "upvote-unselected";
-    var selected = "upvote-selected";
-    var upvoteElementList = document.getElementsByClassName("upvote");
-    if (upvoted == 0) {
-        upvoteElementList[0].className = defaultClass +  selected;
-        document.getElementById("formSubmitToilet:upvote").value = 1;
-    }else {
-        upvoteElementList[0].className = defaultClass + unselected;
-        document.getElementById("formSubmitToilet:upvote").value = 0;
-    }
-}
-
 
 //-Start of Map Ui-//
 //Draw Map User Interface for non-logged in users

@@ -30,6 +30,7 @@ public class MarkerList {
             System.out.println("Making Instance");
             instance = new MarkerList();
             instance.getApprovedToilets();
+            instance.getSuggestionToilets();
         }
         return instance;
     }
@@ -65,11 +66,12 @@ public class MarkerList {
         this.suggestedMarkers.add(md);
     }
     public void getApprovedToilets() {
-//        if (approvedMarkers.isEmpty()) {
-            System.out.println("Empty ArrayList, Getting Markers");
             MarkerEntity me = new MarkerEntity();
             instance.setApprovedMarkers(me.getApprovedMarkers());
-//        }
+    }
+    public void getSuggestionToilets() {
+        MarkerEntity me = new MarkerEntity();
+        instance.setSuggestionMarkers(me.getSuggestionMarkers());
     }
 
     public int getUniqueId() {

@@ -247,14 +247,15 @@ public class DatabaseClass {
             while(toilets.next()) {
                 //Toilet Request Table
                 int toiletId = toilets.getInt(1);
-                String name = toilets.getString("name");
                 double latitude = toilets.getDouble("latitude");
                 double longitude = toilets.getDouble("Longitude");
+
                 //ToiletInfo Table
                 int toiletInfoId = toilets.getInt(5);
                 int genderM = toilets.getInt("genderM");
+                int ratings = toilets.getInt("rating");
 
-                MarkerData m = new MarkerData(new LatLng(latitude,longitude), name, genderM, toiletId, toiletInfoId);
+                MarkerRequestData m = new MarkerRequestData(new LatLng(latitude,longitude), ratings, genderM, toiletId, toiletInfoId);
                 mList.add(m);
             }
             return mList;

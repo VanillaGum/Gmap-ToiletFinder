@@ -10,7 +10,7 @@ function clearMarkerList() {
     });
     markers=[];
 }
-function createSuggestionInfoWindow(id,rating,genderM) {
+function createSuggestedInfoWindow(id,rating,genderM) {
     document.getElementById("formSubmitToilet:genderM").value = 0;
     document.getElementById("formSubmitToilet:genderF").value = 0;
     var mClass = "";
@@ -34,6 +34,59 @@ function createSuggestionInfoWindow(id,rating,genderM) {
         '</div>';
     return content;
 }
+function createSuggestionInfoWindow(id,rating,genderM,toiletId) {
+    alert(genderM);
+    var mClass = "";
+    var fClass = "";
+    if(genderM == 2) {
+        mClass = "maleToiletSelectIcon-selected";
+        fClass = "femaleToiletSelectIcon-selected";
+    }else if(genderM== 1){
+        mClass = "maleToiletSelectIcon-selected";
+        fClass = "femaleToiletSelectIcon-unselected";
+    }else if (genderM == 0){
+        mClass = "maleToiletSelectIcon-unselected";
+        fClass = "femaleToiletSelectIcon-selected";
+    }
+    var content ='<div id="suggested'+id+'">' +
+        'rating='+rating +
+        ' genderm='+ genderM +
+        'upvoted=true' +
+        '<img class="upvote upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="upvoteToiletSuggestion('+id+','+toiletId+')"/>' +
+        '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px"/>' +
+        '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6"/>' +
+        '</div>';
+    return content;
+}
+//Upvoting Toilet Suggestion
+function upvoteToiletSuggestion(id,toilet_id) {
+    //Track Upvote For Checking If Upvoted Or Cnacel Upvote
+    //-1 = Cancel
+    //1 = Upvote
+    var defaultClass = "upvote"+id+" ";
+    var unselected = "upvote-unselected";
+    var selected = "upvote-selected";
+    var upvoteElementList = document.getElementsByClassName("upvote"+id+" upvote-unselected");
+    if (upvoteElementList.length > 0) {
+        upvoteElementList[0].className = defaultClass +  selected;
+        document.getElementById("formSubmitToilet:upvote").value = 1;
+        upvotedToiletChange(toilet_id);
+
+    }else {
+        upvoteElementList[0].className = defaultClass + unselected;
+        document.getElementById("formSubmitToilet:upvote").value = 0;
+        upvotedToiletChange(toilet_id);
+    }
+}
+
+//Change upvotedToiletId
+function upvoteToiletIdChange(id) {
+    document.getElementById("formSubmitToilet:upvoteToiletId").value = id;
+    upvoteSubmit();
+}
+
+
+
 function addNewMarker(lat,lng,image) {
     newMarker = null;
     newMarker = new google.maps.Marker({

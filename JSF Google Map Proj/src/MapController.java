@@ -23,12 +23,14 @@ public class MapController implements Serializable{
     private int genderF = 0;
     private int rating = 0;
     private int upvote = 0;
+    private int upvoteToiletId = 0;
     private MarkerEntity me;
     private MarkerList ml;
     @PostConstruct
     public void init() {
         ml = MarkerList.getInstance();
         displayApprovedMarker();
+        displaySuggestionMarkers();
    }
     public void setUserLocMark() {
 
@@ -57,7 +59,7 @@ public class MapController implements Serializable{
         for (MarkerData m:ml.getSuggestedMarkers()) {
                 RequestContext.getCurrentInstance().execute(
                                 "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-                                "   content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+")" +
+                                "   content:createSuggestedInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+")" +
                                 "});" +
                         "var newMarker"+m.getRandomId()+" = " +
                         "new google.maps.Marker({ " +
@@ -70,15 +72,23 @@ public class MapController implements Serializable{
                         + "markers.push(newMarker"+m.getRandomId()+");");
         }
     }
-    public void displaySuggestionMarkers(List<MarkerData> mList) {
+    public void displaySuggestionMarkers() {
         RequestContext.getCurrentInstance().execute("clearMarkerList();");
-        for (MarkerData m:mList) {
-            RequestContext.getCurrentInstance().execute("var newMarker = " +
-                    "new google.maps.Marker({ " +
-                    "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
-                    "map:PF('mapDisplay').getMap()," +
-                    "icon:'"+m.getImage()+"'});"
-                    + "markers.push(newMarker);");
+        for (MarkerData m:ml.getSuggestionMarkers()) {
+            System.out.println(m.getGenderM());
+            RequestContext.getCurrentInstance().execute(
+               "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
+                    "   content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+","+m.getToiletId()+")" +
+                    "});" +
+                       "var newMarker"+m.getRandomId()+" = " +
+                       "new google.maps.Marker({ " +
+                       "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
+                       "map:PF('mapDisplay').getMap()," +
+                       "icon:'"+m.getImage()+"'});" +
+                       "newMarker"+m.getRandomId()+".addListener('click',function() {" +
+                       "   infowindow"+m.getRandomId()+".open(map,newMarker"+m.getRandomId()+");" +
+                       "});"
+                       + "markers.push(newMarker"+m.getRandomId()+");");
         }
     }
     public String getImages(int ImgNo) {
@@ -126,7 +136,13 @@ public class MapController implements Serializable{
     }
 
     public void upvoteToilet() {
-
+        if (upvote == 1) {
+            //Upvoting Toilet
+            me.upvoteToilet(upvoteToiletId);
+        }else if (upvote == -1) {
+            //Remove Upvote
+            me.upvoteToilet(upvoteToiletId);
+        }
     }
     public void onStateChange(StateChangeEvent event) {
 
@@ -166,5 +182,9 @@ public class MapController implements Serializable{
     public int getUpvote() { return upvote; }
 
     public void setUpvote(int upvote) { this.upvote = upvote; }
+
+    public int getUpvoteToiletId() { return upvoteToiletId; }
+
+    public void setUpvoteToiletId(int upvoteToiletId) { this.upvoteToiletId = upvoteToiletId; }
 }
 

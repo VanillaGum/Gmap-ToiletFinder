@@ -16,6 +16,10 @@ public class MarkerEntity {
         return mdL;
     }
 
+    public List<MarkerData> getSuggestionMarkers() {
+        List<MarkerData> mdL = dc.getRequestedToiletMarkers();
+        return mdL;
+    }
     //Get Requested Toilet Markers
     public List<MarkerRequestData> getRequestedMarkers() {
         return null;
@@ -26,7 +30,7 @@ public class MarkerEntity {
         dc.suggestToiletLoc(md);
     }
 
-    //Upvote Suggestion Toilet
+    //Upvote Suggested Toilet
     public void upvoteToilet(int toiletId) {
         dc.upvoteToilet(toiletId);
     }
