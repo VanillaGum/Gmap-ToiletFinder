@@ -55,12 +55,15 @@ public class MarkerData {
 //        this.iconNo = iconNoInit();
 //    }
 
+    //Database suggested toilets
     public MarkerData(LatLng latlng, String title, int genderM, int toiletId, int toiletInfoId) {
         this.latlng = latlng;
         this.title = title;
         this.genderM = genderM;
         this.toiletId = toiletId;
         this.toiletInfoId = toiletInfoId;
+        MarkerList ml = MarkerList.getInstance();
+        this.randomId = ml.getUniqueId();
     }
 
     //For Suggesting Toilet Loc

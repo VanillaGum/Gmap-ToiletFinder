@@ -124,6 +124,10 @@ public class MapController implements Serializable{
         ml.addSuggestedMarker(newMarker);
         displaySuggestedMarkers();
     }
+
+    public void upvoteToilet() {
+
+    }
     public void onStateChange(StateChangeEvent event) {
 
     }

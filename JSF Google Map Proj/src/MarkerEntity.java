@@ -25,4 +25,9 @@ public class MarkerEntity {
         System.out.println("Hi");
         dc.suggestToiletLoc(md);
     }
+
+    //Upvote Suggestion Toilet
+    public void upvoteToilet(int toiletId) {
+        dc.upvoteToilet(toiletId);
+    }
 }
