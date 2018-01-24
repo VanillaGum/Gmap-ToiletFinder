@@ -38,7 +38,7 @@ public class DatabaseClass {
                     "(latitude,longitude) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
             PreparedStatement addToiletSuggestionInfo = conn.prepareStatement("INSERT INTO toilet_request_info" +
                     "(toilet_request_id,approval,rating,amt_of_rating,genderM) VALUES (?,?,?,?,?)");
-
+            System.out.println("Running Get LatLng");
             addToiletSuggestion.setDouble(1, m.getLatlng().getLat());
             addToiletSuggestion.setDouble(2, m.getLatlng().getLng());
             addToiletSuggestion.executeUpdate();
@@ -46,6 +46,7 @@ public class DatabaseClass {
             ResultSet toiletSuggestionId = addToiletSuggestion.getGeneratedKeys();
             int suggestedToiletId = 0;
             while (toiletSuggestionId.next()) {
+                System.out.println("Running Get ID");
                 //Get New Suggested Toilet Id
                 suggestedToiletId = toiletSuggestionId.getInt(1);
             }

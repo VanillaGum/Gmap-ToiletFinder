@@ -3,30 +3,31 @@ import org.primefaces.model.map.LatLng;
 import java.util.UUID;
 
 public class MarkerData {
-    private LatLng latlng;
+    protected LatLng latlng;
 
-    private int iconNo;
+    protected int iconNo;
 
-    private int rating = -1;
+    protected int rating = -1;
 
-    private int amt_of_ratings;
+    protected int amt_of_ratings;
 
-    private double avg_rating = 0;
+    protected double avg_rating = 0;
 
-    private String title;
+    protected String title;
 
-    private int genderM;
+    protected int genderM;
     //0 = Female
     //1 = Male
     //2 = Both
 
-    private int toiletId;
+    protected int toiletId;
 
-    private int toiletInfoId;
+    protected int toiletInfoId;
 
-    private String image;
+    protected String image;
 
-    private int randomId;
+    protected int randomId;
+
     public MarkerData() {
     }
 
@@ -44,15 +45,15 @@ public class MarkerData {
         this.image = getImageString();
     }
 
-    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM) {
-        this.latlng = latlng;
-        this.rating = rating;
-        this.amt_of_ratings = amt_of_ratings;
-        this.title = title;
-        this.genderM = genderM;
-        avg_rating = this.rating/this.amt_of_ratings;
-        this.iconNo = iconNoInit();
-    }
+//    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM) {
+//        this.latlng = latlng;
+//        this.rating = rating;
+//        this.amt_of_ratings = amt_of_ratings;
+//        this.title = title;
+//        this.genderM = genderM;
+//        avg_rating = this.rating/this.amt_of_ratings;
+//        this.iconNo = iconNoInit();
+//    }
 
     public MarkerData(LatLng latlng, String title, int genderM, int toiletId, int toiletInfoId) {
         this.latlng = latlng;
@@ -69,8 +70,14 @@ public class MarkerData {
         this.genderM = genderM;
         MarkerList m = MarkerList.getInstance();
         this.randomId = m.getUniqueId();
-        this.iconNo = -1;
-        this.image = getImageString();
+    }
+
+    public MarkerData(LatLng latlng, int rating, int genderM, String image, int randomId) {
+        this.latlng = latlng;
+        this.rating = rating;
+        this.genderM = genderM;
+        this.image = image;
+        this.randomId = randomId;
     }
     //End of Suggesting Toilet Loc Constructors
 
