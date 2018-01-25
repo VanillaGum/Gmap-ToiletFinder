@@ -26,33 +26,37 @@ public class MapController implements Serializable{
     private int upvoteToiletId = 0;
     private MarkerEntity me;
     private MarkerList ml;
+
     @PostConstruct
     public void init() {
+        me = new MarkerEntity();
         ml = MarkerList.getInstance();
         displayApprovedMarker();
         displaySuggestionMarkers();
    }
     public void setUserLocMark() {
-
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Added", "Nothing much"));
         Map map = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Float lat = (Float) map.get("latval");
         Float lng = (Float) map.get("lngval");
     }
+    public void resetMarkerList() {
+            RequestContext.getCurrentInstance().execute("clearMarkerList();");
+    }
     public void displayApprovedMarker() {
-        RequestContext.getCurrentInstance().execute("clearMarkerList();");
         for (MarkerData m: ml.getApprovedMarkers()) {
-//            RequestContext.getCurrentInstance().execute("var newMarker = " +
-//                    "new google.maps.Marker({ " +
-//                    "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
-//                    "map:PF('mapDisplay').getMap()," +
-//                    "icon:'"+m.getImage()+"'});"
-//                    + "markers.push(newMarker);");
-            RequestContext.getCurrentInstance().execute("markers.push(" +
+            RequestContext.getCurrentInstance().execute("var newMarker = " +
                     "new google.maps.Marker({ " +
                     "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
                     "map:PF('mapDisplay').getMap()," +
-                    "icon:'"+m.getImage()+"'}));");
+                    "icon:'"+m.getImage()+"'});"
+                    + "markers.push(newMarker);");
+
+//            RequestContext.getCurrentInstance().execute("markers.push(" +
+//                    "new google.maps.Marker({ " +
+//                    "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
+//                    "map:PF('mapDisplay').getMap()," +
+//                    "icon:'"+m.getImage()+"'}));");
         }
     }
     public void displaySuggestedMarkers() {
@@ -73,7 +77,6 @@ public class MapController implements Serializable{
         }
     }
     public void displaySuggestionMarkers() {
-        RequestContext.getCurrentInstance().execute("clearMarkerList();");
         for (MarkerData m:ml.getSuggestionMarkers()) {
             System.out.println(m.getGenderM());
             RequestContext.getCurrentInstance().execute(
@@ -117,7 +120,6 @@ public class MapController implements Serializable{
     }
     public void addToiletLoc() {
         MarkerRequestData newMarker= null;
-        MarkerEntity me = new MarkerEntity();
         System.out.println("Rating:" + rating + "|" +"Gender: M|" +genderM+ " F|" + genderF);
         if (genderM == 1 && genderF == 0) {
             //Add Male Toilet
@@ -138,6 +140,7 @@ public class MapController implements Serializable{
     public void upvoteToilet() {
         if (upvote == 1) {
             //Upvoting Toilet
+            System.out.println(upvoteToiletId);
             me.upvoteToilet(upvoteToiletId);
         }else if (upvote == -1) {
             //Remove Upvote

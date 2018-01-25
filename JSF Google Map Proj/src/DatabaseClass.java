@@ -119,11 +119,12 @@ public class DatabaseClass {
     //Method call for when a User upvotes the toilet
     public void upvoteToilet(int toiletId) {
         try {
+            System.out.println("Upvoting In Database");
             PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_request_info " +
-                    "Set approval = approval + ?" +
-                    "WHERE toilet_request_id = toiletId");
+                    "Set approval = approval + ? " +
+                    "WHERE toilet_request_id = ?;");
             upvoteToilet.setInt(1,userApprovalAmt());
-
+            upvoteToilet.setInt(2, toiletId);
             upvoteToilet.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

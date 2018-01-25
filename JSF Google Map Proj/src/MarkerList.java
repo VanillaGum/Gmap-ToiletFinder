@@ -66,12 +66,20 @@ public class MarkerList {
         this.suggestedMarkers.add(md);
     }
     public void getApprovedToilets() {
+            System.out.println("Getting Approved Markers");
             MarkerEntity me = new MarkerEntity();
             instance.setApprovedMarkers(me.getApprovedMarkers());
+            for(MarkerData m:instance.getApprovedMarkers()) {
+                System.out.print("Approved Marker");
+            }
     }
     public void getSuggestionToilets() {
+        System.out.println("Getting Suggestion Markers");
         MarkerEntity me = new MarkerEntity();
         instance.setSuggestionMarkers(me.getSuggestionMarkers());
+        for(MarkerData m:instance.getSuggestionMarkers()) {
+            System.out.print("Suggestion Marker");
+        }
     }
 
     public int getUniqueId() {

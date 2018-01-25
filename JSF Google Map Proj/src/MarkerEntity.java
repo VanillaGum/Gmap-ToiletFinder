@@ -26,12 +26,12 @@ public class MarkerEntity {
     }
 
     public void createSingleMarker(MarkerData md) {
-        System.out.println("Hi");
         dc.suggestToiletLoc(md);
     }
 
     //Upvote Suggested Toilet
     public void upvoteToilet(int toiletId) {
+        System.out.println("ME Upvoting Toilet");
         dc.upvoteToilet(toiletId);
     }
 }
