@@ -34,4 +34,9 @@ public class MarkerEntity {
         System.out.println("ME Upvoting Toilet");
         dc.upvoteToilet(toiletId);
     }
+
+    //Downvote Suggested Toilet
+    public void downvoteToilet(int toiletId) {
+        dc.downvoteToilet(toiletId);
+    }
 }

@@ -81,7 +81,13 @@ public class MarkerList {
             System.out.print("Suggestion Marker");
         }
     }
+    public void getToilets() {
+        getApprovedMarkers();
+        getSuggestionMarkers();
+    }
+    public void clearList() {
 
+    }
     public int getUniqueId() {
         this.uniqueId++;
         return uniqueId;

@@ -142,11 +142,15 @@ public class MapController implements Serializable{
             //Upvoting Toilet
             System.out.println(upvoteToiletId);
             me.upvoteToilet(upvoteToiletId);
-        }else if (upvote == -1) {
+        }else if (upvote == 0) {
             //Remove Upvote
-            me.upvoteToilet(upvoteToiletId);
+            me.downvoteToilet(upvoteToiletId);
         }
     }
+    public void addRating() {
+
+    }
+
     public void onStateChange(StateChangeEvent event) {
 
     }

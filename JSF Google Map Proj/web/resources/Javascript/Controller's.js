@@ -47,7 +47,7 @@ function createSuggestionInfoWindow(id,rating,genderM,toiletId) {
         mClass = "maleToiletSelectIcon-unselected";
         fClass = "femaleToiletSelectIcon-selected";
     }
-    var content ='<div id="suggested'+id+'">' +
+    var content ='<div id="suggested'+id+'" class="">' +
         'rating='+rating +
         ' genderm='+ genderM +
         '<img class="upvote'+id+' upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="upvoteToiletSuggestion('+id+','+toiletId+')"/>' +
@@ -76,6 +76,9 @@ function upvoteToiletSuggestion(id,toilet_id) {
         document.getElementById("formSubmitToilet:upvote").value = 0;
         upvoteToiletIdChange(toilet_id);
     }
+}
+function addRating() {
+    document.getElementById("formSubmitToilet:rating")
 }
 
 //Change upvotedToiletId

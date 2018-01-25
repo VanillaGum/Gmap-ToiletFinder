@@ -12,11 +12,16 @@ public class UserController {
         return instance;
     }
 
-    private int userLevel=0;
+    private int userLevel=3;
+    private int user_id = 0;
 
 
     public int getUserLevel() {
         return userLevel;
+    }
+
+    public int getUser_id() {
+        return user_id;
     }
 
     public void setUserLevel(int userLevel) {

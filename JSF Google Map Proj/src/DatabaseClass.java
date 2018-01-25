@@ -75,6 +75,8 @@ public class DatabaseClass {
 
             if (userLevel == 2) {
                 createToilet(suggestedToiletId);
+            }else {
+                upvoteToilet(suggestedToiletId);
             }
 
         }catch(SQLException se) {
@@ -85,7 +87,7 @@ public class DatabaseClass {
     //Check If Toilet Approval Rating Equal Or Greater Than 6
     public void approvalCheck(int toiletRequestId) {
         try {
-            PreparedStatement getToiletApproval = conn.prepareStatement("SELECT approval FROM toilet_request WHERE id = ?;");
+            PreparedStatement getToiletApproval = conn.prepareStatement("SELECT approval FROM toilet_request_info WHERE toilet_request_id = ?;");
             getToiletApproval.setInt(1,toiletRequestId);
             ResultSet toiletApproval= getToiletApproval.executeQuery();
             while (toiletApproval.next()) {
@@ -126,10 +128,26 @@ public class DatabaseClass {
             upvoteToilet.setInt(1,userApprovalAmt());
             upvoteToilet.setInt(2, toiletId);
             upvoteToilet.executeUpdate();
+            approvalCheck(toiletId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    //Method call for when a User un-upvotes/Downvote the toilet
+    public void downvoteToilet(int toiletId) {
+        try {
+            System.out.println("Downvoting In Database");
+            PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_request_info " +
+                    "Set approval = approval - ? " +
+                    "WHERE toilet_request_id = ?;");
+            upvoteToilet.setInt(1,userApprovalAmt());
+            upvoteToilet.setInt(2, toiletId);
+            upvoteToilet.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     //When user Flags toilet for removal
     public void flagToilet(int toiletId) {

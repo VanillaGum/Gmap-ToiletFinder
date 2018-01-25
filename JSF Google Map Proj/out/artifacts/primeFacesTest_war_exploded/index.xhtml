@@ -18,7 +18,7 @@
 
    <h:body>
       <div id="bar">
-         <h:outputLabel id="AppTitle">Toilet Finder</h:outputLabel>
+         <h:outputLabel id="AppTitle">SG Essentials Map</h:outputLabel>
          <h:graphicImage value="images/search_icon.png" styleClass="barfunct" onclick="openSearch()"></h:graphicImage>
          <h:graphicImage value="images/filter_icon.png" styleClass="barfunct" onclick="openFilter()"></h:graphicImage>
          <h:graphicImage value="images/profile_icon.png" styleClass="barfunct"></h:graphicImage>
@@ -84,9 +84,8 @@
                      <p:commandButton value="Use current location" type="button" onclick="setMarkerAddType(1)" styleClass="ui-confirmdialog-no"/>
                      <p:commandButton value="Select Location on map" type="button" onclick="setMarkerAddType(2)" styleClass="ui-confirmdialog-no"/>
                </p:confirmDialog>
-               <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}">
+               <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}"/>
                <p:remoteCommand name="upvoteSubmit" actionListener="#{mapController.upvoteToilet}"/>
-               </p:remoteCommand>
             </h:form>
       </div>
 
