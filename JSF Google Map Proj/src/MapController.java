@@ -81,8 +81,8 @@ public class MapController implements Serializable{
             System.out.println(m.getGenderM());
             RequestContext.getCurrentInstance().execute(
                "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-                    "   content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+","+m.getToiletId()+")" +
-                    "});" +
+                    "content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+","+m.getToiletId()+")" +
+                       "});" +
                        "var newMarker"+m.getRandomId()+" = " +
                        "new google.maps.Marker({ " +
                        "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +

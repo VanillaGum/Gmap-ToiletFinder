@@ -25,12 +25,14 @@ function createSuggestedInfoWindow(id,rating,genderM) {
         mClass = "maleToiletSelectIcon-unselected";
         fClass = "femaleToiletSelectIcon-selected";
     }
-    var content ='<div id="suggested'+id+'">' +
+    var content = '<div>' +
+        '<div id="suggested'+id+'" class="infowindow-size">' +
         'rating='+rating +
         ' genderm='+ genderM +
         'upvoted=true' +
         '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px"/>' +
         '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6"/>' +
+        '</div>' +
         '</div>';
     return content;
 }
@@ -47,12 +49,14 @@ function createSuggestionInfoWindow(id,rating,genderM,toiletId) {
         mClass = "maleToiletSelectIcon-unselected";
         fClass = "femaleToiletSelectIcon-selected";
     }
-    var content ='<div id="suggested'+id+'" class="">' +
+    var content ='<div>' +
+        '<div id="suggested'+id+'" class="infowindow-size">' +
         'rating='+rating +
         ' genderm='+ genderM +
         '<img class="upvote'+id+' upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="upvoteToiletSuggestion('+id+','+toiletId+')"/>' +
         '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px"/>' +
         '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6"/>' +
+        '</div>' +
         '</div>';
     return content;
 }
