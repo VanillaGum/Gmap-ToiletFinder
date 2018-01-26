@@ -91,12 +91,18 @@ function upvoteToiletIdChange(id) {
     document.getElementById("formSubmitToilet:upvoteToiletId").value = id;
     upvoteSubmit();
 }
+
+
+//Reviewing Toilets
 function addReviewScreen(uniqueId) {
     var unselected="unselected-Overlay";
     var selected="selected-Overlay";
-    var screen = '<div id="screen"+uniqueId+"" class="middleDiv">' +
-        '' +
-        '</div>'
+    var screen = '<div id="screen'+uniqueId+'" class="middleDiv">' +
+        '<img src="images/toilet.png" class="icon1 icon1-unselected" width="51.2" height="51.2" onclick="icon1()"/>' +
+        '<img src="images/slippery.png" class="icon3 icon3-unselected" width="51.2" height="51.2" onclick="icon3()"/>' +
+        '<img src="images/cockroach.png" class="icon4 icon4-unselected" width="40" height="40" onclick="icon4()"/>' +
+        '<img src="images/smelly.png" class="icon5 icon5-unselected" width="51.2" height="51.2" onclick="icon5()"/>' +
+        '</div>';
     document.getElementById("greyOverlay").className = selected;
     $('#greyOverlay').append(screen);
 }
@@ -125,85 +131,115 @@ function addNewMarker(lat,lng,image) {
 //Icon1 = Clean Toilet
 function icon1() {
     var iconElementCheck = document.getElementsByClassName("icon1-unselected");
-    var iconElementCheck2 = document.getElementByClassName("icon1-selected1");
-    var iconElement = document.getElementByClassName("icon1");
+    var iconElementCheck2 = document.getElementsByClassName("icon1-selected1");
+    var iconElement = document.getElementsByClassName("icon1");
     var unselected = "icon1 icon1-unselected";
     var selected1 = "icon1 icon1-selected1";
-    var selected2 = "icon1 icon1-selected2"
-    if (iconElementCheck >0) {
+    var selected2 = "icon1 icon1-selected2";
+    if (iconElementCheck.length === 1) {
         //Current unselected
         iconElement[0].className = selected1;
-        iconElement[0].src="images/toilet_silver.png"
-    } if(iconElementCheck2 > 0) {
+        iconElement[0].src="images/toilet_silver.png";
+    }else if(iconElementCheck2.length > 0) {
         //Currently Selected 1
-        icon1Element[0].className = selected2;
-        iconElement[0].src="images/toilet_gold.png"
+        iconElement[0].className = selected2;
+        iconElement[0].src="images/toilet_gold.png";
     }else {
         //Currently Selected 2
         iconElement[0].className = unselected;
-        iconElement[0].src="images/toilet.png"
+        iconElement[0].src="images/toilet.png";
     }
 }
 //Icon 2 = Rate Dirty Environment
 function icon2() {
     var iconElementCheck = document.getElementsByClassName("icon2-unselected");
-    var iconElement = document.getElementByClassName("icon2");
+    var iconElement = document.getElementsByClassName("icon2");
     var unselected = "icon2 icon2-unselected unselected";
     var selected = "icon2 icon2-selected selected";
-    if (iconElementCheck >0) {
+    if (iconElementCheck.length >0) {
         //Current unselected
-        icon1Element[0].className = selected;
+        iconElement[0].className = selected;
     }else {
         //Currently Selected
-        icon1Element[0].className = unselected;
+        iconElement[0].className = unselected;
     }
 }
 //Icon 3 = Slippery Floor
 function icon3() {
     var iconElementCheck = document.getElementsByClassName("icon3-unselected");
-    var iconElement = document.getElementByClassName("icon3");
+    var iconElement = document.getElementsByClassName("icon3");
     var unselected = "icon3 icon3-unselected";
     var selected = "icon3 icon3-selected";
-    if (iconElementCheck >0) {
+    if (iconElementCheck.length >0) {
         //Current unselected
-        iconElement[0].src = "images/slippery-selected.png"
-        icon1Element[0].className = selected;
+        iconElement[0].src = "images/slippery-selected.png";
+        iconElement[0].className = selected;
     }else {
         //Currently Selected
-        iconElement[0].src ="images/slippery.png"
-        icon1Element[0].className = unselected;
+        iconElement[0].src ="images/slippery.png";
+        iconElement[0].className = unselected;
     }
 }
 //Icon 4 = Insects
 function icon4() {
     var iconElementCheck = document.getElementsByClassName("icon4-unselected");
-    var iconElement = document.getElementByClassName("icon4");
+    var iconElement = document.getElementsByClassName("icon4");
     var unselected = "icon4 icon4-unselected";
     var selected = "icon4 icon4-selected";
-    if (iconElementCheck >0) {
+    if (iconElementCheck.length >0) {
         //Current unselected
-        iconElement[0].src = "images/cockroach-selected.png"
-        icon1Element[0].className = selected;
+        iconElement[0].src = "images/cockroach-selected.png";
+        iconElement[0].className = selected;
     }else {
         //Currently Selected
-        iconElement[0].src ="images/cockroach.png"
-        icon1Element[0].className = unselected;
+        iconElement[0].src ="images/cockroach.png";
+        iconElement[0].className = unselected;
     }
 }
 //Icon 5 = Smelly
 function icon5() {
     var iconElementCheck = document.getElementsByClassName("icon5-unselected");
-    var iconElement = document.getElementByClassName("icon5");
+    var iconElement = document.getElementsByClassName("icon5");
     var unselected = "icon5 icon5-unselected";
     var selected = "icon5 icon5-selected";
-    if (iconElementCheck >0) {
+    if (iconElementCheck.length >0) {
         //Current unselected
-        iconElement[0].src = "images/cockroach-selected.png"
-        icon1Element[0].className = selected;
+        iconElement[0].src = "images/smelly-selected.png";
+        iconElement[0].className = selected;
     }else {
         //Currently Selected
-        iconElement[0].src ="images/cockroach.png"
-        icon1Element[0].className = unselected;
+        iconElement[0].src ="images/smelly.png";
+        iconElement[0].className = unselected;
+    }
+}
+//Icon 6 = WheelChair
+function icon6() {
+    var iconElementCheck = document.getElementsByClassName("icon6-unselected");
+    var iconElement = document.getElementsByClassName("icon6");
+    var unselected = "icon6 icon6-unselected";
+    var selected = "icon6 icon6-selected selected";
+    if (iconElementCheck.length >0) {
+        //Current unselected
+        iconElement[0].src = "images/wheelchair.png";
+        iconElement[0].className = selected;
+    }else {
+        //Currently Selected
+        iconElement[0].src ="images/wheelchair-unselected.png";
+        iconElement[0].className = unselected;
+    }
+}
+//Icon 7 = Cost Money
+function icon7() {
+    var iconElementCheck = document.getElementsByClassName("icon7-unselected");
+    var iconElement = document.getElementsByClassName("icon7");
+    var unselected = "icon7 icon7-unselected unselected";
+    var selected = "icon7 icon7-selected selected";
+    if (iconElementCheck.length >0) {
+        //Current unselected
+        iconElement[0].className = selected;
+    }else {
+        //Currently Selected
+        iconElement[0].className = unselected;
     }
 }
 
