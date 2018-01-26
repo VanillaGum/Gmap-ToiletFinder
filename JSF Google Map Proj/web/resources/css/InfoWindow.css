@@ -55,3 +55,9 @@
     margin-left: -15em; /*set to a negative number 1/2 of your width*/
     position:fixed;
 }
+unselected {
+    opacity:0.4;
+}
+selected {
+    opacity:1;
+}

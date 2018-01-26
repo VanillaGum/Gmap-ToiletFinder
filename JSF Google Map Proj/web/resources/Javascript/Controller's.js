@@ -121,3 +121,93 @@ function addNewMarker(lat,lng,image) {
         '   <p>Select:</p>' +
         '</div>'
 }
+
+//Icon1 = Clean Toilet
+function icon1() {
+    var iconElementCheck = document.getElementsByClassName("icon1-unselected");
+    var iconElementCheck2 = document.getElementByClassName("icon1-selected1");
+    var iconElement = document.getElementByClassName("icon1");
+    var unselected = "icon1 icon1-unselected";
+    var selected1 = "icon1 icon1-selected1";
+    var selected2 = "icon1 icon1-selected2"
+    if (iconElementCheck >0) {
+        //Current unselected
+        iconElement[0].className = selected1;
+        iconElement[0].src="images/toilet_silver.png"
+    } if(iconElementCheck2 > 0) {
+        //Currently Selected 1
+        icon1Element[0].className = selected2;
+        iconElement[0].src="images/toilet_gold.png"
+    }else {
+        //Currently Selected 2
+        iconElement[0].className = unselected;
+        iconElement[0].src="images/toilet.png"
+    }
+}
+//Icon 2 = Rate Dirty Environment
+function icon2() {
+    var iconElementCheck = document.getElementsByClassName("icon2-unselected");
+    var iconElement = document.getElementByClassName("icon2");
+    var unselected = "icon2 icon2-unselected unselected";
+    var selected = "icon2 icon2-selected selected";
+    if (iconElementCheck >0) {
+        //Current unselected
+        icon1Element[0].className = selected;
+    }else {
+        //Currently Selected
+        icon1Element[0].className = unselected;
+    }
+}
+//Icon 3 = Slippery Floor
+function icon3() {
+    var iconElementCheck = document.getElementsByClassName("icon3-unselected");
+    var iconElement = document.getElementByClassName("icon3");
+    var unselected = "icon3 icon3-unselected";
+    var selected = "icon3 icon3-selected";
+    if (iconElementCheck >0) {
+        //Current unselected
+        iconElement[0].src = "images/slippery-selected.png"
+        icon1Element[0].className = selected;
+    }else {
+        //Currently Selected
+        iconElement[0].src ="images/slippery.png"
+        icon1Element[0].className = unselected;
+    }
+}
+//Icon 4 = Insects
+function icon4() {
+    var iconElementCheck = document.getElementsByClassName("icon4-unselected");
+    var iconElement = document.getElementByClassName("icon4");
+    var unselected = "icon4 icon4-unselected";
+    var selected = "icon4 icon4-selected";
+    if (iconElementCheck >0) {
+        //Current unselected
+        iconElement[0].src = "images/cockroach-selected.png"
+        icon1Element[0].className = selected;
+    }else {
+        //Currently Selected
+        iconElement[0].src ="images/cockroach.png"
+        icon1Element[0].className = unselected;
+    }
+}
+//Icon 5 = Smelly
+function icon5() {
+    var iconElementCheck = document.getElementsByClassName("icon5-unselected");
+    var iconElement = document.getElementByClassName("icon5");
+    var unselected = "icon5 icon5-unselected";
+    var selected = "icon5 icon5-selected";
+    if (iconElementCheck >0) {
+        //Current unselected
+        iconElement[0].src = "images/cockroach-selected.png"
+        icon1Element[0].className = selected;
+    }else {
+        //Currently Selected
+        iconElement[0].src ="images/cockroach.png"
+        icon1Element[0].className = unselected;
+    }
+}
+
+function getIcons() {
+    var icon1Check = document.getElementsByClassName("icon1-unselected");
+    var icon2Check = document.getElementsByClassName("icon2-unselected");
+}
