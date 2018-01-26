@@ -53,6 +53,7 @@ function createSuggestionInfoWindow(id,rating,genderM,toiletId) {
         '<div id="suggested'+id+'" class="infowindow-size">' +
         'rating='+rating +
         ' genderm='+ genderM +
+        '<button onclick="addReviewScreen('+id+')"></button>' +
         '<img class="upvote'+id+' upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="upvoteToiletSuggestion('+id+','+toiletId+')"/>' +
         '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px"/>' +
         '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6"/>' +
@@ -90,8 +91,18 @@ function upvoteToiletIdChange(id) {
     document.getElementById("formSubmitToilet:upvoteToiletId").value = id;
     upvoteSubmit();
 }
-
-
+function addReviewScreen(uniqueId) {
+    var unselected="unselected-Overlay";
+    var selected="selected-Overlay";
+    var screen = '<div id="screen"+uniqueId+"" class="middleDiv">' +
+        '' +
+        '</div>'
+    document.getElementById("greyOverlay").className = selected;
+    $('#greyOverlay').append(screen);
+}
+function removeScreen(uniqueId) {
+    $('#greyOverlay').remove("#screen"+uniqueId+"")
+}
 
 function addNewMarker(lat,lng,image) {
     newMarker = null;
