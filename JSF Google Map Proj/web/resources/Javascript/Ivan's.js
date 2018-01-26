@@ -31,7 +31,7 @@ $(function() {
                 position:{lat:poslat,lng:poslng},
                 map:mapdis,
                 title:"User Loc",
-                icon:"images/toilet_female.png"
+                icon:"images/toilet_male.png"
             });
         });
     }
@@ -83,7 +83,6 @@ function toiletSuggestionConfirmed() {
     //Submit Info About Toilet
     document.getElementById("formSubmitToilet:locLng").value = confirmationMarkerLng;
     document.getElementById("formSubmitToilet:locLat").value = confirmationMarkerLat;
-    document.getElementById("formSubmitToilet:rating").value = document.getElementById("rating_select").value;
     switch(userLevel){
         case 0:
             document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect0").value;

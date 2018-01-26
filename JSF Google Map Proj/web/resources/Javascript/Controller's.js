@@ -82,9 +82,6 @@ function upvoteToiletSuggestion(id,toilet_id) {
         upvoteToiletIdChange(toilet_id);
     }
 }
-function addRating() {
-    document.getElementById("formSubmitToilet:rating")
-}
 
 //Change upvotedToiletId
 function upvoteToiletIdChange(id) {
@@ -242,7 +239,22 @@ function icon7() {
         iconElement[0].className = unselected;
     }
 }
-
+//Icon 8 = Faulty Toilet
+function icon8() {
+    var iconElementCheck = document.getElementsByClassName("icon8-unselected");
+    var iconElement = document.getElementsByClassName("icon8");
+    var unselected = "icon8 icon8-unselected";
+    var selected = "icon8 icon8-selected";
+    if (iconElementCheck.length >0) {
+        //Current unselected
+        iconElement[0].src = "images/faulty.png";
+        iconElement[0].className = selected;
+    }else {
+        //Currently Selected
+        iconElement[0].src ="images/faulty-unselected.png";
+        iconElement[0].className = unselected;
+    }
+}
 function getIcons() {
     var icon1Check = document.getElementsByClassName("icon1-unselected");
     var icon2Check = document.getElementsByClassName("icon2-unselected");

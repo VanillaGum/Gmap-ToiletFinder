@@ -21,11 +21,19 @@ public class MapController implements Serializable{
     private int toiletGender = 0;
     private int genderM = 0;
     private int genderF = 0;
-    private int rating = 0;
     private int upvote = 0;
     private int upvoteToiletId = 0;
     private MarkerEntity me;
     private MarkerList ml;
+
+    //Icon Rating System Variables
+    private int icon1; //Toilet Cleaniness
+    private int icon2; //Toilet Environment Dirty?
+    private int icon3; //Slippery?
+    private int icon4; //Insects?
+    private int icon5; //Smelly?
+    private int icon6; //Wheelchair
+    //End
 
     @PostConstruct
     public void init() {
@@ -147,11 +155,9 @@ public class MapController implements Serializable{
             me.downvoteToilet(upvoteToiletId);
         }
     }
-    public void addRating() {
-
-    }
-
-    public void onStateChange(StateChangeEvent event) {
+    public void reviewToilet() {
+        //Rating System
+        //Out Of 5
 
     }
     public void setLocLng(double locLng) {
@@ -193,5 +199,29 @@ public class MapController implements Serializable{
     public int getUpvoteToiletId() { return upvoteToiletId; }
 
     public void setUpvoteToiletId(int upvoteToiletId) { this.upvoteToiletId = upvoteToiletId; }
+
+    public int getIcon1() { return icon1; }
+
+    public void setIcon1(int icon1) { this.icon1 = icon1; }
+
+    public int getIcon2() { return icon2; }
+
+    public void setIcon2(int icon2) { this.icon2 = icon2; }
+
+    public int getIcon3() { return icon3; }
+
+    public void setIcon3(int icon3) { this.icon3 = icon3; }
+
+    public int getIcon4() { return icon4; }
+
+    public void setIcon4(int icon4) { this.icon4 = icon4; }
+
+    public int getIcon5() { return icon5; }
+
+    public void setIcon5(int icon5) { this.icon5 = icon5; }
+
+    public int getIcon6() { return icon6; }
+
+    public void setIcon6(int icon6) { this.icon6 = icon6; }
 }
 

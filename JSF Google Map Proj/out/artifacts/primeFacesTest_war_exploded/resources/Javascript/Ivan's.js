@@ -31,7 +31,7 @@ $(function() {
                 position:{lat:poslat,lng:poslng},
                 map:mapdis,
                 title:"User Loc",
-                icon:"images/toilet_female.png"
+                icon:"images/toilet_male.png"
             });
         });
     }

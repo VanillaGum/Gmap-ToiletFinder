@@ -73,7 +73,6 @@
                <h:inputHidden id="toiletGender" value="#{mapController.toiletGender}" />
                <h:inputHidden id="genderM" value="#{mapController.genderM}"/>
                <h:inputHidden id="genderF" value="#{mapController.genderF}"/>
-               <h:inputHidden id="rating" value="#{mapController.rating}"/>
                <h:inputHidden id="upvote" value="#{mapController.upvote}"/>
                <h:inputHidden id="upvoteToiletId" value="#{mapController.upvoteToiletId}"/>
                <!--Was In Command Button Temp Removed-->
@@ -89,6 +88,7 @@
                </p:confirmDialog>
                <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}"/>
                <p:remoteCommand name="upvoteSubmit" actionListener="#{mapController.upvoteToilet}"/>
+               <p:remoteCommand name="reviewSubmit" actionListener="#{mapController.reviewToilet}"/>
             </h:form>
       </div>
 
