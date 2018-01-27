@@ -92,19 +92,30 @@ function upvoteToiletIdChange(id) {
 
 //Reviewing Toilets
 function addReviewScreen(uniqueId) {
-    var unselected="unselected-Overlay";
+    //Create Review Screen And Reveal Overlay Screen
     var selected="selected-Overlay";
     var screen = '<div id="screen'+uniqueId+'" class="middleDiv">' +
-        '<img src="images/toilet.png" class="icon1 icon1-unselected" width="51.2" height="51.2" onclick="icon1()"/>' +
-        '<img src="images/slippery.png" class="icon3 icon3-unselected" width="51.2" height="51.2" onclick="icon3()"/>' +
-        '<img src="images/cockroach.png" class="icon4 icon4-unselected" width="40" height="40" onclick="icon4()"/>' +
-        '<img src="images/smelly.png" class="icon5 icon5-unselected" width="51.2" height="51.2" onclick="icon5()"/>' +
+        '<div id="iconHolder">' +
+        '<img src="images/toilet.png" class="icon1 icon1-unselected" width="76.8" height="76.8" onclick="icon1()"/>' +
+        '<img src="images/garbage.png" class="icon2 icon2-unselected unselected" width="76.8" height="76.8" onclick="icon2()"/>' +
+        '<img src="images/slippery.png" class="icon3 icon3-unselected" width="76.8" height="76.8" onclick="icon3()"/>' +
+        '<img src="images/cockroach.png" class="icon4 icon4-unselected" width="60" height="60" style="padding:8.4px" onclick="icon4()"/>' +
+        '<img src="images/smelly.png" class="icon5 icon5-unselected" width="76.8" height="76.8" onclick="icon5()"/>' +
+        '<img src="images/faulty-unselected.png" class="icon8 icon8-unselected" width="76.8" height="76.8" onclick="icon8()" />' +
+        '</div id="comment-section">' +
+        '<div>' +
+        '</div>' +
+        '<img id="closeIcon" src="images/close_icon.png" onclick="removeScreen('+uniqueId+')"/>' +
+        '<img id="helpIcon" width="30px" height="30px" style="margin-top:0.5%" src="images/help-unselected.png"/>'+
         '</div>';
     document.getElementById("greyOverlay").className = selected;
     $('#greyOverlay').append(screen);
 }
 function removeScreen(uniqueId) {
-    $('#greyOverlay').remove("#screen"+uniqueId+"")
+    //Remove Overlay Screen And Review Screen
+    var unselected="unselected-Overlay";
+    $('#greyOverlay').remove("#screen"+uniqueId+"");
+    document.getElementById("greyOverlay").className=unselected;
 }
 
 function addNewMarker(lat,lng,image) {
@@ -118,7 +129,7 @@ function addNewMarker(lat,lng,image) {
     markers.push(newMarker);
 
     markers.push(new google.maps.Marker({
-        
+
     }))
     var window = '<div>' +
         '   <p>Select:</p>' +

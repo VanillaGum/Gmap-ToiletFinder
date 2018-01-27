@@ -33,6 +33,8 @@ public class MapController implements Serializable{
     private int icon4; //Insects?
     private int icon5; //Smelly?
     private int icon6; //Wheelchair
+    private int icon7; //Cost money
+    private int icon8; //Faulty Toilets
     //End
 
     @PostConstruct
@@ -128,7 +130,8 @@ public class MapController implements Serializable{
     }
     public void addToiletLoc() {
         MarkerRequestData newMarker= null;
-        System.out.println("Rating:" + rating + "|" +"Gender: M|" +genderM+ " F|" + genderF);
+        int rating = reviewToilet();
+        System.out.println("|" +"Gender: M|" +genderM+ " F|" + genderF);
         if (genderM == 1 && genderF == 0) {
             //Add Male Toilet
             newMarker = new MarkerRequestData(new LatLng(locLat,locLng),1, rating);
@@ -155,10 +158,36 @@ public class MapController implements Serializable{
             me.downvoteToilet(upvoteToiletId);
         }
     }
-    public void reviewToilet() {
+    public int reviewToilet() {
+        int rating = 3;
         //Rating System
         //Out Of 5
-
+        //Cleaniness
+        if(icon1 == 2) {
+            rating+=3;
+        }else if (icon1 == 1) {
+            rating+=2;
+        }
+        //Dirty Environment
+        if(icon2 == 1) {
+            rating-=1;
+        }
+        //Slippery
+        if(icon3 == 1) {
+            rating-=1;
+        }
+        //Insects?
+        if(icon4 == 1) {
+            rating-=1;
+        }
+        //Smelly?
+        if(icon5==1) {
+            rating-=1;
+        }
+        if(icon8==1) {
+            rating-=3;
+        }
+        return rating;
     }
     public void setLocLng(double locLng) {
         this.locLng = locLng;
@@ -187,10 +216,6 @@ public class MapController implements Serializable{
     public int getGenderF() { return genderF; }
 
     public void setGenderF(int genderF) { this.genderF = genderF; }
-
-    public int getRating() { return rating; }
-
-    public void setRating(int rating) { this.rating = rating; }
 
     public int getUpvote() { return upvote; }
 

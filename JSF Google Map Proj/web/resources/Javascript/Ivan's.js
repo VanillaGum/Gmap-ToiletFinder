@@ -8,7 +8,7 @@ confirmationMarker = null; //Put Toilet Confirmation Marker Here
 confirmationMarkerLat = 0; //Latitude of Confirmation marker
 confirmationMarkerLng = 0; //Longitude of Confirmation marker
 confirmationInfowindow = null; //Infowindow for confirmation marker
-imageList = ["images/toilet_male.png","images/toilet_female.png"]; //To Instantiate The Images(Had image loading issues)
+imageList = ["images/toilet_male.png","images/toilet_female.png","images/help-hovered.png","images/help-unselected.png"]; //To Instantiate The Images(Had image loading issues)
 confirmationInfowindow = new google.maps.InfoWindow({
     content: document.getElementById("confirmBox0")
 });

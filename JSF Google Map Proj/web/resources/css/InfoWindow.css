@@ -50,18 +50,37 @@ div#greyOverlay.selected-Overlay {
     left: 50%;
     width:30em;
     height:18em;
-    margin-top: -9em; /*set to a negative number 1/2 of your height*/
-    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    margin-top: -9em;
+    margin-left: -15em;
     position:fixed;
     z-index: 2; !important;
     opacity:2;
 }
+#closeIcon {
+    left: 92%;
+    position:absolute;
+    opacity:0.4;
+}
+#closeIcon:hover {
+    opacity:1;
+}
+#helpIcon {
+    left: 85%;
+    position:absolute;
+}
+#iconHolder {
+    position:absolute;
+    width:153.6px;
+    margin-top:5%;
+    margin-left:3%;
+
+}
 .middleDiv *{
     z-index: 3; !important;
 }
-unselected {
+.unselected {
     opacity:0.4;
 }
-selected {
+.selected {
     opacity:1;
 }
