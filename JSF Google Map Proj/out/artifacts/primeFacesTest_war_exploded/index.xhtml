@@ -75,6 +75,18 @@
                <h:inputHidden id="genderF" value="#{mapController.genderF}"/>
                <h:inputHidden id="upvote" value="#{mapController.upvote}"/>
                <h:inputHidden id="upvoteToiletId" value="#{mapController.upvoteToiletId}"/>
+
+               <!--Review Section Variables-->
+               <h:inputHidden id="icon1" value="#{mapController.icon1}"/>
+               <h:inputHidden id="icon2" value="#{mapController.icon2}"/>
+               <h:inputHidden id="icon3" value="#{mapController.icon3}"/>
+               <h:inputHidden id="icon4" value="#{mapController.icon4}"/>
+               <h:inputHidden id="icon5" value="#{mapController.icon5}"/>
+               <h:inputHidden id="icon6" value="#{mapController.icon6}"/>
+               <h:inputHidden id="icon7" value="#{mapController.icon7}"/>
+               <h:inputHidden id="icon8" value="#{mapController.icon8}"/>
+               <!--End-->
+
                <!--Was In Command Button Temp Removed-->
                <!--onclick="addToiletLoc()"-->
                <p:commandButton value="Add Toilet"
@@ -86,9 +98,14 @@
                      <p:commandButton value="Use current location" type="button" onclick="setMarkerAddType(1)" styleClass="ui-confirmdialog-no"/>
                      <p:commandButton value="Select Location on map" type="button" onclick="setMarkerAddType(2)" styleClass="ui-confirmdialog-no"/>
                </p:confirmDialog>
+               <!--For Suggesting Toilets-->
                <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}"/>
+               <!--For Upvoting Toilets-->
                <p:remoteCommand name="upvoteSubmit" actionListener="#{mapController.upvoteToilet}"/>
-               <p:remoteCommand name="reviewSubmit" actionListener="#{mapController.reviewToilet}"/>
+               <!--For Use On Suggested Toilets-->
+               <p:remoteCommand name="reviewSuggestedToilet" actionListener="#{mapController.reviewSuggestedToilet}"/>
+               <!--For Use On Suggestion And Approved Toilet-->
+               <p:remoteCommand name="reviewToilet" actionListener="#{mapController.reviewToilet}"/>
             </h:form>
       </div>
 

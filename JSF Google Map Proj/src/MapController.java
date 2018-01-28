@@ -35,6 +35,7 @@ public class MapController implements Serializable{
     private int icon6; //Wheelchair
     private int icon7; //Cost money
     private int icon8; //Faulty Toilets
+    private int suggestionRating;
     //End
 
     @PostConstruct
@@ -130,7 +131,7 @@ public class MapController implements Serializable{
     }
     public void addToiletLoc() {
         MarkerRequestData newMarker= null;
-        int rating = reviewToilet();
+        int rating = reviewToiletRating();
         System.out.println("|" +"Gender: M|" +genderM+ " F|" + genderF);
         if (genderM == 1 && genderF == 0) {
             //Add Male Toilet
@@ -158,8 +159,18 @@ public class MapController implements Serializable{
             me.downvoteToilet(upvoteToiletId);
         }
     }
-    public int reviewToilet() {
-        int rating = 3;
+    //Used When Suggesting A Toilet Location And
+    public void reviewSuggestedToilet() {
+
+        suggestionRating = reviewToiletRating();
+        System.out.println("Rating:" + suggestionRating);
+    }
+    //Used After Submitting Review
+    public void reviewToilet() {
+
+    }
+    public int reviewToiletRating() {
+        double rating = 3;
         //Rating System
         //Out Of 5
         //Cleaniness
@@ -171,23 +182,53 @@ public class MapController implements Serializable{
         //Dirty Environment
         if(icon2 == 1) {
             rating-=1;
+        }else {
+            rating+=0.25;
         }
         //Slippery
         if(icon3 == 1) {
             rating-=1;
+        }else {
+            rating+=0.5;
         }
         //Insects?
         if(icon4 == 1) {
             rating-=1;
+        }else {
+            rating+=0.25;
         }
         //Smelly?
         if(icon5==1) {
             rating-=1;
+        }else {
+            rating+=0.5;
         }
+        //Faulty
         if(icon8==1) {
             rating-=3;
+        }else {
+            rating+=0.25;
         }
-        return rating;
+        //Rating To Be Submitted
+        int rating2 = 0;
+
+        //Round To Int
+        double ratingDecimal = rating % 1;
+        int ratingWhole = (int) (rating - ratingDecimal);
+        if(ratingDecimal >= 0.5) {
+            rating += 1;
+        }
+
+
+        rating2 += ratingWhole;
+        if (rating2 > 5) {
+            rating2 = 5;
+        }
+        if (rating2 <1) {
+            rating2 = 1;
+        }
+
+        return rating2;
     }
     public void setLocLng(double locLng) {
         this.locLng = locLng;
@@ -248,5 +289,13 @@ public class MapController implements Serializable{
     public int getIcon6() { return icon6; }
 
     public void setIcon6(int icon6) { this.icon6 = icon6; }
+
+    public int getIcon7() { return icon7; }
+
+    public void setIcon7(int icon7) { this.icon7 = icon7; }
+
+    public int getIcon8() { return icon8; }
+
+    public void setIcon8(int icon8) { this.icon8 = icon8; }
 }
 

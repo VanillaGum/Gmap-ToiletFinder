@@ -43,18 +43,18 @@ div#greyOverlay.selected-Overlay {
 }
 
 .middleDiv {
-    width:100px;
-    height:100px;
     background-color:white;
     top: 50%;
     left: 50%;
     width:30em;
-    height:18em;
+    height:20em;
     margin-top: -9em;
     margin-left: -15em;
     position:fixed;
     z-index: 2; !important;
     opacity:2;
+    background-color:#EEEEEE;
+    border-radius:20px;
 }
 #closeIcon {
     left: 92%;
@@ -75,6 +75,10 @@ div#greyOverlay.selected-Overlay {
     margin-left:3%;
 
 }
+#comment-section {
+    position:absolute;
+    margin-left:45%;
+}
 .middleDiv *{
     z-index: 3; !important;
 }
@@ -83,4 +87,7 @@ div#greyOverlay.selected-Overlay {
 }
 .selected {
     opacity:1;
+}
+.review-submit:hover {
+    cursor: pointer;
 }

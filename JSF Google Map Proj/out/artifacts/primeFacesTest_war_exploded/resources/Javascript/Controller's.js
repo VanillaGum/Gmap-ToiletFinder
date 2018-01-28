@@ -102,11 +102,15 @@ function addReviewScreen(uniqueId) {
         '<img src="images/cockroach.png" class="icon4 icon4-unselected" width="60" height="60" style="padding:8.4px" onclick="icon4()"/>' +
         '<img src="images/smelly.png" class="icon5 icon5-unselected" width="76.8" height="76.8" onclick="icon5()"/>' +
         '<img src="images/faulty-unselected.png" class="icon8 icon8-unselected" width="76.8" height="76.8" onclick="icon8()" />' +
-        '</div id="comment-section">' +
-        '<div>' +
+        '</div>' +
+        '<div id="comment-section">' +
+        '<p style="font-size:1.5em;margin-bottom:1%">Comments</p>' +
+        '<textarea rows="13" cols="30">' +
+        '</textarea>' +
         '</div>' +
         '<img id="closeIcon" src="images/close_icon.png" onclick="removeScreen('+uniqueId+')"/>' +
-        '<img id="helpIcon" width="30px" height="30px" style="margin-top:0.5%" src="images/help-unselected.png"/>'+
+        '<img id="helpIcon" width="30px" height="30px" style="margin-top:0.5%" src="images/help-unselected.png"/>' +
+        '<p style="font-size:1.75em;margin-top:56%;margin-left:40%;position:absolute;" class="review-submit" onclick="suggestedToiletReview()"><b>Submit</b></p>'+
         '</div>';
     document.getElementById("greyOverlay").className = selected;
     $('#greyOverlay').append(screen);
@@ -114,7 +118,8 @@ function addReviewScreen(uniqueId) {
 function removeScreen(uniqueId) {
     //Remove Overlay Screen And Review Screen
     var unselected="unselected-Overlay";
-    $('#greyOverlay').remove("#screen"+uniqueId+"");
+
+    document.getElementById('greyOverlay').innerHTML = "";
     document.getElementById("greyOverlay").className=unselected;
 }
 
@@ -146,13 +151,16 @@ function icon1() {
     var selected2 = "icon1 icon1-selected2";
     if (iconElementCheck.length === 1) {
         //Current unselected
+        document.getElementById("formSubmitToilet:icon1").value = 1;
         iconElement[0].className = selected1;
         iconElement[0].src="images/toilet_silver.png";
     }else if(iconElementCheck2.length > 0) {
         //Currently Selected 1
+        document.getElementById("formSubmitToilet:icon1").value = 2;
         iconElement[0].className = selected2;
         iconElement[0].src="images/toilet_gold.png";
     }else {
+        document.getElementById("formSubmitToilet:icon1").value = 0;
         //Currently Selected 2
         iconElement[0].className = unselected;
         iconElement[0].src="images/toilet.png";
@@ -166,9 +174,11 @@ function icon2() {
     var selected = "icon2 icon2-selected selected";
     if (iconElementCheck.length >0) {
         //Current unselected
+        document.getElementById("formSubmitToilet:icon2").value = 1;
         iconElement[0].className = selected;
     }else {
         //Currently Selected
+        document.getElementById("formSubmitToilet:icon2").value = 0;
         iconElement[0].className = unselected;
     }
 }
@@ -180,10 +190,12 @@ function icon3() {
     var selected = "icon3 icon3-selected";
     if (iconElementCheck.length >0) {
         //Current unselected
+        document.getElementById("formSubmitToilet:icon3").value = 1;
         iconElement[0].src = "images/slippery-selected.png";
         iconElement[0].className = selected;
     }else {
         //Currently Selected
+        document.getElementById("formSubmitToilet:icon3").value = 0;
         iconElement[0].src ="images/slippery.png";
         iconElement[0].className = unselected;
     }
@@ -196,10 +208,12 @@ function icon4() {
     var selected = "icon4 icon4-selected";
     if (iconElementCheck.length >0) {
         //Current unselected
+        document.getElementById("formSubmitToilet:icon4").value = 1;
         iconElement[0].src = "images/cockroach-selected.png";
         iconElement[0].className = selected;
     }else {
         //Currently Selected
+        document.getElementById("formSubmitToilet:icon4").value = 0;
         iconElement[0].src ="images/cockroach.png";
         iconElement[0].className = unselected;
     }
@@ -212,10 +226,12 @@ function icon5() {
     var selected = "icon5 icon5-selected";
     if (iconElementCheck.length >0) {
         //Current unselected
+        document.getElementById("formSubmitToilet:icon5").value = 1;
         iconElement[0].src = "images/smelly-selected.png";
         iconElement[0].className = selected;
     }else {
         //Currently Selected
+        document.getElementById("formSubmitToilet:icon5").value = 0;
         iconElement[0].src ="images/smelly.png";
         iconElement[0].className = unselected;
     }
@@ -228,10 +244,12 @@ function icon6() {
     var selected = "icon6 icon6-selected selected";
     if (iconElementCheck.length >0) {
         //Current unselected
+        document.getElementById("formSubmitToilet:icon6").value = 1;
         iconElement[0].src = "images/wheelchair.png";
         iconElement[0].className = selected;
     }else {
         //Currently Selected
+        document.getElementById("formSubmitToilet:icon6").value = 0;
         iconElement[0].src ="images/wheelchair-unselected.png";
         iconElement[0].className = unselected;
     }
@@ -244,9 +262,11 @@ function icon7() {
     var selected = "icon7 icon7-selected selected";
     if (iconElementCheck.length >0) {
         //Current unselected
+        document.getElementById("formSubmitToilet:icon7").value = 1;
         iconElement[0].className = selected;
     }else {
         //Currently Selected
+        document.getElementById("formSubmitToilet:icon7").value = 0;
         iconElement[0].className = unselected;
     }
 }
@@ -258,15 +278,17 @@ function icon8() {
     var selected = "icon8 icon8-selected";
     if (iconElementCheck.length >0) {
         //Current unselected
+        document.getElementById("formSubmitToilet:icon8").value = 1;
         iconElement[0].src = "images/faulty.png";
         iconElement[0].className = selected;
     }else {
         //Currently Selected
+        document.getElementById("formSubmitToilet:icon8").value = 0;
         iconElement[0].src ="images/faulty-unselected.png";
         iconElement[0].className = unselected;
     }
 }
-function getIcons() {
-    var icon1Check = document.getElementsByClassName("icon1-unselected");
-    var icon2Check = document.getElementsByClassName("icon2-unselected");
+//Submit Review(Suggested Toilet)
+function suggestedToiletReview() {
+    reviewSuggestedToilet();
 }
