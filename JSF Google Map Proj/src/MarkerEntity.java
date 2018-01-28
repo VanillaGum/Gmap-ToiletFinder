@@ -39,4 +39,11 @@ public class MarkerEntity {
     public void downvoteToilet(int toiletId) {
         dc.downvoteToilet(toiletId);
     }
+
+    public void rateSuggestionToilet(int toiletId, int rating ) {
+        dc.rateToiletRequest(toiletId,rating);
+    }
+    public void rateApprovedToilet(int toiletId, int rating ) {
+        dc.rateToiletApproved(toiletId,rating);
+    }
 }

@@ -85,6 +85,8 @@
                <h:inputHidden id="icon6" value="#{mapController.icon6}"/>
                <h:inputHidden id="icon7" value="#{mapController.icon7}"/>
                <h:inputHidden id="icon8" value="#{mapController.icon8}"/>
+               <h:inputHidden id="comments" value="#{mapController.comments}"/>
+               <h:inputHidden id="uniqueId" value="#{mapController.uniqueId}"/>
                <!--End-->
 
                <!--Was In Command Button Temp Removed-->
@@ -102,8 +104,6 @@
                <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}"/>
                <!--For Upvoting Toilets-->
                <p:remoteCommand name="upvoteSubmit" actionListener="#{mapController.upvoteToilet}"/>
-               <!--For Use On Suggested Toilets-->
-               <p:remoteCommand name="reviewSuggestedToilet" actionListener="#{mapController.reviewSuggestedToilet}"/>
                <!--For Use On Suggestion And Approved Toilet-->
                <p:remoteCommand name="reviewToilet" actionListener="#{mapController.reviewToilet}"/>
             </h:form>

@@ -43,6 +43,8 @@ public class MarkerData {
         avg_rating = getAvgRating();
         this.iconNo = iconNoInit();
         this.image = getImageString();
+        MarkerList m = MarkerList.getInstance();
+        this.randomId = m.getUniqueId();
     }
 
 //    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM) {
@@ -80,7 +82,8 @@ public class MarkerData {
         this.rating = rating;
         this.genderM = genderM;
         this.image = image;
-        this.randomId = randomId;
+        MarkerList m = MarkerList.getInstance();
+        this.randomId = m.getUniqueId();
     }
     //End of Suggesting Toilet Loc Constructors
 

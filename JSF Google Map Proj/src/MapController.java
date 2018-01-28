@@ -35,7 +35,8 @@ public class MapController implements Serializable{
     private int icon6; //Wheelchair
     private int icon7; //Cost money
     private int icon8; //Faulty Toilets
-    private int suggestionRating;
+    private int uniqueId;
+    private String comments;
     //End
 
     @PostConstruct
@@ -89,7 +90,6 @@ public class MapController implements Serializable{
     }
     public void displaySuggestionMarkers() {
         for (MarkerData m:ml.getSuggestionMarkers()) {
-            System.out.println(m.getGenderM());
             RequestContext.getCurrentInstance().execute(
                "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
                     "content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+","+m.getToiletId()+")" +
@@ -132,14 +132,17 @@ public class MapController implements Serializable{
     public void addToiletLoc() {
         MarkerRequestData newMarker= null;
         int rating = reviewToiletRating();
-        System.out.println("|" +"Gender: M|" +genderM+ " F|" + genderF);
         if (genderM == 1 && genderF == 0) {
             //Add Male Toilet
-            newMarker = new MarkerRequestData(new LatLng(locLat,locLng),1, rating);
+            newMarker = ml.getSuggestedMarker();
+            newMarker.setLatlng(new LatLng(locLat,locLng));
+            newMarker.setGenderM(1);
             me.createSingleMarker(newMarker);
         }else if (genderM == 0 && genderF == 1){
             //Add Female Toilet
-            newMarker = new MarkerRequestData(new LatLng(locLat,locLng),0, rating);
+            newMarker = ml.getSuggestedMarker();
+            newMarker.setLatlng(new LatLng(locLat,locLng));
+            newMarker.setGenderM(0);
             me.createSingleMarker(newMarker);
         }else if(genderM == 1 && genderF == 1) {
             //Add male and female toilet
@@ -152,21 +155,37 @@ public class MapController implements Serializable{
     public void upvoteToilet() {
         if (upvote == 1) {
             //Upvoting Toilet
-            System.out.println(upvoteToiletId);
             me.upvoteToilet(upvoteToiletId);
         }else if (upvote == 0) {
             //Remove Upvote
             me.downvoteToilet(upvoteToiletId);
         }
+
     }
     //Used When Suggesting A Toilet Location And
-    public void reviewSuggestedToilet() {
-
-        suggestionRating = reviewToiletRating();
-        System.out.println("Rating:" + suggestionRating);
-    }
-    //Used After Submitting Review
     public void reviewToilet() {
+        System.out.println("Hi We're Reviewing Suggested Toilet");
+        int ratingz = reviewToiletRating();
+        int ToiletId = -1;
+        for(MarkerData m:ml.getApprovedMarkers()) {
+            if(m.getRandomId() == uniqueId) {
+                ToiletId = m.getToiletId();
+                me.rateApprovedToilet(ToiletId,ratingz);
+            }
+        }
+        for(MarkerData m:ml.getSuggestionMarkers()) {
+            if(m.getRandomId() == uniqueId) {
+                ToiletId = m.getToiletId();
+                me.rateSuggestionToilet(ToiletId,ratingz);
+            }
+        }
+        for(MarkerData m:ml.getSuggestedMarkers()) {
+            if(m.getRandomId() == uniqueId) {
+                ml.resetSuggestedMarker();
+                MarkerRequestData mlMRD = ml.getSuggestedMarker();
+                mlMRD.setRating(reviewToiletRating());
+            }
+        }
 
     }
     public int reviewToiletRating() {
@@ -297,5 +316,13 @@ public class MapController implements Serializable{
     public int getIcon8() { return icon8; }
 
     public void setIcon8(int icon8) { this.icon8 = icon8; }
+
+    public String getComments() { return comments; }
+
+    public void setComments(String comments) { this.comments = comments; }
+
+    public int getUniqueId() { return uniqueId; }
+
+    public void setUniqueId(int uniqueId) { this.uniqueId = uniqueId; }
 }
 

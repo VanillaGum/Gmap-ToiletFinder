@@ -2,6 +2,9 @@ import org.primefaces.model.map.LatLng;
 
 //Used for suggestion markers
 public class MarkerRequestData extends MarkerData {
+    String comment;
+    public MarkerRequestData() {
+    }
     //For Suggesting Toilets
     public MarkerRequestData(LatLng latlng, int genderM, int rating) {
         super(latlng, genderM, rating);
@@ -14,6 +17,9 @@ public class MarkerRequestData extends MarkerData {
         MarkerList ml = MarkerList.getInstance();
         this.randomId = ml.getUniqueId();
         this.image = getImageStrings(genderM);
+    }
+    public MarkerRequestData(int rating) {
+        this.rating = rating;
     }
 
     private String getImageStrings(int genderM) {
@@ -28,4 +34,7 @@ public class MarkerRequestData extends MarkerData {
         return null;
     }
 
+    public String getComment() { return comment; }
+
+    public void setComment(String comment) { this.comment = comment; }
 }

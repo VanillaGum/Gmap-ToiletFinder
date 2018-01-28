@@ -38,7 +38,6 @@ public class DatabaseClass {
                     "(latitude,longitude) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
             PreparedStatement addToiletSuggestionInfo = conn.prepareStatement("INSERT INTO toilet_request_info" +
                     "(toilet_request_id,approval,rating,amt_of_rating,genderM) VALUES (?,?,?,?,?)");
-            System.out.println("Running Get LatLng");
             addToiletSuggestion.setDouble(1, m.getLatlng().getLat());
             addToiletSuggestion.setDouble(2, m.getLatlng().getLng());
             addToiletSuggestion.executeUpdate();
@@ -46,7 +45,6 @@ public class DatabaseClass {
             ResultSet toiletSuggestionId = addToiletSuggestion.getGeneratedKeys();
             int suggestedToiletId = 0;
             while (toiletSuggestionId.next()) {
-                System.out.println("Running Get ID");
                 //Get New Suggested Toilet Id
                 suggestedToiletId = toiletSuggestionId.getInt(1);
             }
@@ -147,7 +145,33 @@ public class DatabaseClass {
             e.printStackTrace();
         }
     }
-
+    //Method call when rating toilets
+    public void rateToiletRequest(int toiletId,int rating) {
+        try {
+            PreparedStatement rateToilet = conn.prepareStatement(" UPDATE toilet_request_info " +
+                    "Set amt_of_rating = amt_of_rating + 1," +
+                    "rating = rating + ? " +
+                    "WHERE toilet_request_id = ?;");
+            rateToilet.setInt(1,rating);
+            rateToilet.setInt(2,toiletId);
+            rateToilet.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void rateToiletApproved(int toiletId,int rating) {
+        try {
+            PreparedStatement rateToilet = conn.prepareStatement("UPDATE toilet_info " +
+                    "Set amt_of_rating = amt_of_rating + 1," +
+                    "rating = rating + ? " +
+                    "WHERE toilet_id = ?;");
+            rateToilet.setInt(1,rating);
+            rateToilet.setInt(2,toiletId);
+            rateToilet.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     //When user Flags toilet for removal
     public void flagToilet(int toiletId) {

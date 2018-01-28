@@ -94,7 +94,7 @@ function upvoteToiletIdChange(id) {
 function addReviewScreen(uniqueId) {
     //Create Review Screen And Reveal Overlay Screen
     var selected="selected-Overlay";
-    var screen = '<div id="screen'+uniqueId+'" class="middleDiv">' +
+    var screen = '<div id="screen" class="middleDiv">' +
         '<div id="iconHolder">' +
         '<img src="images/toilet.png" class="icon1 icon1-unselected" width="76.8" height="76.8" onclick="icon1()"/>' +
         '<img src="images/garbage.png" class="icon2 icon2-unselected unselected" width="76.8" height="76.8" onclick="icon2()"/>' +
@@ -105,17 +105,20 @@ function addReviewScreen(uniqueId) {
         '</div>' +
         '<div id="comment-section">' +
         '<p style="font-size:1.5em;margin-bottom:1%">Comments</p>' +
-        '<textarea rows="13" cols="30">' +
+        '<form id="comments-area"action="javascript:void(0);">' +
+        '<textarea id="comments" rows="13" cols="30" maxlength="255">' +
         '</textarea>' +
+        '</form>' +
         '</div>' +
-        '<img id="closeIcon" src="images/close_icon.png" onclick="removeScreen('+uniqueId+')"/>' +
+        '<img id="closeIcon" src="images/close_icon.png" onclick="removeScreen()"/>' +
         '<img id="helpIcon" width="30px" height="30px" style="margin-top:0.5%" src="images/help-unselected.png"/>' +
-        '<p style="font-size:1.75em;margin-top:56%;margin-left:40%;position:absolute;" class="review-submit" onclick="suggestedToiletReview()"><b>Submit</b></p>'+
+        '<p style="font-size:1.75em;margin-top:56%;margin-left:40%;position:absolute;" class="review-submit" onclick="ToiletReview('+uniqueId+')">' +
+        '<b>Submit</b></p>'+
         '</div>';
     document.getElementById("greyOverlay").className = selected;
     $('#greyOverlay').append(screen);
 }
-function removeScreen(uniqueId) {
+function removeScreen() {
     //Remove Overlay Screen And Review Screen
     var unselected="unselected-Overlay";
 
@@ -289,6 +292,9 @@ function icon8() {
     }
 }
 //Submit Review(Suggested Toilet)
-function suggestedToiletReview() {
-    reviewSuggestedToilet();
+function ToiletReview(uniqueId) {
+    document.getElementById("formSubmitToilet:comments").value = document.getElementById("comments").value;
+    document.getElementById("formSubmitToilet:uniqueId").value = uniqueId;
+    reviewToilet();
+    removeScreen();
 }

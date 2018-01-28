@@ -17,6 +17,8 @@ public class MarkerList {
     //Suggested Markers From Database
     private List<MarkerData> suggestionMarkers = new ArrayList<>();
 
+    private MarkerRequestData suggestedMarker = new MarkerRequestData();
+
     private int uniqueId = 0;
 
     protected MarkerList() {
@@ -27,7 +29,6 @@ public class MarkerList {
     }
     public static MarkerList getInstance() {
         if(instance == null) {
-            System.out.println("Making Instance");
             instance = new MarkerList();
             instance.getApprovedToilets();
             instance.getSuggestionToilets();
@@ -59,6 +60,12 @@ public class MarkerList {
         this.suggestionMarkers = suggestionMarkers;
     }
 
+    public MarkerRequestData getSuggestedMarker() { return suggestedMarker; }
+
+    public void setSuggestedMarker(MarkerRequestData suggestedMarker) { this.suggestedMarker = suggestedMarker; }
+
+    public void resetSuggestedMarker() {this.suggestedMarker = new MarkerRequestData();}
+
     public void addApprovedMarker(MarkerData md) {
         this.approvedMarkers.add(md);
     }
@@ -70,7 +77,7 @@ public class MarkerList {
             MarkerEntity me = new MarkerEntity();
             instance.setApprovedMarkers(me.getApprovedMarkers());
             for(MarkerData m:instance.getApprovedMarkers()) {
-                System.out.print("Approved Marker");
+                System.out.print("Approved Id:" + m.getRandomId());
             }
     }
     public void getSuggestionToilets() {
@@ -78,7 +85,7 @@ public class MarkerList {
         MarkerEntity me = new MarkerEntity();
         instance.setSuggestionMarkers(me.getSuggestionMarkers());
         for(MarkerData m:instance.getSuggestionMarkers()) {
-            System.out.print("Suggestion Marker");
+            System.out.print("Suggested Id" + m.getRandomId());
         }
     }
     public void getToilets() {
