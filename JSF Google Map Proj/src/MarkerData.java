@@ -58,14 +58,17 @@ public class MarkerData {
 //    }
 
     //Database suggestiontoilets
-    public MarkerData(LatLng latlng, int rating, int genderM, int toiletId, int toiletInfoId) {
+    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, int genderM, int toiletId, int toiletInfoId) {
         this.latlng = latlng;
         this.rating = rating;
+        this.amt_of_ratings = amt_of_ratings;
         this.genderM = genderM;
         this.toiletId = toiletId;
         this.toiletInfoId = toiletInfoId;
         MarkerList ml = MarkerList.getInstance();
         this.randomId = ml.getUniqueId();
+        this.avg_rating = getAvgRating();
+        System.out.println("AvgRating:" + this.avg_rating);
     }
 
     //For Suggesting Toilet Loc

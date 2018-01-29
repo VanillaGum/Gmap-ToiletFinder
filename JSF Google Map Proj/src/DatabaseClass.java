@@ -297,8 +297,8 @@ public class DatabaseClass {
                 int toiletInfoId = toilets.getInt(5);
                 int genderM = toilets.getInt("genderM");
                 int ratings = toilets.getInt("rating");
-
-                MarkerRequestData m = new MarkerRequestData(new LatLng(latitude,longitude), ratings, genderM, toiletId, toiletInfoId);
+                int amt_ratings = toilets.getInt("amt_of_rating");
+                MarkerRequestData m = new MarkerRequestData(new LatLng(latitude,longitude), ratings, amt_ratings, genderM, toiletId, toiletInfoId);
                 mList.add(m);
             }
             return mList;

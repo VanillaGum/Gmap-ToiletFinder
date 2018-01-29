@@ -12,12 +12,11 @@ public class MarkerRequestData extends MarkerData {
     }
 
 //    //Database suggestion toilets
-    public MarkerRequestData(LatLng latlng, int rating, int genderM, int toiletId, int toiletInfoId) {
-        super(latlng, rating, genderM, toiletId, toiletInfoId);
-        MarkerList ml = MarkerList.getInstance();
-        this.randomId = ml.getUniqueId();
+    public MarkerRequestData(LatLng latlng, int rating,int amt_ratings, int genderM, int toiletId, int toiletInfoId) {
+        super(latlng, rating,amt_ratings, genderM, toiletId, toiletInfoId);
         this.image = getImageStrings(genderM);
     }
+
     public MarkerRequestData(int rating) {
         this.rating = rating;
     }

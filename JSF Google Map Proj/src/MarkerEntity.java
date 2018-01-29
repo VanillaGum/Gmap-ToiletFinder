@@ -31,7 +31,6 @@ public class MarkerEntity {
 
     //Upvote Suggested Toilet
     public void upvoteToilet(int toiletId) {
-        System.out.println("ME Upvoting Toilet");
         dc.upvoteToilet(toiletId);
     }
 

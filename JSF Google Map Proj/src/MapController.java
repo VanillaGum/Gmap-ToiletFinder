@@ -57,18 +57,25 @@ public class MapController implements Serializable{
     }
     public void displayApprovedMarker() {
         for (MarkerData m: ml.getApprovedMarkers()) {
-            RequestContext.getCurrentInstance().execute("var newMarker = " +
-                    "new google.maps.Marker({ " +
-                    "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
-                    "map:PF('mapDisplay').getMap()," +
-                    "icon:'"+m.getImage()+"'});"
-                    + "markers.push(newMarker);");
-
-//            RequestContext.getCurrentInstance().execute("markers.push(" +
+//            RequestContext.getCurrentInstance().execute("var newMarker = " +
 //                    "new google.maps.Marker({ " +
 //                    "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
 //                    "map:PF('mapDisplay').getMap()," +
-//                    "icon:'"+m.getImage()+"'}));");
+//                    "icon:'"+m.getImage()+"'});"
+//                    + "markers.push(newMarker);");
+           RequestContext.getCurrentInstance().execute(
+            "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
+                    "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+")" +
+                    "});" +
+                    "var newMarker"+m.getRandomId()+" = " +
+                    "new google.maps.Marker({ " +
+                    "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
+                    "map:PF('mapDisplay').getMap()," +
+                    "icon:'"+m.getImage()+"'});" +
+                    "newMarker"+m.getRandomId()+".addListener('click',function() {" +
+                    "   infowindow"+m.getRandomId()+".open(map,newMarker"+m.getRandomId()+");" +
+                    "});"
+                    + "markers.push(newMarker"+m.getRandomId()+");");
         }
     }
     public void displaySuggestedMarkers() {
@@ -92,7 +99,7 @@ public class MapController implements Serializable{
         for (MarkerData m:ml.getSuggestionMarkers()) {
             RequestContext.getCurrentInstance().execute(
                "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-                    "content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+","+m.getToiletId()+")" +
+                    "content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getToiletId()+")" +
                        "});" +
                        "var newMarker"+m.getRandomId()+" = " +
                        "new google.maps.Marker({ " +
@@ -170,12 +177,14 @@ public class MapController implements Serializable{
         for(MarkerData m:ml.getApprovedMarkers()) {
             if(m.getRandomId() == uniqueId) {
                 ToiletId = m.getToiletId();
+                System.out.println("Approved Toilet");
                 me.rateApprovedToilet(ToiletId,ratingz);
             }
         }
         for(MarkerData m:ml.getSuggestionMarkers()) {
             if(m.getRandomId() == uniqueId) {
                 ToiletId = m.getToiletId();
+                System.out.println("Suggestion Toilet");
                 me.rateSuggestionToilet(ToiletId,ratingz);
             }
         }

@@ -36,6 +36,63 @@ function createSuggestedInfoWindow(id,rating,genderM) {
         '</div>';
     return content;
 }
+function createApprovedInfoWindow(id,rating,genderM) {
+    var mClass = "";
+    var fClass = "";
+    if(genderM == 2) {
+        mClass = "maleToiletSelectIcon-selected";
+        fClass = "femaleToiletSelectIcon-selected";
+    }else if(genderM== 1){
+        mClass = "maleToiletSelectIcon-selected";
+        fClass = "femaleToiletSelectIcon-unselected";
+    }else if (genderM == 0){
+        mClass = "maleToiletSelectIcon-unselected";
+        fClass = "femaleToiletSelectIcon-selected";
+    }
+    var imageSrc = null;
+    switch(rating) {
+        case 5:
+            imageSrc="images/5-stars-rating.png";
+            break;
+        case 4:
+            imageSrc="images/4-stars-rating.png";
+            break;
+        case 3:
+            imageSrc="images/3-stars-rating.png";
+            break;
+        case 2:
+            imageSrc="images/2-stars-rating.png";
+            break;
+        case 1:
+            imageSrc="images/1-star-rating.png";
+            break;
+        case 0:
+            imageSrc="images/0-star-rating.png";
+            break;
+        default:
+            imageSrc="images/0-star-rating.png";
+            break;
+    }
+
+    var content ='<div>' +
+        '<div style="display:inline-block;" id="suggested'+id+'" class="infowindow-size">' +
+        '<img width="100%" src="'+imageSrc+'"/>' +
+        '<div class="infowindow-div-left">' +
+        '<div style="font-size:20px;margin-top:5px;" onclick="addReviewScreen('+id+')"> ' +
+        '<b>Review</b>' +
+        '<img width="30" height="30" src="images/review.png"/>' +
+        '</div>' +
+        '<hr>' +
+        '<img width="40" height="40" src="images/wheelchair-unselected.png"/>' +
+        '<img width="40" height="40" class="unselected" src="images/money.png"/>' +
+        '</div>' +
+        '<div class="infowindow-div-right">' +
+        '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="40%" height="100%"/>' +
+        '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" style="margin-left:5px;" width="52%" height="100%"/>' +
+        '</div>' +
+        '</div>';
+    return content;
+}
 function createSuggestionInfoWindow(id,rating,genderM,toiletId) {
     var mClass = "";
     var fClass = "";
@@ -49,15 +106,48 @@ function createSuggestionInfoWindow(id,rating,genderM,toiletId) {
         mClass = "maleToiletSelectIcon-unselected";
         fClass = "femaleToiletSelectIcon-selected";
     }
+    var imageSrc = null;
+    switch(rating) {
+        case 5:
+            imageSrc="images/5-stars-rating.png";
+            break;
+        case 4:
+            imageSrc="images/4-stars-rating.png";
+            break;
+        case 3:
+            imageSrc="images/3-stars-rating.png";
+            break;
+        case 2:
+            imageSrc="images/2-stars-rating.png";
+            break;
+        case 1:
+            imageSrc="images/1-star-rating.png";
+            break;
+        case 0:
+            imageSrc="images/0-star-rating.png";
+            break;
+        default:
+            imageSrc="images/0-star-rating.png";
+            break;
+    }
+
     var content ='<div>' +
-        '<div id="suggested'+id+'" class="infowindow-size">' +
-        'rating='+rating +
-        ' genderm='+ genderM +
-        '<button onclick="addReviewScreen('+id+')"></button>' +
-        '<img class="upvote'+id+' upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="upvoteToiletSuggestion('+id+','+toiletId+')"/>' +
-        '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px"/>' +
-        '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6"/>' +
+        '<div style="display:inline-block;" id="suggested'+id+'" class="infowindow-size">' +
+        '<img width="100%" src="'+imageSrc+'"/>' +
+        '<div class="infowindow-div-left">' +
+        '<div style="font-size:20px;margin-top:5px;" onclick="addReviewScreen('+id+')"> ' +
+        '<b>Review</b>' +
+        '<img width="30" height="30" src="images/review.png"/>' +
         '</div>' +
+        '<hr>' +
+        '<img width="40" height="40" src="images/wheelchair-unselected.png"/>' +
+        '<img width="40" height="40" class="unselected" src="images/money.png"/>' +
+        '</div>' +
+        '<div class="infowindow-div-right">' +
+        '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="40%" height="100%"/>' +
+        '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" style="margin-left:5px;" width="52%" height="100%"/>' +
+        '</div>' +
+        //'<img class="upvote'+id+' upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="upvoteToiletSuggestion('+id+','+toiletId+')"/>' +
         '</div>';
     return content;
 }
