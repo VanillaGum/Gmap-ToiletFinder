@@ -174,28 +174,29 @@ public class DatabaseClass {
     }
 
     //When user Flags toilet for removal
-    public void flagToilet(int toiletId) {
+    public void flagSuggestionToilet(int toiletId) {
         try {
-            PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_request " +
-                    "Set removal_flag = removal_flag + ?");
-            PreparedStatement checkToiletRemoval = conn.prepareStatement( "SELECT removal_flags FROM toilet_request" +
-                    "WHERE id=?");
-
+            PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_request_info " +
+                    "Set removal_flags = removal_flags + ?;" +
+                    "WHERE toilet_request_id = ? ;");
+            upvoteToilet.setInt(1,userApprovalAmt());
+            upvoteToilet.setInt(2,toiletId);
+            upvoteToilet.executeUpdate();
+            //Changed/ We dont delete from database just dont show only
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void flagApprovedToilet(int toiletId) {
+        try {
+            PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_info " +
+                    "Set removal_flags = removal_flags + ?;" +
+                    "WHERE toilet_id = ?");
+            System.out.println(toiletId);
             //Removal Amount Will Follow Approval Amount(6 removal_flags = removed)
             upvoteToilet.setInt(1,userApprovalAmt());
+            upvoteToilet.setInt(2, toiletId);
             upvoteToilet.executeUpdate();
-
-            checkToiletRemoval.setInt(1, toiletId);
-            ResultSet removal_flags = checkToiletRemoval.executeQuery();
-            int removalAmt = 0;
-
-            while (removal_flags.next()) {
-                removalAmt = removal_flags.getInt("removal_flags");
-            }
-
-            if (removalAmt >= 6) {
-                PreparedStatement removeToiletSuggestion = conn.prepareStatement("DELETE FROM toilet_request");
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -78,7 +78,7 @@ function createApprovedInfoWindow(id,rating,genderM) {
         '<div style="display:inline-block;" id="suggested'+id+'" class="infowindow-size">' +
         '<img width="100%" src="'+imageSrc+'"/>' +
         '<div class="infowindow-div-left">' +
-        '<div style="font-size:20px;margin-top:5px;" onclick="addReviewScreen('+id+')"> ' +
+        '<div style="font-size:20px;margin-top:5px;cursor:pointer;" onclick="addReviewScreen('+id+')"> ' +
         '<b>Review</b>' +
         '<img width="30" height="30" src="images/review.png"/>' +
         '</div>' +
@@ -132,10 +132,15 @@ function createSuggestionInfoWindow(id,rating,genderM,toiletId) {
     }
 
     var content ='<div>' +
-        '<div style="display:inline-block;" id="suggested'+id+'" class="infowindow-size">' +
+        '<div style="display:inline-block; width:200px;height:200px" id="suggested'+id+'">' +
         '<img width="100%" src="'+imageSrc+'"/>' +
         '<div class="infowindow-div-left">' +
-        '<div style="font-size:20px;margin-top:5px;" onclick="addReviewScreen('+id+')"> ' +
+        '<div style="width:100%;margin-top:5px;">' +
+        '<img style="margin-left:5px;" class="upvote'+id+' upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="upvoteToiletSuggestion('+id+','+toiletId+')"/>' +
+        '<img style="margin-left:5px;" class="flag'+id+' flag-unselected unselected" src="images/flag.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="flagToiletSuggestion('+id+','+toiletId+')"/>' +
+        '</div>' +
+        '<hr>' +
+        '<div style="font-size:20px;cursor:pointer;" onclick="addReviewScreen('+id+')"> ' +
         '<b>Review</b>' +
         '<img width="30" height="30" src="images/review.png"/>' +
         '</div>' +
@@ -147,7 +152,6 @@ function createSuggestionInfoWindow(id,rating,genderM,toiletId) {
         '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="40%" height="100%"/>' +
         '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" style="margin-left:5px;" width="52%" height="100%"/>' +
         '</div>' +
-        //'<img class="upvote'+id+' upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="upvoteToiletSuggestion('+id+','+toiletId+')"/>' +
         '</div>';
     return content;
 }
@@ -172,6 +176,21 @@ function upvoteToiletSuggestion(id,toilet_id) {
         upvoteToiletIdChange(toilet_id);
     }
 }
+//Upvoting Toilet Suggestion
+function flagToiletSuggestion(id) {
+    var defaultClass = "flag"+id+" ";
+    var unselected = "flag-unselected unselected";
+    var selected = "flag-selected selected";
+    var upvoteElementList = document.getElementsByClassName("flag"+id+" flag-unselected");
+    var upvoteElement = document.getElementsByClassName("flag"+id);
+    if (upvoteElementList.length > 0) {
+        upvoteElement[0].className = defaultClass +  selected;
+        document.getElementById("formSubmitToilet:flag").value = 1;
+        flagToiletIdChange(id);
+    }else {
+        upvoteElement[0].className = defaultClass + unselected;
+    }
+}
 
 //Change upvotedToiletId
 function upvoteToiletIdChange(id) {
@@ -179,6 +198,10 @@ function upvoteToiletIdChange(id) {
     upvoteSubmit();
 }
 
+function flagToiletIdChange(id) {
+    document.getElementById("formSubmitToilet:uniqueId").value = id;
+    flagSubmit();
+}
 
 //Reviewing Toilets
 function addReviewScreen(uniqueId) {

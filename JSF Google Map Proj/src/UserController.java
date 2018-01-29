@@ -12,7 +12,10 @@ public class UserController {
         return instance;
     }
 
-    private int userLevel=3;
+    //O is Anon
+    //1 Is Logged in
+    //2 is admin/trusted
+    private int userLevel=1;
     private int user_id = 0;
 
 

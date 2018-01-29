@@ -33,7 +33,12 @@ public class MarkerEntity {
     public void upvoteToilet(int toiletId) {
         dc.upvoteToilet(toiletId);
     }
-
+    public void flagSuggestionToilet(int toiletId) {
+        dc.flagSuggestionToilet(toiletId);
+    }
+    public void flagApprovedToilet(int toiletId) {
+        dc.flagApprovedToilet(toiletId);
+    }
     //Downvote Suggested Toilet
     public void downvoteToilet(int toiletId) {
         dc.downvoteToilet(toiletId);

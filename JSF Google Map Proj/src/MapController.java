@@ -25,7 +25,7 @@ public class MapController implements Serializable{
     private int upvoteToiletId = 0;
     private MarkerEntity me;
     private MarkerList ml;
-
+    private int flag; //Used For Flagging Toilets For Removal Because They Dont Exist Or Are Closed
     //Icon Rating System Variables
     private int icon1; //Toilet Cleaniness
     private int icon2; //Toilet Environment Dirty?
@@ -168,6 +168,30 @@ public class MapController implements Serializable{
             me.downvoteToilet(upvoteToiletId);
         }
 
+    }
+    public void flagToilet() {
+        //Flag Toilet
+        int ToiletId = -1;
+        for(MarkerData m:ml.getApprovedMarkers()) {
+            if(m.getRandomId() == uniqueId) {
+                ToiletId = m.getToiletId();
+                me.flagApprovedToilet(ToiletId);
+            }
+        }
+        for(MarkerData m:ml.getSuggestionMarkers()) {
+            if(m.getRandomId() == uniqueId) {
+                ToiletId = m.getToiletId();
+                System.out.println("ToiletId:" + ToiletId);
+                me.flagSuggestionToilet(ToiletId);
+            }
+        }
+        for(MarkerData m:ml.getSuggestedMarkers()) {
+            if(m.getRandomId() == uniqueId) {
+                ml.resetSuggestedMarker();
+                MarkerRequestData mlMRD = ml.getSuggestedMarker();
+                mlMRD.setRating(reviewToiletRating());
+            }
+        }
     }
     //Used When Suggesting A Toilet Location And
     public void reviewToilet() {
@@ -333,5 +357,9 @@ public class MapController implements Serializable{
     public int getUniqueId() { return uniqueId; }
 
     public void setUniqueId(int uniqueId) { this.uniqueId = uniqueId; }
+
+    public int getFlag() { return flag; }
+
+    public void setFlag(int flag) { this.flag = flag; }
 }
 
