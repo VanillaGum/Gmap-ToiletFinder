@@ -177,7 +177,7 @@ public class DatabaseClass {
     public void flagSuggestionToilet(int toiletId) {
         try {
             PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_request_info " +
-                    "Set removal_flags = removal_flags + ?;" +
+                    "Set removal_flags = removal_flags + ? " +
                     "WHERE toilet_request_id = ? ;");
             upvoteToilet.setInt(1,userApprovalAmt());
             upvoteToilet.setInt(2,toiletId);
@@ -190,7 +190,7 @@ public class DatabaseClass {
     public void flagApprovedToilet(int toiletId) {
         try {
             PreparedStatement upvoteToilet = conn.prepareStatement("UPDATE toilet_info " +
-                    "Set removal_flags = removal_flags + ?;" +
+                    "Set removal_flags = removal_flags + ? " +
                     "WHERE toilet_id = ?");
             System.out.println(toiletId);
             //Removal Amount Will Follow Approval Amount(6 removal_flags = removed)

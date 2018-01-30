@@ -102,3 +102,9 @@ div#greyOverlay.selected-Overlay {
 #iconHolder img {
     cursor:pointer;
 }
+.unselected-flag {
+    opacity: 0.4;
+}
+.unselected-flag:hover {
+    opacity: 1;
+}

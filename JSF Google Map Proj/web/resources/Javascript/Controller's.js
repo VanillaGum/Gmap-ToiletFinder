@@ -93,7 +93,7 @@ function createApprovedInfoWindow(id,rating,genderM) {
         '</div>';
     return content;
 }
-function createSuggestionInfoWindow(id,rating,genderM,toiletId) {
+function createSuggestionInfoWindow(id,rating,genderM,toiletId, wheelchair, money) {
     var mClass = "";
     var fClass = "";
     if(genderM == 2) {
@@ -131,28 +131,58 @@ function createSuggestionInfoWindow(id,rating,genderM,toiletId) {
             break;
     }
 
-    var content ='<div>' +
-        '<div style="display:inline-block; width:200px;height:200px" id="suggested'+id+'">' +
+    var content1 = '<div style="display:inline-block; width:220px;height:230px" id="suggested'+id+'">' +
+        '<span title="Toilet Rating">' +
         '<img width="100%" src="'+imageSrc+'"/>' +
+        '</span>' +
         '<div class="infowindow-div-left">' +
+        '<span title="Upvote toilet to get it approved!">' +
         '<div style="width:100%;margin-top:5px;">' +
-        '<img style="margin-left:5px;" class="upvote'+id+' upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="upvoteToiletSuggestion('+id+','+toiletId+')"/>' +
-        '<img style="margin-left:5px;" class="flag'+id+' flag-unselected unselected" src="images/flag.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="flagToiletSuggestion('+id+','+toiletId+')"/>' +
-        '</div>' +
+        '<img style="margin-left:5px; cursor:pointer;" class="upvote'+id+' upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="upvoteToiletSuggestion('+id+','+toiletId+')"/>' +
+        '<b>Upvote Toilet</b>' + '</div> </span>' +
         '<hr>' +
         '<div style="font-size:20px;cursor:pointer;" onclick="addReviewScreen('+id+')"> ' +
         '<b>Review</b>' +
         '<img width="30" height="30" src="images/review.png"/>' +
         '</div>' +
-        '<hr>' +
-        '<img width="40" height="40" src="images/wheelchair-unselected.png"/>' +
-        '<img width="40" height="40" class="unselected" src="images/money.png"/>' +
-        '</div>' +
-        '<div class="infowindow-div-right">' +
+        '<hr>';
+        var content2;
+
+        if (wheelchair == 1) {
+            content2 = '<span title="Has Wheelchair Toilets">' +
+                '<img width="40" height="40" src="images/wheelchair.png"/>' +
+                '</span>';
+        }else {
+            content2 = '<span title="Does not have Wheelchair Toilets">' +
+                '<img width="40" height="40" src="images/wheelchair-unselected.png"/>' +
+                '</span>';
+        }
+        var content3;
+        if (money == 1) {
+            content3 = '<span title="Cost Money">' +
+                '<img width="40" height="40" class="selected" src="images/money.png"/>' +
+                '</span>';
+        }else {
+            content3 = '<span title="Does not cost Money">' +
+                '<img width="40" height="40" class="unselected" src="images/money.png"/>' +
+                '</span>';
+        }
+        var content4 = '</div>' +
+        '<div class="infowindow-div-right" style="height:136.9px">' +
+        '<span title="Has toilets for specified gender">' +
         '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="40%" height="100%"/>' +
         '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" style="margin-left:5px;" width="52%" height="100%"/>' +
+        '</span>' +
+        '</div>' +
+        '<div style="width:100%;height:30px;display:inline-block;margin-top:15px;" > ' +
+        '<button style="margin-left:30%; cursor:pointer;" >View Reviews</button>' +
+        '<span title="Flag Toilet For Removal(Toilet does not exist or closed)">' +
+        '<img style="margin-left:5px;float:right; cursor:pointer;" class="flag'+id+' flag-unselected unselected-flag" src="images/flag.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="flagToiletSuggestion('+id+','+toiletId+')"/>' +
+        '</span>' +
         '</div>' +
         '</div>';
+
+    var content = content1.concat(content2,content3,content4);
     return content;
 }
 //Upvoting Toilet Suggestion
