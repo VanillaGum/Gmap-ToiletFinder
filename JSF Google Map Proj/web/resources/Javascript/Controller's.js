@@ -214,12 +214,17 @@ function flagToiletSuggestion(id) {
     var upvoteElementList = document.getElementsByClassName("flag"+id+" flag-unselected");
     var upvoteElement = document.getElementsByClassName("flag"+id);
     if (upvoteElementList.length > 0) {
-        upvoteElement[0].className = defaultClass +  selected;
+        upvoteElement[0].className = defaultClass + selected;
         document.getElementById("formSubmitToilet:flag").value = 1;
-        flagToiletIdChange(id);
-    }else {
-        upvoteElement[0].className = defaultClass + unselected;
+        if (confirm('Flag toilet for removal?(Reasons: Toilet non-existant/Closed)')) {
+            flagToiletIdChange(id);
+        } else {
+            upvoteElement[0].className = defaultClass + unselected;
+        }
     }
+    // else {
+    //     // upvoteElement[0].className = defaultClass + unselected;
+    // }
 }
 
 //Change upvotedToiletId
