@@ -115,17 +115,12 @@
       <!--Suggesting Toilets-->
       <div style="display:none;">
          <div id="confirmBox0">
-            <!--Add Uneditable Stars Rating Here-->
-            <!--Temp Star Rating-->
-            <select id="rating_select">
-               <option value="-1">Select A Rating</option>
-               <option value="1">1</option>
-               <option value="2">2</option>
-               <option value="3">3</option>
-               <option value="4">4</option>
-               <option value="5">5</option>
-            </select>
-            <img class="upvote upvote-unselected" src="images/upvote.png" alt="upvoteIcon" width="10.24" height="10.29" onclick="upvoteToiletSuggestion()"/>
+            <span title="Does it have a wheelchair access toilet">
+            <img class="icon6 icon6-unselected" alt="WheelchairIcon" src="images/wheelchair-neutral.png" onclick="icon6()"/>
+            </span>
+            <span title="Does it cost money?">
+            <img class="icon7 icon7-unselected unselected" alt="Cost Money?" src="images/money.png" onclick="icon7()"/>
+            </span>
             <!--Gender Selection-->
             <img id="maleIcon0" class="mToilet maleToiletSelectIcon-unselected" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px" onclick="changeIconSelection(1)"/>
             <img id="femaleIcon0" class="fToilet femaleToiletSelectIcon-unselected" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6" onclick="changeIconSelection(0)"/>

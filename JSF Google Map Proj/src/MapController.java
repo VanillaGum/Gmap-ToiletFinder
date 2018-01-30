@@ -139,7 +139,7 @@ public class MapController implements Serializable{
             newMarker = new MarkerRequestData(new LatLng(locLat,locLng),2, rating);
         }
         ml.addSuggestedMarker(newMarker);
-        displaySuggestedMarkers();
+
     }
 
     public void upvoteToilet() {
