@@ -65,7 +65,7 @@ public class MapController implements Serializable{
 //                    + "markers.push(newMarker);");
            RequestContext.getCurrentInstance().execute(
             "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-                    "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+")" +
+                    "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+",0,0,"+m.getAmt_of_ratings()+")" +
                     "});" +
                     "var newMarker"+m.getRandomId()+" = " +
                     "new google.maps.Marker({ " +
@@ -82,7 +82,7 @@ public class MapController implements Serializable{
         for (MarkerData m:ml.getSuggestedMarkers()) {
                 RequestContext.getCurrentInstance().execute(
                                 "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-                                "   content:createSuggestedInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+")" +
+                                "   content:createSuggestedInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+",0,0)" +
                                 "});" +
                         "var newMarker"+m.getRandomId()+" = " +
                         "new google.maps.Marker({ " +
@@ -99,7 +99,7 @@ public class MapController implements Serializable{
         for (MarkerData m:ml.getSuggestionMarkers()) {
             RequestContext.getCurrentInstance().execute(
                "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-                    "content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getToiletId()+",0,0)" +
+                    "content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getToiletId()+",0,0,"+m.getAmt_of_ratings()+")" +
                        "});" +
                        "var newMarker"+m.getRandomId()+" = " +
                        "new google.maps.Marker({ " +

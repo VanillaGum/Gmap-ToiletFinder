@@ -126,40 +126,10 @@ public class MarkerData {
         switch(this.getGenderM()) {
             case 0:
                 //Female Gender
-                switch(this.iconNo) {
-                    case -1:
-                        return "images/toilet_female.png";
-                    case 0:
-
-                    case 1:
-
-                    case 2:
-
-                    case 3:
-
-                    case 4:
-
-                    case 5:
-                }
-                break;
+                return "images/toilet_female.png";
             case 1:
                 //Male Gender
-                switch(this.iconNo) {
-                    case -1:
-                        return "images/toilet_male.png";
-                    case 0:
-
-                    case 1:
-
-                    case 2:
-
-                    case 3:
-
-                    case 4:
-
-                    case 5:
-                }
-                break;
+                return "images/toilet_male.png";
             case 2:
                 //Both Genders
                 return "images/toilet_female.png";
