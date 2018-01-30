@@ -7,8 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4c28cfe-ab85-49c9-8ec4-bf3a80a3ed0a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/toilet_male.png" afterPath="$PROJECT_DIR$/web/images/toilet_male.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resources/Javascript/Controller's.js" afterPath="$PROJECT_DIR$/web/resources/Javascript/Controller's.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -680,7 +679,7 @@
       <workItem from="1517227512612" duration="4558000" />
       <workItem from="1517277360576" duration="1567000" />
       <workItem from="1517282655183" duration="3270000" />
-      <workItem from="1517289217143" duration="828000" />
+      <workItem from="1517289217143" duration="929000" />
     </task>
     <task id="LOCAL-00001" summary="Autocomplete Broke Main Map due to it creating a entire new map again, remove re-creating map autocomplete broke.">
       <created>1513409877165</created>
@@ -693,7 +692,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="329652000" />
+    <option name="totallyTimeSpent" value="329753000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
