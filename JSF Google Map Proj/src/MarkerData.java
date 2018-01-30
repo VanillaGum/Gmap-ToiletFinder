@@ -11,7 +11,7 @@ public class MarkerData {
 
     protected int amt_of_ratings;
 
-    protected double avg_rating = 0;
+    protected int avg_rating = 0;
 
     protected String title;
 
@@ -169,11 +169,11 @@ public class MarkerData {
         this.amt_of_ratings = amt_of_ratings;
     }
 
-    public double getAvg_rating() {
+    public int getAvg_rating() {
         return avg_rating;
     }
 
-    public void setAvg_rating(double avg_rating) {
+    public void setAvg_rating(int avg_rating) {
         this.avg_rating = avg_rating;
     }
 

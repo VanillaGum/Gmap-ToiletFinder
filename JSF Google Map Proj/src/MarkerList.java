@@ -77,7 +77,7 @@ public class MarkerList {
             MarkerEntity me = new MarkerEntity();
             instance.setApprovedMarkers(me.getApprovedMarkers());
             for(MarkerData m:instance.getApprovedMarkers()) {
-                System.out.print("Approved Id:" + m.getRandomId());
+                System.out.print("Approved Id:" + m.getRandomId() + "Rating:" + m.getAvg_rating());
             }
     }
     public void getSuggestionToilets() {

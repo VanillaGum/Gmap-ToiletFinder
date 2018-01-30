@@ -65,7 +65,7 @@ public class MapController implements Serializable{
 //                    + "markers.push(newMarker);");
            RequestContext.getCurrentInstance().execute(
             "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-                    "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+",0,0,"+m.getAmt_of_ratings()+")" +
+                    "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+",0,0,"+m.getAmt_of_ratings()+")" +
                     "});" +
                     "var newMarker"+m.getRandomId()+" = " +
                     "new google.maps.Marker({ " +
@@ -76,23 +76,6 @@ public class MapController implements Serializable{
                     "   infowindow"+m.getRandomId()+".open(map,newMarker"+m.getRandomId()+");" +
                     "});"
                     + "markers.push(newMarker"+m.getRandomId()+");");
-        }
-    }
-    public void displaySuggestedMarkers() {
-        for (MarkerData m:ml.getSuggestedMarkers()) {
-                RequestContext.getCurrentInstance().execute(
-                                "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-                                "   content:createSuggestedInfoWindow("+m.getRandomId()+","+m.getRating()+","+m.getGenderM()+",0,0)" +
-                                "});" +
-                        "var newMarker"+m.getRandomId()+" = " +
-                        "new google.maps.Marker({ " +
-                        "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
-                        "map:PF('mapDisplay').getMap()," +
-                        "icon:'"+m.getImage()+"'});" +
-                                "newMarker"+m.getRandomId()+".addListener('click',function() {" +
-                                "   infowindow"+m.getRandomId()+".open(map,newMarker"+m.getRandomId()+");" +
-                                "});"
-                        + "markers.push(newMarker"+m.getRandomId()+");");
         }
     }
     public void displaySuggestionMarkers() {
