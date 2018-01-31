@@ -14,8 +14,9 @@ public class MarkerRequestData extends MarkerData {
     }
 
 //    //Database suggestion toilets
-    public MarkerRequestData(LatLng latlng, int rating,int amt_ratings, int genderM, int toiletId, int toiletInfoId) {
-        super(latlng, rating,amt_ratings, genderM, toiletId, toiletInfoId);
+
+    public MarkerRequestData(LatLng latlng, int rating, int amt_of_ratings, int genderM, int toiletId, int toiletInfoId, int wheelchair, double cost) {
+        super(latlng, rating, amt_of_ratings, genderM, toiletId, toiletInfoId, wheelchair, cost);
         this.image = getImageStrings(genderM);
     }
 

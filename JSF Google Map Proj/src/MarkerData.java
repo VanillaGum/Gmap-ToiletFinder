@@ -35,22 +35,6 @@ public class MarkerData {
     public MarkerData() {
     }
 
-    //For Database Usage
-    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM, int toiletId, int toiletInfoId) {
-        this.latlng = latlng;
-        this.rating = rating;
-        this.amt_of_ratings = amt_of_ratings;
-        this.title = title;
-        this.genderM = genderM;
-        this.toiletId = toiletId;
-        this.toiletInfoId = toiletInfoId;
-        avg_rating = getAvgRating();
-        this.iconNo = iconNoInit();
-        this.image = getImageString();
-        MarkerList m = MarkerList.getInstance();
-        this.randomId = m.getUniqueId();
-    }
-
 //    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, String title, int genderM) {
 //        this.latlng = latlng;
 //        this.rating = rating;
@@ -62,17 +46,18 @@ public class MarkerData {
 //    }
 
     //Database suggestiontoilets
-    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, int genderM, int toiletId, int toiletInfoId) {
+    public MarkerData(LatLng latlng, int rating, int amt_of_ratings, int genderM, int toiletId, int toiletInfoId , int wheelchair, double cost) {
         this.latlng = latlng;
         this.rating = rating;
         this.amt_of_ratings = amt_of_ratings;
         this.genderM = genderM;
         this.toiletId = toiletId;
         this.toiletInfoId = toiletInfoId;
+        this.wheelchair = wheelchair;
+        this.cost = cost;
         MarkerList ml = MarkerList.getInstance();
         this.randomId = ml.getUniqueId();
         this.avg_rating = getAvgRating();
-        System.out.println("AvgRating:" + this.avg_rating);
     }
 
     //For Suggesting Toilet Loc

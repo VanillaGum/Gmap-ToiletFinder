@@ -65,7 +65,7 @@ public class MapController implements Serializable{
 //                    + "markers.push(newMarker);");
            RequestContext.getCurrentInstance().execute(
             "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-                    "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+",0,0,"+m.getAmt_of_ratings()+")" +
+                    "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getWheelchair()+","+m.getCost()+","+m.getAmt_of_ratings()+")" +
                     "});" +
                     "var newMarker"+m.getRandomId()+" = " +
                     "new google.maps.Marker({ " +
@@ -80,9 +80,10 @@ public class MapController implements Serializable{
     }
     public void displaySuggestionMarkers() {
         for (MarkerData m:ml.getSuggestionMarkers()) {
+            System.out.println("Cost" + m.getCost());
             RequestContext.getCurrentInstance().execute(
                "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-                    "content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getToiletId()+",0,0,"+m.getAmt_of_ratings()+")" +
+                    "content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getToiletId()+","+m.getWheelchair()+","+m.getCost()+","+m.getAmt_of_ratings()+")" +
                        "});" +
                        "var newMarker"+m.getRandomId()+" = " +
                        "new google.maps.Marker({ " +

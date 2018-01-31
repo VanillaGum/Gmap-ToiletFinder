@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: map_proj
 -- ------------------------------------------------------
--- Server version	5.7.20-log
+-- Server version	5.7.17-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -56,6 +56,7 @@ CREATE TABLE `toilet_info` (
   `amt_of_rating` int(11) DEFAULT '0',
   `genderM` tinyint(1) NOT NULL,
   `toilet_group` int(11) NOT NULL DEFAULT '0',
+  `removal_flags` int(11) DEFAULT '0',
   `wheelchair` tinyint(1) DEFAULT '0',
   `cost` double DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -69,7 +70,7 @@ CREATE TABLE `toilet_info` (
 
 LOCK TABLES `toilet_info` WRITE;
 /*!40000 ALTER TABLE `toilet_info` DISABLE KEYS */;
-INSERT INTO `toilet_info` VALUES (1,1,0,0,0,0,0,0),(2,2,0,0,0,0,0,0),(3,3,0,0,1,0,0,0),(4,3,0,0,0,0,0,0),(5,4,1,1,1,0,0,0);
+INSERT INTO `toilet_info` VALUES (1,1,0,0,0,0,0,0,0),(2,2,0,0,0,0,0,0,0),(3,3,0,0,1,0,0,0,0),(4,3,0,0,0,0,0,0,0),(5,4,1,1,1,0,0,0,0);
 /*!40000 ALTER TABLE `toilet_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +87,7 @@ CREATE TABLE `toilet_request` (
   `longitude` double NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +96,7 @@ CREATE TABLE `toilet_request` (
 
 LOCK TABLES `toilet_request` WRITE;
 /*!40000 ALTER TABLE `toilet_request` DISABLE KEYS */;
-INSERT INTO `toilet_request` VALUES (2,1.3891194149286932,103.87744903564453),(3,1.4200949828148088,103.76707077026367),(4,1.3926803389916873,103.84440422058105),(5,1.3704352016376824,103.85328769683838);
+INSERT INTO `toilet_request` VALUES (2,1.3891194149286932,103.87744903564453),(3,1.4200949828148088,103.76707077026367),(4,1.3926803389916873,103.84440422058105),(5,1.3704352016376824,103.85328769683838),(6,1.3393704983741743,103.95345211029053),(7,1.3391988838918858,103.96963119506836),(8,1.346320874790264,103.95641326904297),(9,1.351211868544203,103.95074844360352);
 /*!40000 ALTER TABLE `toilet_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +120,7 @@ CREATE TABLE `toilet_request_info` (
   `cost` double DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +129,7 @@ CREATE TABLE `toilet_request_info` (
 
 LOCK TABLES `toilet_request_info` WRITE;
 /*!40000 ALTER TABLE `toilet_request_info` DISABLE KEYS */;
-INSERT INTO `toilet_request_info` VALUES (2,2,3,2,1,0,0,0,0,0),(3,3,2,4,1,1,0,0,0,0),(4,4,4,9,2,1,2,0,0,0),(5,5,4,0,0,1,0,0,0,0);
+INSERT INTO `toilet_request_info` VALUES (2,2,3,2,1,0,0,0,0,0),(3,3,2,4,1,1,0,0,0,0),(4,4,4,9,2,1,2,0,0,0),(5,5,4,0,0,1,0,0,0,0),(6,6,4,0,0,2,0,0,1,0.1),(7,7,4,0,0,2,0,0,1,0.1),(8,9,2,0,0,2,0,0,1,0.1);
 /*!40000 ALTER TABLE `toilet_request_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-31 16:55:00
+-- Dump completed on 2018-01-31 18:34:19

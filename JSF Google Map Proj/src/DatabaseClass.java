@@ -257,7 +257,6 @@ public class DatabaseClass {
             while(toilets.next()) {
                 //Toilet Table
                 int toiletId = toilets.getInt(1);
-                String name = toilets.getString("name");
                 double latitude = toilets.getDouble("latitude");
                 double longitude = toilets.getDouble("Longitude");
 
@@ -266,8 +265,9 @@ public class DatabaseClass {
                 int rating = toilets.getInt("rating");
                 int amt_of_rating = toilets.getInt("amt_of_rating");
                 int genderM = toilets.getInt("genderM");
-
-                MarkerData m = new MarkerData(new LatLng(latitude,longitude),rating,amt_of_rating, name, genderM, toiletId, toiletInfoId);
+                int wheelchair = toilets.getInt("wheelchair");
+                double cost = toilets.getInt("cost");
+                MarkerData m = new MarkerData(new LatLng(latitude,longitude),rating,amt_of_rating, genderM, toiletId, toiletInfoId,wheelchair,cost);
                 mList.add(m);
             }
             return mList;
@@ -292,7 +292,9 @@ public class DatabaseClass {
                 int genderM = toilets.getInt("genderM");
                 int ratings = toilets.getInt("rating");
                 int amt_ratings = toilets.getInt("amt_of_rating");
-                MarkerRequestData m = new MarkerRequestData(new LatLng(latitude,longitude), ratings, amt_ratings, genderM, toiletId, toiletInfoId);
+                int wheelchair = toilets.getInt("wheelchair");
+                double cost = toilets.getInt("cost");
+                MarkerRequestData m = new MarkerRequestData(new LatLng(latitude,longitude), ratings, amt_ratings, genderM, toiletId, toiletInfoId, wheelchair, cost);
                 mList.add(m);
             }
             return mList;
