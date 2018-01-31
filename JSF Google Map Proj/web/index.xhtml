@@ -40,6 +40,21 @@
          <button id="cancelButton" onclick="closeSearch()" style="height: 100%; width: 67.391px; margin: 0; float:right;">Cancel</button>
       </div>
       <div id="filterBar">
+         <h:panelGrid id="filterSelect" columns="2" border="1">
+            <h:outputText value="Gender:"/>
+            <h:selectManyCheckbox value="#{filter.gender}">
+               <f:selectItem itemValue="male" itemLabel="Male"/>
+               <f:selectItem itemValue="female" itemLabel="Female"/>
+            </h:selectManyCheckbox>
+            <h:outputText value="Rating:"/>
+            <h:selectOneRadio value="#{filter.rating}">
+               <f:selectItem itemValue="1" itemLabel="1"/>
+               <f:selectItem itemValue="2" itemLabel="2"/>
+               <f:selectItem itemValue="3" itemLabel="3"/>
+               <f:selectItem itemValue="4" itemLabel="4"/>
+               <f:selectItem itemValue="5" itemLabel="5"/>
+            </h:selectOneRadio>
+         </h:panelGrid>
          <button id="cancelButton" onclick="closeFilter()" style="height: 100%; width: 67.391px; margin: 0; float:right;">Cancel</button>
       </div>
          <!--For Having Map Model IN MapController-->
