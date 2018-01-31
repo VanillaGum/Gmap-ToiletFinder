@@ -443,8 +443,11 @@ function icon7() {
     var selected = "icon7 icon7-selected selected";
     if (iconElementCheck.length >0) {
         //Current unselected
-        document.getElementById("formSubmitToilet:icon7").value = 1;
-        iconElement[0].className = selected;
+        var cost = prompt("Enter cost of toilet usage:");
+        if (cost != null && !isNaN(cost) && cost != "") {
+            document.getElementById("formSubmitToilet:icon7").value = cost;
+            iconElement[0].className = selected;
+        }
     }else {
         //Currently Selected
         document.getElementById("formSubmitToilet:icon7").value = 0;

@@ -115,15 +115,20 @@
       <!--Suggesting Toilets-->
       <div style="display:none;">
          <div id="confirmBox0">
-            <span title="Does it have a wheelchair access toilet">
-            <img class="icon6 icon6-unselected" alt="WheelchairIcon" src="images/wheelchair-neutral.png" onclick="icon6()"/>
+             <div style="width:100%;font-size:20px;">
+                 <b>Suggest Toilet Location</b>
+             </div>
+             <div style="width:100%">
+            <span title="Does it have a wheelchair access toilet?">
+            <img width="50px" height="50px" class="icon6 icon6-unselected" alt="WheelchairIcon" src="images/wheelchair-neutral.png" onclick="icon6()"/>
             </span>
             <span title="Does it cost money?">
-            <img class="icon7 icon7-unselected unselected" alt="Cost Money?" src="images/money.png" onclick="icon7()"/>
+            <img width="50px" height="50px" class="icon7 icon7-unselected unselected" alt="Cost Money?" src="images/money.png" onclick="icon7()"/>
             </span>
             <!--Gender Selection-->
             <img id="maleIcon0" class="mToilet maleToiletSelectIcon-unselected" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px" onclick="changeIconSelection(1)"/>
             <img id="femaleIcon0" class="fToilet femaleToiletSelectIcon-unselected" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6" onclick="changeIconSelection(0)"/>
+             </div>
             <form action="">
                <input id="toiletGenderSelect0" type="hidden" value="-1"/>
                <input id="rating0" type="hidden" value="-1"/>

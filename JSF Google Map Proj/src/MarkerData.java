@@ -28,6 +28,10 @@ public class MarkerData {
 
     protected int randomId;
 
+    protected int wheelchair;
+
+    protected double cost;
+
     public MarkerData() {
     }
 
@@ -223,5 +227,17 @@ public class MarkerData {
 
     public void setToiletInfoId(int toiletInfoId) {
         this.toiletInfoId = toiletInfoId;
+    }
+
+    public int getWheelchair() { return wheelchair; }
+
+    public void setWheelchair(int wheelchair) { this.wheelchair = wheelchair; }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 }

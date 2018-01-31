@@ -5,10 +5,16 @@
     opacity: 0.4;
 }
 .maleToiletSelectIcon-selected {
-    opactiy: 1;
+    opacity: 1;
 }
 .femaleToiletSelectIcon-selected {
     opacity: 1;
+}
+.mToilet {
+    margin-left:45px;
+}
+.fToilet {
+    float:right;
 }
 .addToiletSubmitd {
     width:100%;

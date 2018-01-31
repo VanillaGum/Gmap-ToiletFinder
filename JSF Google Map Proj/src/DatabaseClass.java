@@ -37,7 +37,7 @@ public class DatabaseClass {
             PreparedStatement addToiletSuggestion = conn.prepareStatement("INSERT INTO toilet_request" +
                     "(latitude,longitude) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
             PreparedStatement addToiletSuggestionInfo = conn.prepareStatement("INSERT INTO toilet_request_info" +
-                    "(toilet_request_id,approval,rating,amt_of_rating,genderM) VALUES (?,?,?,?,?)");
+                    "(toilet_request_id,approval,rating,amt_of_rating,genderM,wheelchair,cost) VALUES (?,?,?,?,?,?,?)");
             addToiletSuggestion.setDouble(1, m.getLatlng().getLat());
             addToiletSuggestion.setDouble(2, m.getLatlng().getLng());
             addToiletSuggestion.executeUpdate();
@@ -68,6 +68,10 @@ public class DatabaseClass {
 
             //Get Gender
             addToiletSuggestionInfo.setInt(5,m.getGenderM());
+            //Get Wheelchair Accessible
+            addToiletSuggestionInfo.setInt(6, m.getWheelchair());
+            //Get Cost
+            addToiletSuggestionInfo.setDouble(7, m.getCost());
 
             addToiletSuggestionInfo.executeUpdate();
 
@@ -212,7 +216,7 @@ public class DatabaseClass {
 
                 //Write
                 PreparedStatement createToilet = conn.prepareStatement("INSERT INTO toilet (latitude,longitude) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
-                PreparedStatement createToiletInfo = conn.prepareStatement("INSERT INTO toilet_info (toilet_id,rating, amt_of_rating, genderM) VALUES (?,?,?,?)");
+                PreparedStatement createToiletInfo = conn.prepareStatement("INSERT INTO toilet_info (toilet_id,rating, amt_of_rating, genderM,wheelchair,cost) VALUES (?,?,?,?,?,?)");
 
                 //Delete Toilet That Has Been Approved
                 PreparedStatement deleteToiletApproved = conn.prepareStatement("DELETE FROM toilet_request WHERE id=?;");
@@ -240,6 +244,8 @@ public class DatabaseClass {
                             createToiletInfo.setInt(2, approvedToilet.getInt("rating"));
                             createToiletInfo.setInt(3, approvedToilet.getInt("amt_of_rating"));
                             createToiletInfo.setInt(4, approvedToilet.getInt("genderM"));
+                            createToiletInfo.setInt(5, approvedToilet.getInt("wheelchair"));
+                            createToiletInfo.setDouble(6, approvedToilet.getDouble("cost"));
                             createToiletInfo.executeUpdate();
 
                             //Delete Approved Toilet

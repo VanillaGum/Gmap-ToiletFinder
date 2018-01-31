@@ -3,6 +3,8 @@ import org.primefaces.model.map.LatLng;
 //Used for suggestion markers
 public class MarkerRequestData extends MarkerData {
     String comment;
+
+
     public MarkerRequestData() {
     }
     //For Suggesting Toilets

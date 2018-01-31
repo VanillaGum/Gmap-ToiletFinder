@@ -33,7 +33,7 @@ public class MapController implements Serializable{
     private int icon4; //Insects?
     private int icon5; //Smelly?
     private int icon6; //Wheelchair
-    private int icon7; //Cost money
+    private double icon7; //Cost money
     private int icon8; //Faulty Toilets
     private int uniqueId;
     private String comments;
@@ -121,12 +121,15 @@ public class MapController implements Serializable{
     }
     public void addToiletLoc() {
         MarkerRequestData newMarker= null;
-        int rating = reviewToiletRating();
+
+        System.out.println("Cost:" + icon7);
+        System.out.println("Wheelchair:" + icon6);
         if (genderM == 1 && genderF == 0) {
             //Add Male Toilet
-            newMarker = ml.getSuggestedMarker();
             newMarker.setLatlng(new LatLng(locLat,locLng));
             newMarker.setGenderM(1);
+            newMarker.setWheelchair(icon6);
+            newMarker.setCost(icon7);
             me.createSingleMarker(newMarker);
         }else if (genderM == 0 && genderF == 1){
             //Add Female Toilet
@@ -136,7 +139,7 @@ public class MapController implements Serializable{
             me.createSingleMarker(newMarker);
         }else if(genderM == 1 && genderF == 1) {
             //Add male and female toilet
-            newMarker = new MarkerRequestData(new LatLng(locLat,locLng),2, rating);
+
         }
         ml.addSuggestedMarker(newMarker);
 
@@ -176,7 +179,7 @@ public class MapController implements Serializable{
             }
         }
     }
-    //Used When Suggesting A Toilet Location And
+
     public void reviewToilet() {
         System.out.println("Hi We're Reviewing Suggested Toilet");
         int ratingz = reviewToiletRating();
@@ -325,9 +328,9 @@ public class MapController implements Serializable{
 
     public void setIcon6(int icon6) { this.icon6 = icon6; }
 
-    public int getIcon7() { return icon7; }
+    public double getIcon7() { return icon7; }
 
-    public void setIcon7(int icon7) { this.icon7 = icon7; }
+    public void setIcon7(double icon7) { this.icon7 = icon7; }
 
     public int getIcon8() { return icon8; }
 
