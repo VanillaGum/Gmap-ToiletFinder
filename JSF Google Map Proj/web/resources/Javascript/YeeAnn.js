@@ -58,7 +58,9 @@ function initialize() {
         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
         infowindow.open(map, marker);
 
-        alert(place.geometry.location) // FOR DEBUGGING PURPORSES
+        map.setCenter(place.geometry.location)
+
+        alert("FOR DEBUGGING PURPORSES\n\n" + place.geometry.location) // FOR DEBUGGING PURPORSES
     });
 
     // Sets a listener on a radio button to change the filter type on Places
