@@ -3,6 +3,9 @@ function custWindow1Display(title,desc,uniqueId) {
         '<p style="font-size:20px;">'+title+'</p>' +
         '<textarea>' +
         ''+desc+'' +
-        '</textarea>'
-        '</div>'
+        '</textarea>' +
+        '</div>';
+}
+function custWindow1() {
+
 }

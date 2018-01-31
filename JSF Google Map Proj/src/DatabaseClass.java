@@ -266,7 +266,7 @@ public class DatabaseClass {
                 int amt_of_rating = toilets.getInt("amt_of_rating");
                 int genderM = toilets.getInt("genderM");
                 int wheelchair = toilets.getInt("wheelchair");
-                double cost = toilets.getInt("cost");
+                double cost = toilets.getDouble("cost");
                 MarkerData m = new MarkerData(new LatLng(latitude,longitude),rating,amt_of_rating, genderM, toiletId, toiletInfoId,wheelchair,cost);
                 mList.add(m);
             }
@@ -293,7 +293,7 @@ public class DatabaseClass {
                 int ratings = toilets.getInt("rating");
                 int amt_ratings = toilets.getInt("amt_of_rating");
                 int wheelchair = toilets.getInt("wheelchair");
-                double cost = toilets.getInt("cost");
+                double cost = toilets.getDouble("cost");
                 MarkerRequestData m = new MarkerRequestData(new LatLng(latitude,longitude), ratings, amt_ratings, genderM, toiletId, toiletInfoId, wheelchair, cost);
                 mList.add(m);
             }

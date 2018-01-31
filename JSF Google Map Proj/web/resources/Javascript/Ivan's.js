@@ -151,17 +151,13 @@ function changeIconSelection(no) {
 
 //Reset InfoWindows
 function resetInfoWindow() {
-    switch(userLevel) {
-        case 0:
-            document.getElementById("femaleIcon0").className = "fToilet femaleToiletSelectIcon-unselected";
-            document.getElementById("maleIcon0").className = "mToilet maleToiletSelectIcon-unselected";
-            break;
-        case 1:
-            break;
-        case 2:
-            break;
-
-    }
+        document.getElementById("femaleIcon0").className = "fToilet femaleToiletSelectIcon-unselected";
+        document.getElementById("maleIcon0").className = "mToilet maleToiletSelectIcon-unselected";
+        var icon6Reset = document.getElementsByClassName("icon6");
+        icon6Reset[0].src = "images/wheelchair-neutral.png";
+        icon6Reset[0].className = "icon6 icon6-unselected";
+        var icon7Reset = document.getElementsByClassName("icon7");
+        icon7Reset[0].className = "icon7 icon7-unselected unselected";
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;

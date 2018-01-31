@@ -98,7 +98,7 @@ function createApprovedInfoWindow(id,rating,genderM, wheelchair, money, review_a
     }
     var content3;
     if (money > 0) {
-        content3 = '<span title="Cost $"+"money">' +
+        content3 = '<span title="Cost $'+money.toFixed(2)+'">' +
             '<img width="40" height="40" class="selected" src="images/money.png"/>' +
             '</span>';
     }else {
@@ -188,9 +188,8 @@ function createSuggestionInfoWindow(id,rating,genderM,toiletId, wheelchair, mone
                 '</span>';
         }
         var content3;
-        alert(money)
-        if (money > ) {
-            content3 = '<span title="Cost $"+"money">' +
+        if (money > 0) {
+            content3 = '<span title="Cost $'+money.toFixed(2)+'">' +
                 '<img width="40" height="40" class="selected" src="images/money.png"/>' +
                 '</span>';
         }else {
