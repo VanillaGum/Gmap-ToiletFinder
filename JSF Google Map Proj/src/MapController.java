@@ -120,10 +120,11 @@ public class MapController implements Serializable{
 
     }
     public void addToiletLoc() {
-        MarkerRequestData newMarker= null;
+        MarkerRequestData newMarker= new MarkerRequestData();
 
         System.out.println("Cost:" + icon7);
         System.out.println("Wheelchair:" + icon6);
+        System.out.println("Location:" + locLat + locLng);
         if (genderM == 1 && genderF == 0) {
             //Add Male Toilet
             newMarker.setLatlng(new LatLng(locLat,locLng));
@@ -133,13 +134,18 @@ public class MapController implements Serializable{
             me.createSingleMarker(newMarker);
         }else if (genderM == 0 && genderF == 1){
             //Add Female Toilet
-            newMarker = ml.getSuggestedMarker();
             newMarker.setLatlng(new LatLng(locLat,locLng));
             newMarker.setGenderM(0);
+            newMarker.setWheelchair(icon6);
+            newMarker.setCost(icon7);
             me.createSingleMarker(newMarker);
         }else if(genderM == 1 && genderF == 1) {
             //Add male and female toilet
-
+            newMarker.setLatlng(new LatLng(locLat,locLng));
+            newMarker.setGenderM(2);
+            newMarker.setWheelchair(icon6);
+            newMarker.setCost(icon7);
+            me.createSingleMarker(newMarker);
         }
         ml.addSuggestedMarker(newMarker);
 

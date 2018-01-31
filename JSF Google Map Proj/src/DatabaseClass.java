@@ -34,10 +34,11 @@ public class DatabaseClass {
 
     public void suggestToiletLoc(MarkerData m) {
         try {
+            System.out.println("Adding Toilet");
             PreparedStatement addToiletSuggestion = conn.prepareStatement("INSERT INTO toilet_request" +
                     "(latitude,longitude) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
             PreparedStatement addToiletSuggestionInfo = conn.prepareStatement("INSERT INTO toilet_request_info" +
-                    "(toilet_request_id,approval,rating,amt_of_rating,genderM,wheelchair,cost) VALUES (?,?,?,?,?,?,?)");
+                    "(toilet_request_id,genderM,wheelchair,cost) VALUES (?,?,?,?)");
             addToiletSuggestion.setDouble(1, m.getLatlng().getLat());
             addToiletSuggestion.setDouble(2, m.getLatlng().getLng());
             addToiletSuggestion.executeUpdate();
@@ -52,26 +53,12 @@ public class DatabaseClass {
             //Add New Suggested Toilet Id
             addToiletSuggestionInfo.setInt(1, suggestedToiletId);
 
-            //Add Approval For Newly Suggested Toilet
-            addToiletSuggestionInfo.setInt(2, userApprovalAmt());
-
-            //Add Rating For Suggested Toilet
-            if (m.getRating() != -1) {
-                //Add Rating
-                addToiletSuggestionInfo.setInt(3, m.getRating());
-                addToiletSuggestionInfo.setInt(4, 1);
-            }else {
-                //User didnt rate or Not Allowed To Rate(Anonymous Users)
-                addToiletSuggestionInfo.setInt(3, 0);
-                addToiletSuggestionInfo.setInt(4,0);
-            }
-
             //Get Gender
-            addToiletSuggestionInfo.setInt(5,m.getGenderM());
+            addToiletSuggestionInfo.setInt(2,m.getGenderM());
             //Get Wheelchair Accessible
-            addToiletSuggestionInfo.setInt(6, m.getWheelchair());
+            addToiletSuggestionInfo.setInt(3, m.getWheelchair());
             //Get Cost
-            addToiletSuggestionInfo.setDouble(7, m.getCost());
+            addToiletSuggestionInfo.setDouble(4, m.getCost());
 
             addToiletSuggestionInfo.executeUpdate();
 

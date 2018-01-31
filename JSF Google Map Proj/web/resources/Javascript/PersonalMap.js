@@ -6,4 +6,3 @@ function custWindow1Display(title,desc,uniqueId) {
         '</textarea>'
         '</div>'
 }
-var
