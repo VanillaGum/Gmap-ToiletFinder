@@ -10,32 +10,6 @@ function clearMarkerList() {
     });
     markers=[];
 }
-function createSuggestedInfoWindow(id,rating,genderM) {
-    document.getElementById("formSubmitToilet:genderM").value = 0;
-    document.getElementById("formSubmitToilet:genderF").value = 0;
-    var mClass = "";
-    var fClass = "";
-    if(genderM == 2) {
-        mClass = "maleToiletSelectIcon-selected";
-        fClass = "femaleToiletSelectIcon-selected";
-    }else if(genderM== 1){
-        mClass = "maleToiletSelectIcon-selected";
-        fClass = "femaleToiletSelectIcon-unselected";
-    }else if (genderM == 0){
-        mClass = "maleToiletSelectIcon-unselected";
-        fClass = "femaleToiletSelectIcon-selected";
-    }
-    var content = '<div>' +
-        '<div id="suggested'+id+'" class="infowindow-size">' +
-        'rating='+rating +
-        ' genderm='+ genderM +
-        'upvoted=true' +
-        '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px"/>' +
-        '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6"/>' +
-        '</div>' +
-        '</div>';
-    return content;
-}
 function createApprovedInfoWindow(id,rating,genderM, wheelchair, money, review_amt) {
     var mClass = "";
     var fClass = "";
@@ -215,6 +189,139 @@ function createSuggestionInfoWindow(id,rating,genderM,toiletId, wheelchair, mone
     var content = content1.concat(content2,content3,content4);
     return content;
 }
+//Refresh Infowindow Screen
+function refreshInfoWindow(id,rating,genderM,toiletId, wheelchair, money, review_amt, windowType) {
+    var window = document.getElementById("suggested"+id+"");
+    window.removeAllChildren();
+    if (windowType == 1) {
+        //Approved Window
+        window.append(refreshApprovedInfoWindow(id,rating,genderM, wheelchair, money, review_amt));
+    }else {
+        //Suggestion Window
+        window.append(returnSuggestionInfoWindow(id,rating,genderM,toiletId, wheelchair, money, review_amt));
+    }
+}
+//Return Suggested Window
+function refreshInfoWindow(id,rating, review_amt) {
+    alert("Hello We're Here to replace somestuff");
+    var imageSrc = null;
+    switch(rating) {
+        case 5:
+            imageSrc="images/5-stars-rating.png";
+            break;
+        case 4:
+            imageSrc="images/4-stars-rating.png";
+            break;
+        case 3:
+            imageSrc="images/3-stars-rating.png";
+            break;
+        case 2:
+            imageSrc="images/2-stars-rating.png";
+            break;
+        case 1:
+            imageSrc="images/1-star-rating.png";
+            break;
+        case 0:
+            imageSrc="images/0-star-rating.png";
+            break;
+        default:
+            imageSrc="images/0-star-rating.png";
+            break;
+    }
+    var screen = document.getElementById("suggested"+id+"").childNodes;
+    var span = screen[0];
+    span.title = "Based on "+review_amt+" reviews"
+    var spanChild = span.childNodes;
+    var imgRating = spanChild[0];
+    imgRating.src = imageSrc;
+}
+
+function refreshApprovedInfoWindow(id,rating,genderM, wheelchair, money, review_amt) {
+    var mClass = "";
+    var fClass = "";
+    if(genderM == 2) {
+        mClass = "maleToiletSelectIcon-selected";
+        fClass = "femaleToiletSelectIcon-selected";
+    }else if(genderM== 1){
+        mClass = "maleToiletSelectIcon-selected";
+        fClass = "femaleToiletSelectIcon-unselected";
+    }else if (genderM == 0){
+        mClass = "maleToiletSelectIcon-unselected";
+        fClass = "femaleToiletSelectIcon-selected";
+    }
+    var imageSrc = null;
+    switch(rating) {
+        case 5:
+            imageSrc="images/5-stars-rating.png";
+            break;
+        case 4:
+            imageSrc="images/4-stars-rating.png";
+            break;
+        case 3:
+            imageSrc="images/3-stars-rating.png";
+            break;
+        case 2:
+            imageSrc="images/2-stars-rating.png";
+            break;
+        case 1:
+            imageSrc="images/1-star-rating.png";
+            break;
+        case 0:
+            imageSrc="images/0-star-rating.png";
+            break;
+        default:
+            imageSrc="images/0-star-rating.png";
+            break;
+    }
+
+    var content1 ='<div>' +
+        '<span title="Based on '+review_amt+' review">' +
+        '<img width="100%" src="'+imageSrc+'"/>' +
+        '</span>' +
+        '<div class="infowindow-div-left">' +
+        '<div style="font-size:20px;margin-top:5px;cursor:pointer;" onclick="addReviewScreen('+id+')"> ' +
+        '<b>Review</b>' +
+        '<img width="30" height="30" src="images/review.png"/>' +
+        '</div>' +
+        '<hr>';
+    var content2;
+
+    if (wheelchair == 1) {
+        content2 = '<span title="Has Wheelchair Toilets">' +
+            '<img width="40" height="40" src="images/wheelchair.png"/>' +
+            '</span>';
+    }else {
+        content2 = '<span title="Does not have Wheelchair Toilets">' +
+            '<img width="40" height="40" src="images/wheelchair-unselected.png"/>' +
+            '</span>';
+    }
+    var content3;
+    if (money > 0) {
+        content3 = '<span title="Cost $'+money.toFixed(2)+'">' +
+            '<img width="40" height="40" class="selected" src="images/money.png"/>' +
+            '</span>';
+    }else {
+        content3 = '<span title="Does not cost Money">' +
+            '<img width="40" height="40" class="unselected" src="images/money.png"/>' +
+            '</span>';
+    }
+    var content4 = '</div>' +
+        '<div class="infowindow-div-right" style="height:136.9px">' +
+        '<span title="Has toilets for specified gender">' +
+        '<img class="'+mClass+'" src="images/male_icon.png" alt="maleToiletIcon" width="40%" height="100%"/>' +
+        '<img class="'+fClass+'" src="images/female_icon.png" alt="femaleToiletIcon" style="margin-left:5px;" width="52%" height="100%"/>' +
+        '</span>' +
+        '</div>' +
+        '<div style="width:100%;height:30px;display:inline-block;margin-top:15px;" > ' +
+        '<button style="margin-left:30%; cursor:pointer;" >View Reviews</button>' +
+        '<span title="Flag Toilet For Removal(Toilet does not exist or closed)">' +
+        '<img style="margin-left:5px;float:right; cursor:pointer;" class="flag'+id+' flag-unselected unselected-flag" src="images/flag.png" alt="upvoteIcon" width="20.48" height="20.58" onclick="flagToilet('+id+')"/>' +
+        '</span>' +
+        '</div>';
+    var content = content1.concat(content2,content3,content4);
+    return content;
+}
+
 //Upvoting Toilet Suggestion
 function upvoteToiletSuggestion(id,toilet_id) {
     //Track Upvote For Checking If Upvoted Or Cnacel Upvote

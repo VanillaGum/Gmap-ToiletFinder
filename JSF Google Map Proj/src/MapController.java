@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.xml.registry.infomodel.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,17 +58,11 @@ public class MapController implements Serializable{
     }
     public void displayApprovedMarker() {
         for (MarkerData m: ml.getApprovedMarkers()) {
-//            RequestContext.getCurrentInstance().execute("var newMarker = " +
-//                    "new google.maps.Marker({ " +
-//                    "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
-//                    "map:PF('mapDisplay').getMap()," +
-//                    "icon:'"+m.getImage()+"'});"
-//                    + "markers.push(newMarker);");
            RequestContext.getCurrentInstance().execute(
             "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
                     "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getWheelchair()+","+m.getCost()+","+m.getAmt_of_ratings()+")" +
                     "});" +
-                    "var newMarker"+m.getRandomId()+" = " +
+                    "newMarker"+m.getRandomId()+" = " +
                     "new google.maps.Marker({ " +
                     "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
                     "map:PF('mapDisplay').getMap()," +
@@ -85,7 +80,7 @@ public class MapController implements Serializable{
                "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
                     "content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getToiletId()+","+m.getWheelchair()+","+m.getCost()+","+m.getAmt_of_ratings()+")" +
                        "});" +
-                       "var newMarker"+m.getRandomId()+" = " +
+                       "newMarker"+m.getRandomId()+" = " +
                        "new google.maps.Marker({ " +
                        "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
                        "map:PF('mapDisplay').getMap()," +
@@ -95,6 +90,22 @@ public class MapController implements Serializable{
                        "});"
                        + "markers.push(newMarker"+m.getRandomId()+");");
         }
+    }
+    public void displaySingleMarker(MarkerData m) {
+        System.out.println("Trying to display Single Marker" + m.getImage());
+        RequestContext.getCurrentInstance().execute(
+                "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
+                        "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getWheelchair()+","+m.getCost()+","+m.getAmt_of_ratings()+")" +
+                        "});" +
+                        "newMarker"+m.getRandomId()+" = " +
+                        "new google.maps.Marker({ " +
+                        "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
+                        "map:PF('mapDisplay').getMap()," +
+                        "icon:'"+m.getImage()+"'});" +
+                        "newMarker"+m.getRandomId()+".addListener('click',function() {" +
+                        "   infowindow"+m.getRandomId()+".open(map,newMarker"+m.getRandomId()+");" +
+                        "});"
+                        + "markers.push(newMarker"+m.getRandomId()+");");
     }
     public String getImages(int ImgNo) {
         switch (ImgNo) {
@@ -121,8 +132,9 @@ public class MapController implements Serializable{
 
     }
     public void addToiletLoc() {
+        UserController uc = UserController.getInstance();
         MarkerRequestData newMarker= new MarkerRequestData();
-
+        newMarker.setRandomId();
         System.out.println("Cost:" + icon7);
         System.out.println("Wheelchair:" + icon6);
         System.out.println("Location:" + locLat + locLng);
@@ -132,24 +144,33 @@ public class MapController implements Serializable{
             newMarker.setGenderM(1);
             newMarker.setWheelchair(icon6);
             newMarker.setCost(icon7);
-            me.createSingleMarker(newMarker);
         }else if (genderM == 0 && genderF == 1){
             //Add Female Toilet
             newMarker.setLatlng(new LatLng(locLat,locLng));
             newMarker.setGenderM(0);
             newMarker.setWheelchair(icon6);
             newMarker.setCost(icon7);
-            me.createSingleMarker(newMarker);
         }else if(genderM == 1 && genderF == 1) {
             //Add male and female toilet
             newMarker.setLatlng(new LatLng(locLat,locLng));
             newMarker.setGenderM(2);
             newMarker.setWheelchair(icon6);
             newMarker.setCost(icon7);
-            me.createSingleMarker(newMarker);
         }
-        ml.addSuggestedMarker(newMarker);
+        newMarker.setToiletId(me.createSingleMarker(newMarker));
 
+        if (uc.getUserLevel() == 2) {
+            newMarker.getImageString();
+        }else {
+            newMarker.setImageString();
+        }
+
+        if (uc.getUserLevel() == 2) {
+            ml.addApprovedMarker(newMarker);
+        }else {
+            ml.addSuggestedMarker(newMarker);
+        }
+        displaySingleMarker(newMarker);
     }
 
     public void upvoteToilet() {
@@ -192,27 +213,29 @@ public class MapController implements Serializable{
         int ratingz = reviewToiletRating();
         int ToiletId = -1;
         for(MarkerData m:ml.getApprovedMarkers()) {
+            System.out.println("Hi Approved Marker" + m.getToiletId());
             if(m.getRandomId() == uniqueId) {
                 ToiletId = m.getToiletId();
                 System.out.println("Approved Toilet");
                 me.rateApprovedToilet(ToiletId,ratingz);
+                m.addRating(ratingz);
+                m.addReviewAmt();
+                m.calAvg();
+                RequestContext.getCurrentInstance().execute( "refreshInfoWindow("+uniqueId+","+m.getAvg_rating()+", "+m.getAmt_of_ratings()+")");
             }
         }
         for(MarkerData m:ml.getSuggestionMarkers()) {
+            System.out.println("Hi Suggestion Marker" + m.getToiletId() +"|" + m.getRandomId());
             if(m.getRandomId() == uniqueId) {
                 ToiletId = m.getToiletId();
                 System.out.println("Suggestion Toilet");
                 me.rateSuggestionToilet(ToiletId,ratingz);
+                m.addRating(ratingz);
+                m.addReviewAmt();
+                m.calAvg();
+                RequestContext.getCurrentInstance().execute( "refreshInfoWindow("+uniqueId+","+m.getAvg_rating()+", "+m.getAmt_of_ratings()+")");
             }
         }
-        for(MarkerData m:ml.getSuggestedMarkers()) {
-            if(m.getRandomId() == uniqueId) {
-                ml.resetSuggestedMarker();
-                MarkerRequestData mlMRD = ml.getSuggestedMarker();
-                mlMRD.setRating(reviewToiletRating());
-            }
-        }
-
     }
     public int reviewToiletRating() {
         double rating = 3;
@@ -275,6 +298,7 @@ public class MapController implements Serializable{
 
         return rating2;
     }
+
     public void setLocLng(double locLng) {
         this.locLng = locLng;
     }

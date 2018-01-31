@@ -24,6 +24,20 @@ public class MarkerRequestData extends MarkerData {
         this.rating = rating;
     }
 
+    public void setImageString() {
+        System.out.println("Hello U getting images?" + this.genderM);
+        switch(this.genderM) {
+            case 0:
+                this.image = "images/toilet_female.png";
+                break;
+            case 1:
+                this.image = "images/toilet_male_request.png";
+                break;
+            case 2:
+                this.image = "images/toilet_male_request.png";
+                break;
+        }
+    }
     private String getImageStrings(int genderM) {
         switch(genderM) {
             case 0:

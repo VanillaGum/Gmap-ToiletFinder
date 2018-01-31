@@ -55,6 +55,7 @@ public class MarkerData {
         this.toiletInfoId = toiletInfoId;
         this.wheelchair = wheelchair;
         this.cost = cost;
+        this.image = getImageString();
         MarkerList ml = MarkerList.getInstance();
         this.randomId = ml.getUniqueId();
         this.avg_rating = getAvgRating();
@@ -111,7 +112,7 @@ public class MarkerData {
     }
 
     //Set Image
-    private String getImageString() {
+    public String getImageString() {
         switch(this.getGenderM()) {
             case 0:
                 //Female Gender
@@ -125,6 +126,10 @@ public class MarkerData {
         }
         return null;
     }
+
+    public void setRandomId() {
+        MarkerList m = MarkerList.getInstance();
+        this.randomId = m.getUniqueId();}
 
     public LatLng getLatlng() {
         return latlng;
@@ -225,4 +230,11 @@ public class MarkerData {
     public void setCost(double cost) {
         this.cost = cost;
     }
+
+    public void addRating(int rating) {this.rating += rating;}
+
+    public void addReviewAmt() {this.amt_of_ratings += 1;}
+
+    public void calAvg() {this.avg_rating = this.rating/this.amt_of_ratings;}
+
 }

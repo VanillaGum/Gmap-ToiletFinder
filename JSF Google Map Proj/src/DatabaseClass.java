@@ -32,7 +32,7 @@ public class DatabaseClass {
         userLevel = uc.getUserLevel();
     }
 
-    public void suggestToiletLoc(MarkerData m) {
+    public int suggestToiletLoc(MarkerData m) {
         try {
             System.out.println("Adding Toilet");
             PreparedStatement addToiletSuggestion = conn.prepareStatement("INSERT INTO toilet_request" +
@@ -62,17 +62,52 @@ public class DatabaseClass {
 
             addToiletSuggestionInfo.executeUpdate();
 
-            if (userLevel == 2) {
-                createToilet(suggestedToiletId);
-            }else {
-                upvoteToilet(suggestedToiletId);
-            }
+            upvoteToilet(suggestedToiletId);
 
+            return suggestedToiletId;
         }catch(SQLException se) {
             se.printStackTrace();
         }
+        return 0;
     }
+    public int createToiletLoc(MarkerData m) {
+        try {
+            System.out.println("Adding Toilet");
+            PreparedStatement addToiletSuggestion = conn.prepareStatement("INSERT INTO toilet" +
+                    "(latitude,longitude) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement addToiletSuggestionInfo = conn.prepareStatement("INSERT INTO toilet_info" +
+                    "(toilet_id,genderM,wheelchair,cost) VALUES (?,?,?,?)");
+            addToiletSuggestion.setDouble(1, m.getLatlng().getLat());
+            addToiletSuggestion.setDouble(2, m.getLatlng().getLng());
+            addToiletSuggestion.executeUpdate();
 
+            ResultSet toiletSuggestionId = addToiletSuggestion.getGeneratedKeys();
+            int suggestedToiletId = 0;
+            while (toiletSuggestionId.next()) {
+                //Get New Suggested Toilet Id
+                suggestedToiletId = toiletSuggestionId.getInt(1);
+            }
+
+            //Add New Suggested Toilet Id
+            addToiletSuggestionInfo.setInt(1, suggestedToiletId);
+
+            //Get Gender
+            addToiletSuggestionInfo.setInt(2,m.getGenderM());
+            //Get Wheelchair Accessible
+            addToiletSuggestionInfo.setInt(3, m.getWheelchair());
+            //Get Cost
+            addToiletSuggestionInfo.setDouble(4, m.getCost());
+
+            addToiletSuggestionInfo.executeUpdate();
+
+            upvoteToilet(suggestedToiletId);
+
+            return suggestedToiletId;
+        }catch(SQLException se) {
+            se.printStackTrace();
+        }
+        return 0;
+    }
     //Check If Toilet Approval Rating Equal Or Greater Than 6
     public void approvalCheck(int toiletRequestId) {
         try {

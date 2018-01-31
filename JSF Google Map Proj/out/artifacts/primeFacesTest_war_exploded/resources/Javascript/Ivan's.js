@@ -162,6 +162,7 @@ function resetInfoWindow() {
     confirmationMarker.setMap(null);
     confirmationMarker = null;
     addMarker=0;
+
 }
 
 
@@ -207,5 +208,12 @@ function addToiletLoc() {
         document.getElementById("formSubmitToilet:locLng").value = poslng;
         document.getElementById("formSubmitToilet:locLat").value = poslat;
         tsubmit();
+        var markerhaha41412 = new google.maps.Marker({
+            position:{lat:poslat,lng:poslng},
+            map:mapdis,
+            title:"User Loc",
+            icon:"images/toilet_male.png"
+        });
+        markers.add(markerhaha41412);
     });
 }

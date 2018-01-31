@@ -70,7 +70,8 @@ public class MarkerList {
         this.approvedMarkers.add(md);
     }
     public void addSuggestedMarker(MarkerData md) {
-        this.suggestedMarkers.add(md);
+        System.out.println("New Suggested Marker" + md.getRandomId());
+        this.suggestionMarkers.add(md);
     }
     public void getApprovedToilets() {
             System.out.println("Getting Approved Markers");
@@ -91,6 +92,10 @@ public class MarkerList {
     public void getToilets() {
         getApprovedMarkers();
         getSuggestionMarkers();
+    }
+    public void resetToilets() {
+        getApprovedToilets();
+        getSuggestionToilets();
     }
     public void clearList() {
 

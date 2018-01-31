@@ -7,16 +7,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4c28cfe-ab85-49c9-8ec4-bf3a80a3ed0a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PersonalMapController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/DatabaseClass.class" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/DatabaseClass.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MapController.class" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MapController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MarkerData.class" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MarkerData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MarkerEntity.class" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MarkerEntity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MarkerList.class" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MarkerList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MarkerRequestData.class" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/WEB-INF/classes/MarkerRequestData.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Toilet Finder Project/DatabaseClass.class" afterPath="$PROJECT_DIR$/out/production/Toilet Finder Project/DatabaseClass.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Toilet Finder Project/MapController.class" afterPath="$PROJECT_DIR$/out/production/Toilet Finder Project/MapController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Toilet Finder Project/MarkerData.class" afterPath="$PROJECT_DIR$/out/production/Toilet Finder Project/MarkerData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Toilet Finder Project/MarkerEntity.class" afterPath="$PROJECT_DIR$/out/production/Toilet Finder Project/MarkerEntity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Toilet Finder Project/MarkerList.class" afterPath="$PROJECT_DIR$/out/production/Toilet Finder Project/MarkerList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Toilet Finder Project/MarkerRequestData.class" afterPath="$PROJECT_DIR$/out/production/Toilet Finder Project/MarkerRequestData.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/resources/Javascript/Controller's.js" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/resources/Javascript/Controller's.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/resources/Javascript/Ivan's.js" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/resources/Javascript/Ivan's.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DatabaseClass.java" afterPath="$PROJECT_DIR$/src/DatabaseClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/index.xhtml" afterPath="$PROJECT_DIR$/web/index.xhtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MapController.java" afterPath="$PROJECT_DIR$/src/MapController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MarkerData.java" afterPath="$PROJECT_DIR$/src/MarkerData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MarkerEntity.java" afterPath="$PROJECT_DIR$/src/MarkerEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MarkerList.java" afterPath="$PROJECT_DIR$/src/MarkerList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MarkerRequestData.java" afterPath="$PROJECT_DIR$/src/MarkerRequestData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resources/Javascript/Controller's.js" afterPath="$PROJECT_DIR$/web/resources/Javascript/Controller's.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resources/Javascript/Ivan's.js" afterPath="$PROJECT_DIR$/web/resources/Javascript/Ivan's.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resources/Javascript/PersonalMap.js" afterPath="$PROJECT_DIR$/web/resources/Javascript/PersonalMap.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,40 +59,81 @@
       <file leaf-file-name="index.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/index.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="148" column="61" lean-forward="true" selection-start-line="148" selection-start-column="61" selection-end-line="148" selection-end-column="61" />
+            <state relative-caret-position="1764">
+              <caret line="84" column="41" lean-forward="false" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller's.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Controller's.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/resources/Javascript/Controller's.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="441" column="57" lean-forward="true" selection-start-line="441" selection-start-column="57" selection-end-line="441" selection-end-column="57" />
+            <state relative-caret-position="155">
+              <caret line="204" column="27" lean-forward="false" selection-start-line="204" selection-start-column="27" selection-end-line="204" selection-end-column="27" />
               <folding>
-                <marker date="1517402415472" expanded="true" signature="2539:2572" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="2819:2864" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="3913:3927" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="4197:4213" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="4306:4366" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="4398:4430" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="4563:4607" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="6116:6162" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="6446:6472" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="6499:6531" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="6791:6821" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="7954:7968" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="8238:8254" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="8347:8407" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="8439:8471" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="8604:8648" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="11646:11659" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="12011:12043" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="12412:12427" ph="..." />
-                <marker date="1517402415472" expanded="true" signature="12486:12552" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="1447:1480" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="1727:1772" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="2821:2835" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="3105:3121" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="3214:3274" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="3306:3338" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="3471:3515" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="5024:5070" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="5354:5380" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="5407:5439" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="5699:5729" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="6862:6876" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="7146:7162" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="7255:7315" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="7347:7379" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="7512:7556" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="10808:10853" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="11902:11916" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="12186:12202" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="12295:12355" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="12387:12419" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="12552:12596" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="15575:15588" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="15940:15972" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="16341:16356" ph="..." />
+                <marker date="1517428359213" expanded="true" signature="16415:16481" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MapController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="223" column="145" lean-forward="false" selection-start-line="223" selection-start-column="145" selection-end-line="223" selection-end-column="145" />
+              <folding>
+                <element signature="method#reviewToiletRating#0;class#MapController#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="441">
+              <caret line="21" column="15" lean-forward="false" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+              <folding>
+                <element signature="e#513#514#0" expanded="true" />
+                <element signature="e#545#546#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarkerList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MarkerList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="72" column="35" lean-forward="false" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -87,32 +141,9 @@
       <file leaf-file-name="Ivan's.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/resources/Javascript/Ivan's.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="157" column="7" lean-forward="true" selection-start-line="156" selection-start-column="7" selection-end-line="157" selection-end-column="7" />
+            <state relative-caret-position="4536">
+              <caret line="216" column="37" lean-forward="false" selection-start-line="216" selection-start-column="37" selection-end-line="216" selection-end-column="37" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MapController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="82" column="53" lean-forward="false" selection-start-line="82" selection-start-column="53" selection-end-line="82" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MarkerEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MarkerEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="28" column="17" lean-forward="false" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
-              <folding>
-                <element signature="e#717#718#0" expanded="true" />
-                <element signature="e#756#757#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -120,26 +151,38 @@
       <file leaf-file-name="DatabaseClass.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DatabaseClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="295" column="56" lean-forward="false" selection-start-line="295" selection-start-column="56" selection-end-line="295" selection-end-column="56" />
+            <state relative-caret-position="1827">
+              <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
               <folding>
-                <marker date="1517401284961" expanded="true" signature="1168:1252" ph="INSERT INTO toilet_request... " />
-                <marker date="1517401284961" expanded="true" signature="1368:1484" ph="INSERT INTO toilet_request_info... " />
-                <marker date="1517401284961" expanded="true" signature="2872:2940" ph="SELECT appro... toilet_request_info" />
-                <marker date="1517401284961" expanded="true" signature="4012:4144" ph="UPDATE toile... " />
-                <marker date="1517401284961" expanded="true" signature="4664:4796" ph="UPDATE toile... " />
-                <marker date="1517401284961" expanded="true" signature="5207:5394" ph="UPDATE toile... " />
-                <marker date="1517401284961" expanded="true" signature="5749:5920" ph="UPDATE toile... " />
-                <marker date="1517401284961" expanded="true" signature="6310:6452" ph="UPDATE toile... " />
-                <marker date="1517401284961" expanded="true" signature="6888:7014" ph="UPDATE toile... " />
-                <marker date="1517401284961" expanded="true" signature="7605:7718" ph="SELECT * FRO... toilet_request" />
-                <marker date="1517401284961" expanded="true" signature="7959:8010" ph="INSERT INTO toilet... " />
-                <marker date="1517401284961" expanded="true" signature="8123:8226" ph="INSERT INTO toilet_info... " />
-                <marker date="1517401284961" expanded="true" signature="8366:8403" ph="DELETE FROM " />
-                <marker date="1517401284961" expanded="true" signature="8493:8550" ph="DELETE FROM " />
-                <marker date="1517401284961" expanded="true" signature="10785:10856" ph="SELECT * FRO... toilet" />
-                <marker date="1517401284961" expanded="true" signature="12077:12176" ph="SELECT * FRO... toilet_request" />
+                <marker date="1517421806615" expanded="true" signature="1167:1251" ph="INSERT INTO toilet_request... " />
+                <marker date="1517421806615" expanded="true" signature="1367:1483" ph="INSERT INTO toilet_request_info... " />
+                <marker date="1517421806615" expanded="true" signature="2788:2864" ph="INSERT INTO toilet... " />
+                <marker date="1517421806615" expanded="true" signature="2980:3080" ph="INSERT INTO toilet_info... " />
+                <marker date="1517421806615" expanded="true" signature="4402:4470" ph="SELECT appro... toilet_request_info" />
+                <marker date="1517421806615" expanded="true" signature="5542:5674" ph="UPDATE toile... " />
+                <marker date="1517421806615" expanded="true" signature="6194:6326" ph="UPDATE toile... " />
+                <marker date="1517421806615" expanded="true" signature="6737:6924" ph="UPDATE toile... " />
+                <marker date="1517421806615" expanded="true" signature="7279:7450" ph="UPDATE toile... " />
+                <marker date="1517421806615" expanded="true" signature="7840:7982" ph="UPDATE toile... " />
+                <marker date="1517421806615" expanded="true" signature="8418:8544" ph="UPDATE toile... " />
+                <marker date="1517421806615" expanded="true" signature="9135:9248" ph="SELECT * FRO... toilet_request" />
+                <marker date="1517421806615" expanded="true" signature="9489:9540" ph="INSERT INTO toilet... " />
+                <marker date="1517421806615" expanded="true" signature="9653:9756" ph="INSERT INTO toilet_info... " />
+                <marker date="1517421806615" expanded="true" signature="9896:9933" ph="DELETE FROM " />
+                <marker date="1517421806615" expanded="true" signature="10023:10080" ph="DELETE FROM " />
+                <marker date="1517421806615" expanded="true" signature="12315:12386" ph="SELECT * FRO... toilet" />
+                <marker date="1517421806615" expanded="true" signature="13607:13706" ph="SELECT * FRO... toilet_request" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarkerEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MarkerEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="567">
+              <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -147,8 +190,8 @@
       <file leaf-file-name="MarkerData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MarkerData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-231">
-              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state relative-caret-position="491">
+              <caret line="237" column="76" lean-forward="false" selection-start-line="237" selection-start-column="76" selection-end-line="237" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -157,31 +200,8 @@
       <file leaf-file-name="MarkerRequestData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MarkerRequestData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="39" lean-forward="false" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PersonalMap.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/resources/Javascript/PersonalMap.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding>
-                <marker date="1517402917849" expanded="true" signature="80:105" ph="..." />
-                <marker date="1517402917849" expanded="true" signature="130:145" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PersonalMapController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PersonalMapController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="34" lean-forward="false" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
+            <state relative-caret-position="504">
+              <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -225,6 +245,9 @@
       <find>toiletId</find>
       <find>addToilet</find>
       <find>cancel</find>
+      <find>clear</find>
+      <find>review</find>
+      <find>reset</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -259,19 +282,19 @@
         <option value="$PROJECT_DIR$/src/TestDatabaseClass.java" />
         <option value="$PROJECT_DIR$/src/ratingClass.java" />
         <option value="$PROJECT_DIR$/src/UserController.java" />
-        <option value="$PROJECT_DIR$/src/MarkerEntity.java" />
-        <option value="$PROJECT_DIR$/src/MarkerList.java" />
         <option value="$PROJECT_DIR$/web/resources/css/InfoWindow.css" />
         <option value="$PROJECT_DIR$/web/resources/css/MapPage.css" />
         <option value="$PROJECT_DIR$/web/resources/Javascript/YeeAnn.js" />
-        <option value="$PROJECT_DIR$/src/MarkerData.java" />
-        <option value="$PROJECT_DIR$/src/MarkerRequestData.java" />
-        <option value="$PROJECT_DIR$/src/MapController.java" />
-        <option value="$PROJECT_DIR$/src/DatabaseClass.java" />
-        <option value="$PROJECT_DIR$/web/resources/Javascript/Controller's.js" />
         <option value="$PROJECT_DIR$/web/resources/Javascript/PersonalMap.js" />
         <option value="$PROJECT_DIR$/web/index.xhtml" />
         <option value="$PROJECT_DIR$/web/resources/Javascript/Ivan's.js" />
+        <option value="$PROJECT_DIR$/src/MarkerRequestData.java" />
+        <option value="$PROJECT_DIR$/src/DatabaseClass.java" />
+        <option value="$PROJECT_DIR$/src/MarkerEntity.java" />
+        <option value="$PROJECT_DIR$/src/MarkerList.java" />
+        <option value="$PROJECT_DIR$/src/MarkerData.java" />
+        <option value="$PROJECT_DIR$/web/resources/Javascript/Controller's.js" />
+        <option value="$PROJECT_DIR$/src/MapController.java" />
       </list>
     </option>
   </component>
@@ -315,10 +338,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -372,6 +392,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -724,7 +747,10 @@
       <workItem from="1517377404517" duration="275000" />
       <workItem from="1517380316258" duration="1069000" />
       <workItem from="1517390379361" duration="274000" />
-      <workItem from="1517400305701" duration="3466000" />
+      <workItem from="1517400305701" duration="3748000" />
+      <workItem from="1517406323061" duration="10417000" />
+      <workItem from="1517421522272" duration="1691000" />
+      <workItem from="1517425290562" duration="3043000" />
     </task>
     <task id="LOCAL-00001" summary="Autocomplete Broke Main Map due to it creating a entire new map again, remove re-creating map autocomplete broke.">
       <created>1513409877165</created>
@@ -737,7 +763,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="350216000" />
+    <option name="totallyTimeSpent" value="365649000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -766,13 +792,13 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991228" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327748" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29057017" sideWeight="0.35885417" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29057017" sideWeight="0.35885417" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3026316" sideWeight="0.56666666" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3026316" sideWeight="0.56666666" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327748" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14947917" sideWeight="0.49659202" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1005,39 +1031,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="50" column="23" lean-forward="true" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MarkerList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="64" column="5" lean-forward="false" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MarkerRequestData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="39" lean-forward="false" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MarkerData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-231">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1052,99 +1045,137 @@
     <entry file="file://$PROJECT_DIR$/web/resources/Javascript/PersonalMap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <marker date="1517402917849" expanded="true" signature="80:105" ph="..." />
-            <marker date="1517402917849" expanded="true" signature="130:145" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DatabaseClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="295" column="56" lean-forward="false" selection-start-line="295" selection-start-column="56" selection-end-line="295" selection-end-column="56" />
-          <folding>
-            <marker date="1517401284961" expanded="true" signature="1168:1252" ph="INSERT INTO toilet_request... " />
-            <marker date="1517401284961" expanded="true" signature="1368:1484" ph="INSERT INTO toilet_request_info... " />
-            <marker date="1517401284961" expanded="true" signature="2872:2940" ph="SELECT appro... toilet_request_info" />
-            <marker date="1517401284961" expanded="true" signature="4012:4144" ph="UPDATE toile... " />
-            <marker date="1517401284961" expanded="true" signature="4664:4796" ph="UPDATE toile... " />
-            <marker date="1517401284961" expanded="true" signature="5207:5394" ph="UPDATE toile... " />
-            <marker date="1517401284961" expanded="true" signature="5749:5920" ph="UPDATE toile... " />
-            <marker date="1517401284961" expanded="true" signature="6310:6452" ph="UPDATE toile... " />
-            <marker date="1517401284961" expanded="true" signature="6888:7014" ph="UPDATE toile... " />
-            <marker date="1517401284961" expanded="true" signature="7605:7718" ph="SELECT * FRO... toilet_request" />
-            <marker date="1517401284961" expanded="true" signature="7959:8010" ph="INSERT INTO toilet... " />
-            <marker date="1517401284961" expanded="true" signature="8123:8226" ph="INSERT INTO toilet_info... " />
-            <marker date="1517401284961" expanded="true" signature="8366:8403" ph="DELETE FROM " />
-            <marker date="1517401284961" expanded="true" signature="8493:8550" ph="DELETE FROM " />
-            <marker date="1517401284961" expanded="true" signature="10785:10856" ph="SELECT * FRO... toilet" />
-            <marker date="1517401284961" expanded="true" signature="12077:12176" ph="SELECT * FRO... toilet_request" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MarkerEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="28" column="17" lean-forward="false" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
-          <folding>
-            <element signature="e#717#718#0" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MapController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="82" column="53" lean-forward="false" selection-start-line="82" selection-start-column="53" selection-end-line="82" selection-end-column="53" />
-          <folding />
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/index.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="148" column="61" lean-forward="true" selection-start-line="148" selection-start-column="61" selection-end-line="148" selection-end-column="61" />
+        <state relative-caret-position="1764">
+          <caret line="84" column="41" lean-forward="false" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DatabaseClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1827">
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding>
+            <marker date="1517421806615" expanded="true" signature="1167:1251" ph="INSERT INTO toilet_request... " />
+            <marker date="1517421806615" expanded="true" signature="1367:1483" ph="INSERT INTO toilet_request_info... " />
+            <marker date="1517421806615" expanded="true" signature="2788:2864" ph="INSERT INTO toilet... " />
+            <marker date="1517421806615" expanded="true" signature="2980:3080" ph="INSERT INTO toilet_info... " />
+            <marker date="1517421806615" expanded="true" signature="4402:4470" ph="SELECT appro... toilet_request_info" />
+            <marker date="1517421806615" expanded="true" signature="5542:5674" ph="UPDATE toile... " />
+            <marker date="1517421806615" expanded="true" signature="6194:6326" ph="UPDATE toile... " />
+            <marker date="1517421806615" expanded="true" signature="6737:6924" ph="UPDATE toile... " />
+            <marker date="1517421806615" expanded="true" signature="7279:7450" ph="UPDATE toile... " />
+            <marker date="1517421806615" expanded="true" signature="7840:7982" ph="UPDATE toile... " />
+            <marker date="1517421806615" expanded="true" signature="8418:8544" ph="UPDATE toile... " />
+            <marker date="1517421806615" expanded="true" signature="9135:9248" ph="SELECT * FRO... toilet_request" />
+            <marker date="1517421806615" expanded="true" signature="9489:9540" ph="INSERT INTO toilet... " />
+            <marker date="1517421806615" expanded="true" signature="9653:9756" ph="INSERT INTO toilet_info... " />
+            <marker date="1517421806615" expanded="true" signature="9896:9933" ph="DELETE FROM " />
+            <marker date="1517421806615" expanded="true" signature="10023:10080" ph="DELETE FROM " />
+            <marker date="1517421806615" expanded="true" signature="12315:12386" ph="SELECT * FRO... toilet" />
+            <marker date="1517421806615" expanded="true" signature="13607:13706" ph="SELECT * FRO... toilet_request" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MarkerRequestData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/resources/Javascript/Ivan's.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="157" column="7" lean-forward="true" selection-start-line="156" selection-start-column="7" selection-end-line="157" selection-end-column="7" />
+        <state relative-caret-position="4536">
+          <caret line="216" column="37" lean-forward="false" selection-start-line="216" selection-start-column="37" selection-end-line="216" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MarkerEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MarkerList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="72" column="35" lean-forward="false" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="15" lean-forward="false" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+          <folding>
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#545#546#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MarkerData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="237" column="76" lean-forward="false" selection-start-line="237" selection-start-column="76" selection-end-line="237" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/resources/Javascript/Controller's.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="441" column="57" lean-forward="true" selection-start-line="441" selection-start-column="57" selection-end-line="441" selection-end-column="57" />
+        <state relative-caret-position="155">
+          <caret line="204" column="27" lean-forward="false" selection-start-line="204" selection-start-column="27" selection-end-line="204" selection-end-column="27" />
           <folding>
-            <marker date="1517402415472" expanded="true" signature="2539:2572" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="2819:2864" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="3913:3927" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="4197:4213" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="4306:4366" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="4398:4430" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="4563:4607" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="6116:6162" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="6446:6472" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="6499:6531" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="6791:6821" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="7954:7968" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="8238:8254" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="8347:8407" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="8439:8471" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="8604:8648" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="11646:11659" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="12011:12043" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="12412:12427" ph="..." />
-            <marker date="1517402415472" expanded="true" signature="12486:12552" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="1447:1480" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="1727:1772" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="2821:2835" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="3105:3121" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="3214:3274" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="3306:3338" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="3471:3515" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="5024:5070" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="5354:5380" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="5407:5439" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="5699:5729" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="6862:6876" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="7146:7162" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="7255:7315" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="7347:7379" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="7512:7556" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="10808:10853" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="11902:11916" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="12186:12202" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="12295:12355" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="12387:12419" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="12552:12596" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="15575:15588" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="15940:15972" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="16341:16356" ph="..." />
+            <marker date="1517428359213" expanded="true" signature="16415:16481" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MapController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="223" column="145" lean-forward="false" selection-start-line="223" selection-start-column="145" selection-end-line="223" selection-end-column="145" />
+          <folding>
+            <element signature="method#reviewToiletRating#0;class#MapController#0" expanded="false" />
           </folding>
         </state>
       </provider>

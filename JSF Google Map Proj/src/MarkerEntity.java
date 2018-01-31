@@ -25,8 +25,13 @@ public class MarkerEntity {
         return null;
     }
 
-    public void createSingleMarker(MarkerData md) {
-        dc.suggestToiletLoc(md);
+    public int createSingleMarker(MarkerData md) {
+        UserController uc = UserController.getInstance();
+        if (uc.getUserLevel() == 2) {
+            return dc.createToiletLoc(md);
+        }else {
+            return dc.suggestToiletLoc(md);
+        }
     }
 
     //Upvote Suggested Toilet
