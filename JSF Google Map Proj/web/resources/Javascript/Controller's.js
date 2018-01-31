@@ -203,7 +203,6 @@ function refreshInfoWindow(id,rating,genderM,toiletId, wheelchair, money, review
 }
 //Return Suggested Window
 function refreshInfoWindow(id,rating, review_amt) {
-    alert("Hello We're Here to replace somestuff");
     var imageSrc = null;
     switch(rating) {
         case 5:
@@ -377,6 +376,13 @@ function flagToiletIdChange(id) {
 
 //Reviewing Toilets
 function addReviewScreen(uniqueId) {
+    document.getElementById("formSubmitToilet:icon1").value = 0;
+    document.getElementById("formSubmitToilet:icon2").value = 0;
+    document.getElementById("formSubmitToilet:icon3").value = 0;
+    document.getElementById("formSubmitToilet:icon4").value = 0;
+    document.getElementById("formSubmitToilet:icon5").value = 0;
+    document.getElementById("formSubmitToilet:icon8").value = 0;
+
     //Create Review Screen And Reveal Overlay Screen
     var selected="selected-Overlay";
     var screen = '<div id="screen" class="middleDiv">' +

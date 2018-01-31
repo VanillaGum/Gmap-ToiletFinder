@@ -171,6 +171,10 @@ public class MapController implements Serializable{
             ml.addSuggestedMarker(newMarker);
         }
         displaySingleMarker(newMarker);
+        genderM=0;
+        genderF=0;
+        icon7=0;
+        icon6=0;
     }
 
     public void upvoteToilet() {
@@ -286,8 +290,12 @@ public class MapController implements Serializable{
         if(ratingDecimal >= 0.5) {
             rating += 1;
         }
-
-
+        icon1=0;
+        icon2=0;
+        icon3=0;
+        icon4=0;
+        icon5=0;
+        icon8=0;
         rating2 += ratingWhole;
         if (rating2 > 5) {
             rating2 = 5;
@@ -295,7 +303,7 @@ public class MapController implements Serializable{
         if (rating2 <1) {
             rating2 = 1;
         }
-
+        System.out.println("ratings:" + rating2);
         return rating2;
     }
 

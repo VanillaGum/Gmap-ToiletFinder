@@ -83,20 +83,20 @@ function toiletSuggestionConfirmed() {
     //Submit Info About Toilet
     document.getElementById("formSubmitToilet:locLng").value = confirmationMarkerLng;
     document.getElementById("formSubmitToilet:locLat").value = confirmationMarkerLat;
-    switch(userLevel){
-        case 0:
-            document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect0").value;
-            //Close The Marker And Infowindow
-            break;
-        case 1:
-            document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect1").value;
-            //Close The Marker And Infowindow
-            break;
-        case 2:
-            document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect2").value;
-            //Close The Marker And Infowindow
-            break;
-    }
+    // switch(userLevel){
+    //     case 0:
+    //         document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect0").value;
+    //         //Close The Marker And Infowindow
+    //         break;
+    //     case 1:
+    //         document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect1").value;
+    //         //Close The Marker And Infowindow
+    //         break;
+    //     case 2:
+    //         document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect2").value;
+    //         //Close The Marker And Infowindow
+    //         break;
+    // }
     //Initiate the ManagedBean MapController AddToilet function
     tsubmit();
     resetInfoWindow();
@@ -158,6 +158,10 @@ function resetInfoWindow() {
         icon6Reset[0].className = "icon6 icon6-unselected";
         var icon7Reset = document.getElementsByClassName("icon7");
         icon7Reset[0].className = "icon7 icon7-unselected unselected";
+    document.getElementById("formSubmitToilet:genderM").value = 0;
+    document.getElementById("formSubmitToilet:genderF").value = 0;
+    document.getElementById("formSubmitToilet:icon6").value = 0;
+    document.getElementById("formSubmitToilet:icon7").value = 0;
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
@@ -208,12 +212,5 @@ function addToiletLoc() {
         document.getElementById("formSubmitToilet:locLng").value = poslng;
         document.getElementById("formSubmitToilet:locLat").value = poslat;
         tsubmit();
-        var markerhaha41412 = new google.maps.Marker({
-            position:{lat:poslat,lng:poslng},
-            map:mapdis,
-            title:"User Loc",
-            icon:"images/toilet_male.png"
-        });
-        markers.add(markerhaha41412);
     });
 }
