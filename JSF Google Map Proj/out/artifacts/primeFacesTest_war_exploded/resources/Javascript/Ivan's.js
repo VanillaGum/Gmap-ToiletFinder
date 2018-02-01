@@ -175,19 +175,17 @@ function resetInfoWindow() {
 function drawMapUi() {
     var viewToilets = $("#viewToilets");
     var viewPMap = $("#viewPersonalMap");
-    var toiletControl = $("#addToiletButton");
-    mapdis.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(viewToilets[0]);
-    mapdis.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(viewPMap[0]);
-    mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(toiletControl[0]);
-}
-function drapToiletUi() {
+    var centerControl = $("#centerLoc");
     var zoomoutControl = $("#zoomoutControl");
     var zoominControl = $("#zoominControl");
-    var centerControl = $("#centerLoc");
-    var toiletControl = $("#addToiletButton");
+    mapdis.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(viewToilets[0]);
+    mapdis.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(viewPMap[0]);
+    mapdis.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControl[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(zoomoutControl[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(zoominControl[0]);
-    mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControl[0]);
+}
+function ToiletUi() {
+    var toiletControl = $("#addToiletButton");
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(toiletControl[0]);
 }
 //Draw Map User Interfaces for logged in users
