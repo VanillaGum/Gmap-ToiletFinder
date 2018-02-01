@@ -82,7 +82,17 @@
             fitBounds="false">
         <!--<p:ajax event="stateChange" listener="#{mapController.onStateChange}" update="displayedMap"/>-->
     </p:gmap>
+    <div style="display:none;">
     <!--Custom Controls For Google Map-->
+    <!--Default View-->
+    <div id="viewToilets" class="left-controls-unselected" onclick="">
+        <div>View Toilets</div>
+    </div>
+    <div id="viewPersonalMap" style="width:220px;" class="left-controls-unselected" onclick="">
+        <div>View Personal Map</div>
+    </div>
+
+    <!--Toilet View Controlls-->
     <div id="zoomoutControl" class="zoomoutControl" onclick="zoomOut()">
         <div id="zoomoutUI" class="zoomoutUI">
             <div id="zoomoutText" class="zoomoutText"> -</div>
@@ -96,6 +106,8 @@
             <!--<h:graphicImage></h:graphicImage>-->
             Center Map
         </div>
+    </div>
+
     </div>
 
     <!--Add Toilet Stuff-->

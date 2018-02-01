@@ -69,3 +69,21 @@ input.notfound {
 #filterSelect {
     float: left;
 }
+.left-controls-unselected {
+    width:150px;
+    height:35px;
+    background-color: white;
+    border-radius:5px;
+    border: 2px solid #6B739F;
+    color:#6B739F;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom:30px;
+    text-align:center;
+}
+.left-controls-unselected > div {
+    margin-top:5px;
+}
+.left-controls-unselected:hover {
+
+}

@@ -173,6 +173,12 @@ function resetInfoWindow() {
 //-Start of Map Ui-//
 //Draw Map User Interface for non-logged in users
 function drawMapUi() {
+    var viewToilets = $("#viewToilets");
+    var viewPMap = $("#viewPersonalMap");
+    mapdis.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(viewToilets[0]);
+    mapdis.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(viewPMap[0]);
+}
+function drapToiletUi() {
     var zoomoutControl = $("#zoomoutControl");
     var zoominControl = $("#zoominControl");
     var centerControl = $("#centerLoc");
