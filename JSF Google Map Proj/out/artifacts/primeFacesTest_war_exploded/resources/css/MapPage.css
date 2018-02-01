@@ -90,3 +90,35 @@ input.notfound {
     color:white;
     cursor: pointer;
 }
+.left-controls-selected {
+    background-color: #464E78;
+    color:white;
+    cursor: pointer;
+}
+.left-controls-selected:hover {
+    background-color: #6B739F;
+    color:white;
+    cursor: pointer;
+}
+#addToiletButton #j_idt35\:toiletSubmit {
+    width:175px; !important;
+    height:35px;!important;
+    background-color: white; !important;
+    border-radius:15px; !important;
+    border: 2px solid #6B739F; !important;
+    color:#6B739F; !important;
+    font-size: 22px; !important;
+    font-weight: bold; !important;
+    margin-bottom:30px;!important;
+    text-align:center; !important;
+    cursor: pointer; !important;
+}
+#addToiletButton #j_idt35\:toiletSubmit:hover {
+    background-color: #6B739F; !important;
+    color: white; !important;
+    cursor: pointer; !important;
+}
+#j_idt35\3a toiletSubmit > span {
+    bottom:2px;
+    position:relative;
+}

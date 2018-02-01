@@ -204,6 +204,7 @@ function refreshInfoWindow(id,rating,genderM,toiletId, wheelchair, money, review
 //Return Suggested Window
 function refreshInfoWindow(id,rating, review_amt) {
     var imageSrc = null;
+    alert(rating);
     switch(rating) {
         case 5:
             imageSrc="images/5-stars-rating.png";

@@ -107,7 +107,21 @@
             Center Map
         </div>
     </div>
-
+    <div id="addToiletButton">
+        <h:form>
+        <p:commandButton value="Add Toilet"
+                         id="toiletSubmit">
+            <p:confirm header="Confirmation" message="Do you want to use current location or select a location?"/>
+            <!--<f:ajax execute="@form" render="@none" />-->
+        </p:commandButton>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Use current location" type="button" onclick="setMarkerAddType(1)"
+                             styleClass="ui-confirmdialog-no"/>
+            <p:commandButton value="Select Location on map" type="button" onclick="setMarkerAddType(2)"
+                             styleClass="ui-confirmdialog-no"/>
+        </p:confirmDialog>
+        </h:form>
+    </div>
     </div>
 
     <!--Add Toilet Stuff-->
@@ -137,17 +151,6 @@
 
             <!--Was In Command Button Temp Removed-->
             <!--onclick="addToiletLoc()"-->
-            <p:commandButton value="Add Toilet"
-                             id="toiletSubmit">
-                <p:confirm header="Confirmation" message="Do you want to use current location or select a location?"/>
-                <!--<f:ajax execute="@form" render="@none" />-->
-            </p:commandButton>
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                <p:commandButton value="Use current location" type="button" onclick="setMarkerAddType(1)"
-                                 styleClass="ui-confirmdialog-no"/>
-                <p:commandButton value="Select Location on map" type="button" onclick="setMarkerAddType(2)"
-                                 styleClass="ui-confirmdialog-no"/>
-            </p:confirmDialog>
             <!--For Suggesting Toilets-->
             <p:remoteCommand name="tsubmit" actionListener="#{mapController.addToiletLoc}"/>
             <!--For Upvoting Toilets-->
