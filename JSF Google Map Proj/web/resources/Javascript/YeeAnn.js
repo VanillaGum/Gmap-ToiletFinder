@@ -81,20 +81,56 @@ google.maps.event.addDomListener(window, 'load', initialize);
 // ]]>
 
 function openSearch() {
-    document.getElementById("bar").style.display = "none";
+    document.getElementById("homeBar").style.display = "none";
     document.getElementById("searchBar").style.display = "inline-block";
 }
 function closeSearch() {
-    document.getElementById("bar").style.display = "inline-block";
+    document.getElementById("homeBar").style.display = "inline-block";
     document.getElementById("searchBar").style.display = "none";
     return false;
 }
 function openFilter() {
-    document.getElementById("bar").style.display = "none";
+    document.getElementById("homeBar").style.display = "none";
     document.getElementById("filterBar").style.display = "inline-block";
 }
 function closeFilter() {
-    document.getElementById("bar").style.display = "inline-block";
+    document.getElementById("homeBar").style.display = "inline-block";
     document.getElementById("filterBar").style.display = "none";
     return false;
 }
+
+function callFilterSearch() {
+    filterSearch();
+}
+
+function addFilterMarker(Lat, Lng, title) {
+    var myLatlng = new google.maps.LatLng(Lat, Lng);
+
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        title: title
+    });
+
+    filterMarkers.push(marker);
+
+    marker.setMap(map);
+}
+
+function deleteFilterMarkers() {
+    clearMarkers();
+    filterMarkers = [];
+}
+
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+    for (var i = 0; i < filterMarkers.length; i++) {
+        filterMarkers[i].setMap(map);
+    }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+    setMapOnAll(null);
+}
+
+var filterMarkers = [];
