@@ -7,146 +7,170 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-   <h:head>
-      <script type="text/javascript"
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIhNGkh_sKo3rekCxuwz4ZQhlBZmM5UM0&amp;libraries=places">
-      </script>
-      <link rel="stylesheet" type="text/css" href="resources/css/MapPage.css"/>
-      <link rel="stylesheet" type="text/css" href="resources/css/ControlsStyling.css"/>
-      <link rel="stylesheet" type="text/css" href="resources/css/InfoWindow.css"/>
-   </h:head>
+<h:head>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIhNGkh_sKo3rekCxuwz4ZQhlBZmM5UM0&amp;libraries=places">
+    </script>
+    <link rel="stylesheet" type="text/css" href="resources/css/MapPage.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/ControlsStyling.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/InfoWindow.css"/>
+</h:head>
 
-   <h:body>
-      <div id="greyOverlay" class="unselected-Overlay">
+<h:body>
+    <div id="greyOverlay" class="unselected-Overlay">
 
-      </div>
-      <div id="bar">
-         <h:outputLabel id="AppTitle">SG Essentials Map</h:outputLabel>
-         <h:graphicImage value="images/search_icon.png" styleClass="barfunct" onclick="openSearch()"></h:graphicImage>
-         <h:graphicImage value="images/filter_icon.png" styleClass="barfunct" onclick="openFilter()"></h:graphicImage>
-         <h:graphicImage value="images/profile_icon.png" styleClass="barfunct"></h:graphicImage>
-      </div>
-      <div id="searchBar">
-         <input id="searchTextField" type="text" size="50"></input>
-         <input type="radio" name="type" id="changetype-all" checked="checked"></input>
-         <label for="changetype-all">All</label>
+    </div>
+    <div id="homeBar" class="topbar">
+        <h:outputLabel id="AppTitle">SG Essentials Map</h:outputLabel>
+        <h:graphicImage value="images/search_icon.png" styleClass="barfunct" onclick="openSearch()"></h:graphicImage>
+        <h:graphicImage value="images/filter_icon.png" styleClass="barfunct" onclick="openFilter()"></h:graphicImage>
+        <h:graphicImage value="images/profile_icon.png" styleClass="barfunct"></h:graphicImage>
+    </div>
+    <div id="searchBar" class="topbar">
+        <input id="searchTextField" type="text" size="50"></input>
+        <input type="radio" name="type" id="changetype-all" checked="checked"></input>
+        <label for="changetype-all">All</label>
 
-         <input type="radio" name="type" id="changetype-establishment"></input>
-         <label for="changetype-establishment">Establishments</label>
+        <input type="radio" name="type" id="changetype-establishment"></input>
+        <label for="changetype-establishment">Establishments</label>
 
-         <input type="radio" name="type" id="changetype-geocode"></input>
-         <label for="changetype-geocode">Geocodes</label>
+        <input type="radio" name="type" id="changetype-geocode"></input>
+        <label for="changetype-geocode">Geocodes</label>
 
-         <button id="cancelButton" onclick="closeSearch()" style="height: 100%; width: 67.391px; margin: 0; float:right;">Cancel</button>
-      </div>
-      <!--<div id="filterBar">-->
-         <!--<h:panelGrid id="filterSelect" columns="2" border="1">-->
-            <!--<h:outputText value="Gender:"/>-->
-            <!--<h:selectManyCheckbox value="#{filter.gender}">-->
-               <!--<f:selectItem itemValue="male" itemLabel="Male"/>-->
-               <!--<f:selectItem itemValue="female" itemLabel="Female"/>-->
-            <!--</h:selectManyCheckbox>-->
-            <!--<h:outputText value="Rating:"/>-->
-            <!--<h:selectOneRadio value="#{filter.rating}">-->
-               <!--<f:selectItem itemValue="1" itemLabel="1"/>-->
-               <!--<f:selectItem itemValue="2" itemLabel="2"/>-->
-               <!--<f:selectItem itemValue="3" itemLabel="3"/>-->
-               <!--<f:selectItem itemValue="4" itemLabel="4"/>-->
-               <!--<f:selectItem itemValue="5" itemLabel="5"/>-->
-            <!--</h:selectOneRadio>-->
-         <!--</h:panelGrid>-->
-         <!--<button id="cancelButton" onclick="closeFilter()" style="height: 100%; width: 67.391px; margin: 0; float:right;">Cancel</button>-->
-      <!--</div>-->
-         <!--For Having Map Model IN MapController-->
-         <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
-                 style="width:100%;height:90%" disableDefaultUI="true"
-                 onPointClick="addLocMarker(event)"
-                 fitBounds="false">
-            <!--<p:ajax event="stateChange" listener="#{mapController.onStateChange}" update="displayedMap"/>-->
-         </p:gmap>
-      <!--Custom Controls For Google Map-->
-      <div id="zoomoutControl" class="zoomoutControl" onclick="zoomOut()">
-         <div id="zoomoutUI" class="zoomoutUI">
-            <div id="zoomoutText" class="zoomoutText"> - </div>
-         </div>
-      </div>
-      <div id="zoominControl" class="zoominControl" onclick="zoomIn()">
-            <div id="zoominText" class="zoominText"> + </div>
-      </div>
-      <div id="centerLoc" class="centerLoc" onclick="goToUserLoc()">
-         <div id="centerImg" class="centerImg">
+        <button id="rightButton" onclick="closeSearch()">Cancel</button>
+    </div>
+    <div id="filterBar" class="topbar">
+        <h:form id="filterSelect">
+            <h:panelGrid columns="5">
+                <h:outputText value="Gender:"/>
+                <h:panelGroup>
+                    <h:selectBooleanCheckbox id="male" value="#{filter.male}"/>
+                    <h:outputText value=" Male" for="male"/>
+                    <h:selectBooleanCheckbox id="female" value="#{filter.female}"/>
+                    <h:outputText value=" Female" for="female"/>
+                </h:panelGroup>
+                <h:panelGroup/>
+                <h:panelGroup/>
+                <h:panelGroup>
+                    <h:selectBooleanCheckbox id="wheelchair" value="#{filter.wheelchairAccessible}"/>
+                    <h:outputText value=" Wheelchair Accessible" for="wheelchair"/>
+                </h:panelGroup>
+                <h:outputText value="Rating:"/>
+                <h:selectOneRadio value="#{filter.rating}">
+                    <f:selectItem itemValue="1" itemLabel="1"/>
+                    <f:selectItem itemValue="2" itemLabel="2"/>
+                    <f:selectItem itemValue="3" itemLabel="3"/>
+                    <f:selectItem itemValue="4" itemLabel="4"/>
+                    <f:selectItem itemValue="5" itemLabel="5"/>
+                </h:selectOneRadio>
+                <h:panelGroup/>
+                <h:panelGroup/>
+                <h:panelGroup>
+                    <h:selectBooleanCheckbox id="needtoPay" value="#{filter.needToPay}"/>
+                    <h:outputText value=" Include toilets that requires an entry fee" for="needtoPay"/>
+                </h:panelGroup>
+            </h:panelGrid>
+            <p:remoteCommand name="filterSearch" actionListener="#{filter.searchByFilter}" style="display: none;"/>
+        </h:form>
+        <button id="rightButton" onclick="closeFilter()">Cancel</button>
+        <button id="rightButton" onclick="callFilterSearch()">Search</button>
+    </div>
+    <!--For Having Map Model IN MapController-->
+    <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
+            style="width:100%;height:90%" disableDefaultUI="true"
+            onPointClick="addLocMarker(event)"
+            fitBounds="false">
+        <!--<p:ajax event="stateChange" listener="#{mapController.onStateChange}" update="displayedMap"/>-->
+    </p:gmap>
+    <!--Custom Controls For Google Map-->
+    <div id="zoomoutControl" class="zoomoutControl" onclick="zoomOut()">
+        <div id="zoomoutUI" class="zoomoutUI">
+            <div id="zoomoutText" class="zoomoutText"> -</div>
+        </div>
+    </div>
+    <div id="zoominControl" class="zoominControl" onclick="zoomIn()">
+        <div id="zoominText" class="zoominText"> +</div>
+    </div>
+    <div id="centerLoc" class="centerLoc" onclick="goToUserLoc()">
+        <div id="centerImg" class="centerImg">
             <!--<h:graphicImage></h:graphicImage>-->
             Center Map
-         </div>
-      </div>
+        </div>
+    </div>
 
-      <!--Add Toilet Stuff-->
-      <div id="addToilet" class="addToilet">
-            <h:form id="formSubmitToilet">
-               <h:inputHidden id="locLng" value="#{mapController.locLng}" />
-               <h:inputHidden id="locLat" value="#{mapController.locLat}" />
-               <h:inputHidden id="toiletGender" value="#{mapController.toiletGender}" />
-               <h:inputHidden id="genderM" value="#{mapController.genderM}"/>
-               <h:inputHidden id="genderF" value="#{mapController.genderF}"/>
-               <h:inputHidden id="upvote" value="#{mapController.upvote}"/>
-               <h:inputHidden id="flag" value="#{mapController.flag}"/>
-               <h:inputHidden id="upvoteToiletId" value="#{mapController.upvoteToiletId}"/>
+    <!--Add Toilet Stuff-->
+    <div id="addToilet" class="addToilet">
+        <h:form id="formSubmitToilet">
+            <h:inputHidden id="locLng" value="#{mapController.locLng}"/>
+            <h:inputHidden id="locLat" value="#{mapController.locLat}"/>
+            <h:inputHidden id="toiletGender" value="#{mapController.toiletGender}"/>
+            <h:inputHidden id="genderM" value="#{mapController.genderM}"/>
+            <h:inputHidden id="genderF" value="#{mapController.genderF}"/>
+            <h:inputHidden id="upvote" value="#{mapController.upvote}"/>
+            <h:inputHidden id="flag" value="#{mapController.flag}"/>
+            <h:inputHidden id="upvoteToiletId" value="#{mapController.upvoteToiletId}"/>
 
-               <!--Review Section Variables-->
-               <h:inputHidden id="icon1" value="#{mapController.icon1}"/>
-               <h:inputHidden id="icon2" value="#{mapController.icon2}"/>
-               <h:inputHidden id="icon3" value="#{mapController.icon3}"/>
-               <h:inputHidden id="icon4" value="#{mapController.icon4}"/>
-               <h:inputHidden id="icon5" value="#{mapController.icon5}"/>
-               <h:inputHidden id="icon6" value="#{mapController.icon6}"/>
-               <h:inputHidden id="icon7" value="#{mapController.icon7}"/>
-               <h:inputHidden id="icon8" value="#{mapController.icon8}"/>
-               <h:inputHidden id="comments" value="#{mapController.comments}"/>
-               <h:inputHidden id="uniqueId" value="#{mapController.uniqueId}"/>
-               <!--End-->
+            <!--Review Section Variables-->
+            <h:inputHidden id="icon1" value="#{mapController.icon1}"/>
+            <h:inputHidden id="icon2" value="#{mapController.icon2}"/>
+            <h:inputHidden id="icon3" value="#{mapController.icon3}"/>
+            <h:inputHidden id="icon4" value="#{mapController.icon4}"/>
+            <h:inputHidden id="icon5" value="#{mapController.icon5}"/>
+            <h:inputHidden id="icon6" value="#{mapController.icon6}"/>
+            <h:inputHidden id="icon7" value="#{mapController.icon7}"/>
+            <h:inputHidden id="icon8" value="#{mapController.icon8}"/>
+            <h:inputHidden id="comments" value="#{mapController.comments}"/>
+            <h:inputHidden id="uniqueId" value="#{mapController.uniqueId}"/>
+            <!--End-->
 
-               <!--Was In Command Button Temp Removed-->
-               <!--onclick="addToiletLoc()"-->
-               <p:commandButton value="Add Toilet"
-                                id="toiletSubmit">
-                  <p:confirm header="Confirmation" message="Do you want to use current location or select a location?"/>
-                  <!--<f:ajax execute="@form" render="@none" />-->
-               </p:commandButton>
-               <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                     <p:commandButton value="Use current location" type="button" onclick="setMarkerAddType(1)" styleClass="ui-confirmdialog-no"/>
-                     <p:commandButton value="Select Location on map" type="button" onclick="setMarkerAddType(2)" styleClass="ui-confirmdialog-no"/>
-               </p:confirmDialog>
-               <!--For Suggesting Toilets-->
-               <p:remoteCommand  name="tsubmit" actionListener="#{mapController.addToiletLoc}"/>
-               <!--For Upvoting Toilets-->
-               <p:remoteCommand name="upvoteSubmit" actionListener="#{mapController.upvoteToilet}"/>
-               <!--For Flagging Toilets-->
-               <p:remoteCommand name="flagSubmit" actionListener="#{mapController.flagToilet}"/>
-               <!--For Use On Suggestion And Approved Toilet-->
-               <p:remoteCommand name="reviewToilet" actionListener="#{mapController.reviewToilet}"/>
-            </h:form>
-      </div>
+            <!--Was In Command Button Temp Removed-->
+            <!--onclick="addToiletLoc()"-->
+            <p:commandButton value="Add Toilet"
+                             id="toiletSubmit">
+                <p:confirm header="Confirmation" message="Do you want to use current location or select a location?"/>
+                <!--<f:ajax execute="@form" render="@none" />-->
+            </p:commandButton>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Use current location" type="button" onclick="setMarkerAddType(1)"
+                                 styleClass="ui-confirmdialog-no"/>
+                <p:commandButton value="Select Location on map" type="button" onclick="setMarkerAddType(2)"
+                                 styleClass="ui-confirmdialog-no"/>
+            </p:confirmDialog>
+            <!--For Suggesting Toilets-->
+            <p:remoteCommand name="tsubmit" actionListener="#{mapController.addToiletLoc}"/>
+            <!--For Upvoting Toilets-->
+            <p:remoteCommand name="upvoteSubmit" actionListener="#{mapController.upvoteToilet}"/>
+            <!--For Flagging Toilets-->
+            <p:remoteCommand name="flagSubmit" actionListener="#{mapController.flagToilet}"/>
+            <!--For Use On Suggestion And Approved Toilet-->
+            <p:remoteCommand name="reviewToilet" actionListener="#{mapController.reviewToilet}"/>
+        </h:form>
+    </div>
 
-      <!--Suggesting Toilets-->
-      <div style="display:none;">
-         <div id="confirmBox0">
-             <div style="width:100%;font-size:20px;">
-                 <b>Suggest Toilet Location</b>
-             </div>
-             <div style="width:100%">
+    <!--Suggesting Toilets-->
+    <div style="display:none;">
+        <div id="confirmBox0">
+            <div style="width:100%;font-size:20px;">
+                <b>Suggest Toilet Location</b>
+            </div>
+            <div style="width:100%">
             <span title="Does it have a wheelchair access toilet?">
-            <img width="50px" height="50px" class="icon6 icon6-unselected" alt="WheelchairIcon" src="images/wheelchair-neutral.png" onclick="icon6()"/>
+            <img width="50px" height="50px" class="icon6 icon6-unselected" alt="WheelchairIcon"
+                 src="images/wheelchair-neutral.png" onclick="icon6()"/>
             </span>
-            <span title="Does it cost money?">
-            <img width="50px" height="50px" class="icon7 icon7-unselected unselected" alt="Cost Money?" src="images/money.png" onclick="icon7()"/>
+                <span title="Does it cost money?">
+            <img width="50px" height="50px" class="icon7 icon7-unselected unselected" alt="Cost Money?"
+                 src="images/money.png" onclick="icon7()"/>
             </span>
-            <!--Gender Selection-->
-            <img id="maleIcon0" class="mToilet maleToiletSelectIcon-unselected" src="images/male_icon.png" alt="maleToiletIcon" width="23.2" height="62.6px" onclick="changeIconSelection(1)"/>
-            <img id="femaleIcon0" class="fToilet femaleToiletSelectIcon-unselected" src="images/female_icon.png" alt="femaleToiletIcon" width="31px" height="62.6" onclick="changeIconSelection(0)"/>
-             </div>
+                <!--Gender Selection-->
+                <img id="maleIcon0" class="mToilet maleToiletSelectIcon-unselected" src="images/male_icon.png"
+                     alt="maleToiletIcon" width="23.2" height="62.6px" onclick="changeIconSelection(1)"/>
+                <img id="femaleIcon0" class="fToilet femaleToiletSelectIcon-unselected" src="images/female_icon.png"
+                     alt="femaleToiletIcon" width="31px" height="62.6" onclick="changeIconSelection(0)"/>
+            </div>
             <form action="">
-               <input id="toiletGenderSelect0" type="hidden" value="-1"/>
-               <input id="rating0" type="hidden" value="-1"/>
+                <input id="toiletGenderSelect0" type="hidden" value="-1"/>
+                <input id="rating0" type="hidden" value="-1"/>
             </form>
             <div class="addToiletSubmit">
                <button onclick="toiletSuggestionConfirmed()">Confirm</button>
@@ -155,16 +179,15 @@
          </div>
       </div>
 
+    <!--Displaying Toilet Suggestions-->
+    <div style="display:none;">
 
-      <!--Displaying Toilet Suggestions-->
-      <div style="display:none;">
-
-      </div>
-      <script type="text/javascript" src="resources/Javascript/Controller's.js"></script>
-      <script type="text/javascript" src="resources/Javascript/Ivan's.js"></script>
-      <script type="text/javascript" src="resources/Javascript/YeeAnn.js"></script>
-      <!--<div>-->
-         <!--<button onclick="removeLocMarker()">Confirm Location</button>-->
-      <!--</div>-->
-   </h:body>
+    </div>
+    <script type="text/javascript" src="resources/Javascript/Controller's.js"></script>
+    <script type="text/javascript" src="resources/Javascript/Ivan's.js"></script>
+    <script type="text/javascript" src="resources/Javascript/YeeAnn.js"></script>
+    <!--<div>-->
+    <!--<button onclick="removeLocMarker()">Confirm Location</button>-->
+    <!--</div>-->
+</h:body>
 </html>

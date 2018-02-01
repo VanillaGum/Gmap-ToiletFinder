@@ -15,31 +15,33 @@ body {
     height:90%;
     width:100%;
 }
-#bar {
-    height: 10%;
+
+.topbar{
+    height: 67px;
     width: 100%;
+}
+
+#homeBar {
     display:inline-block;
 }
 
 #searchBar {
-    height: 10%;
-    width: 100%;
     display:none;
 }
 
 #filterBar {
-    height: 10%;
-    width: 100%;
     display:none;
 }
 
 .barfunct {
     float:right;
     margin-top:10px;
+    width:51px;
+    height:51px;
 }
 #AppTitle {
     font-family: "Arial Black";
-    font-size: 60px;
+    font-size: 45px;
     width: 25%;
     height: 100%;
 }
@@ -52,9 +54,16 @@ input.notfound {
     border: 2px solid rgba(255, 0, 0, 0.4);
 }
 
+#rightButton {
+    height: 100%;
+    width: 67.391px;
+    margin: 0;
+    float:right;
+}
+
 #searchTextField {
     width: 82%;
-    height: 100%;
+    height: 60px;
 }
 
 #filterSelect {
