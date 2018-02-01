@@ -37,44 +37,63 @@
          <input type="radio" name="type" id="changetype-geocode"></input>
          <label for="changetype-geocode">Geocodes</label>
 
-         <button id="cancelButton" onclick="closeSearch()" style="height: 100%; width: 67.391px; margin: 0; float:right;">Cancel</button>
-      </div>
-      <!--<div id="filterBar">-->
-         <!--<h:panelGrid id="filterSelect" columns="2" border="1">-->
-            <!--<h:outputText value="Gender:"/>-->
-            <!--<h:selectManyCheckbox value="#{filter.gender}">-->
-               <!--<f:selectItem itemValue="male" itemLabel="Male"/>-->
-               <!--<f:selectItem itemValue="female" itemLabel="Female"/>-->
-            <!--</h:selectManyCheckbox>-->
-            <!--<h:outputText value="Rating:"/>-->
-            <!--<h:selectOneRadio value="#{filter.rating}">-->
-               <!--<f:selectItem itemValue="1" itemLabel="1"/>-->
-               <!--<f:selectItem itemValue="2" itemLabel="2"/>-->
-               <!--<f:selectItem itemValue="3" itemLabel="3"/>-->
-               <!--<f:selectItem itemValue="4" itemLabel="4"/>-->
-               <!--<f:selectItem itemValue="5" itemLabel="5"/>-->
-            <!--</h:selectOneRadio>-->
-         <!--</h:panelGrid>-->
-         <!--<button id="cancelButton" onclick="closeFilter()" style="height: 100%; width: 67.391px; margin: 0; float:right;">Cancel</button>-->
-      <!--</div>-->
-         <!--For Having Map Model IN MapController-->
-         <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
-                 style="width:100%;height:90%" disableDefaultUI="true"
-                 onPointClick="addLocMarker(event)"
-                 fitBounds="false">
-            <!--<p:ajax event="stateChange" listener="#{mapController.onStateChange}" update="displayedMap"/>-->
-         </p:gmap>
-      <!--Custom Controls For Google Map-->
-      <div id="zoomoutControl" class="zoomoutControl" onclick="zoomOut()">
-         <div id="zoomoutUI" class="zoomoutUI">
-            <div id="zoomoutText" class="zoomoutText"> - </div>
-         </div>
-      </div>
-      <div id="zoominControl" class="zoominControl" onclick="zoomIn()">
-            <div id="zoominText" class="zoominText"> + </div>
-      </div>
-      <div id="centerLoc" class="centerLoc" onclick="goToUserLoc()">
-         <div id="centerImg" class="centerImg">
+        <button id="rightButton" onclick="closeSearch()">Cancel</button>
+    </div>
+    <div id="filterBar" class="topbar">
+        <h:form id="filterSelect">
+            <h:panelGrid columns="5">
+                <h:outputText value="Gender:"/>
+                <h:panelGroup>
+                    <h:selectBooleanCheckbox id="male" value="#{filter.male}"/>
+                    <h:outputText value=" Male" for="male"/>
+                    <h:selectBooleanCheckbox id="female" value="#{filter.female}"/>
+                    <h:outputText value=" Female" for="female"/>
+                </h:panelGroup>
+                <h:panelGroup/>
+                <h:panelGroup/>
+                <h:panelGroup>
+                    <h:selectBooleanCheckbox id="wheelchair" value="#{filter.wheelchairAccessible}"/>
+                    <h:outputText value=" Wheelchair Accessible" for="wheelchair"/>
+                </h:panelGroup>
+                <h:outputText value="Rating:"/>
+                <h:selectOneRadio value="#{filter.rating}">
+                    <f:selectItem itemValue="1" itemLabel="1"/>
+                    <f:selectItem itemValue="2" itemLabel="2"/>
+                    <f:selectItem itemValue="3" itemLabel="3"/>
+                    <f:selectItem itemValue="4" itemLabel="4"/>
+                    <f:selectItem itemValue="5" itemLabel="5"/>
+                </h:selectOneRadio>
+                <h:panelGroup/>
+                <h:panelGroup/>
+                <h:panelGroup>
+                    <h:selectBooleanCheckbox id="needtoPay" value="#{filter.needToPay}"/>
+                    <h:outputText value=" Include toilets that requires an entry fee" for="needtoPay"/>
+                </h:panelGroup>
+            </h:panelGrid>
+            <p:remoteCommand name="filterSearch" actionListener="#{filter.searchByFilter}" style="display: none;"/>
+        </h:form>
+        <button id="rightButton" onclick="closeFilter()">Cancel</button>
+        <button id="rightButton" onclick="callFilterSearch()">Search</button>
+    </div>
+    <!--For Having Map Model IN MapController-->
+    <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
+            style="width:100%;height:90%" disableDefaultUI="true"
+            onPointClick="addLocMarker(event)"
+            fitBounds="false">
+        <!--<p:ajax event="stateChange" listener="#{mapController.onStateChange}" update="displayedMap"/>-->
+    </p:gmap>
+    <!--Custom Controls For Google Map-->
+    <div id="zoomoutControl" class="zoomoutControl" onclick="zoomOut()">
+        <div id="zoomoutUI" class="zoomoutUI">
+            <div id="zoomoutText" class="zoomoutText"> -</div>
+        </div>
+    </div>
+    <div id="zoominControl" class="zoominControl" onclick="zoomIn()">
+        <div id="zoominText" class="zoominText"> +</div>
+    </div>
+    <div id="centerLoc" class="centerLoc" onclick="goToUserLoc()">
+        <div id="centerImg" class="centerImg">
+
             <!--<h:graphicImage></h:graphicImage>-->
             Center Map
          </div>
@@ -154,8 +173,6 @@
             </div>
          </div>
       </div>
-
-
       <!--Displaying Toilet Suggestions-->
       <div style="display:none;">
 
