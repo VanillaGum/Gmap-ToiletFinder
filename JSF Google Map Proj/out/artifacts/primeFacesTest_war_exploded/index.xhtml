@@ -71,6 +71,7 @@
                 </h:panelGroup>
             </h:panelGrid>
             <p:remoteCommand name="filterSearch" actionListener="#{filter.searchByFilter}" style="display: none;"/>
+            <p:remoteCommand name="filterReset" actionListener="#{filter.resetFilter}" style="display: none;"/>
         </h:form>
         <button id="rightButton" onclick="closeFilter()">Cancel</button>
         <button id="rightButton" onclick="callFilterSearch()">Search</button>

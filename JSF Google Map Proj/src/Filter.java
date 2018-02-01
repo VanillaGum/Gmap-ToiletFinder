@@ -16,6 +16,9 @@ public class Filter implements Serializable {
     private boolean wheelchairAccessible;
     private Boolean needToPay;
 
+    private MapController mc = new MapController();
+    private DatabaseClass dbc = new DatabaseClass();
+
     public Filter() {
         this.male = false;
         this.female = false;
@@ -71,12 +74,12 @@ public class Filter implements Serializable {
     }
 
     public int searchByFilter() {
-        RequestContext rc = RequestContext.getCurrentInstance();
-        if (!validateFilter(rc)) // Check to see if at least one gender is selected
+        if (!validateFilter()) // Check to see if at least one gender is selected
             return 1; // It's a nope
-        rc.execute("deleteFilterMarkers()");
-        DatabaseClass dbc = new DatabaseClass();
-        List<MarkerData> md = dbc.getRequestedToiletMarkers(); // Load toilets from database
+
+        List<MarkerData> md = dbc.getApprovedToiletMarkers(); // Load toilets from database
+
+        mc.resetMarkerList();
         for (int i = 0; i < md.size(); i++) {
             while (true) {
                 System.out.println("genderM " + md.get(i).getGenderM() + " avgRating " + md.get(i).getAvg_rating() + " Wheelchair " + md.get(i).getWheelchair() + " needToPay " + md.get(i).getCost());
@@ -107,21 +110,27 @@ public class Filter implements Serializable {
                     if (!(md.get(i).getCost() == 0.00)) // Is the toilet not free?
                         break; // Yes. Stop processing and move on to the next entry.
 
-                rc.execute("addFilterMarker(" + md.get(i).getLatlng().getLat() + ", " + md.get(i).getLatlng().getLng() + ", " + md.get(i).getTitle() + ")");
-                rc.execute("map.setCenter({lat: 1.350416667, lng: 103.82193194})");
-                rc.execute("map.setZoom(12)");
+                // rc.execute("addFilterMarker(" + md.get(i).getLatlng().getLat() + ", " + md.get(i).getLatlng().getLng() + ", " + md.get(i).getTitle() + ")");
+                mc.displaySingleMarker(md.get(i));
                 break;
             }
+            RequestContext.getCurrentInstance().execute("map.setCenter({lat: 1.350416667, lng: 103.82193194})");
+            RequestContext.getCurrentInstance().execute("map.setZoom(12)");
         }
         return 0;
     }
 
-    public boolean validateFilter(RequestContext rc) {
+    public boolean validateFilter() {
         if (!male && !female) {
-            rc.execute("alert('Please select at least one gender')");
+            RequestContext.getCurrentInstance().execute("alert('Please select at least one gender')");
             return false;
         } else {
             return true;
         }
+    }
+
+    public void resetFilter() {
+        mc.resetMarkerList();
+        mc.displayMarkersList(dbc.getApprovedToiletMarkers());
     }
 }

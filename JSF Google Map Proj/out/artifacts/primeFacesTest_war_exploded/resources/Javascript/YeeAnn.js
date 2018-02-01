@@ -94,6 +94,7 @@ function openFilter() {
     document.getElementById("filterBar").style.display = "inline-block";
 }
 function closeFilter() {
+    filterReset();
     document.getElementById("homeBar").style.display = "inline-block";
     document.getElementById("filterBar").style.display = "none";
     return false;
@@ -102,35 +103,3 @@ function closeFilter() {
 function callFilterSearch() {
     filterSearch();
 }
-
-function addFilterMarker(Lat, Lng, title) {
-    var myLatlng = new google.maps.LatLng(Lat, Lng);
-
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        title: title
-    });
-
-    filterMarkers.push(marker);
-
-    marker.setMap(map);
-}
-
-function deleteFilterMarkers() {
-    clearMarkers();
-    filterMarkers = [];
-}
-
-// Sets the map on all markers in the array.
-function setMapOnAll(map) {
-    for (var i = 0; i < filterMarkers.length; i++) {
-        filterMarkers[i].setMap(map);
-    }
-}
-
-// Removes the markers from the map, but keeps them in the array.
-function clearMarkers() {
-    setMapOnAll(null);
-}
-
-var filterMarkers = [];

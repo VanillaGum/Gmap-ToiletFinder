@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.xml.registry.infomodel.User;
+//import javax.xml.registry.infomodel.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
