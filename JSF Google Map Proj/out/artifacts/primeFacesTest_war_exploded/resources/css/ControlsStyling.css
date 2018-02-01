@@ -67,6 +67,9 @@
 .left-controls-unselected > div {
     margin-top:5px;
 }
+.left-controls-selected > div {
+    margin-top:5px;
+}
 .left-controls-unselected:hover {
     background-color: #6B739F;
     color:white;
@@ -75,6 +78,15 @@
 .left-controls-selected {
     background-color: #464E78;
     color:white;
+    cursor: pointer;
+    width:150px;
+    height:35px;
+    border-radius:5px;
+    border: 2px solid #464E78;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom:30px;
+    text-align:center;
     cursor: pointer;
 }
 .left-controls-selected:hover {
@@ -103,4 +115,45 @@
 #j_idt35\3a toiletSubmit > span {
     bottom:3px;
     position:relative;
+}
+
+
+
+#displaySuggestedToilets{
+    width: 275px;
+    height: 35px;
+}
+#displaySuggestedToilets > div {
+    position:relative;
+    margin-top:5px;
+}
+.right-controls-unselected {
+    background-color: white; !important;
+    border-radius:15px; !important;
+    border: 2px solid #E3746F; !important;
+    color: #E3746F; !important;
+    font-size: 22px; !important;
+    font-weight: bold; !important;
+    margin-bottom:30px;!important;
+    text-align:center; !important;
+    cursor: pointer; !important;
+}
+.right-controls-unselected:hover {
+    background-color: #E3746F;
+    color:white;
+}
+.right-controls-selected {
+    background-color: #B34F4A; !important;
+    border-radius:15px; !important;
+    border: 2px solid #B34F4A; !important;
+    color: white; !important;
+    font-size: 22px; !important;
+    font-weight: bold; !important;
+    margin-bottom:30px;!important;
+    text-align:center; !important;
+    cursor: pointer; !important;
+}
+.right-controls-selected:hover {
+    background-color: #E3746F;
+    color:white;
 }

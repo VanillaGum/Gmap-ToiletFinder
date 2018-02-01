@@ -7,7 +7,7 @@ public class MarkerData {
 
     protected int iconNo;
 
-    protected int rating = -1;
+    protected int rating = 0;
 
     protected int amt_of_ratings;
 
@@ -231,7 +231,7 @@ public class MarkerData {
         this.cost = cost;
     }
 
-    public void addRating(int rating) {this.rating += rating;}
+    public void addRating(int ratingz) {this.rating = this.rating + ratingz;}
 
     public void addReviewAmt() {this.amt_of_ratings += 1;}
 

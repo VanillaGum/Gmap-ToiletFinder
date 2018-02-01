@@ -21,6 +21,10 @@ public class MarkerList {
 
     private int uniqueId = 0;
 
+    private int displaySuggestion = 0;
+
+    private int displayApproved = 0;
+
     protected MarkerList() {
     }
     @PostConstruct
@@ -36,33 +40,6 @@ public class MarkerList {
         return instance;
     }
 
-    public List<MarkerData> getApprovedMarkers() {
-        return approvedMarkers;
-    }
-
-    public void setApprovedMarkers(List<MarkerData> approvedMarkers) {
-        this.approvedMarkers = approvedMarkers;
-    }
-
-    public List<MarkerData> getSuggestedMarkers() {
-        return suggestedMarkers;
-    }
-
-    public void setSuggestedMarkers(List<MarkerData> suggestedMarkers) {
-        this.suggestedMarkers = suggestedMarkers;
-    }
-
-    public List<MarkerData> getSuggestionMarkers() {
-        return suggestionMarkers;
-    }
-
-    public void setSuggestionMarkers(List<MarkerData> suggestionMarkers) {
-        this.suggestionMarkers = suggestionMarkers;
-    }
-
-    public MarkerRequestData getSuggestedMarker() { return suggestedMarker; }
-
-    public void setSuggestedMarker(MarkerRequestData suggestedMarker) { this.suggestedMarker = suggestedMarker; }
 
     public void resetSuggestedMarker() {this.suggestedMarker = new MarkerRequestData();}
 
@@ -103,5 +80,49 @@ public class MarkerList {
     public int getUniqueId() {
         this.uniqueId++;
         return uniqueId;
+    }
+
+    public List<MarkerData> getApprovedMarkers() {
+        return approvedMarkers;
+    }
+
+    public void setApprovedMarkers(List<MarkerData> approvedMarkers) {
+        this.approvedMarkers = approvedMarkers;
+    }
+
+    public List<MarkerData> getSuggestedMarkers() {
+        return suggestedMarkers;
+    }
+
+    public void setSuggestedMarkers(List<MarkerData> suggestedMarkers) {
+        this.suggestedMarkers = suggestedMarkers;
+    }
+
+    public List<MarkerData> getSuggestionMarkers() {
+        return suggestionMarkers;
+    }
+
+    public void setSuggestionMarkers(List<MarkerData> suggestionMarkers) {
+        this.suggestionMarkers = suggestionMarkers;
+    }
+
+    public MarkerRequestData getSuggestedMarker() { return suggestedMarker; }
+
+    public void setSuggestedMarker(MarkerRequestData suggestedMarker) { this.suggestedMarker = suggestedMarker; }
+
+    public int getDisplaySuggestion() {
+        return displaySuggestion;
+    }
+
+    public void setDisplaySuggestion(int displaySuggestion) {
+        this.displaySuggestion = displaySuggestion;
+    }
+
+    public int getDisplayApproved() {
+        return displayApproved;
+    }
+
+    public void setDisplayApproved(int displayApproved) {
+        this.displayApproved = displayApproved;
     }
 }

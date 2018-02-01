@@ -85,7 +85,7 @@
     <div style="display:none;">
     <!--Custom Controls For Google Map-->
     <!--Default View-->
-    <div id="viewToilets" class="left-controls-unselected" onclick="">
+    <div id="viewToilets" class="left-controls-unselected" onclick="displayApproved()">
         <div>View Toilets</div>
     </div>
     <div id="viewPersonalMap" style="width:220px;" class="left-controls-unselected" onclick="">
@@ -107,10 +107,14 @@
             Center Map
         </div>
     </div>
+    <div id="displaySuggestedToilets" class="right-controls-unselected" onclick="displaySuggested()">
+        <div>View Unapproved Toilets</div>
+    </div>
+
     <div id="addToiletButton">
         <h:form>
         <p:commandButton value="Add Toilet"
-                         id="toiletSubmit">
+                         id="toiletSubmit" class="right-control-unselected">
             <p:confirm header="Confirmation" message="Do you want to use current location or select a location?"/>
             <!--<f:ajax execute="@form" render="@none" />-->
         </p:commandButton>
@@ -122,6 +126,8 @@
         </p:confirmDialog>
         </h:form>
     </div>
+
+
     </div>
 
     <!--Add Toilet Stuff-->
@@ -159,6 +165,11 @@
             <p:remoteCommand name="flagSubmit" actionListener="#{mapController.flagToilet}"/>
             <!--For Use On Suggestion And Approved Toilet-->
             <p:remoteCommand name="reviewToilet" actionListener="#{mapController.reviewToilet}"/>
+
+            <!--Display Approved Toilets-->
+            <p:remoteCommand name="displayApprovedToilet" actionListener="#{mapController.displayApproved()}"/>
+            <!--Display Suggestion Toilets-->
+            <p:remoteCommand name="displaySuggestionToilet" actionListener="#{mapController.displaySuggestion()}"/>
         </h:form>
     </div>
 

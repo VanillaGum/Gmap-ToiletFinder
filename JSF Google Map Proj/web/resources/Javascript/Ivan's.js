@@ -83,6 +83,8 @@ function toiletSuggestionConfirmed() {
     //Submit Info About Toilet
     document.getElementById("formSubmitToilet:locLng").value = confirmationMarkerLng;
     document.getElementById("formSubmitToilet:locLat").value = confirmationMarkerLat;
+    var gM = document.getElementById("formSubmitToilet:genderM").value;
+    var gF = document.getElementById("formSubmitToilet:genderF").value;
     // switch(userLevel){
     //     case 0:
     //         document.getElementById("formSubmitToilet:toiletGender").value = document.getElementById("toiletGenderSelect0").value;
@@ -98,8 +100,12 @@ function toiletSuggestionConfirmed() {
     //         break;
     // }
     //Initiate the ManagedBean MapController AddToilet function
-    tsubmit();
-    resetInfoWindow();
+    if (gM == 1 || gF == 1) {
+        tsubmit();
+        resetInfoWindow();
+    }else {
+        alert("Please select minimun 1 gender for creating toilet");
+    }
 }
 
 //Suggesting Location Cancelled
@@ -183,16 +189,20 @@ function drawMapUi() {
     mapdis.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControl[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(zoomoutControl[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(zoominControl[0]);
-}
-function ToiletUi() {
     var toiletControl = $("#addToiletButton");
+    var addSuggested = $("#displaySuggestedToilets");
+    mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addSuggested[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(toiletControl[0]);
+    document.getElementById("displaySuggestedToilets").style.display = "none";
+    document.getElementById("addToiletButton").style.display = "none";
 }
-//Draw Map User Interfaces for logged in users
-function drawUserMapUi() {
-//             For Logged In Users
-    mapdis.controls.clear()
+function displayToiletUi() {
+    document.getElementById("displaySuggestedToilets").style.display = "block";
 }
+function hideToiletUi() {
+    document.getElementById("displaySuggestedToilets").style.display = "none";
+}
+
 //Zooms in Map
 function zoomIn() {
     mapdis.setZoom((mapdis.getZoom() + 1));
@@ -219,4 +229,37 @@ function addToiletLoc() {
         document.getElementById("formSubmitToilet:locLat").value = poslat;
         tsubmit();
     });
+}
+
+function displayApproved() {
+    displayApprovedToilet();
+    var check = document.getElementById("viewToilets");
+    if (check.className == "left-controls-unselected") {
+        check.className = "left-controls-selected";
+        document.getElementById("displaySuggestedToilets").style.display = "block";
+    }else {
+        check.className = "left-controls-unselected";
+    }
+}
+function displaySuggested() {
+    displaySuggestionToilet();
+    var check = document.getElementById("displaySuggestedToilets");
+    if (check.className == "right-controls-unselected") {
+        check.className = "right-controls-selected";
+        document.getElementById("addToiletButton").style.display = "block";
+        document.getElementById("addToiletButton").style.bottom =  "188px";
+    }else {
+        check.className = "right-controls-unselected";
+        document.getElementById("addToiletButton").style.display = "none";
+    }
+}
+function removeToiletUi() {
+    var check = document.getElementById("displaySuggestedToilets");
+    if (check.className == "right-controls-selected") {
+        check.className = "right-controls-unselected";
+        displaySuggestionToilet();
+    }
+
+    document.getElementById("displaySuggestedToilets").style.display = "none";
+    document.getElementById("addToiletButton").style.display = "none";
 }

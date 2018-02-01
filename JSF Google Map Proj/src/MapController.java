@@ -44,9 +44,36 @@ public class MapController implements Serializable{
     public void init() {
         me = new MarkerEntity();
         ml = MarkerList.getInstance();
-        displayApprovedMarker();
-        displaySuggestionMarkers();
+        if (ml.getDisplayApproved() == 1) {
+            displayApprovedMarker();
+        }
+        if(ml.getDisplaySuggestion() == 1) {
+
+            displaySuggestionMarkers();
+        }
    }
+   public void displayApproved() {
+        if (ml.getDisplayApproved() == 0) {
+            ml.setDisplayApproved(1);
+            displayApprovedMarker();
+        }else {
+            //Changing To Personal Map Or Closing
+            ml.setDisplayApproved(0);
+            resetMarkerList();
+        }
+   }
+    public void displaySuggestion() {
+        if (ml.getDisplaySuggestion() == 0) {
+            ml.setDisplaySuggestion(1);
+            displaySuggestionMarkers();
+        }else {
+            ml.setDisplaySuggestion(0);
+            resetMarkerList();
+            if (ml.getDisplayApproved() == 1) {
+                displayApprovedMarker();
+            }
+        }
+    }
     public void setUserLocMark() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Added", "Nothing much"));
         Map map = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -250,11 +277,11 @@ public class MapController implements Serializable{
             System.out.println("Hi Suggestion Marker" + m.getToiletId() +"|" + m.getRandomId());
             if(m.getRandomId() == uniqueId) {
                 ToiletId = m.getToiletId();
-                System.out.println("Suggestion Toilet");
                 me.rateSuggestionToilet(ToiletId,ratingz);
                 m.addRating(ratingz);
                 m.addReviewAmt();
                 m.calAvg();
+                System.out.println("Suggestion Toilet" + m.getRating() + "|" + m.getAmt_of_ratings() + "|" + m.getAvg_rating());
                 RequestContext.getCurrentInstance().execute( "refreshInfoWindow("+uniqueId+","+m.getAvg_rating()+", "+m.getAmt_of_ratings()+")");
             }
         }
