@@ -5,8 +5,13 @@
     top:10%;
     left:20%;
     position:absolute;
+}
+#groupScreen:not(.creation) {
     overflow-y:scroll;
     overflow-x:hidden;
+}
+#groupScreen creation {
+    overflow:hidden;
 }
 .groupMarker {
     width:150px;
@@ -20,6 +25,7 @@
     cursor:pointer;
     border-radius:5px;
 }
+
 .groupMarker > img {
     width:93.5px;
     height:74.5px;
@@ -87,6 +93,7 @@
     color:white;
     width:95%;
     float:left;
+    font-weight:bold;
 }
 .folderListDivider {
     width:95%;

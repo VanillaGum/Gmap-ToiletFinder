@@ -2,6 +2,7 @@ import org.primefaces.context.RequestContext;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import java.util.List;
 
 @ManagedBean
 public class PersonalMapController {
@@ -39,12 +40,23 @@ public class PersonalMapController {
 //        }
 //    }
     public void displayFolders() {
-        for(FolderData f: pme.getUserFolders()) {
-            //Display Folders In HTML
-            folderId = f.getFolderId();
-            String script = "addFolder(" + f.getFolderId() + ", \"" + f.getUser_name() +" \", \""+ f.getFolderName() + " \")";
+        List<FolderData> sponsorFolders = pme.getUserFolders();
+        if (sponsorFolders.size() > 1) {
+            String script = "addDivider(\"Sponsor's Folder\",\"sponsorFolder\")";
             RequestContext.getCurrentInstance().execute(script);
         }
+        for(FolderData f: sponsorFolders) {
+            //Display Folders In HTML
+            folderId = f.getFolderId();
+            String script = "addFolder(" + f.getFolderId() + ", \"" + f.getUser_name() +" \", \""+ f.getFolderName() + " \" , 0)";
+            RequestContext.getCurrentInstance().execute(script);
+        }
+        List<FolderData> userFolders = pme.getUserFolders();
+        String userSection = "addDivider(\"User's Folder\",\"userFolder\")";
+        RequestContext.getCurrentInstance().execute(userSection);
+
+        String addFolder = "addNewGroupFolder()";
+        RequestContext.getCurrentInstance().execute(addFolder);
     }
 
     public int getFolderId() {
