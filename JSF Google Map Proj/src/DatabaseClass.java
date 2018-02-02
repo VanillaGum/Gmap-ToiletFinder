@@ -32,6 +32,9 @@ public class DatabaseClass {
         userLevel = uc.getUserLevel();
     }
 
+
+
+//    Toilet Section
     public int suggestToiletLoc(MarkerData m) {
         try {
             System.out.println("Adding Toilet");
@@ -338,4 +341,27 @@ public class DatabaseClass {
         }
         return null;
     }
+
+
+//    Personal Map Section
+    public List<FolderData> getFolders() {
+        try {
+        List<FolderData> fdL = new ArrayList<>();
+        PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders");
+        ResultSet folderRS = getFolders.executeQuery();
+        while (folderRS.next()) {
+            FolderData fd = new FolderData(
+                    folderRS.getInt("id"),
+                    "Empty",
+                    folderRS.getString("folder_name")
+            );
+            fdL.add(fd);
+        }
+        return fdL;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

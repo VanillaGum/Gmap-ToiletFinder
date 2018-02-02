@@ -1,4 +1,4 @@
-.groupDisplay {
+#groupScreen {
     width:60%;
     height:70%;
     background:#4abdac;
@@ -10,7 +10,7 @@
 }
 .groupMarker {
     width:150px;
-    height:195px;
+    height:215px;
     background: #FCF6B1;
     text-align:center;
     margin-left:20px;
@@ -26,31 +26,77 @@
     margin-top:5px;
 }
 .groupMarker > p {
+    margin-bottom:0px;
     font-weight:bold;
     font-size:25px;
     color:#585858;
     width:100%;
     word-wrap:break-word;
 }
-
+.group-unselected {
+    visibility: hidden;
+}
+.group-selected {
+    visibility: visible;
+}
+.group
 /*Custom Scrollbar By Devstreak*/
 /*Done by Devstreak*/
-#style-5::-webkit-scrollbar-track
+#groupScreen::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     background-color: #F5F5F5;
 }
 
-#style-5::-webkit-scrollbar
+#groupScreen::-webkit-scrollbar
 {
     width: 10px;
     background-color: #F5F5F5;
 }
 
-#style-5::-webkit-scrollbar-thumb
+#groupScreen::-webkit-scrollbar-thumb
 {
     background-color: #0ae;
     background-image: -webkit-gradient(linear, 0 0, 0 100%,
     color-stop(.5, rgba(255, 255, 255, .2)),
     color-stop(.5, transparent), to(transparent));
+}
+
+.importButton {
+    width:100px;
+    background-color: #576369; !important;
+    border-radius:15px; !important;
+    border: 2px solid #576369; !important;
+    color: white; !important;
+    font-size: 15px; !important;
+    font-weight: bold; !important;
+    margin-bottom:30px;!important;
+    text-align:center; !important;
+    cursor: pointer; !important;
+    margin-left:23px;
+}
+.importButton:hover {
+    background-color: #494c4e;
+    color: white;
+}
+.folderListTitle {
+    font-size:30px;
+    margin-left:3%;
+    margin-bottom:10px;
+    margin-top:25px;
+    color:white;
+    width:95%;
+    float:left;
+}
+.folderListDivider {
+    width:95%;
+    margin-left:2.5%;
+    border:2px solid white;
+    margin-bottom:10px;
+    float:left;
+}
+.folderListContainer {
+    width:95%;
+    margin-left:2.5%;
+    float:left;
 }
