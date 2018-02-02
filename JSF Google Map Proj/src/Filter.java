@@ -1,10 +1,12 @@
 import org.primefaces.context.RequestContext;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.List;
+
+import static java.lang.Double.parseDouble;
 
 @ViewScoped
 @ManagedBean
@@ -14,23 +16,29 @@ public class Filter implements Serializable {
     private boolean female;
     private int rating;
     private boolean wheelchairAccessible;
-    private Boolean needToPay;
+    private boolean needToPay;
+    private int radius;
 
     private MapController mc = new MapController();
     private DatabaseClass dbc = new DatabaseClass();
+    private double computedDistance;
 
     public Filter() {
         this.male = false;
         this.female = false;
         this.rating = 5;
         this.wheelchairAccessible = false;
+        this.needToPay = false;
+        this.radius = 100000;
     }
 
-    public Filter(boolean male, boolean female, int rating, boolean wheelchairAccessible) {
+    public Filter(boolean male, boolean female, int rating, boolean wheelchairAccessible, boolean needToPay, int radius) {
         this.male = male;
         this.female = female;
         this.rating = rating;
         this.wheelchairAccessible = wheelchairAccessible;
+        this.needToPay = needToPay;
+        this.radius = radius;
     }
 
     public boolean isMale() {
@@ -65,24 +73,41 @@ public class Filter implements Serializable {
         this.wheelchairAccessible = wheelchairAccessible;
     }
 
-    public void setNeedToPay(Boolean needToPay) {
+    public void setNeedToPay(boolean needToPay) {
         this.needToPay = needToPay;
     }
 
-    public Boolean getNeedToPay() {
+    public boolean getNeedToPay() {
         return needToPay;
     }
 
-    public int searchByFilter() {
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setComputedDistance(double computedDistance) {
+        this.computedDistance = computedDistance;
+    }
+
+    public double getComputedDistance() {
+        return computedDistance;
+    }
+
+    public int searchByFilter() throws InterruptedException {
         if (!validateFilter()) // Check to see if at least one gender is selected
             return 1; // It's a nope
 
         List<MarkerData> md = dbc.getApprovedToiletMarkers(); // Load toilets from database
+        md.addAll(dbc.getRequestedToiletMarkers());
 
         mc.resetMarkerList();
         for (int i = 0; i < md.size(); i++) {
             while (true) {
-                System.out.println("genderM " + md.get(i).getGenderM() + " avgRating " + md.get(i).getAvg_rating() + " Wheelchair " + md.get(i).getWheelchair() + " needToPay " + md.get(i).getCost());
+                //System.out.println("genderM " + md.get(i).getGenderM() + " avgRating " + md.get(i).getAvg_rating() + " Wheelchair " + md.get(i).getWheelchair() + " needToPay " + md.get(i).getCost());
                 int gender;
                 if (male)
                     if (female)
@@ -91,6 +116,13 @@ public class Filter implements Serializable {
                         gender = 1; // Male is checked
                 else
                     gender = 0; // Female is checked
+
+                RequestContext.getCurrentInstance().execute("calculateDistance(" + md.get(i).getLatlng().getLat() + ", " + md.get(i).getLatlng().getLng() + ")");
+
+                System.out.println(computedDistance);
+
+                //System.out.println(md.get(i).getLatlng().toString());
+
                 if (gender == 1) {
                     if (!(md.get(i).getGenderM() >= 1)) // Are there no male toilets?
                         break; // The place doesn't have male toilets. Stop processing and move on to the next entry.
@@ -132,5 +164,11 @@ public class Filter implements Serializable {
     public void resetFilter() {
         mc.resetMarkerList();
         mc.displayMarkersList(dbc.getApprovedToiletMarkers());
+        mc.displayMarkersList(dbc.getRequestedToiletMarkers());
     }
+
+    public void saveComputedDistance() {
+        this.computedDistance = parseDouble(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("distance"));
+    }
+
 }

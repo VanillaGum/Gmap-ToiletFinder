@@ -103,3 +103,79 @@ function closeFilter() {
 function callFilterSearch() {
     filterSearch();
 }
+
+function getCurrentUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var curPos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+        }, function() {
+            handleLocationError(true);
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false);
+    }
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    alert(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
+}
+
+function rad(x) {
+    return x * Math.PI / 180;
+};
+
+/*function calculateDistance(p2) {
+    p1 = getCurrentUserLocation();
+    var R = 6378137; // Earth’s mean radius in meter
+    var dLat = rad(p2.lat() - p1.lat());
+    var dLong = rad(p2.lng() - p1.lng());
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+        Math.sin(dLong / 2) * Math.sin(dLong / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    document.getElementById("computedDistance").value = d; // returns the distance in meter
+};*/
+
+function calculateDistance(markerLat, markerLng) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var p1 = new google.maps.LatLng({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                });
+
+            var p2 = new google.maps.LatLng({
+                lat: markerLat,
+                lng: markerLng
+            });
+
+            var R = 6378137; // Earth’s mean radius in meter
+            var dLat = rad(p2.lat() - p1.lat());
+            var dLong = rad(p2.lng() - p1.lng());
+            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+                Math.sin(dLong / 2) * Math.sin(dLong / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c;
+            console.log(d);
+            //document.getElementById("j_id1:javax.faces.ViewState:0").value = d; // returns the distance in meter
+
+            sendComputedDistance ([ {
+                name : 'distance',
+                value : d
+            } ]);
+        }, function() {
+            handleLocationError(true);
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false);
+    }
+}
