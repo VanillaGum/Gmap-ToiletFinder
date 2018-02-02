@@ -18,7 +18,9 @@ confirmationInfowindow1 = new google.maps.InfoWindow({
 confirmationInfowindow2 = new google.maps.InfoWindow({
     content: document.getElementById("confirmBox2")
 });
+Usermarker = null;
 $(function() {
+    resetDisplayed();
     mapdis = PF('mapDisplay').getMap();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -27,23 +29,46 @@ $(function() {
             var poslng = position.coords.longitude;
             mapdis.setCenter(new google.maps.LatLng(poslat, poslng));
             //Display Marker At User Position
-            var marker = new google.maps.Marker({
+             Usermarker = new google.maps.Marker({
                 position:{lat:poslat,lng:poslng},
                 map:mapdis,
                 title:"User Loc",
-                icon:"images/toilet_male.png"
+                icon:"images/toilet_male.png",
+                 zIndex: -99999999
             });
         });
     }
     drawMapUi();
 });
 function setMarkerAddType(num) {
+    document.getElementById("CancelAddToilet").className = "show";
     if (num == 1) {
-        addToiletLoc();
+        if (navigator.geolocation) {
+            addCurrentLocMarker();
+        }else {
+            alert("No Geolocaton Detected, Switching To Selection Add");
+            addMarker = 2;
+        }
     }else {
         addMarker = 2;
     }
 }
+function addCurrentLocMarker() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        confirmationMarkerLat=position.coords.latitude;
+        confirmationMarkerLng= position.coords.longitude;
+        confirmationMarker = new google.maps.Marker( {
+            position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
+            map:mapdis
+        });
+        mapdis.setCenter(new google.maps.LatLng(confirmationMarkerLat,confirmationMarkerLng));
+        confirmationMarker.addListener('click', function() {
+            confirmationInfowindow.open(mapdis, confirmationMarker);
+        });
+        confirmationInfowindow.open(mapdis,confirmationMarker);
+    });
+}
+
 function addLocMarker(event) {
     if(addMarker == 2) {
         if (confirmationMarker == null) {
@@ -54,28 +79,12 @@ function addLocMarker(event) {
                 map:mapdis
             });
             mapdis.setCenter(new google.maps.LatLng(confirmationMarkerLat,confirmationMarkerLng));
-            switch(userLevel) {
-                case 0:
-                    confirmationMarker.addListener('click', function() {
-                        confirmationInfowindow.open(mapdis, confirmationMarker);
-                    });
-                    confirmationInfowindow.open(mapdis,confirmationMarker);
-                    break;
-                case 1:
-                    confirmationMarker.addListener('click', function() {
-                        confirmationInfowindow1.open(mapdis, confirmationMarker);
-                    });
-                    confirmationInfowindow1.open(mapdis,confirmationMarker);
-                    break;
-                case 2:
-                    confirmationMarker.addListener('click', function() {
-                        confirmationInfowindow2.open(mapdis, confirmationMarker);
-                    });
-                    confirmationInfowindow2.open(mapdis,confirmationMarker);
-                    break;
+            confirmationMarker.addListener('click', function() {
+                confirmationInfowindow.open(mapdis, confirmationMarker);
+            });
+            confirmationInfowindow.open(mapdis,confirmationMarker);
             }
         }
-    }
 }
 
 //Remove Toilet Suggestion Marker When Confirmed
@@ -103,6 +112,7 @@ function toiletSuggestionConfirmed() {
     if (gM == 1 || gF == 1) {
         tsubmit();
         resetInfoWindow();
+        document.getElementById("CancelAddToilet").className = "";
     }else {
         alert("Please select minimun 1 gender for creating toilet");
     }
@@ -113,6 +123,7 @@ function cancelLocMarker() {
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
+    document.getElementById("CancelAddToilet").className = "";
 }
 
 
@@ -157,13 +168,14 @@ function changeIconSelection(no) {
 
 //Reset InfoWindows
 function resetInfoWindow() {
-        document.getElementById("femaleIcon0").className = "fToilet femaleToiletSelectIcon-unselected";
-        document.getElementById("maleIcon0").className = "mToilet maleToiletSelectIcon-unselected";
-        var icon6Reset = document.getElementsByClassName("icon6");
-        icon6Reset[0].src = "images/wheelchair-neutral.png";
-        icon6Reset[0].className = "icon6 icon6-unselected";
-        var icon7Reset = document.getElementsByClassName("icon7");
-        icon7Reset[0].className = "icon7 icon7-unselected unselected";
+    confirmationInfowindow.open(mapdis,confirmationMarker);
+    document.getElementById("femaleIcon0").className = "fToilet femaleToiletSelectIcon-unselected";
+    document.getElementById("maleIcon0").className = "mToilet maleToiletSelectIcon-unselected";
+    var icon6Reset = document.getElementsByClassName("icon6");
+    icon6Reset[0].src = "images/wheelchair-neutral.png";
+    icon6Reset[0].className = "icon6 icon6-unselected";
+    var icon7Reset = document.getElementsByClassName("icon7");
+    icon7Reset[0].className = "icon7 icon7-unselected unselected";
     document.getElementById("formSubmitToilet:genderM").value = 0;
     document.getElementById("formSubmitToilet:genderF").value = 0;
     document.getElementById("formSubmitToilet:icon6").value = 0;
@@ -171,8 +183,17 @@ function resetInfoWindow() {
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
+    document.getElementById("CancelAddToilet").className = "";
     addMarker=0;
-
+}
+function resetInfoWindowCheck() {
+    if (confirmationMarker != null) {
+        alert("Not Null")
+        resetInfoWindow();
+    } else {
+        document.getElementById("CancelAddToilet").className = "";
+        addMarker=0;
+    }
 }
 
 
@@ -217,7 +238,7 @@ function goToUserLoc() {
         var poslat = position.coords.latitude;
         var poslng = position.coords.longitude;
         mapdis.setCenter(new google.maps.LatLng(poslat, poslng));
-        mapdis.setZoom(7);
+        mapdis.setZoom(14);
     });
 }
 //-End Of Map Ui-//
@@ -239,6 +260,7 @@ function displayApproved() {
         document.getElementById("displaySuggestedToilets").style.display = "block";
     }else {
         check.className = "left-controls-unselected";
+        document.getElementById("displaySuggestedToilets").style.display = "none";
     }
 }
 function displaySuggested() {

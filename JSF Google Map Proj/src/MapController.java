@@ -52,6 +52,11 @@ public class MapController implements Serializable{
             displaySuggestionMarkers();
         }
    }
+   public void resetDisplay() {
+       ml.setDisplayApproved(0);
+       ml.setDisplaySuggestion(0);
+       resetMarkerList();
+   }
    public void displayApproved() {
         if (ml.getDisplayApproved() == 0) {
             ml.setDisplayApproved(1);

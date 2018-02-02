@@ -12,13 +12,47 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIhNGkh_sKo3rekCxuwz4ZQhlBZmM5UM0&amp;libraries=places">
     </script>
     <link rel="stylesheet" type="text/css" href="resources/css/MapPage.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/PersonalMap.css"/>
     <link rel="stylesheet" type="text/css" href="resources/css/ControlsStyling.css"/>
     <link rel="stylesheet" type="text/css" href="resources/css/InfoWindow.css"/>
 </h:head>
 
 <h:body>
-    <div id="greyOverlay" class="unselected-Overlay">
+    <!--Change To Unselected When Done-->
+    <div id="greyOverlay" class="selected-Overlay">
+        <div style="width:60%;height:70%;background:white;top:10%;left:20%;position:absolute;overflow:scroll;">
+            <p style="font-size:30px;margin-left:3%;margin-bottom:10px;margin-top:25px;"><b>Sponsors</b></p>
+            <div style="width:95%;margin-left:2.5%;border:2px solid black;margin-bottom:10px;"></div>
+            <div style="width:95%;margin-left:2.5%;">
+                <div class="groupMarker">
+                    <img alt="folder" src="images/folder.png"></img>
+                    <p>Macdonalds Chains</p>
+                </div>
+                <!--Copy Paste-->
+                <div class="groupMarker">
+                    <img alt="folder" src="images/folder.png"></img>
+                    <p>Macdonalds Chains</p>
+                </div>
+                <div class="groupMarker">
+                    <img alt="folder" src="images/folder.png"></img>
+                    <p>Macdonalds Chains</p>
+                </div>
+                <div class="groupMarker">
+                    <img alt="folder" src="images/folder.png"></img>
+                    <p>Macdonalds Chains</p>
+                </div>
+                <div class="groupMarker">
+                    <img alt="folder" src="images/folder.png"></img>
+                    <p>Macdonalds Chains</p>
+                </div>
+                <div class="groupMarker">
+                    <img alt="folder" src="images/folder.png"></img>
+                    <p>Macdonalds Chains</p>
+                </div>
 
+
+            </div>
+        </div>
     </div>
     <div id="homeBar" class="topbar">
         <h:outputLabel id="AppTitle">SG Essentials Map</h:outputLabel>
@@ -126,8 +160,6 @@
         </p:confirmDialog>
         </h:form>
     </div>
-
-
     </div>
 
     <!--Add Toilet Stuff-->
@@ -170,6 +202,8 @@
             <p:remoteCommand name="displayApprovedToilet" actionListener="#{mapController.displayApproved()}"/>
             <!--Display Suggestion Toilets-->
             <p:remoteCommand name="displaySuggestionToilet" actionListener="#{mapController.displaySuggestion()}"/>
+            <!--Reset Displayed-->
+            <p:remoteCommand name="resetDisplayed" actionListener="#{mapController.resetDisplay()}"/>
         </h:form>
     </div>
 
@@ -205,6 +239,9 @@
          </div>
       </div>
 
+
+    <div id="CancelAddToilet" onclick="resetInfoWindowCheck()">Cancel Adding Toilet</div>
+    <div id="showMessage"></div>
     <!--Displaying Toilet Suggestions-->
     <div style="display:none;">
 

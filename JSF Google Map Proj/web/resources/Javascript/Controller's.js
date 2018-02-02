@@ -387,12 +387,12 @@ function addReviewScreen(uniqueId) {
     var selected="selected-Overlay";
     var screen = '<div id="screen" class="middleDiv">' +
         '<div id="iconHolder">' +
-        '<img src="images/toilet.png" class="icon1 icon1-unselected" width="76.8" height="76.8" onclick="icon1()"/>' +
-        '<img src="images/garbage.png" class="icon2 icon2-unselected unselected" width="76.8" height="76.8" onclick="icon2()"/>' +
-        '<img src="images/slippery.png" class="icon3 icon3-unselected" width="76.8" height="76.8" onclick="icon3()"/>' +
-        '<img src="images/cockroach.png" class="icon4 icon4-unselected" width="60" height="60" style="padding:8.4px" onclick="icon4()"/>' +
-        '<img src="images/smelly.png" class="icon5 icon5-unselected" width="76.8" height="76.8" onclick="icon5()"/>' +
-        '<img src="images/faulty-unselected.png" class="icon8 icon8-unselected" width="76.8" height="76.8" onclick="icon8()" />' +
+        '<img src="images/toilet.png" title="Cleanliness Of Toilet" class="icon1 icon1-unselected" width="76.8" height="76.8" onclick="icon1()"/>' +
+        '<img src="images/garbage.png" title="Dirtiness Of Toilet" class="icon2 icon2-unselected unselected" width="76.8" height="76.8" onclick="icon2()"/>' +
+        '<img src="images/slippery.png" title="Slippery Floor In Toilet?" class="icon3 icon3-unselected" width="76.8" height="76.8" onclick="icon3()"/>' +
+        '<img src="images/cockroach.png" title="Any Insects Spotted In Toilet?" class="icon4 icon4-unselected" width="60" height="60" style="padding:8.4px" onclick="icon4()"/>' +
+        '<img src="images/smelly.png" title="Does the toilet smell?" class="icon5 icon5-unselected" width="76.8" height="76.8" onclick="icon5()"/>' +
+        '<img src="images/faulty-unselected.png" title="Does The Toilet Have Faulty Equipment?" class="icon8 icon8-unselected" width="76.8" height="76.8" onclick="icon8()" />' +
         '</div>' +
         '<div id="comment-section">' +
         '<p style="font-size:1.5em;margin-bottom:1%">Comments</p>' +
@@ -402,7 +402,6 @@ function addReviewScreen(uniqueId) {
         '</form>' +
         '</div>' +
         '<img id="closeIcon" src="images/close_icon.png" onclick="removeScreen()"/>' +
-        '<img id="helpIcon" width="30px" height="30px" style="margin-top:0.5%" src="images/help-unselected.png"/>' +
         '<p style="font-size:1.75em;margin-top:56%;margin-left:40%;position:absolute;" class="review-submit" onclick="ToiletReview('+uniqueId+')">' +
         '<b>Submit</b></p>'+
         '</div>';
@@ -560,6 +559,8 @@ function icon7() {
         if (cost != null && !isNaN(cost) && cost != "") {
             document.getElementById("formSubmitToilet:icon7").value = cost;
             iconElement[0].className = selected;
+        }else {
+            alert("Invalid Entry");
         }
     }else {
         //Currently Selected
