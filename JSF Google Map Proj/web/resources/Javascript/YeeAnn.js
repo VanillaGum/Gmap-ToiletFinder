@@ -59,8 +59,6 @@ function initialize() {
         infowindow.open(map, marker);
 
         map.setCenter(place.geometry.location)
-
-        alert("FOR DEBUGGING PURPORSES\n\n" + place.geometry.location) // FOR DEBUGGING PURPORSES
     });
 
     // Sets a listener on a radio button to change the filter type on Places
@@ -143,7 +141,7 @@ function rad(x) {
     document.getElementById("computedDistance").value = d; // returns the distance in meter
 };*/
 
-function calculateDistance(markerLat, markerLng) {
+function calculateDistance(i, markerLat, markerLng) {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             var p1 = new google.maps.LatLng({
@@ -170,7 +168,10 @@ function calculateDistance(markerLat, markerLng) {
             sendComputedDistance ([ {
                 name : 'distance',
                 value : d
-            } ]);
+            }, {
+                name : 'i',
+                value : i
+            }]);
         }, function() {
             handleLocationError(true);
         });

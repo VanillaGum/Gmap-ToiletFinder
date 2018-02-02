@@ -72,6 +72,7 @@
                 </h:panelGroup>
                 <h:outputText value="Rating:"/>
                 <h:selectOneRadio value="#{filter.rating}">
+                    <f:selectItem itemValue="0" itemLabel="0"/>
                     <f:selectItem itemValue="1" itemLabel="1"/>
                     <f:selectItem itemValue="2" itemLabel="2"/>
                     <f:selectItem itemValue="3" itemLabel="3"/>
@@ -85,9 +86,9 @@
                     <h:outputText value=" Include toilets that requires an entry fee" for="needtoPay"/>
                 </h:panelGroup>
             </h:panelGrid>
-            <p:remoteCommand name="filterSearch" actionListener="#{filter.searchByFilter}" style="display: none;"/>
+            <p:remoteCommand name="filterSearch" actionListener="#{filter.searchByFilterStep1}" style="display: none;"/>
             <p:remoteCommand name="filterReset" actionListener="#{filter.resetFilter}" style="display: none;"/>
-            <p:remoteCommand name="sendComputedDistance" actionListener="#{filter.saveComputedDistance}" style="display: none;"/>
+            <p:remoteCommand name="sendComputedDistance" actionListener="#{filter.searchByFilterStep2}" style="display: none;"/>
         </h:form>
         <button id="rightButton" onclick="closeFilter()">Cancel</button>
         <button id="rightButton" onclick="callFilterSearch()">Search</button>

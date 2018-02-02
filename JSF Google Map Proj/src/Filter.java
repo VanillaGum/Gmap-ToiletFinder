@@ -97,7 +97,7 @@ public class Filter implements Serializable {
         return computedDistance;
     }
 
-    public int searchByFilter() throws InterruptedException {
+    public int searchByFilterStep1() {
         if (!validateFilter()) // Check to see if at least one gender is selected
             return 1; // It's a nope
 
@@ -106,49 +106,13 @@ public class Filter implements Serializable {
 
         mc.resetMarkerList();
         for (int i = 0; i < md.size(); i++) {
-            while (true) {
-                //System.out.println("genderM " + md.get(i).getGenderM() + " avgRating " + md.get(i).getAvg_rating() + " Wheelchair " + md.get(i).getWheelchair() + " needToPay " + md.get(i).getCost());
-                int gender;
-                if (male)
-                    if (female)
-                        gender = 2; // Male and Female are both checked
-                    else
-                        gender = 1; // Male is checked
-                else
-                    gender = 0; // Female is checked
 
-                RequestContext.getCurrentInstance().execute("calculateDistance(" + md.get(i).getLatlng().getLat() + ", " + md.get(i).getLatlng().getLng() + ")");
+            RequestContext.getCurrentInstance().execute("calculateDistance(" + i + ", " + md.get(i).getLatlng().getLat() + ", " + md.get(i).getLatlng().getLng() + ")");
 
-                System.out.println(computedDistance);
-
-                //System.out.println(md.get(i).getLatlng().toString());
-
-                if (gender == 1) {
-                    if (!(md.get(i).getGenderM() >= 1)) // Are there no male toilets?
-                        break; // The place doesn't have male toilets. Stop processing and move on to the next entry.
-                } else if (gender == 0) {
-                    if (md.get(i).getGenderM() == 1) // Are there no female toilets?
-                        break; // The place doesn't have female toilets. Stop processing and move on to the next entry.
-                }
-
-                if (!(md.get(i).getAvg_rating() >= rating)) // Does the rating not meet the minimum rating requirements set out by the user?
-                    break; // Rating lower than minimum. Stop processing and move on to the next entry.
-
-                if (wheelchairAccessible) // Is the wheelchair accessible box ticked?
-                    if (md.get(i).getWheelchair() == 0) // Is the toilet not wheelchair friendly?
-                        break; // Not wheelchair friendly. Stop processing and move on to the next entry.
-
-                if (!needToPay) // Is the entry fee checkbox unchecked?
-                    if (!(md.get(i).getCost() == 0.00)) // Is the toilet not free?
-                        break; // Yes. Stop processing and move on to the next entry.
-
-                // rc.execute("addFilterMarker(" + md.get(i).getLatlng().getLat() + ", " + md.get(i).getLatlng().getLng() + ", " + md.get(i).getTitle() + ")");
-                mc.displaySingleMarker(md.get(i));
-                break;
-            }
-            RequestContext.getCurrentInstance().execute("map.setCenter({lat: 1.350416667, lng: 103.82193194})");
-            RequestContext.getCurrentInstance().execute("map.setZoom(12)");
         }
+        RequestContext.getCurrentInstance().execute("map.setCenter({lat: 1.350416667, lng: 103.82193194})");
+        RequestContext.getCurrentInstance().execute("map.setZoom(12)");
+
         return 0;
     }
 
@@ -167,8 +131,48 @@ public class Filter implements Serializable {
         mc.displayMarkersList(dbc.getRequestedToiletMarkers());
     }
 
-    public void saveComputedDistance() {
+    public void searchByFilterStep2() {
+        List<MarkerData> md = dbc.getApprovedToiletMarkers(); // Load toilets from database
+        md.addAll(dbc.getRequestedToiletMarkers());
+
         this.computedDistance = parseDouble(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("distance"));
+        int i = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("i"));
+
+        while (true) {
+            int gender;
+            if (male)
+                if (female)
+                    gender = 2; // Male and Female are both checked
+                else
+                    gender = 1; // Male is checked
+            else
+                gender = 0; // Female is checked
+            if (gender == 1) {
+                if (!(md.get(i).getGenderM() >= 1)) // Are there no male toilets?
+                    break; // The place doesn't have male toilets. Stop processing and move on to the next entry.
+            } else if (gender == 0) {
+                if (md.get(i).getGenderM() == 1) // Are there no female toilets?
+                    break; // The place doesn't have female toilets. Stop processing and move on to the next entry.
+            }
+
+            if (!(md.get(i).getAvg_rating() >= rating)) // Does the rating not meet the minimum rating requirements set out by the user?
+                break; // Rating lower than minimum. Stop processing and move on to the next entry.
+
+            if (wheelchairAccessible) // Is the wheelchair accessible box ticked?
+                if (md.get(i).getWheelchair() == 0) // Is the toilet not wheelchair friendly?
+                    break; // Not wheelchair friendly. Stop processing and move on to the next entry.
+
+            if (!needToPay) // Is the entry fee checkbox unchecked?
+                if (!(md.get(i).getCost() == 0.00)) // Is the toilet not free?
+                    break; // Yes. Stop processing and move on to the next entry.
+
+            if (this.computedDistance > radius) // Is the toilet outside the selected radius?
+                break; // Yes, so stop processing and move on to the next entry.
+
+            // rc.execute("addFilterMarker(" + md.get(i).getLatlng().getLat() + ", " + md.get(i).getLatlng().getLng() + ", " + md.get(i).getTitle() + ")");
+            mc.displaySingleMarker(md.get(i));
+            break;
+        }
     }
 
 }
