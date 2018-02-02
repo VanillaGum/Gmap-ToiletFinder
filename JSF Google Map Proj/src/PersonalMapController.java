@@ -10,6 +10,7 @@ public class PersonalMapController {
     public int folderId =0;
     public String folderUser ="";
     public String folderName = "";
+    public int folderType = -1;
     @PostConstruct
     public void init() {
         pme = new PersonalMapEntity();
@@ -82,4 +83,8 @@ public class PersonalMapController {
     public void setFolderName(String folderName) {
         this.folderName = folderName;
     }
+
+    public int getFolderType() { return folderType; }
+
+    public void setFolderType(int folderType) { this.folderType = folderType; }
 }

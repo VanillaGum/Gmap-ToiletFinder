@@ -290,7 +290,7 @@ public class DatabaseClass {
     public List<MarkerData> getApprovedToiletMarkers() {
         try {
             List<MarkerData> mList= new ArrayList<>();
-            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet t INNER JOIN toilet_info ti ON ti.toilet_id = t.id;");
+            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet t INNER JOIN toilet_info ti ON ti.toilet_id = t.id; WHERE removal_flags < 6;");
             ResultSet toilets = getToilets.executeQuery();
             while(toilets.next()) {
                 //Toilet Table
@@ -317,7 +317,7 @@ public class DatabaseClass {
     public List<MarkerData> getRequestedToiletMarkers() {
         try {
             List<MarkerData> mList= new ArrayList<>();
-            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet_request tr INNER JOIN toilet_request_info tri ON tri.toilet_request_id = tr.id ;");
+            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet_request tr INNER JOIN toilet_request_info tri ON tri.toilet_request_id = tr.id WHERE removal_flags < 6;");
             ResultSet toilets = getToilets.executeQuery();
             while(toilets.next()) {
                 //Toilet Request Table

@@ -254,7 +254,7 @@ function createFolderP2() {
         '                <div class="folderListDivider"></div>\n' +
         '                    <div class="testHeader">\n' +
         '                        Infowindow 1\n' +
-        '                        <div class="infowindowChoose">Select</div>\n' +
+        '                        <div class="infowindowChoose" onclick="finishFolderP2(1)">Select</div>\n' +
         '                    </div>\n' +
         '                    <div class="testInfoWindowContainer">\n' +
         '                        <div id="testInfoWindow1" class="testWindows">\n' +
@@ -272,7 +272,7 @@ function createFolderP2() {
         '                    <!--Window 2-->\n' +
         '                    <div class="testHeader">\n' +
         '                        Infowindow 2\n' +
-        '                        <div class="infowindowChoose">Select</div>\n' +
+        '                        <div class="infowindowChoose" onclick="finishFolderP2(2)">Select</div>\n' +
         '                    </div>\n' +
         '                    <div class="testInfoWindowContainer">\n' +
         '                        <div id="testInfoWindow2" class="testWindows">\n' +
@@ -294,7 +294,7 @@ function createFolderP2() {
         '                    <!--Window 3-->\n' +
         '                    <div class="testHeader">\n' +
         '                        Infowindow 3\n' +
-        '                        <div class="infowindowChoose">Select</div>\n' +
+        '                        <div class="infowindowChoose" onclick="finishFolderP2(3)">Select</div>\n' +
         '                    </div>\n' +
         '                    <div class="testInfoWindowContainer">\n' +
         '                        <div id="testInfoWindow3" class="testWindows">\n' +
@@ -338,7 +338,7 @@ function createFolderP2() {
         '                    <!--Window 4-->\n' +
         '                    <div class="testHeader">\n' +
         '                        Infowindow 4\n' +
-        '                        <div class="infowindowChoose">Select</div>\n' +
+        '                        <div class="infowindowChoose" onclick="finishFolderP2(4)">Select</div>\n' +
         '                    </div>\n' +
         '                    <div class="testInfoWindowContainer">\n' +
         '                        <div id="testInfoWindow4" class="testWindows">\n' +
@@ -347,4 +347,16 @@ function createFolderP2() {
         '                        </div>\n' +
         '                    </div>';
     screen.innerHTML = str;
+}
+
+function finishFolderP2(typeNo){
+    if(confirm("Use This Infowindow " + typeNo + "?")) {
+            document.getElementById("formSubmitToilet:folderType").value = typeNo;
+            var screen = document.getElementById("groupScreen");
+            while (screen.firstChild) {
+                screen.removeChild(screen.firstChild);
+            }
+            screen.className = "group-unselected";
+            document.getElementById("greyOverlay").className = "unselected-Overlay";
+    }
 }
