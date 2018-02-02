@@ -24,65 +24,64 @@
             <p class="folderListTitle"><b>Sponsors</b> </p>
 
             <div class="folderListDivider"/>
-                <div class="folderListContainer">
-                    <div class="groupMarker" title="By Macdonalds">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p> <br/>
-                    <div class="importButton">Import</div>
-                    </div>
-                    <!--Copy Paste-->
-                    <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                    </div>
-                    <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                    </div>
-                    <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                    </div>
-                    <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                    </div>
-                    <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                    </div>
+                <div id="sponsors" class="folderListContainer">
+                    <!--<div class="groupMarker" title="By Macdonalds">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p> <br/>-->
+                    <!--<div class="importButton">Import</div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;Copy Paste&ndash;&gt;-->
+                    <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                    <!--</div>-->
+                    <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                    <!--</div>-->
+                    <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                    <!--</div>-->
+                    <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                    <!--</div>-->
+                    <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                    <!--</div>-->
                 </div>
-            <p class="folderListTitle"><b>Personal Folders</b></p>
-            <div class="folderListDivider"/>
-            <div class="folderListContainer">
-                <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                </div>
-                <!--Copy Paste-->
-                <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                </div>
-                <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                </div>
-                <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                </div>
-                <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                </div>
-                <div class="groupMarker">
-                    <img alt="folder" src="images/folder.png"></img>
-                    <p>Macdonalds Chains</p>
-                </div>
+            <!--<p class="folderListTitle"><b>Personal Folders</b></p>-->
+            <!--<div class="folderListDivider"/>-->
+            <!--<div class="folderListContainer">-->
+                <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;Copy Paste&ndash;&gt;-->
+                <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                <!--</div>-->
+                <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                <!--</div>-->
+                <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                <!--</div>-->
+                <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                <!--</div>-->
+                <!--<div class="groupMarker">-->
+                    <!--<img alt="folder" src="images/folder.png"></img>-->
+                    <!--<p>Macdonalds Chains</p>-->
+                <!--</div>-->
             </div>
         </div>
-    </div>
     <div id="homeBar" class="topbar">
         <h:outputLabel id="AppTitle">SG Essentials Map</h:outputLabel>
         <h:graphicImage value="images/search_icon.png" styleClass="barfunct" onclick="openSearch()"></h:graphicImage>
@@ -214,6 +213,10 @@
             <h:inputHidden id="icon8" value="#{mapController.icon8}"/>
             <h:inputHidden id="comments" value="#{mapController.comments}"/>
             <h:inputHidden id="uniqueId" value="#{mapController.uniqueId}"/>
+
+            <h:inputHidden id="folderId" value="#{personalMapController.folderId}"/>
+            <h:inputHidden id="folderUser" value="#{personalMapController.folderUser}"/>
+            <h:inputHidden id="folderName" value="#{personalMapController.folderName}"/>
             <!--End-->
 
             <!--Was In Command Button Temp Removed-->
@@ -233,6 +236,8 @@
             <p:remoteCommand name="displaySuggestionToilet" actionListener="#{mapController.displaySuggestion()}"/>
             <!--Reset Displayed-->
             <p:remoteCommand name="resetDisplayed" actionListener="#{mapController.resetDisplay()}"/>
+            <!--Display Folders-->
+            <p:remoteCommand name="displayFoldersControl" actionListener="#{personalMapController.displayFolders}"/>
         </h:form>
     </div>
 
