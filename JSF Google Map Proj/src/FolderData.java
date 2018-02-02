@@ -5,6 +5,7 @@ public class FolderData {
 
     private String folderName;
 
+    private String windowType;
     public FolderData() {
     }
 
