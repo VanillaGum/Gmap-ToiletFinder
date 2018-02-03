@@ -18,6 +18,9 @@ public class PersonalMapEntity {
         currentFolder.setFolderId(folderId);
         dc.getFolderMarkers(folderId);
     }
+    public void addMarker(PersonalMapMarker pmm) {
+        dc.addMarker(pmm);
+    }
     public void createFolderDatabase() {
         dc.createFolder();
     }

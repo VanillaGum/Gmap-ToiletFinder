@@ -139,7 +139,7 @@
 }
 .infoWindow1 {
     width:380px;
-    height:230px;
+    height:250px;
 }
 #testInfoWindow2 {
     width:450px;
@@ -147,10 +147,10 @@
 }
 #testInfoWindow3 {
     width:450px;
-    height:226px;
+    height:247px;
 }
 #testInfoWindow4 {
-    width:400px;
+    width:380px;
 }
 .testWindows {
     background:white;
@@ -167,7 +167,15 @@
     position:relative;
     margin-bottom:10px;
 }
+.infowWindows3 {
+    width: 450px;
+    height: 260px;
+}
 #testIWTitle1 {
+    width:360px;
+    height:34px;
+}
+.IWTitle1 {
     width:360px;
     height:34px;
 }
@@ -192,8 +200,10 @@
     margin-bottom:2px;
 }
 .testDesc {
+    font-size:18px;
     margin-left:5px;
-    overflow: hidden;
+    overflow: auto;
+    overflow-x :hidden;
     border-top:2px solid black;
 }
 .testTA1 {
@@ -208,6 +218,9 @@
 .testTA3 {
     width:200px;
     height:158px;
+    color:black;
+    border-bottom: 2px solid black;
+    font-weight: normal;
 }
 
 .testInfoWindowContainer {
@@ -227,6 +240,15 @@
     /*vetical-align: middle;*/
     float: right;
     right:40px;
+    top:40px;
+    position:absolute;
+}
+.imageInfowindow2 {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    text-align: center;
+    float: right;
     top:40px;
     position:absolute;
 }
@@ -272,10 +294,10 @@
     height: 30px;
     text-align: center;
     float: right;
-    right: 5px;
     top: 205px;
+    margin-left: 80%;
     position: absolute;
-    opacity:0.7;
+    opacity: 0.7;
 }
 .personalDeleteButton:hover {
     opacity: 1;
@@ -284,18 +306,21 @@
     width: 30px;
     height: 30px;
     text-align: center;
-    float: right;
-    right: 345px;
+    /* float: right; */
+    /* right: 345px; */
     top: 205px;
     position: absolute;
     opacity: 0.7;
 }
-.personalEditButton:hover {
-    opacity: 1;
+.edit-selected {
+    opacity:1;
+}
+.delete-selected {
+    opacity:1;
 }
 
 .testCloseButton:hover {
-    opacity:0.7;
+    opacity:1;
 }
 .testHeader {
     font-size:30px;
@@ -360,3 +385,4 @@
     background-color: #84BE44;
     color:white;
 }
+.

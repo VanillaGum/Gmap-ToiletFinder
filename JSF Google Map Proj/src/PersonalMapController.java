@@ -1,4 +1,5 @@
 import org.primefaces.context.RequestContext;
+import org.primefaces.model.map.LatLng;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -38,17 +39,16 @@ public class PersonalMapController {
         for (PersonalMapMarker m:pmmList) {
             RequestContext.getCurrentInstance().execute(
                     "var infowindowP"+m.getUniqueNo()+" = new google.maps.InfoWindow({" +
-                            "   content: " +  //Fill In Content Methood Here
+                            "   content: returnPersonalWindow("+fd.getWindowType()+","+m.getUniqueNo()+","+m.getField1()+","+m.getField2()+")" +  //Fill In Content Methood Here
                             "});" +
                             "newPMarker"+m.getUniqueNo()+" = " +
                             "new google.maps.Marker({ " +
                             "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
-                            "map:PF('mapDisplay').getMap()," +
-                            "icon:'"+m.getImage()+"'});" +
-                            "newMarker"+m.getRandomId()+".addListener('click',function() {" +
-                            "   infowindow"+m.getRandomId()+".open(map,newMarker"+m.getRandomId()+");" +
+                            "map:PF('mapDisplay').getMap()});" +
+                            "newPMarker"+m.getUniqueNo()+".addListener('click',function() {" +
+                            "   infowindowP"+m.getUniqueNo()+".open(map,newPMarker"+m.getUniqueNo()+");" +
                             "});"
-                            + "markers.push(newMarker"+m.getRandomId()+");");
+                            + "markers.push(newPMarker"+m.getUniqueNo()+");");
         }
     }
     public void displayFolders() {
@@ -86,8 +86,14 @@ public class PersonalMapController {
     }
 
     public void addMarker() {
-        RequestContext.getCurrentInstance().execute("Adding Markers");
-        System.out.println("Adding Marker: " + lat + "|" + lng + "|" + field1 + "|" + field2);
+        PersonalMapMarker newPmm = new PersonalMapMarker();
+        newPmm.setField1(field1);
+        newPmm.setField2(field2);
+        field1 = "";
+        field2 = "";
+        LatLng loc = new LatLng(lat,lng);
+        newPmm.setLatlng(loc);
+        pme.addMarker(newPmm);
     }
 
     public int getFolderId() {

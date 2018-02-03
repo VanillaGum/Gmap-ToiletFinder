@@ -10,16 +10,37 @@ function createPersonalMarker(event) {
                 position: {lat: personalCreateMarkerLat, lng: personalCreateMarkerLng},
                 map: mapdis
             });
-            var windowType = 1;
+            var windowType =  document.getElementById("formSubmitToilet:folderType").value;
             var infoWindowContent = null;
-            switch (windowType) {
-                case 1:
+            mapdis.setCenter(new google.maps.LatLng(personalCreateMarkerLat,personalCreateMarkerLng));
+            var infowindowCreate = null
+            if (windowType == "1") {
+                infoWindowContent =
+                    '                        <div id="windowEdit" class="testWindows2 infoWindow1">\n' +
+                    '                            <div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>\n' +
+                    '                            <div id="editDesc1" class="testTA1 testDesc" contenteditable="true">Description</div>\n' +
+                    '                            <div class="testImageExample">\n' +
+                    '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>\n' +
+                    '                            </div>' +
+                    '            <div class="addToiletSubmit">\n' +
+                    '\n' +
+                    '               <button class="markerSubmit" onclick="saveInfoWindow()">Confirm</button>\n' +
+                    '               <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>\n' +
+                    '            </div>' +
+                    '                        </div>';
+                infowindowCreate = new google.maps.InfoWindow({
+                    content: infoWindowContent,
+                    maxwidth: 440,
+                    maxheight: 260
+                });
+            }else if(windowType == "2") {
                     infoWindowContent =
-                        '                        <div id="windowEdit" class="testWindows2 InfoWindow1">\n' +
-                        '                            <div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>\n' +
-                        '                            <div id="editDesc1" class="testTA1 testDesc" contenteditable="true">Description</div>\n' +
-                        '                            <div class="testImageExample">\n' +
-                        '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>\n' +
+                        '                            <div id="testIWTitle2" class="testIWTitle" contenteditable="true">Title</div>\n' +
+                        '                            <div id="editDesc2" class="testTA2 testDesc" contenteditable="true">Description</div>\n' +
+                        '                            <div id="setImg2" class="imageInfowindow2">\n' +
+                        '                            </div>\n' +
+                        '                            <div class="testRating">\n' +
+                        '                                <img width="160" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>\n' +
                         '                            </div>\n' +
                         '            <div class="addToiletSubmit">\n' +
                         '\n' +
@@ -27,16 +48,45 @@ function createPersonalMarker(event) {
                         '               <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>\n' +
                         '            </div>' +
                         '                        </div>';
-                    break;
-                case 2:
+                    infowindowCreate = new google.maps.InfoWindow({
+                        content: infoWindowContent,
+                        maxwidth:450,
+                        maxheight:260
+                    });
+            }else if (windowType == "3") {
+                var infoWindowContent = '                        <div class="infowWindows3">\n' +
+                    '                            <div id="testIWTitle3" class="testIWTitle" contenteditable="true">Title</div>\n' +
+                    '                            <div id="editDesc3" class="testTA3 testDesc" contenteditable="true">Description</div>\n' +
+                    '                            <div class="testReviewSectionTitle">Reviews</div>\n' +
+                    '                            <div class="testReviewSection">\n' +
+                    '                            </div>\n' +
+                    '                            <div class="testRating">\n' +
+                    '                                <img width="197" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>\n' +
+                    '                            </div>\n' +
+                    '            <div class="addToiletSubmit" style="margin-top:20px;">\n' +
+                    '\n' +
+                    '               <button class="markerSubmit" onclick="saveInfoWindow()">Confirm</button>\n' +
+                    '               <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>\n' +
+                    '            </div>' +
+                    '                        </div>';
+                infowindowCreate = new google.maps.InfoWindow({
+                    content: infoWindowContent,
+                    maxwidth:450,
+                    maxheight:260
+                });
+            }else {
+                infoWindowContent ='                            <div id="testIWTitle4" class="testIWTitle" contenteditable="true">Title</div>' +
+                    '                                    <div class="addToiletSubmit">' +
+                    '                                       <button class="markerSubmit" onclick="saveInfoWindow()">Confirm</button>' +
+                    '                                       <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>' +
+                    '                                    </div>';
+                infowindowCreate = new google.maps.InfoWindow({
+                    content: infoWindowContent,
+                    maxwidth:450,
+                    maxheight:2
+                });
             }
-            mapdis.setCenter(new google.maps.LatLng(personalCreateMarkerLat,personalCreateMarkerLng));
-            var infowindowCreate = new google.maps.InfoWindow({
-               content: infoWindowContent,
-                maxwidth:440,
-                maxheight:260
-            });
-            infowindowCreate.addListener('click', function() {
+            personalCreateMarker.addListener('click', function() {
                 infowindowCreate.open(mapdis, personalCreateMarker);
             });
             infowindowCreate.open(mapdis,personalCreateMarker);
@@ -400,8 +450,9 @@ function createFolderP2() {
         '                                <img width="197" height="34" src="images/5-stars-rating.png" title="Based On 10 Rating" alt="rating"></img>\n' +
         '                            </div>\n' +
         '                            <div class="testCloseButton">✖</div>\n' +
+        '                            <div class="testAddReview testButton" >Add Review</div>\n' +
         '                        </div>\n' +
-        '                    </div>\n' +
+        '                    </div>' +
         '\n' +
         '                    <div class="folderListDivider"></div>\n' +
         '                    <!--Window 4-->\n' +
@@ -437,16 +488,59 @@ function returnPersonalWindows() {
 }
 function saveInfoWindow() {
     var windowType =  document.getElementById("formSubmitToilet:folderType").value;
-    if (windowType == 1) {
+    document.getElementById("formSubmitToilet:pLat").value = personalCreateMarker.getPosition().lat();
+    document.getElementById("formSubmitToilet:pLng").value = personalCreateMarker.getPosition().lng();
+    if (windowType ==  "1") {
         document.getElementById("formSubmitToilet:field1").value = document.getElementById("testIWTitle1").innerHTML;
         document.getElementById("formSubmitToilet:field2").value = document.getElementById("editDesc1").innerHTML;
-        document.getElementById("formSubmitToilet:pLat").value = personalCreateMarker.getPosition().lat();
-        document.getElementById("formSubmitToilet:pLng").value = personalCreateMarker.getPosition().lng();
-
+    }else if (windowType == "2") {
+        document.getElementById("formSubmitToilet:field1").value = document.getElementById("testIWTitle2").innerHTML;
+        document.getElementById("formSubmitToilet:field2").value = document.getElementById("editDesc2").innerHTML;
+    }else if (windowType == "3") {
+        document.getElementById("formSubmitToilet:field1").value = document.getElementById("testIWTitle3").innerHTML;
+        document.getElementById("formSubmitToilet:field2").value = document.getElementById("editDesc3").innerHTML;
+    }else if (windowType == "4") {
+        document.getElementById("formSubmitToilet:field1").value = document.getElementById("testIWTitle4").innerHTML;
     }
+    personalMarkerStatus = 0;
+    personalCreateMarker.setMap(null);
+    personalCreateMarker = null;
     createPersonalMarkerz();
 }
 function removePersonalInfoWindow() {
     personalCreateMarker.setMap(null);
     personalCreateMarker = null;
+}
+
+function returnPersonalWindow (type, uniqueNo,field1, field2) {
+    if(type == 1) {
+        var contentRtn = '                        <div class="testWindows2 infoWindow1">' +
+            '                                              <div id="1Title'+uniqueNo+'" class="testIWTitle IWTitle1">'+field1+'</div>' +
+            '                                               <div id="1Desc+'+uniqueNo+'" class="testTA1 testDesc">'+field2+'</div>' +
+            '                                               <div class="testImageExample">' +
+            '                                                   <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
+            '                                               </div>' +
+            '                                               <img id="edit'+uniqueNo+'" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(1,'+uniqueNo+')"></img>' +
+            '                                               <img id="delete'+uniqueNo+'" lass="delete-unselected personalDeleteButton" src="images/delete-icon.png" onclick="deletePInfoWindow('+uniqueNo+')"></img>' +
+            '                                           </div>';
+    }
+}
+function editPInfoWindow(type, uniqueNo) {
+    var unselected = "edit-unselected personalEditButton";
+    var selected = "edit-selected personalEditButton"
+    var checkEdit = document.getElementById("edit"+uniqueNo);
+    if (checkEdit.className == "edit-unselected personalEditButton") {
+        //Unselected
+        if (type == 1) {
+            var docTitle = document.getElementById("1Title"+uniqueNo);
+            var docDesc = document.getElementById("1Desc"+uniqueNo);
+            docTitle.setEditable();
+            docDesc.setEditable();
+        }
+    }else {
+        //Selected
+    }
+}
+function deletePInfoWindow(uniqueNo) {
+
 }

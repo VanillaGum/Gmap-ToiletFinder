@@ -13,12 +13,19 @@ public class PersonalMapMarker extends MarkerData{
 
     private int id;
 
-    private String field1;
-    private String field2;
+    private String field1 = "";
+    private String field2 = "";
 
     private int uniqueNo;
 
     public PersonalMapMarker() {
+        PersonalMapList pml = PersonalMapList.getInstance();
+        this.uniqueNo = pml.getUniqueNo();
+    }
+
+    public PersonalMapMarker(String field1, String field2) {
+        this.field1 = field1;
+        this.field2 = field2;
         PersonalMapList pml = PersonalMapList.getInstance();
         this.uniqueNo = pml.getUniqueNo();
     }

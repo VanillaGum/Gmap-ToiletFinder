@@ -421,4 +421,28 @@ public class DatabaseClass {
             e.printStackTrace();
         }
     }
+    public void addMarker(PersonalMapMarker pmm) {
+        try {
+            PreparedStatement addMarker = conn.prepareStatement("INSERT INTO user_folder_markers (latitude, longitude, folder_id) VALUES (?,?,?)" , Statement.RETURN_GENERATED_KEYS);
+            addMarker.setDouble(1, pmm.getLatlng().getLat());
+            addMarker.setDouble(2, pmm.getLatlng().getLng());
+            PersonalMapList pml = PersonalMapList.getInstance();
+            FolderData fd = pml.getCurrentFolder();
+            addMarker.setInt(3, fd.getFolderId());
+            addMarker.executeUpdate();
+            ResultSet markerId = addMarker.getGeneratedKeys();
+            int newMarkerId = -1;
+            while (markerId.next()) {
+                newMarkerId = markerId.getInt(1);
+            }
+            PreparedStatement addMarkerInfo = conn.prepareStatement("INSERT INTO user_folder_marker_info (marker_id,field1,field2) VALUES (?,?,?)");
+            addMarkerInfo.setInt(1 , newMarkerId);
+            addMarkerInfo.setString(2, pmm.getField1());
+            addMarkerInfo.setString(3, pmm.getField2());
+            addMarkerInfo.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

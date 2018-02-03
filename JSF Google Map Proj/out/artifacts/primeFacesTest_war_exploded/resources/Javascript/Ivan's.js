@@ -36,6 +36,22 @@ $(function() {
                 icon:"images/toilet_male.png",
                  zIndex: -99999999
             });
+            var infoWindowContentz = '                        <div class="testWindows2 infoWindow1">' +
+                '                                              <div class="testIWTitle IWTitle1">Title</div>' +
+                '                                               <div class="testTA1 testDesc">Description</div>' +
+                '                                               <div class="testImageExample">' +
+                '                                                   <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
+                '                                               </div>' +
+                '                                               <img class="personalEditButton" src="images/edit-icon.png"></img>' +
+                '                                               <img class="personalDeleteButton" src="images/delete-icon.png"></img>' +
+                '                                           </div>';
+            var infowindowCreatez = new google.maps.InfoWindow({
+                content: infoWindowContentz
+            });
+            Usermarker.addListener('click', function() {
+                infowindowCreatez.open(mapdis, Usermarker);
+            });
+            infowindowCreatez.open(mapdis,Usermarker);
         });
     }
     drawMapUi();
