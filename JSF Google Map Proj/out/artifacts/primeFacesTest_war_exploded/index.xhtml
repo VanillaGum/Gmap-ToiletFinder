@@ -39,16 +39,16 @@
                         <!--<div class="infowindowChoose" onclick="finishFolderP2(1)">Select</div>-->
                     <!--</div>-->
                     <!--<div class="testInfoWindowContainer">-->
-                        <div id="testInfoWindow1" class="testWindows">
-                            <div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>
-                            <div class="testTA1 testDesc" contenteditable="true">Description</div>
-                            <div class="testImageExample">
-                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>
-                            </div>
-                            <!--<div class="testCloseButton">✖</div>-->
-                            <img class="personalEditButton" src="images/edit-icon.png" onclick="editPWindow()"></img>
-                            <img class="personalDeleteButton" src="images/delete-icon.png" ></img>
-                        </div>
+                        <!--<div id="testInfoWindow1" class="testWindows">-->
+                            <!--<div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>-->
+                            <!--<div class="testTA1 testDesc" contenteditable="true">Description</div>-->
+                            <!--<div class="testImageExample">-->
+                                <!--<img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;<div class="testCloseButton">✖</div>&ndash;&gt;-->
+                            <!--<img class="personalEditButton" src="images/edit-icon.png" onclick="editPWindow()"></img>-->
+                            <!--<img class="personalDeleteButton" src="images/delete-icon.png" ></img>-->
+                        <!--</div>-->
                     <!--</div>-->
 
 
@@ -315,6 +315,8 @@
             <p:remoteCommand name="displayFoldersControl" actionListener="#{personalMapController.displayFolders}"/>
             <!--Create Folders-->
             <p:remoteCommand name="createFolderBean" actionListener="#{personalMapController.createFolder}"/>
+            <!--Display Folder Markers-->
+            <p:remoteCommand name="displayFolderMarkerz" actionListener="#{personalMapController.getFolderMarker}"/>
             <!--Add Marker-->
             <p:remoteCommand name="createPersonalMarkerz" actionListener="#{personalMapController.addMarker}"/>
         </h:form>

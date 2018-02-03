@@ -39,7 +39,7 @@ public class PersonalMapController {
         for (PersonalMapMarker m:pmmList) {
             RequestContext.getCurrentInstance().execute(
                     "var infowindowP"+m.getUniqueNo()+" = new google.maps.InfoWindow({" +
-                            "   content: returnPersonalWindow("+fd.getWindowType()+","+m.getUniqueNo()+","+m.getField1()+","+m.getField2()+")" +  //Fill In Content Methood Here
+                            "   content: returnPersonalWindow("+fd.getWindowType()+","+m.getUniqueNo()+",\""+m.getField1()+"\",\""+m.getField2()+"\","+fd.getIsEditable()+")" +  //Fill In Content Methood Here
                             "});" +
                             "newPMarker"+m.getUniqueNo()+" = " +
                             "new google.maps.Marker({ " +
@@ -80,7 +80,7 @@ public class PersonalMapController {
         pme.createFolderDatabase();
     }
 
-    public void displayFolder() {
+    public void getFolderMarker() {
         pme.getFolderMarkers(folderId);
         displayFolderMarker();
     }

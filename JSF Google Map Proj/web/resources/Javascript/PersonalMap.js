@@ -185,7 +185,7 @@ function addNewGroupFolder() {
     paragraph.innerHTML= "Create New Folder";
     paragraph.style = "color:white;"
     var breakLine = document.createElement('br');
-    group.onclick= function() {createFolderP1()};
+
     group.append(img);
     group.append(paragraph);
     group.append(breakLine);
@@ -195,6 +195,7 @@ function addFolder(foldId, foldUser, foldName , type) {
     var group = document.createElement('div');
     group.className = "groupMarker";
     group.title = "By "+foldUser;
+    group.onclick = (function() {openFolder(foldId)});
     var img = document.createElement('img');
     img.src = "images/folder.png";
     img.alt = "Folder Icon";
@@ -512,18 +513,31 @@ function removePersonalInfoWindow() {
     personalCreateMarker = null;
 }
 
-function returnPersonalWindow (type, uniqueNo,field1, field2) {
+function returnPersonalWindow (type, uniqueNo,field1, field2, owner) {
+    var contentRtn1;
     if(type == 1) {
-        var contentRtn = '                        <div class="testWindows2 infoWindow1">' +
+        contentRtn1 = '                        <div class="testWindows2 infoWindow1">' +
             '                                              <div id="1Title'+uniqueNo+'" class="testIWTitle IWTitle1">'+field1+'</div>' +
-            '                                               <div id="1Desc+'+uniqueNo+'" class="testTA1 testDesc">'+field2+'</div>' +
+            '                                               <div id="1Desc'+uniqueNo+'" class="testTA1 testDesc">'+field2+'</div>' +
             '                                               <div class="testImageExample">' +
             '                                                   <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
-            '                                               </div>' +
-            '                                               <img id="edit'+uniqueNo+'" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(1,'+uniqueNo+')"></img>' +
-            '                                               <img id="delete'+uniqueNo+'" lass="delete-unselected personalDeleteButton" src="images/delete-icon.png" onclick="deletePInfoWindow('+uniqueNo+')"></img>' +
-            '                                           </div>';
+            '                                               </div>';
+    }else if(type == 2) {
+
+    }else if(type == 3) {
+    }else if(type == 4) {
     }
+
+    var contentRtn2
+    if (owner == 1) {
+        contentRtn2 =             '                                               <img id="edit'+uniqueNo+'" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(1,'+uniqueNo+')"></img>' +
+            '                                               <img id="delete'+uniqueNo+'" class="delete-unselected personalDeleteButton" src="images/delete-icon.png" onclick="deletePInfoWindow('+uniqueNo+')"></img>' +
+            '                                           </div>';
+    }else {
+        contentRtn2 = '</div>';
+    }
+    var contentRtn = contentRtn1.concat(contentRtn2);
+    return contentRtn;
 }
 function editPInfoWindow(type, uniqueNo) {
     var unselected = "edit-unselected personalEditButton";
@@ -531,16 +545,27 @@ function editPInfoWindow(type, uniqueNo) {
     var checkEdit = document.getElementById("edit"+uniqueNo);
     if (checkEdit.className == "edit-unselected personalEditButton") {
         //Unselected
-        if (type == 1) {
-            var docTitle = document.getElementById("1Title"+uniqueNo);
-            var docDesc = document.getElementById("1Desc"+uniqueNo);
-            docTitle.setEditable();
-            docDesc.setEditable();
-        }
+        checkEdit.className = selected;
+        var docTitle = document.getElementById(type+"Title"+uniqueNo);
+        var docDesc = document.getElementById(type+"Desc"+uniqueNo);
+        docTitle.contentEditable  = "true";
+        docDesc.contentEditable  = "true";
     }else {
         //Selected
+        checkEdit.className = unselected;
     }
 }
 function deletePInfoWindow(uniqueNo) {
 
+}
+function openFolder(folderId) {
+    var screen = document.getElementById("groupScreen");
+    while (screen.firstChild) {
+        screen.removeChild(screen.firstChild);
+    }
+    var overlay = document.getElementById("greyOverlay");
+    overlay.removeChild(screen);
+    overlay.className = "unselected-Overlay";
+    document.getElementById("formSubmitToilet:folderId").value = folderId;
+    displayFolderMarkerz();
 }

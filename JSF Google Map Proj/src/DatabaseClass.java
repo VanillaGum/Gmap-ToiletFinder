@@ -387,7 +387,7 @@ public class DatabaseClass {
         PersonalMapList pml = PersonalMapList.getInstance();
         try {
             FolderData fd = pml.getCurrentFolder();
-            PreparedStatement folderType = conn.prepareStatement("SELECT * FROM user_folder WHERE id = ?");
+            PreparedStatement folderType = conn.prepareStatement("SELECT * FROM user_folders WHERE id = ?");
             folderType.setInt(1, folderId);
             ResultSet folType = folderType.executeQuery();
             int markerType= 0;
@@ -396,11 +396,12 @@ public class DatabaseClass {
             }
 
             PreparedStatement getMarkers = conn.prepareStatement("SELECT * FROM user_folder_markers usm INNER JOIN user_folder_marker_info ufmi ON ufmi.marker_id = usm.id WHERE usm.folder_id =  ?;");
+            getMarkers.setInt(1, folderId);
             ResultSet markers = getMarkers.executeQuery();
             while (markers.next()) {
                 PersonalMapMarker pmm = new PersonalMapMarker();
                 if (markerType == 1) {
-                    LatLng ll = new LatLng(markers.getDouble("latitiude"), markers.getDouble("longitude"));
+                    LatLng ll = new LatLng(markers.getDouble("latitude"), markers.getDouble("longitude"));
                     pmm.setLatlng(ll);
                     pmm.setField1(markers.getString("field1"));
                     pmm.setField2(markers.getString("field2"));

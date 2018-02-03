@@ -36,22 +36,26 @@ $(function() {
                 icon:"images/toilet_male.png",
                  zIndex: -99999999
             });
-            // var infoWindowContentz = '                        <div class="testWindows2 infoWindow1">' +
-            //     '                                              <div class="testIWTitle IWTitle1">Title</div>' +
-            //     '                                               <div class="testTA1 testDesc">Description</div>' +
-            //     '                                               <div class="testImageExample">' +
-            //     '                                                   <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
-            //     '                                               </div>' +
-            //     '                                               <img class="personalEditButton" src="images/edit-icon.png"></img>' +
-            //     '                                               <img class="personalDeleteButton" src="images/delete-icon.png"></img>' +
-            //     '                                           </div>';
-            // var infowindowCreatez = new google.maps.InfoWindow({
-            //     content: infoWindowContentz
-            // });
-            // Usermarker.addListener('click', function() {
-            //     infowindowCreatez.open(mapdis, Usermarker);
-            // });
-            // infowindowCreatez.open(mapdis,Usermarker);
+            var infoWindowContentz = '<div class="testWindows2 infoWindow2">' +
+                '                            <div class="testIWTitle IWTitle2" contenteditable="true">Title</div>' +
+                '                            <div class="testTA2 testDesc" contenteditable="true">Description</div>' +
+                '                            <div class="testImageExample">' +
+                '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
+                '                            </div>' +
+                '                            <div class="testRating">' +
+                '                                <img width="160" height="34" src="images/5-stars-rating.png" title="Based On 10 Rating" alt="rating"></img>' +
+                '                            </div>' +
+                '                                               <img id="edit" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(1,'+uniqueNo+')"></img>' +
+                '                                               <img id="delete" class="delete-unselected personalDeleteButton" src="images/delete-icon.png" onclick="deletePInfoWindow('+uniqueNo+')"></img>' +
+                '                            <div class="testViewReviews testButton">View Reviews</div>' +
+                '                        </div>';
+            var infowindowCreatez = new google.maps.InfoWindow({
+                content: infoWindowContentz
+            });
+            Usermarker.addListener('click', function() {
+                infowindowCreatez.open(mapdis, Usermarker);
+            });
+            infowindowCreatez.open(mapdis,Usermarker);
         });
     }
     drawMapUi();
