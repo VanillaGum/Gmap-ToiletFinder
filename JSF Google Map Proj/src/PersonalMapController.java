@@ -12,7 +12,10 @@ public class PersonalMapController {
     public String folderUser ="";
     public String folderName = "";
     public int folderType = -1;
-
+    public String field1 = "";
+    public String field2 = "";
+    public Double lat = 0.0;
+    public Double lng = 0.0;
 
     @PostConstruct
     public void init() {
@@ -82,6 +85,11 @@ public class PersonalMapController {
         displayFolderMarker();
     }
 
+    public void addMarker() {
+        RequestContext.getCurrentInstance().execute("Adding Markers");
+        System.out.println("Adding Marker: " + lat + "|" + lng + "|" + field1 + "|" + field2);
+    }
+
     public int getFolderId() {
         return folderId;
     }
@@ -109,4 +117,28 @@ public class PersonalMapController {
     public int getFolderType() { return folderType; }
 
     public void setFolderType(int folderType) { this.folderType = folderType; }
+
+    public String getField1() { return field1; }
+
+    public void setField1(String field1) { this.field1 = field1; }
+
+    public String getField2() { return field2; }
+
+    public void setField2(String field2) { this.field2 = field2; }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
 }

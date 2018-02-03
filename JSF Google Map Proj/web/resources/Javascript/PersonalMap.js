@@ -17,7 +17,7 @@ function createPersonalMarker(event) {
                     infoWindowContent =
                         '                        <div id="windowEdit" class="testWindows2 InfoWindow1">\n' +
                         '                            <div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>\n' +
-                        '                            <div class="testTA1 testDesc" contenteditable="true">Description</div>\n' +
+                        '                            <div id="editDesc1" class="testTA1 testDesc" contenteditable="true">Description</div>\n' +
                         '                            <div class="testImageExample">\n' +
                         '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>\n' +
                         '                            </div>\n' +
@@ -69,7 +69,6 @@ function personalMapDisplay() {
         }
 
         check.className = "left-controls-selected";
-        alert("Display");
         displayFolders();
     }else {
         check.className = "left-controls-unselected";
@@ -439,8 +438,13 @@ function returnPersonalWindows() {
 function saveInfoWindow() {
     var windowType =  document.getElementById("formSubmitToilet:folderType").value;
     if (windowType == 1) {
+        document.getElementById("formSubmitToilet:field1").value = document.getElementById("testIWTitle1").innerHTML;
+        document.getElementById("formSubmitToilet:field2").value = document.getElementById("editDesc1").innerHTML;
+        document.getElementById("formSubmitToilet:pLat").value = personalCreateMarker.getPosition().lat();
+        document.getElementById("formSubmitToilet:pLng").value = personalCreateMarker.getPosition().lng();
 
     }
+    createPersonalMarkerz();
 }
 function removePersonalInfoWindow() {
     personalCreateMarker.setMap(null);

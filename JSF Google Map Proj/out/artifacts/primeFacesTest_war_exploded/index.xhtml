@@ -287,6 +287,10 @@
             <h:inputHidden id="folderUser" value="#{personalMapController.folderUser}"/>
             <h:inputHidden id="folderName" value="#{personalMapController.folderName}"/>
             <h:inputHidden id="folderType" value="#{personalMapController.folderType}"/>
+            <h:inputHidden id="field1" value="#{personalMapController.field1}"/>
+            <h:inputHidden id="field2" value="#{personalMapController.field2}"/>
+            <h:inputHidden id="pLat" value="#{personalMapController.lat}"/>
+            <h:inputHidden id="pLng" value="#{personalMapController.lng}"/>
             <!--End-->
 
             <!--Was In Command Button Temp Removed-->
@@ -310,6 +314,8 @@
             <p:remoteCommand name="displayFoldersControl" actionListener="#{personalMapController.displayFolders}"/>
             <!--Create Folders-->
             <p:remoteCommand name="createFolderBean" actionListener="#{personalMapController.createFolder}"/>
+            <!--Add Marker-->
+            <p:remoteCommand name="createPersonalMarkerz" actionListener="#{personalMapController.addMarker}"/>
         </h:form>
     </div>
 

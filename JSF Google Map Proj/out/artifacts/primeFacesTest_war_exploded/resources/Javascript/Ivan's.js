@@ -55,7 +55,6 @@ function setMarkerAddType(num) {
             addMarker = 2;
         }
     }else {
-        alert("hi");
         if (num == 1) {
             createPersonalMarkerCurrentLoc
         }else {
