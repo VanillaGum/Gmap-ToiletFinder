@@ -9,6 +9,7 @@ import java.util.List;
 @SessionScoped
 @ManagedBean
 public class MarkerList {
+
     private static MarkerList instance;
     //Approved Markers From Database
     private List<MarkerData> approvedMarkers = new ArrayList<>();
@@ -16,8 +17,6 @@ public class MarkerList {
     private List<MarkerData> suggestedMarkers = new ArrayList<>();
     //Suggested Markers From Database
     private List<MarkerData> suggestionMarkers = new ArrayList<>();
-
-    private MarkerRequestData suggestedMarker = new MarkerRequestData();
 
     private int uniqueId = 0;
 
@@ -40,9 +39,6 @@ public class MarkerList {
         return instance;
     }
 
-
-    public void resetSuggestedMarker() {this.suggestedMarker = new MarkerRequestData();}
-
     public void addApprovedMarker(MarkerData md) {
         this.approvedMarkers.add(md);
     }
@@ -54,17 +50,11 @@ public class MarkerList {
             System.out.println("Getting Approved Markers");
             MarkerEntity me = new MarkerEntity();
             instance.setApprovedMarkers(me.getApprovedMarkers());
-            for(MarkerData m:instance.getApprovedMarkers()) {
-                System.out.print("Approved Id:" + m.getRandomId() + "Rating:" + m.getAvg_rating());
-            }
     }
     public void getSuggestionToilets() {
         System.out.println("Getting Suggestion Markers");
         MarkerEntity me = new MarkerEntity();
         instance.setSuggestionMarkers(me.getSuggestionMarkers());
-        for(MarkerData m:instance.getSuggestionMarkers()) {
-            System.out.print("Suggested Id" + m.getRandomId());
-        }
     }
     public void getToilets() {
         getApprovedMarkers();
@@ -105,10 +95,6 @@ public class MarkerList {
     public void setSuggestionMarkers(List<MarkerData> suggestionMarkers) {
         this.suggestionMarkers = suggestionMarkers;
     }
-
-    public MarkerRequestData getSuggestedMarker() { return suggestedMarker; }
-
-    public void setSuggestedMarker(MarkerRequestData suggestedMarker) { this.suggestedMarker = suggestedMarker; }
 
     public int getDisplaySuggestion() {
         return displaySuggestion;

@@ -1,7 +1,75 @@
+personalMarkerStatus = 0;
+personalCreateMarker = null;
+
+function createPersonalMarker(event) {
+    if(personalMarkerStatus == 2) {
+        if (personalCreateMarker == null) {
+            personalCreateMarkerLat = event.latLng.lat();
+            personalCreateMarkerLng = event.latLng.lng();
+            personalCreateMarker = new google.maps.Marker({
+                position: {lat: personalCreateMarkerLat, lng: personalCreateMarkerLng},
+                map: mapdis
+            });
+            var windowType = 1;
+            var infoWindowContent = null;
+            switch (windowType) {
+                case 1:
+                    infoWindowContent =
+                        '                        <div id="windowEdit" class="testWindows2 InfoWindow1">\n' +
+                        '                            <div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>\n' +
+                        '                            <div class="testTA1 testDesc" contenteditable="true">Description</div>\n' +
+                        '                            <div class="testImageExample">\n' +
+                        '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>\n' +
+                        '                            </div>\n' +
+                        '            <div class="addToiletSubmit">\n' +
+                        '\n' +
+                        '               <button class="markerSubmit" onclick="saveInfoWindow()">Confirm</button>\n' +
+                        '               <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>\n' +
+                        '            </div>' +
+                        '                        </div>';
+                    break;
+                case 2:
+            }
+            mapdis.setCenter(new google.maps.LatLng(personalCreateMarkerLat,personalCreateMarkerLng));
+            var infowindowCreate = new google.maps.InfoWindow({
+               content: infoWindowContent,
+                maxwidth:440,
+                maxheight:260
+            });
+            infowindowCreate.addListener('click', function() {
+                infowindowCreate.open(mapdis, personalCreateMarker);
+            });
+            infowindowCreate.open(mapdis,personalCreateMarker);
+        }
+    }
+
+}
+function createPersonalMarkerCurrentLoc() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        confirmationMarkerLat=position.coords.latitude;
+        confirmationMarkerLng= position.coords.longitude;
+        confirmationMarker = new google.maps.Marker( {
+            position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
+            map:mapdis
+        });
+        mapdis.setCenter(new google.maps.LatLng(confirmationMarkerLat,confirmationMarkerLng));
+        confirmationMarker.addListener('click', function() {
+            confirmationInfowindow.open(mapdis, confirmationMarker);
+        });
+        confirmationInfowindow.open(mapdis,confirmationMarker);
+    });
+}
+
 function personalMapDisplay() {
     var check = document.getElementById("viewPersonalMap");
     if (check.className == "left-controls-unselected") {
+        var check2 = document.getElementById("viewToilets");
+        if (check2.className == "left-controls-selected") {
+            displayApproved();
+        }
+
         check.className = "left-controls-selected";
+        alert("Display");
         displayFolders();
     }else {
         check.className = "left-controls-unselected";
@@ -9,10 +77,12 @@ function personalMapDisplay() {
     }
 }
 function displayFolders() {
+    var displayFolderScreen = document.createElement('div');
+    displayFolderScreen.className = "group-selected";
+    displayFolderScreen.id = "groupScreen";
     var greyOverlayScreen = document.getElementById("greyOverlay");
     greyOverlayScreen.className = "selected-Overlay";
-    var displayFolderScreen = document.getElementById("groupScreen");
-    displayFolderScreen.className = "group-selected";
+    greyOverlayScreen.append(displayFolderScreen);
     displayFoldersControl();
 
 }
@@ -356,7 +426,23 @@ function finishFolderP2(typeNo){
             while (screen.firstChild) {
                 screen.removeChild(screen.firstChild);
             }
-            screen.className = "group-unselected";
+            document.getElementById("greyOverlay").removeChild(screen);
             document.getElementById("greyOverlay").className = "unselected-Overlay";
+            createFolderBean();
+            // document.getElementById("addPersonalMarkerButton").style.display = "block";
     }
+}
+
+function returnPersonalWindows() {
+
+}
+function saveInfoWindow() {
+    var windowType =  document.getElementById("formSubmitToilet:folderType").value;
+    if (windowType == 1) {
+
+    }
+}
+function removePersonalInfoWindow() {
+    personalCreateMarker.setMap(null);
+    personalCreateMarker = null;
 }

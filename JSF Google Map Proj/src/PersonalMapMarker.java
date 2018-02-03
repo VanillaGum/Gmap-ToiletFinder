@@ -11,6 +11,17 @@ public class PersonalMapMarker extends MarkerData{
 //    For Used To Display Image
     private String imageDisplay;
 
+    private int id;
+
+    private String field1;
+    private String field2;
+
+    private int uniqueNo;
+
+    public PersonalMapMarker() {
+        PersonalMapList pml = PersonalMapList.getInstance();
+        this.uniqueNo = pml.getUniqueNo();
+    }
 
     public String getDescription() { return description; }
 
@@ -23,4 +34,25 @@ public class PersonalMapMarker extends MarkerData{
     public String getImageDisplay() { return imageDisplay; }
 
     public void setImageDisplay(String imageDisplay) { this.imageDisplay = imageDisplay; }
+
+    public String getField1() {
+        return field1;
+    }
+
+    public void setField1(String field1) {
+        this.field1 = field1;
+    }
+
+    public String getField2() {
+        return field2;
+    }
+
+    public void setField2(String field2) {
+        this.field2 = field2;
+    }
+
+
+    public int getUniqueNo() {
+        return uniqueNo;
+    }
 }

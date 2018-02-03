@@ -19,7 +19,19 @@
 
 <h:body>
     <div id="greyOverlay" class="unselected-Overlay">
-        <div class="group-unselected" id="groupScreen">
+        <!--<div id="iw2ReviewScreen">-->
+
+        <!--</div>-->
+
+        <!--<div class="group-selected" id="groupScreen">-->
+                                   <!--<div id="windowEdit" class="testWindows2 InfoWindow1">-->
+                                       <!--<div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>-->
+                                       <!--<div class="testTA1 testDesc" contenteditable="true">Description</div>-->
+                                       <!--<div class="testImageExample">-->
+                                               <!--<img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>-->
+                                       <!--</div>-->
+                                   <!--</div>';-->
+        <!--</div>-->
             <!--<p class="folderListTitle">Choose Infowindow And Tryout</p>-->
                 <!--<div class="folderListDivider"></div>-->
                     <!--<div class="testHeader">-->
@@ -28,12 +40,14 @@
                     <!--</div>-->
                     <!--<div class="testInfoWindowContainer">-->
                         <!--<div id="testInfoWindow1" class="testWindows">-->
-                            <!--<div id="testIWTitle1" class="testIWTitle" contenteditable="true">Title</div>-->
+                            <!--<div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>-->
                             <!--<div class="testTA1 testDesc" contenteditable="true">Description</div>-->
                             <!--<div class="testImageExample">-->
                                 <!--<img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>-->
                             <!--</div>-->
-                            <!--<div class="testCloseButton">✖</div>-->
+                            <!--&lt;!&ndash;<div class="testCloseButton">✖</div>&ndash;&gt;-->
+                            <!--<img class="personalEditButton" src="images/edit-icon.png" onclick="editPWindow()"></img>-->
+                            <!--<img class="personalDeleteButton" src="images/delete-icon.png" ></img>-->
                         <!--</div>-->
                     <!--</div>-->
 
@@ -116,13 +130,12 @@
                             <!--<div class="testCloseButton">✖</div>-->
                         <!--</div>-->
                     <!--</div>-->
+            <!--</div>-->
 
 
 
 
 
-
-        </div>
     </div>
     <div id="homeBar" class="topbar">
         <h:outputLabel id="AppTitle">SG Essentials Map</h:outputLabel>
@@ -182,7 +195,7 @@
     <!--For Having Map Model IN MapController-->
     <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
             style="width:100%;height:90%" disableDefaultUI="true"
-            onPointClick="addLocMarker(event)"
+            onPointClick="addLocMarker(event); createPersonalMarker(event)"
             fitBounds="false">
         <!--<p:ajax event="stateChange" listener="#{mapController.onStateChange}" update="displayedMap"/>-->
     </p:gmap>
@@ -214,8 +227,22 @@
     <div id="displaySuggestedToilets" class="right-controls-unselected" onclick="displaySuggested()">
         <div>View Unapproved Toilets</div>
     </div>
-
-    <div id="addToiletButton">
+    <div id="addPersonalMarkerButton" class="classForAddMarker">
+        <h:form>
+            <p:commandButton value="Add Marker"
+                             id="markerCreate" class="right-control-unselected">
+                <p:confirm header="Confirmation" message="Do you want to use current location or select a location?"/>
+                <!--<f:ajax execute="@form" render="@none" />-->
+            </p:commandButton>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Use current location" type="button" onclick="setMarkerAddType(1)"
+                                 styleClass="ui-confirmdialog-no"/>
+                <p:commandButton value="Select Location on map" type="button" onclick="setMarkerAddType(2)"
+                                 styleClass="ui-confirmdialog-no"/>
+            </p:confirmDialog>
+        </h:form>
+    </div>
+    <div id="addToiletButton" class="classForAddMarker">
         <h:form>
         <p:commandButton value="Add Toilet"
                          id="toiletSubmit" class="right-control-unselected">
@@ -281,6 +308,8 @@
             <p:remoteCommand name="resetDisplayed" actionListener="#{mapController.resetDisplay()}"/>
             <!--Display Folders-->
             <p:remoteCommand name="displayFoldersControl" actionListener="#{personalMapController.displayFolders}"/>
+            <!--Create Folders-->
+            <p:remoteCommand name="createFolderBean" actionListener="#{personalMapController.createFolder}"/>
         </h:form>
     </div>
 
@@ -310,8 +339,9 @@
                 <input id="rating0" type="hidden" value="-1"/>
             </form>
             <div class="addToiletSubmit">
-               <button onclick="toiletSuggestionConfirmed()">Confirm</button>
-               <button onclick="resetInfoWindow()">Cancel</button>
+
+               <button class="markerSubmit" onclick="toiletSuggestionConfirmed()">Confirm</button>
+               <button class="markerCancel" onclick="resetInfoWindow()" style="margin-left:49px;">Cancel</button>
             </div>
          </div>
       </div>

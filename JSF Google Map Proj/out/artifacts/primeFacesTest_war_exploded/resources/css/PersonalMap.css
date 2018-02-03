@@ -20,6 +20,7 @@
     margin-left:20px;
     margin-right:20px;
     margin-top:10px;
+    margin-bottom:10px;
     float:left;
     cursor:pointer;
     border-radius:5px;
@@ -39,10 +40,10 @@
     word-wrap:break-word;
 }
 .group-unselected {
-    visibility: hidden;
+    display: none;
 }
 .group-selected {
-    visibility: visible;
+    display: block;
 }
 .group
 /*Custom Scrollbar By Devstreak*/
@@ -127,12 +128,18 @@
     margin-left:2.5%;
     float:left;
 }
+.classForAddMarker {
+}
 
 
 /*Infowindow Selection*/
 #testInfoWindow1 {
-    width:392px;
+    width:380px;
     height:200px;
+}
+.infoWindow1 {
+    width:380px;
+    height:230px;
 }
 #testInfoWindow2 {
     width:450px;
@@ -148,6 +155,13 @@
 .testWindows {
     background:white;
     border:1px solid black;
+    text-align: start;
+    margin:0 auto;
+    position:relative;
+    margin-bottom:10px;
+}
+.testWindows2 {
+    background:white;
     text-align: start;
     margin:0 auto;
     position:relative;
@@ -169,7 +183,7 @@
     width:360px;
 }
 .testIWTitle {
-    font-size:29px;
+    font-size:28px;
     color:black;
     font-weight:bold;
     margin-left:5px;
@@ -201,6 +215,9 @@
     margin-left:2.5%;
     float:left;
     text-align:center;
+}
+.infoWindowContainer1 {
+
 }
 .testImageExample {
     width: 150px;
@@ -250,6 +267,33 @@
     font-size:20px;
     cursor:pointer;
 }
+.personalDeleteButton {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    float: right;
+    right: 5px;
+    top: 205px;
+    position: absolute;
+    opacity:0.7;
+}
+.personalDeleteButton:hover {
+    opacity: 1;
+}
+.personalEditButton {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    float: right;
+    right: 345px;
+    top: 205px;
+    position: absolute;
+    opacity: 0.7;
+}
+.personalEditButton:hover {
+    opacity: 1;
+}
+
 .testCloseButton:hover {
     opacity:0.7;
 }

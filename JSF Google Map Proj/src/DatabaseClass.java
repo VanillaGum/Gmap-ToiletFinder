@@ -290,7 +290,7 @@ public class DatabaseClass {
     public List<MarkerData> getApprovedToiletMarkers() {
         try {
             List<MarkerData> mList= new ArrayList<>();
-            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet t INNER JOIN toilet_info ti ON ti.toilet_id = t.id; WHERE removal_flags < 6;");
+            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet t INNER JOIN toilet_info ti ON ti.toilet_id = t.id WHERE ti.removal_flags < 6;");
             ResultSet toilets = getToilets.executeQuery();
             while(toilets.next()) {
                 //Toilet Table
@@ -317,7 +317,7 @@ public class DatabaseClass {
     public List<MarkerData> getRequestedToiletMarkers() {
         try {
             List<MarkerData> mList= new ArrayList<>();
-            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet_request tr INNER JOIN toilet_request_info tri ON tri.toilet_request_id = tr.id WHERE removal_flags < 6;");
+            PreparedStatement getToilets = conn.prepareStatement("SELECT * FROM toilet_request tr INNER JOIN toilet_request_info tri ON tri.toilet_request_id = tr.id WHERE tri.removal_flags < 6;");
             ResultSet toilets = getToilets.executeQuery();
             while(toilets.next()) {
                 //Toilet Request Table
@@ -363,5 +363,62 @@ public class DatabaseClass {
         }
         return null;
     }
+    public void createFolder() {
+        try {
+            PersonalMapList pml = PersonalMapList.getInstance();
+            FolderData fd = pml.getCurrentFolder();
+            PreparedStatement createFolder = conn.prepareStatement("INSERT INTO user_folders" +
+                    "(user_id,folder_name,window_type) VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            createFolder.setInt(1, 0);
+            createFolder.setString(2, fd.getFolderName());
+            createFolder.setInt(3, fd.getWindowType());
+            createFolder.executeUpdate();
 
+            ResultSet setId = createFolder.getGeneratedKeys();
+            while (setId.next()) {
+                fd.setFolderId( setId.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void getFolderMarkers(int folderId) {
+        List<PersonalMapMarker> pmmList = new ArrayList<>();
+        PersonalMapList pml = PersonalMapList.getInstance();
+        try {
+            FolderData fd = pml.getCurrentFolder();
+            PreparedStatement folderType = conn.prepareStatement("SELECT * FROM user_folder WHERE id = ?");
+            folderType.setInt(1, folderId);
+            ResultSet folType = folderType.executeQuery();
+            int markerType= 0;
+            while (folType.next()) {
+                markerType = folType.getInt("window_type");
+            }
+
+            PreparedStatement getMarkers = conn.prepareStatement("SELECT * FROM user_folder_markers usm INNER JOIN user_folder_marker_info ufmi ON ufmi.marker_id = usm.id WHERE usm.folder_id =  ?;");
+            ResultSet markers = getMarkers.executeQuery();
+            while (markers.next()) {
+                PersonalMapMarker pmm = new PersonalMapMarker();
+                if (markerType == 1) {
+                    LatLng ll = new LatLng(markers.getDouble("latitiude"), markers.getDouble("longitude"));
+                    pmm.setLatlng(ll);
+                    pmm.setField1(markers.getString("field1"));
+                    pmm.setField2(markers.getString("field2"));
+
+                }else if (markerType == 2){
+
+                }else if (markerType == 3){
+
+                }else if (markerType == 4){
+
+                }
+                pmmList.add(pmm);
+            }
+
+            fd.setWindowType(markerType);
+            fd.setPmmL(pmmList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

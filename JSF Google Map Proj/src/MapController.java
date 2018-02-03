@@ -253,13 +253,6 @@ public class MapController implements Serializable{
                 me.flagSuggestionToilet(ToiletId);
             }
         }
-        for(MarkerData m:ml.getSuggestedMarkers()) {
-            if(m.getRandomId() == uniqueId) {
-                ml.resetSuggestedMarker();
-                MarkerRequestData mlMRD = ml.getSuggestedMarker();
-                mlMRD.setRating(reviewToiletRating());
-            }
-        }
     }
 
     public void reviewToilet() {

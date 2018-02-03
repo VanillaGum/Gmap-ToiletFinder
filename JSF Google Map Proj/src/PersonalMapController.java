@@ -7,40 +7,49 @@ import java.util.List;
 @ManagedBean
 public class PersonalMapController {
     private PersonalMapEntity pme;
+    private PersonalMapList pml;
     public int folderId =0;
     public String folderUser ="";
     public String folderName = "";
     public int folderType = -1;
+
+
     @PostConstruct
     public void init() {
         pme = new PersonalMapEntity();
+        pml = PersonalMapList.getInstance();
     }
     public PersonalMapController() {
-
     }
 
     public void resetMarkerList() {
         RequestContext.getCurrentInstance().execute("clearMarkerList();");
     }
 
-//    public void displayApprovedMarker() {
-//        for (PersonalMapMarker m:) {
-//            RequestContext.getCurrentInstance().execute(
-//                    "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
-//                            "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getWheelchair()+","+m.getCost()+","+m.getAmt_of_ratings()+")" +
-//                            "});" +
-//                            "newMarker"+m.getRandomId()+" = " +
-//                            "new google.maps.Marker({ " +
-//                            "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
-//                            "map:PF('mapDisplay').getMap()," +
-//                            "icon:'"+m.getImage()+"'});" +
-//                            "newMarker"+m.getRandomId()+".addListener('click',function() {" +
-//                            "   infowindow"+m.getRandomId()+".open(map,newMarker"+m.getRandomId()+");" +
-//                            "});"
-//                            + "markers.push(newMarker"+m.getRandomId()+");");
-//        }
-//    }
+    public void displayFolderMarker() {
+        FolderData fd = pml.getCurrentFolder();
+        List<PersonalMapMarker> pmmList = fd.getPmmL();
+        if (fd.getIsEditable() == 1) {
+            RequestContext.getCurrentInstance().execute("document.getElementById(\"addPersonalMarkerButton\").style.display=\"block\";");
+        }
+        for (PersonalMapMarker m:pmmList) {
+            RequestContext.getCurrentInstance().execute(
+                    "var infowindowP"+m.getUniqueNo()+" = new google.maps.InfoWindow({" +
+                            "   content: " +  //Fill In Content Methood Here
+                            "});" +
+                            "newPMarker"+m.getUniqueNo()+" = " +
+                            "new google.maps.Marker({ " +
+                            "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
+                            "map:PF('mapDisplay').getMap()," +
+                            "icon:'"+m.getImage()+"'});" +
+                            "newMarker"+m.getRandomId()+".addListener('click',function() {" +
+                            "   infowindow"+m.getRandomId()+".open(map,newMarker"+m.getRandomId()+");" +
+                            "});"
+                            + "markers.push(newMarker"+m.getRandomId()+");");
+        }
+    }
     public void displayFolders() {
+        System.out.println("Displaying Folder");
         List<FolderData> sponsorFolders = pme.getUserFolders();
         if (sponsorFolders.size() > 1) {
             String script = "addDivider(\"Sponsor's Folder\",\"sponsorFolder\")";
@@ -58,6 +67,19 @@ public class PersonalMapController {
 
         String addFolder = "addNewGroupFolder()";
         RequestContext.getCurrentInstance().execute(addFolder);
+    }
+
+    public void createFolder() {
+        RequestContext.getCurrentInstance().execute("document.getElementById(\"addPersonalMarkerButton\").style.display=\"block\";");
+        FolderData fd = pml.getCurrentFolder();
+        fd.setFolderName(folderName);
+        fd.setWindowType(folderType);
+        pme.createFolderDatabase();
+    }
+
+    public void displayFolder() {
+        pme.getFolderMarkers(folderId);
+        displayFolderMarker();
     }
 
     public int getFolderId() {

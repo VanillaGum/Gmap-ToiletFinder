@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class FolderData {
     private int folderId;
 
@@ -5,7 +7,11 @@ public class FolderData {
 
     private String folderName;
 
-    private String windowType;
+    private int windowType;
+
+    private int isEditable;
+
+    private List<PersonalMapMarker> pmmL;
     public FolderData() {
     }
 
@@ -26,4 +32,31 @@ public class FolderData {
     public String getFolderName() { return folderName; }
 
     public void setFolderName(String folderName) { this.folderName = folderName; }
+
+    public int getIsEditable() {
+        return isEditable;
+    }
+
+    public void setIsEditable(int isEditable) {
+        this.isEditable = isEditable;
+    }
+
+    public int getWindowType() {
+        return windowType;
+    }
+
+    public void setWindowType(int windowType) {
+        this.windowType = windowType;
+    }
+
+    public List<PersonalMapMarker> getPmmL() {
+        return pmmL;
+    }
+
+    public void setPmmL(List<PersonalMapMarker> pmmL) {
+        this.pmmL = pmmL;
+    }
+    public void addpmml(PersonalMapMarker pmm) {
+        this.pmmL.add(pmm);
+    }
 }

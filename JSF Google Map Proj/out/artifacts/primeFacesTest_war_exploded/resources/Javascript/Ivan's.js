@@ -41,16 +41,26 @@ $(function() {
     drawMapUi();
 });
 function setMarkerAddType(num) {
-    document.getElementById("CancelAddToilet").className = "show";
-    if (num == 1) {
-        if (navigator.geolocation) {
-            addCurrentLocMarker();
-        }else {
-            alert("No Geolocaton Detected, Switching To Selection Add");
+    var checkToilet = document.getElementById("viewToilets");
+    if (checkToilet.className == "left-controls-selected") {
+        document.getElementById("CancelAddToilet").className = "show";
+        if (num == 1) {
+            if (navigator.geolocation) {
+                addCurrentLocMarker();
+            } else {
+                alert("No Geolocaton Detected, Switching To Selection Add");
+                addMarker = 2;
+            }
+        } else {
             addMarker = 2;
         }
     }else {
-        addMarker = 2;
+        alert("hi");
+        if (num == 1) {
+            createPersonalMarkerCurrentLoc
+        }else {
+            personalMarkerStatus = num;
+        }
     }
 }
 function addCurrentLocMarker() {
@@ -84,7 +94,8 @@ function addLocMarker(event) {
             });
             confirmationInfowindow.open(mapdis,confirmationMarker);
             }
-        }
+    }
+
 }
 
 //Remove Toilet Suggestion Marker When Confirmed
@@ -212,10 +223,13 @@ function drawMapUi() {
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(zoominControl[0]);
     var toiletControl = $("#addToiletButton");
     var addSuggested = $("#displaySuggestedToilets");
+    var addPersonalMarker = $("#addPersonalMarkerButton");
+    mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addPersonalMarker[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addSuggested[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(toiletControl[0]);
     document.getElementById("displaySuggestedToilets").style.display = "none";
     document.getElementById("addToiletButton").style.display = "none";
+    document.getElementById("addPersonalMarkerButton").style.display = "none";
 }
 function displayToiletUi() {
     document.getElementById("displaySuggestedToilets").style.display = "block";
@@ -254,18 +268,21 @@ function addToiletLoc() {
 
 function displayApproved() {
     displayApprovedToilet();
+    var change = document.getElementById("viewPersonalMap");
+    change.className = "left-controls-unselected";
     var check = document.getElementById("viewToilets");
     if (check.className == "left-controls-unselected") {
         check.className = "left-controls-selected";
         document.getElementById("displaySuggestedToilets").style.display = "block";
     }else {
         check.className = "left-controls-unselected";
-        document.getElementById("displaySuggestedToilets").style.display = "none";
+        removeToiletUi()
     }
 }
 function displaySuggested() {
     displaySuggestionToilet();
     var check = document.getElementById("displaySuggestedToilets");
+    //Change Personal map From Selected To Unselected
     if (check.className == "right-controls-unselected") {
         check.className = "right-controls-selected";
         document.getElementById("addToiletButton").style.display = "block";
@@ -279,9 +296,14 @@ function removeToiletUi() {
     var check = document.getElementById("displaySuggestedToilets");
     if (check.className == "right-controls-selected") {
         check.className = "right-controls-unselected";
+        document.getElementById("addToiletButton").style.display = "none";
+        document.getElementById("CancelAddToilet").className = "";
+        addMarker = 0;
+        if (confirmationMarker != null) {
+            resetInfoWindow();
+        }
         displaySuggestionToilet();
     }
 
     document.getElementById("displaySuggestedToilets").style.display = "none";
-    document.getElementById("addToiletButton").style.display = "none";
 }
