@@ -512,3 +512,8 @@
     color:white;
     cursor: pointer;
 }
+.align-center-upload {
+    width:670px;
+    margin-left: 35%;
+    margin-top: 20%;
+}

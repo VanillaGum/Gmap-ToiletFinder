@@ -18,7 +18,7 @@
 </h:head>
 
 <h:body>
-    <div id="greyOverlay" class="selected-Overlay">
+    <div id="greyOverlay" class="unselected-Overlay">
         <!--<div id="iwReviewScreen">-->
             <!--<div id="ReviewScreenRating">-->
                 <!--<img id="star1" src="images/star-unfilled.png" onclick="changeRating(1)"></img>-->
@@ -32,13 +32,11 @@
             <!--<div class="testButton submitReviewIW" onclick="submitIWReview()">Submit</div>-->
             <!--<div class="testCloseButton" onclick="closeIWReview()">✖</div>-->
         <!--</div>-->
-
-        <div class="group-selected" id="groupScreen">
-            <div id="Search"><div id="SearchHeader">Search:</div><div id="SearchBox" contenteditable="true"></div><div id="SubmitSearch" onclick="submitSearch()">Submit</div></div>
-            <div class="folderListDivider"></div>
-            <div id="searchContainer" class="folderListContainer"></div>
-            <div class="testCloseButton" onclick="closeSearchFolder()">✖</div>
-        </div>
+            <!--<div id="Search"><div id="SearchHeader">Search:</div><div id="SearchBox" contenteditable="true"></div><div id="SubmitSearch" onclick="submitSearch()">Submit</div></div>-->
+            <!--<div class="folderListDivider"></div>-->
+            <!--<div id="searchContainer" class="folderListContainer"></div>-->
+            <!--<div class="testCloseButton" onclick="closeSearchFolder()">✖</div>-->
+        <!--</div>-->
                                    <!--<div id="windowEdit" class="testWindows2 InfoWindow1">-->
                                        <!--<div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>-->
                                        <!--<div class="testTA1 testDesc" contenteditable="true">Description</div>-->
@@ -242,7 +240,7 @@
     <div id="viewPersonalMap" style="width:220px;" class="left-controls-unselected" onclick="personalMapDisplay()">
         <div>View Personal Map</div>
     </div>
-    <div id="searchFolderMapBut" style="width:200px;" class="left-controls-unselected">
+    <div id="searchFolderMapBut" style="width:200px;" class="left-controls-unselected" onclick="openFolderSearch()">
         <div>Search For Folder</div>
     </div>
 

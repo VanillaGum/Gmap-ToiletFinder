@@ -1,8 +1,13 @@
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import org.primefaces.model.map.LatLng;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import java.io.File;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @ManagedBean
@@ -192,6 +197,26 @@ public class PersonalMapController {
     public void userDeleteFolder() {
         pme.addDelete(folderId);
         resetMarkerList();
+    }
+    private UploadedFile uploadedFile;
+
+    public void handleFileUpload(FileUploadEvent event) throws IOException {
+        uploadedFile = event.getFile();
+        if (uploadedFile != null) {
+            FolderData fd = pml.getCurrentFolder();
+            List<PersonalMapMarker> pmmList = fd.getPmmL();
+            int idMarker = 0;
+            for(PersonalMapMarker m: pmmList) {
+                if (m.getUniqueNo() == uniqueNoJs) {
+                    idMarker = m.getId();
+                }
+            }
+            pme.saveImg(2, uploadedFile);
+            String image = Base64.getEncoder().encodeToString(uploadedFile.getContents());
+            System.out.println(image);
+            String script = "document.getElementById(\"2Image\").src = \" "+image+" \";";
+            RequestContext.getCurrentInstance().execute(script);
+        }
     }
     public int getFolderId() {
         return folderId;

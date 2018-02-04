@@ -1,3 +1,4 @@
+import org.primefaces.model.UploadedFile;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.Marker;
 
@@ -672,5 +673,4 @@ public class DatabaseClass {
             e.printStackTrace();
         }
     }
-
 }

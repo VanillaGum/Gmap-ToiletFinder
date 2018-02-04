@@ -140,13 +140,13 @@ public class Filter implements Serializable {
 
         while (true) {
             int gender;
-            if (male)
-                if (female)
+            if (male) {
+                if (female) {
                     gender = 2; // Male and Female are both checked
-                else
-                    gender = 1; // Male is checked
-            else
+                }else {   gender = 1;} // Male is checked
+            }else {
                 gender = 0; // Female is checked
+            }
             if (gender == 1) {
                 if (!(md.get(i).getGenderM() >= 1)) // Are there no male toilets?
                     break; // The place doesn't have male toilets. Stop processing and move on to the next entry.

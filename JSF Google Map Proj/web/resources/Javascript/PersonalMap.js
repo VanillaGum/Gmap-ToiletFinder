@@ -40,7 +40,7 @@ function createPersonalMarker(event) {
                         '                            <div id="testIWTitle2" class="testIWTitle IWTitle2" contenteditable="true">Title</div>' +
                         '                            <div id="editDesc2" class="testTA2 testDesc" contenteditable="true">Description</div>' +
                         '                            <div class="testImageExample">' +
-                        '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
+                        '                                <img id="imgWindow2" width="150px" height="150px" alt="Test Image"></img>' +
                         '                            </div>' +
                         '                            <div class="testRating">' +
                         '                                <img width="160" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>' +
@@ -564,7 +564,7 @@ function createFolderP2() {
         '                        <div class="infowindowChoose" onclick="finishFolderP2(4)">Select</div>\n' +
         '                    </div>\n' +
         '                    <div class="testInfoWindowContainer">\n' +
-        '                        <div id="testInfoWindow4" class="testWindows">\n' +
+        '                        <div style="width:400px" id="testInfoWindow4" class="testWindows">\n' +
         '                            <div id="testIWTitle4" class="testIWTitle" contenteditable="true">Title</div>\n' +
         '                            <div class="testCloseButton">✖</div>\n' +
         '                        </div>\n' +
@@ -654,8 +654,8 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner,rating,amtRa
         contentRtn1 = 		'<div class="testWindows2 infoWindow2">' +
             '                            <div id="2Title'+uniqueNo+'" class="testIWTitle IWTitle2">'+field1+'</div>' +
             '                            <div id="2Desc'+uniqueNo+'" class="testTA2 testDesc">'+field2+'</div>' +
-            '                            <div class="testImageExample">' +
-            '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
+            '                            <div class="testImageExample" onclick="openChangeImage()">' +
+            '                                <img id="2Image" src="images/testImg.jpg" width="150px" height="150px" alt="Test Image"></img>' +
             '                            </div>' +
             '                            <div class="testRating">' +
             '                                <img width="160" height="34" src="'+imageSrc+'" title="Based On '+amtRatings+' Rating" alt="rating"></img>' +
@@ -673,7 +673,7 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner,rating,amtRa
     }
 
     else if(type == 4) {
-        contentRtn1 = '                            <div id="4Title'+uniqueNo+'" class="testIWTitle" >Title</div>';
+        contentRtn1 = '                            <div id="4Title'+uniqueNo+'" style="min-width:200px" class="testIWTitle" >Title</div>';
     }
     var contentRtn2 ="";
     if (owner == 1) {
@@ -693,7 +693,7 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner,rating,amtRa
         }else if(type == 4) {
             contentRtn2 = '                                    <div style="height:40px;">' +
                 '                                               <img id="edit' + uniqueNo + '" class="edit-unselected personalEditButton4" src="images/edit-icon.png" onclick="editPInfoWindow(4,' + uniqueNo + ')"></img>' +
-                '                                               <img id="delete' + uniqueNo + '" class="delete-unselected personalDeleteButton4" src="images/delete-icon.png" onclick="deletePInfoWindow(' + uniqueNo + ')"></img>' +
+                '                                               <img id="delete' + uniqueNo + '" style="margin-left:0px;" class="delete-unselected personalDeleteButton4" src="images/delete-icon.png" onclick="deletePInfoWindow(' + uniqueNo + ')"></img>' +
                 '                                           </div>';
         }
     }else {
@@ -722,7 +722,9 @@ function editPInfoWindow(type, uniqueNo) {
         var docTitle = document.getElementById(type+"Title"+uniqueNo);
         var docDesc = document.getElementById(type+"Desc"+uniqueNo);
         docTitle.contentEditable  = "true";
+        if (docDesc != null) {
         docDesc.contentEditable  = "true";
+        }
     }else {
         //Selected
         checkEdit.classList.remove("edit-selected");
@@ -730,10 +732,16 @@ function editPInfoWindow(type, uniqueNo) {
         var docTitle = document.getElementById(type+"Title"+uniqueNo);
         var docDesc = document.getElementById(type+"Desc"+uniqueNo);
         docTitle.contentEditable  = "false";
-        docDesc.contentEditable  = "false";
+        if (docDesc != null) {
+            docDesc.contentEditable = "false";
+        }
         document.getElementById("formSubmitToilet:uniqueNoJs").value = uniqueNo;
         document.getElementById("formSubmitToilet:field1").value = docTitle.innerHTML;
-        document.getElementById("formSubmitToilet:field2").value = docDesc.innerHTML;
+        if (docDesc != null) {
+            document.getElementById("formSubmitToilet:field2").value = docDesc.innerHTML;
+        }else {
+            document.getElementById("formSubmitToilet:field2").value = "";
+        }
         editMarkerInfo();
 
     }
@@ -817,5 +825,12 @@ function closeSearchFolder() {
     document.getElementById("greyOverlay").className = "unselected-Overlay";
 }
 function openFolderSearch() {
-    var searchContent = '';
+    var searchContent = '<div class="group-selected" id="groupScreen">\n' +
+        '            <div id="Search"><div id="SearchHeader">Search:</div><div id="SearchBox" contenteditable="true"></div><div id="SubmitSearch" onclick="submitSearch()">Submit</div></div>\n' +
+        '            <div class="folderListDivider"></div>\n' +
+        '            <div id="searchContainer" class="folderListContainer"></div>\n' +
+        '            <div class="testCloseButton" onclick="closeSearchFolder()">✖</div>\n' +
+        '        </div>';
+    document.getElementById("greyOverlay").innerHTML = searchContent;
+    document.getElementById("greyOverlay").className = "selected-Overlay";
 }

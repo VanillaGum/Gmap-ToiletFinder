@@ -1,3 +1,5 @@
+import org.primefaces.model.UploadedFile;
+
 import java.util.List;
 
 public class PersonalMapEntity {
@@ -44,5 +46,7 @@ public class PersonalMapEntity {
     public void submitReview(int markerId, int rating, String comments) {
         dc.createReview(markerId,rating,comments);
     }
+    public void saveImg(int markerId, UploadedFile uf) {
 
+    }
 }
