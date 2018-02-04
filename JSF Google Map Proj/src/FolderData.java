@@ -9,7 +9,7 @@ public class FolderData {
 
     private int windowType;
 
-    private int isEditable = 1;
+    private int isEditable = 0;
 
     private List<PersonalMapMarker> pmmL;
     public FolderData() {

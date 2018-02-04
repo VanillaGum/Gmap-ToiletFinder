@@ -36,26 +36,18 @@ $(function() {
                 icon:"images/toilet_male.png",
                  zIndex: -99999999
             });
-            var infoWindowContentz = '<div class="testWindows2 infoWindow2">' +
-                '                            <div class="testIWTitle IWTitle2" contenteditable="true">Title</div>' +
-                '                            <div class="testTA2 testDesc" contenteditable="true">Description</div>' +
-                '                            <div class="testImageExample">' +
-                '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
-                '                            </div>' +
-                '                            <div class="testRating">' +
-                '                                <img width="160" height="34" src="images/5-stars-rating.png" title="Based On 10 Rating" alt="rating"></img>' +
-                '                            </div>' +
-                '                                               <img id="edit" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(1,'+uniqueNo+')"></img>' +
-                '                                               <img id="delete" class="delete-unselected personalDeleteButton" src="images/delete-icon.png" onclick="deletePInfoWindow('+uniqueNo+')"></img>' +
-                '                            <div class="testViewReviews testButton">View Reviews</div>' +
-                '                        </div>';
-            var infowindowCreatez = new google.maps.InfoWindow({
-                content: infoWindowContentz
-            });
-            Usermarker.addListener('click', function() {
-                infowindowCreatez.open(mapdis, Usermarker);
-            });
-            infowindowCreatez.open(mapdis,Usermarker);
+            // var infoWindowContentz = '                            <div id="testIWTitle4" class="testIWTitle" contenteditable="true">Title</div>' +
+            //     '                                    <div style="height:40px;">' +
+            //     '                                               <img  class="edit-unselected personalEditButton4" src="images/edit-icon.png" "></img>' +
+            //     '                                               <img  class="delete-unselected personalDeleteButton4" src="images/delete-icon.png""></img>' +
+            //     '                                           </div>';
+            // var infowindowCreatez = new google.maps.InfoWindow({
+            //     content: infoWindowContentz
+            // });
+            // Usermarker.addListener('click', function() {
+            //     infowindowCreatez.open(mapdis, Usermarker);
+            // });
+            // infowindowCreatez.open(mapdis,Usermarker);
         });
     }
     drawMapUi();
@@ -63,7 +55,7 @@ $(function() {
 function setMarkerAddType(num) {
     var checkToilet = document.getElementById("viewToilets");
     if (checkToilet.className == "left-controls-selected") {
-        document.getElementById("CancelAddToilet").className = "show";
+        document.getElementById("CancelAddToilet").className = "CancelAdd show";
         if (num == 1) {
             if (navigator.geolocation) {
                 addCurrentLocMarker();
@@ -78,6 +70,7 @@ function setMarkerAddType(num) {
         if (num == 1) {
             createPersonalMarkerCurrentLoc
         }else {
+            document.getElementById("CancelAddMarker").className = "CancelAdd show";
             personalMarkerStatus = num;
         }
     }
@@ -142,7 +135,7 @@ function toiletSuggestionConfirmed() {
     if (gM == 1 || gF == 1) {
         tsubmit();
         resetInfoWindow();
-        document.getElementById("CancelAddToilet").className = "";
+        document.getElementById("CancelAddToilet").className = "CancelAdd";
     }else {
         alert("Please select minimun 1 gender for creating toilet");
     }
@@ -153,7 +146,7 @@ function cancelLocMarker() {
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
-    document.getElementById("CancelAddToilet").className = "";
+    document.getElementById("CancelAddToilet").className = "CancelAdd";
 }
 
 
@@ -213,7 +206,7 @@ function resetInfoWindow() {
     confirmationInfowindow.close();
     confirmationMarker.setMap(null);
     confirmationMarker = null;
-    document.getElementById("CancelAddToilet").className = "";
+    document.getElementById("CancelAddToilet").className = "CancelAdd";
     addMarker=0;
 }
 function resetInfoWindowCheck() {
@@ -221,7 +214,7 @@ function resetInfoWindowCheck() {
         alert("Not Null")
         resetInfoWindow();
     } else {
-        document.getElementById("CancelAddToilet").className = "";
+        document.getElementById("CancelAddToilet").className = "CancelAdd";
         addMarker=0;
     }
 }
@@ -316,7 +309,7 @@ function removeToiletUi() {
     if (check.className == "right-controls-selected") {
         check.className = "right-controls-unselected";
         document.getElementById("addToiletButton").style.display = "none";
-        document.getElementById("CancelAddToilet").className = "";
+        document.getElementById("CancelAddToilet").className = "CancelAdd";
         addMarker = 0;
         if (confirmationMarker != null) {
             resetInfoWindow();

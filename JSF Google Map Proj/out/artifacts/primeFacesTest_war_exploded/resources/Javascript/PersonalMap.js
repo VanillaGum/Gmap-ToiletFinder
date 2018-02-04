@@ -34,45 +34,41 @@ function createPersonalMarker(event) {
                     maxheight: 260
                 });
             }else if(windowType == "2") {
+                '</div>';
                     infoWindowContent =
-                        '                            <div id="testIWTitle2" class="testIWTitle" contenteditable="true">Title</div>\n' +
-                        '                            <div id="editDesc2" class="testTA2 testDesc" contenteditable="true">Description</div>\n' +
-                        '                            <div id="setImg2" class="imageInfowindow2">\n' +
-                        '                            </div>\n' +
-                        '                            <div class="testRating">\n' +
-                        '                                <img width="160" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>\n' +
-                        '                            </div>\n' +
+                        '<div class="testWindows2 infoWindow2">' +
+                        '                            <div id="testIWTitle2" class="testIWTitle IWTitle2" contenteditable="true">Title</div>' +
+                        '                            <div id="editDesc2" class="testTA2 testDesc" contenteditable="true">Description</div>' +
+                        '                            <div class="testImageExample">' +
+                        '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
+                        '                            </div>' +
+                        '                            <div class="testRating">' +
+                        '                                <img width="160" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>' +
+                        '                            </div>' +
                         '            <div class="addToiletSubmit">\n' +
-                        '\n' +
                         '               <button class="markerSubmit" onclick="saveInfoWindow()">Confirm</button>\n' +
                         '               <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>\n' +
                         '            </div>' +
-                        '                        </div>';
+                        '                        </div>' +
+                        '</div>';
                     infowindowCreate = new google.maps.InfoWindow({
-                        content: infoWindowContent,
-                        maxwidth:450,
-                        maxheight:260
+                        content: infoWindowContent
                     });
             }else if (windowType == "3") {
-                var infoWindowContent = '                        <div class="infowWindows3">\n' +
-                    '                            <div id="testIWTitle3" class="testIWTitle" contenteditable="true">Title</div>\n' +
+                var infoWindowContent = '                        <div class="testWindows2 infoWindow3">\n' +
+                    '                            <div id="testIWTitle3" class="testIWTitle IWTitle3" contenteditable="true">Title</div>\n' +
                     '                            <div id="editDesc3" class="testTA3 testDesc" contenteditable="true">Description</div>\n' +
                     '                            <div class="testReviewSectionTitle">Reviews</div>\n' +
-                    '                            <div class="testReviewSection">\n' +
+                    '                            <div class="testReviewSection">' +
                     '                            </div>\n' +
                     '                            <div class="testRating">\n' +
                     '                                <img width="197" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>\n' +
                     '                            </div>\n' +
-                    '            <div class="addToiletSubmit" style="margin-top:20px;">\n' +
-                    '\n' +
-                    '               <button class="markerSubmit" onclick="saveInfoWindow()">Confirm</button>\n' +
-                    '               <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>\n' +
-                    '            </div>' +
+                    '               <button class="markerSubmit" onclick="saveInfoWindow()" style="margin-top:5px;"">Confirm</button>\n' +
+                    '               <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:20px;margin-top:5px;">Cancel</button>\n' +
                     '                        </div>';
                 infowindowCreate = new google.maps.InfoWindow({
-                    content: infoWindowContent,
-                    maxwidth:450,
-                    maxheight:260
+                    content: infoWindowContent
                 });
             }else {
                 infoWindowContent ='                            <div id="testIWTitle4" class="testIWTitle" contenteditable="true">Title</div>' +
@@ -153,10 +149,21 @@ function custWindow1Display(title,desc,uniqueId) {
         '</div>';
 }
 function custWindow1() {
-
 }
 function importFolder(id) {
-    alert(id);
+    document.getElementById("formSubmitToilet:folderId").value = id;
+    importOthersFolder();
+}
+function importFailed() {
+    alert("Folder already part of user's folders or imports");
+}
+function deleteFolder(id, folderHeader, folderName) {
+    if (confirm("Delete folder " + folderName + "?")) {
+        var doc = document.getElementById("folderDiv"+id);
+        document.getElementById(folderHeader).removeChild(doc);
+        document.getElementById("formSubmitToilet:folderId").value = id;
+        deletePersonalFolder();
+    }
 }
 function addDivider(titleName, catagory) {
     var title = document.createElement('p');
@@ -185,13 +192,13 @@ function addNewGroupFolder() {
     paragraph.innerHTML= "Create New Folder";
     paragraph.style = "color:white;"
     var breakLine = document.createElement('br');
-
+    group.onclick= function() {createFolderP1()};
     group.append(img);
     group.append(paragraph);
     group.append(breakLine);
     document.getElementById("userFolder").append(group);
 }
-function addFolder(foldId, foldUser, foldName , type) {
+function addFolder(foldId, foldUser, foldName , folderHeader) {
     var group = document.createElement('div');
     group.className = "groupMarker";
     group.title = "By "+foldUser;
@@ -210,11 +217,33 @@ function addFolder(foldId, foldUser, foldName , type) {
     group.append(paragraph);
     group.append(breakLine);
     group.append(importBut);
-    switch(type) {
-        case 0:
-            document.getElementById("sponsorFolder").append(group);
-            break;
-    }
+    document.getElementById(folderHeader).append(group);
+}
+function addUserFolder(foldId, foldUser, foldName , folderHeader) {
+    var group = document.createElement('div');
+    group.className = "groupMarker";
+    group.title = "By "+foldUser;
+    group.id = "folderDiv"+foldId;
+    group.onclick = (function() {openFolder(foldId)});
+    var img = document.createElement('img');
+    img.src = "images/folder.png";
+    img.alt = "Folder Icon";
+    var paragraph = document.createElement('p');
+    paragraph.innerHTML= foldName;
+    var breakLine = document.createElement('br');
+    var deleteBut = document.createElement('div');
+    deleteBut.innerHTML = "Delete";
+    deleteBut.className = "importButton";
+    $(deleteBut).click(function(e) {
+        //do something
+        e.stopPropagation();
+        deleteFolder(foldId,folderHeader,foldName);
+    })
+    group.append(img);
+    group.append(paragraph);
+    group.append(breakLine);
+    group.append(deleteBut);
+    document.getElementById(folderHeader).append(group);
 }
 function createFolderP1() {
 // <p class="folderListTitle2" style="width:230px;">Set Folder Name:</p>
@@ -484,16 +513,16 @@ function finishFolderP2(typeNo){
     }
 }
 
-function returnPersonalWindows() {
 
-}
 function saveInfoWindow() {
+    document.getElementById("CancelAddMarker").className = "CancelAdd";
     var windowType =  document.getElementById("formSubmitToilet:folderType").value;
     document.getElementById("formSubmitToilet:pLat").value = personalCreateMarker.getPosition().lat();
     document.getElementById("formSubmitToilet:pLng").value = personalCreateMarker.getPosition().lng();
     if (windowType ==  "1") {
         document.getElementById("formSubmitToilet:field1").value = document.getElementById("testIWTitle1").innerHTML;
         document.getElementById("formSubmitToilet:field2").value = document.getElementById("editDesc1").innerHTML;
+
     }else if (windowType == "2") {
         document.getElementById("formSubmitToilet:field1").value = document.getElementById("testIWTitle2").innerHTML;
         document.getElementById("formSubmitToilet:field2").value = document.getElementById("editDesc2").innerHTML;
@@ -511,6 +540,8 @@ function saveInfoWindow() {
 function removePersonalInfoWindow() {
     personalCreateMarker.setMap(null);
     personalCreateMarker = null;
+    personalMarkerStatus = 0;
+    document.getElementById("CancelAddMarker").className = "CancelAdd";
 }
 
 function returnPersonalWindow (type, uniqueNo,field1, field2, owner) {
@@ -523,40 +554,99 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner) {
             '                                                   <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
             '                                               </div>';
     }else if(type == 2) {
-
+        contentRtn1 = 		'<div class="testWindows2 infoWindow2">' +
+            '                            <div id="2Title'+uniqueNo+'" class="testIWTitle IWTitle2">'+field1+'</div>' +
+            '                            <div id="2Desc'+uniqueNo+'" class="testTA2 testDesc">'+field2+'</div>' +
+            '                            <div class="testImageExample">' +
+            '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
+            '                            </div>' +
+            '                            <div class="testRating">' +
+            '                                <img width="160" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>' +
+            '                            </div>';
     }else if(type == 3) {
-    }else if(type == 4) {
+        contentRtn1 = '                        <div class="testWindows2 infoWindow3">' +
+            '                            <div id="3Title'+uniqueNo+'" class="testIWTitle IWTitle3" >Title</div>' +
+            '                            <div id="3Desc'+uniqueNo+'" class="testTA3 testDesc" >Description</div>' +
+            '                            <div class="testReviewSectionTitle">Reviews</div>' +
+            '                            <div class="testReviewSection">' +
+            '                            </div>' +
+            '                            <div class="testRating">' +
+            '                                <img width="197" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>' +
+            '                            </div>';
     }
 
-    var contentRtn2
+    else if(type == 4) {
+        contentRtn1 = '                            <div id="4Title'+uniqueNo+'" class="testIWTitle" >Title</div>';
+    }
+
+    var contentRtn2 ="";
     if (owner == 1) {
-        contentRtn2 =             '                                               <img id="edit'+uniqueNo+'" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(1,'+uniqueNo+')"></img>' +
-            '                                               <img id="delete'+uniqueNo+'" class="delete-unselected personalDeleteButton" src="images/delete-icon.png" onclick="deletePInfoWindow('+uniqueNo+')"></img>' +
-            '                                           </div>';
+        if (type == 1) {
+            contentRtn2 = '                                               <img id="edit' + uniqueNo + '" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(1,' + uniqueNo + ')"></img>' +
+                '                                               <img id="delete' + uniqueNo + '" class="delete-unselected personalDeleteButton" src="images/delete-icon.png" onclick="deletePInfoWindow(' + uniqueNo + ')"></img>' +
+                '                                           </div>';
+        }else if(type == 2) {
+            contentRtn2 = '                                               <img id="edit' + uniqueNo +'" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(2,' + uniqueNo +')"></img>' +
+                '                                               <img id="delete'+uniqueNo +'" class="delete-unselected personalDeleteButton" src="images/delete-icon.png" onclick="deletePInfoWindow(' + uniqueNo +')"></img>' +
+                '                            <div class="testViewReviews testButton">View Reviews</div>' +
+                '                        </div>';
+        }else if(type == 3) {
+            contentRtn2 = '                                               <img id="edit' + uniqueNo + '" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(3,' + uniqueNo + ')"></img>' +
+                '                                               <img id="delete' + uniqueNo + '" class="delete-unselected personalDeleteButton3" src="images/delete-icon.png" onclick="deletePInfoWindow(' + uniqueNo + ')"></img>' +
+                '                                           </div>';
+        }else if(type == 4) {
+            contentRtn2 = '                                    <div style="height:40px;">' +
+                '                                               <img id="edit' + uniqueNo + '" class="edit-unselected personalEditButton4" src="images/edit-icon.png" onclick="editPInfoWindow(4,' + uniqueNo + ')"></img>' +
+                '                                               <img id="delete' + uniqueNo + '" class="delete-unselected personalDeleteButton4" src="images/delete-icon.png" onclick="deletePInfoWindow(' + uniqueNo + ')"></img>' +
+                '                                           </div>';
+        }
     }else {
+        if (type == 1) {
+            contentRtn2 = '</div>';
+        }else if(type == 2) {
+            contentRtn2 = '                            <div class="testAddReview testButton" >Add Review</div>' +
+                '                            <div class="testViewReviews testButton">View Reviews</div>' +
+                '                        </div>';
+        }else if(type == 3) {
+            contentRtn2 = '                            <div class="testAddReview testButton" >Add Review</div>\n' +
+                '                        </div>';
+        }else if(type == 4) {
+        }
         contentRtn2 = '</div>';
     }
     var contentRtn = contentRtn1.concat(contentRtn2);
     return contentRtn;
 }
 function editPInfoWindow(type, uniqueNo) {
-    var unselected = "edit-unselected personalEditButton";
-    var selected = "edit-selected personalEditButton"
     var checkEdit = document.getElementById("edit"+uniqueNo);
-    if (checkEdit.className == "edit-unselected personalEditButton") {
+    if (checkEdit.classList.contains("edit-unselected")) {
         //Unselected
-        checkEdit.className = selected;
+        checkEdit.classList.remove("edit-unselected");
+        checkEdit.classList.add("edit-selected");
         var docTitle = document.getElementById(type+"Title"+uniqueNo);
         var docDesc = document.getElementById(type+"Desc"+uniqueNo);
         docTitle.contentEditable  = "true";
         docDesc.contentEditable  = "true";
     }else {
         //Selected
-        checkEdit.className = unselected;
+        checkEdit.classList.remove("edit-selected");
+        checkEdit.classList.add("edit-unselected");
+        var docTitle = document.getElementById(type+"Title"+uniqueNo);
+        var docDesc = document.getElementById(type+"Desc"+uniqueNo);
+        docTitle.contentEditable  = "false";
+        docDesc.contentEditable  = "false";
+        document.getElementById("formSubmitToilet:uniqueNoJs").value = uniqueNo;
+        document.getElementById("formSubmitToilet:field1").value = docTitle.innerHTML;
+        document.getElementById("formSubmitToilet:field2").value = docDesc.innerHTML;
+        editMarkerInfo();
+
     }
 }
 function deletePInfoWindow(uniqueNo) {
-
+    if (confirm("Delete This Marker and Info?")) {
+        document.getElementById("formSubmitToilet:uniqueNoJs").value = uniqueNo;
+        deletePersonalMarker();
+    }
 }
 function openFolder(folderId) {
     var screen = document.getElementById("groupScreen");

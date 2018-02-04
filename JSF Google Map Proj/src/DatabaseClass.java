@@ -363,13 +363,98 @@ public class DatabaseClass {
         }
         return null;
     }
+    public List<FolderData> getSponsorFolders() {
+        try {
+            List<FolderData> fdL = new ArrayList<>();
+            PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders WHERE sponsor = 1");
+            ResultSet folderRS = getFolders.executeQuery();
+            while (folderRS.next()) {
+                FolderData fd = new FolderData(
+                        folderRS.getInt("id"),
+                        "Empty",
+                        folderRS.getString("folder_name")
+                );
+                fdL.add(fd);
+            }
+            return fdL;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public List<FolderData> getUserFolders() {
+        try {
+            List<FolderData> fdL = new ArrayList<>();
+            PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders WHERE user_id = ?");
+            UserController uc = UserController.getInstance();
+            getFolders.setInt(1, uc.getUser_id());
+            ResultSet folderRS = getFolders.executeQuery();
+            while (folderRS.next()) {
+                FolderData fd = new FolderData(
+                        folderRS.getInt("id"),
+                        "Empty",
+                        folderRS.getString("folder_name")
+                );
+                fdL.add(fd);
+            }
+            return fdL;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public List<FolderData> getImportedFolders() {
+        try {
+            List<FolderData> fdL = new ArrayList<>();
+            PreparedStatement getFolders = conn.prepareStatement("SELECT uf.* FROM user_folders uf INNER JOIN user_folders_import ufi ON ufi.folder_id = uf.id WHERE ufi.user_id = ?;");
+            UserController uc = UserController.getInstance();
+            getFolders.setInt(1, uc.getUser_id());
+            ResultSet folderRS = getFolders.executeQuery();
+            while (folderRS.next()) {
+                FolderData fd = new FolderData(
+                        folderRS.getInt("id"),
+                        "Empty",
+                        folderRS.getString("folder_name")
+                );
+                fdL.add(fd);
+            }
+            return fdL;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public List<FolderData> getTrendingFolders() {
+        try {
+            List<FolderData> fdL = new ArrayList<>();
+            PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders WHERE import_amt > 0 ORDER BY import_amt DESC,id DESC;");
+            ResultSet folderRS = getFolders.executeQuery();
+            while (folderRS.next()) {
+                FolderData fd = new FolderData(
+                        folderRS.getInt("id"),
+                        "Empty",
+                        folderRS.getString("folder_name")
+                );
+                fdL.add(fd);
+            }
+            return fdL;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public void createFolder() {
         try {
             PersonalMapList pml = PersonalMapList.getInstance();
             FolderData fd = pml.getCurrentFolder();
             PreparedStatement createFolder = conn.prepareStatement("INSERT INTO user_folders" +
                     "(user_id,folder_name,window_type) VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            createFolder.setInt(1, 0);
+            UserController uc = UserController.getInstance();
+            int userId = uc.getUser_id();
+            if (userId == -1) {
+                userId = -2;
+            }
+            createFolder.setInt(1, userId);
             createFolder.setString(2, fd.getFolderName());
             createFolder.setInt(3, fd.getWindowType());
             createFolder.executeUpdate();
@@ -386,6 +471,7 @@ public class DatabaseClass {
         List<PersonalMapMarker> pmmList = new ArrayList<>();
         PersonalMapList pml = PersonalMapList.getInstance();
         try {
+            UserController uc = UserController.getInstance();
             FolderData fd = pml.getCurrentFolder();
             PreparedStatement folderType = conn.prepareStatement("SELECT * FROM user_folders WHERE id = ?");
             folderType.setInt(1, folderId);
@@ -393,26 +479,25 @@ public class DatabaseClass {
             int markerType= 0;
             while (folType.next()) {
                 markerType = folType.getInt("window_type");
+                int folder_user_id = folType.getInt("user_id");
+                if (uc.getUser_id() == folder_user_id) {
+                    fd.setIsEditable(1);
+                }
             }
-
+            System.out.println("Folder:" + folderId);
+            fd.setWindowType(markerType);
             PreparedStatement getMarkers = conn.prepareStatement("SELECT * FROM user_folder_markers usm INNER JOIN user_folder_marker_info ufmi ON ufmi.marker_id = usm.id WHERE usm.folder_id =  ?;");
             getMarkers.setInt(1, folderId);
             ResultSet markers = getMarkers.executeQuery();
             while (markers.next()) {
                 PersonalMapMarker pmm = new PersonalMapMarker();
-                if (markerType == 1) {
                     LatLng ll = new LatLng(markers.getDouble("latitude"), markers.getDouble("longitude"));
+                    System.out.println("Marker Lat:" + markers.getDouble("latitude") + "Longitude:" + markers.getDouble("longitude") );
                     pmm.setLatlng(ll);
+                    pmm.setId(markers.getInt(1));
                     pmm.setField1(markers.getString("field1"));
                     pmm.setField2(markers.getString("field2"));
 
-                }else if (markerType == 2){
-
-                }else if (markerType == 3){
-
-                }else if (markerType == 4){
-
-                }
                 pmmList.add(pmm);
             }
 
@@ -441,6 +526,91 @@ public class DatabaseClass {
             addMarkerInfo.setString(2, pmm.getField1());
             addMarkerInfo.setString(3, pmm.getField2());
             addMarkerInfo.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void editPersonalMarker(int id, String field1, String field2) {
+        try {
+            PreparedStatement editMarker = conn.prepareStatement("UPDATE user_folder_marker_info" +
+                    " SET field1 = ?," +
+                    " field2 = ?" +
+                    "WHERE marker_id = ?;");
+            editMarker.setString(1, field1);
+            editMarker.setString(2, field2);
+            editMarker.setInt(3, id);
+            editMarker.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public boolean addImport(int folderId) {
+        try {
+            Boolean checkBool = true;
+            UserController uc = UserController.getInstance();
+            PreparedStatement checkFolder = conn.prepareStatement("SELECT * FROM user_folders_import WHERE user_id = ? AND folder_id = ?;");
+            PreparedStatement checkFolder2 = conn.prepareStatement("SELECT * FROM user_folders WHERE user_id = ? AND id = ?;");
+            checkFolder.setInt(1, uc.getUser_id());
+            checkFolder.setInt(2, folderId);
+            checkFolder2.setInt(1, uc.getUser_id());
+            checkFolder2.setInt(2, folderId);
+            ResultSet rsCheck1 = checkFolder.executeQuery();
+            ResultSet rsCheck2 = checkFolder2.executeQuery();
+            while (rsCheck1.next() || rsCheck2.next()) {
+                checkBool = false;
+            }
+            if (checkBool == true) {
+                PreparedStatement importFolder = conn.prepareStatement("INSERT INTO user_folders_import (user_id,folder_id) VALUES (?,?)");
+                importFolder.setInt(1, uc.getUser_id());
+                importFolder.setInt(2, folderId);
+                importFolder.executeUpdate();
+            }
+            System.out.println(checkBool);
+            return checkBool;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public void addDelete(int folderId) {
+        try {
+            Boolean check = true;
+            PreparedStatement checkOwned = conn.prepareStatement("SELECT * FROM user_folders WHERE user_id = ? AND id = ?");
+            UserController uc = UserController.getInstance();
+            checkOwned.setInt(1,uc.getUser_id());
+            checkOwned.setInt(2, folderId);
+            ResultSet checkOwner = checkOwned.executeQuery();
+            if(!checkOwner.isBeforeFirst() ) {
+                check = false;
+            }
+            if (check == true) {
+//                User is owner
+                PreparedStatement deleteFromImport = conn.prepareStatement("DELETE user_folders_import WHERE folder_id = ?;");
+                PreparedStatement deleteFromFolders = conn.prepareStatement("DELETE FROM user_folders WHERE id = ?;");
+                deleteFromImport.setInt(1, folderId);
+                deleteFromFolders.setInt(1, folderId);
+                deleteFromFolders.executeUpdate();
+                deleteFromImport.executeUpdate();
+            }else {
+                PreparedStatement deleteFromImport = conn.prepareStatement("DELETE FROM user_folders_import WHERE folder_id = ? AND user_id = ?;");
+                deleteFromImport.setInt(2,uc.getUser_id());
+                deleteFromImport.setInt(1, folderId);
+                deleteFromImport.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void deletePersonalMarker(int id) {
+        try {
+            PreparedStatement deleteMarker = conn.prepareStatement("DELETE FROM user_folder_markers WHERE id = ?");
+            PreparedStatement deleteMarkerInfo = conn.prepareStatement("DELETE FROM user_folder_marker_info WHERE marker_id = ?");
+            deleteMarker.setInt(1, id);
+            deleteMarkerInfo.setInt(1, id);
+            deleteMarker.executeUpdate();
+            deleteMarkerInfo.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

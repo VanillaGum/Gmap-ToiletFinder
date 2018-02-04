@@ -292,6 +292,7 @@
             <h:inputHidden id="field2" value="#{personalMapController.field2}"/>
             <h:inputHidden id="pLat" value="#{personalMapController.lat}"/>
             <h:inputHidden id="pLng" value="#{personalMapController.lng}"/>
+            <h:inputHidden id="uniqueNoJs" value="#{personalMapController.uniqueNoJs}"/>
             <!--End-->
 
             <!--Was In Command Button Temp Removed-->
@@ -319,6 +320,14 @@
             <p:remoteCommand name="displayFolderMarkerz" actionListener="#{personalMapController.getFolderMarker}"/>
             <!--Add Marker-->
             <p:remoteCommand name="createPersonalMarkerz" actionListener="#{personalMapController.addMarker}"/>
+            <!--Edit Marker-->
+            <p:remoteCommand name="editMarkerInfo" actionListener="#{personalMapController.editMarkerInfo}"/>
+            <!--Import Folders-->
+            <p:remoteCommand name="importOthersFolder" actionListener="#{personalMapController.userImportFolder}"/>
+            <!--Delete Folders-->
+            <p:remoteCommand name="deletePersonalFolder" actionListener="#{personalMapController.userDeleteFolder}"/>
+            <!--Delete Personal Marker-->
+            <p:remoteCommand name="deletePersonalMarker" actionListener="#{personalMapController.deleteMarker}"/>
         </h:form>
     </div>
 
@@ -356,7 +365,8 @@
       </div>
 
 
-    <div id="CancelAddToilet" onclick="resetInfoWindowCheck()">Cancel Adding Toilet</div>
+    <div id="CancelAddToilet" class="CancelAdd" onclick="resetInfoWindowCheck()">Cancel Adding Toilet</div>
+    <div id="CancelAddMarker" class="CancelAdd" onclick="removePersonalInfoWindow()">Cancel Adding Marker</div>
     <div id="showMessage"></div>
     <!--Displaying Toilet Suggestions-->
     <div style="display:none;">

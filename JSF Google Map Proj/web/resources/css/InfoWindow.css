@@ -144,3 +144,17 @@ div#greyOverlay.selected-Overlay {
     background-color: #576369;
     color:white;
 }
+.markerCancel2 {
+    background-color: white; !important;
+    border-radius:15px; !important;
+    border: 2px solid #576369; !important;
+    color: #576369; !important;
+    font-size: 18px; !important;
+    font-weight: bold; !important;
+    text-align:center; !important;
+    cursor: pointer; !important;
+}
+.markerCancel2:hover {
+    background-color: #576369;
+    color:white;
+}

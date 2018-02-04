@@ -58,6 +58,13 @@ public class PersonalMapMarker extends MarkerData{
         this.field2 = field2;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getUniqueNo() {
         return uniqueNo;

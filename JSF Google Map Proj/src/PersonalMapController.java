@@ -10,6 +10,7 @@ public class PersonalMapController {
     private PersonalMapEntity pme;
     private PersonalMapList pml;
     public int folderId =0;
+    public int uniqueNoJs = 0;
     public String folderUser ="";
     public String folderName = "";
     public int folderType = -1;
@@ -31,6 +32,7 @@ public class PersonalMapController {
     }
 
     public void displayFolderMarker() {
+        resetMarkerList();
         FolderData fd = pml.getCurrentFolder();
         List<PersonalMapMarker> pmmList = fd.getPmmL();
         if (fd.getIsEditable() == 1) {
@@ -52,24 +54,51 @@ public class PersonalMapController {
         }
     }
     public void displayFolders() {
-        System.out.println("Displaying Folder");
-        List<FolderData> sponsorFolders = pme.getUserFolders();
-        if (sponsorFolders.size() > 1) {
-            String script = "addDivider(\"Sponsor's Folder\",\"sponsorFolder\")";
-            RequestContext.getCurrentInstance().execute(script);
-        }
-        for(FolderData f: sponsorFolders) {
-            //Display Folders In HTML
-            folderId = f.getFolderId();
-            String script = "addFolder(" + f.getFolderId() + ", \"" + f.getUser_name() +" \", \""+ f.getFolderName() + " \" , 0)";
-            RequestContext.getCurrentInstance().execute(script);
+        List<FolderData> sponsorFolders = pme.getSponsorFolders();
+        if (sponsorFolders != null) {
+            if (sponsorFolders.size() > 0) {
+                String script = "addDivider(\"Sponsor's Folder\",\"sponsorFolder\")";
+                RequestContext.getCurrentInstance().execute(script);
+            }
+            for (FolderData f : sponsorFolders) {
+                String script = "addFolder(" + f.getFolderId() + ", \"" + f.getUser_name() + " \", \"" + f.getFolderName() + " \" , \"sponsorFolder\")";
+                RequestContext.getCurrentInstance().execute(script);
+            }
         }
         List<FolderData> userFolders = pme.getUserFolders();
         String userSection = "addDivider(\"User's Folder\",\"userFolder\")";
         RequestContext.getCurrentInstance().execute(userSection);
+        for(FolderData f: userFolders) {
+            String script = "addUserFolder(" + f.getFolderId() + ", \"" + f.getUser_name() +" \", \""+ f.getFolderName() + " \" , \"userFolder\")";
+            RequestContext.getCurrentInstance().execute(script);
+        }
 
         String addFolder = "addNewGroupFolder()";
         RequestContext.getCurrentInstance().execute(addFolder);
+
+        //Imports
+        List<FolderData> importFolders = pme.getImportedFolders();
+        if (importFolders.size() > 0) {
+            String script = "addDivider(\"Imported Folder\",\"importFolder\")";
+            RequestContext.getCurrentInstance().execute(script);
+        }
+        for(FolderData f: importFolders) {
+            //Display Folders In HTML
+            String script = "addUserFolder(" + f.getFolderId() + ", \"" + f.getUser_name() +" \", \""+ f.getFolderName() + " \" , \"importFolder\")";
+            RequestContext.getCurrentInstance().execute(script);
+        }
+
+        //Trending
+        List<FolderData> trendingFolder = pme.getTrendingFolders();
+        if (trendingFolder.size() > 0) {
+            String script = "addDivider(\"Trending Folders\",\"trendingFolder\")";
+            RequestContext.getCurrentInstance().execute(script);
+        }
+        for(FolderData f: trendingFolder) {
+            //Display Folders In HTML
+            String script = "addFolder(" + f.getFolderId() + ", \"" + f.getUser_name() +" \", \""+ f.getFolderName() + " \" , \"trendingFolder\")";
+            RequestContext.getCurrentInstance().execute(script);
+        }
     }
 
     public void createFolder() {
@@ -83,6 +112,8 @@ public class PersonalMapController {
     public void getFolderMarker() {
         pme.getFolderMarkers(folderId);
         displayFolderMarker();
+        FolderData fd = pml.getCurrentFolder();
+        RequestContext.getCurrentInstance().execute("document.getElementById(\"formSubmitToilet:folderType\").value = "+fd.getWindowType()+"");
     }
 
     public void addMarker() {
@@ -94,8 +125,42 @@ public class PersonalMapController {
         LatLng loc = new LatLng(lat,lng);
         newPmm.setLatlng(loc);
         pme.addMarker(newPmm);
+        getFolderMarker();
     }
 
+    public void editMarkerInfo() {
+        FolderData fd = pml.getCurrentFolder();
+        List<PersonalMapMarker> pmmList = fd.getPmmL();
+        int idMarker = 0;
+        for(PersonalMapMarker m: pmmList) {
+            if (m.getUniqueNo() == uniqueNoJs) {
+                idMarker = m.getId();
+            }
+        }
+        pme.editMarker(idMarker,field1,field2);
+    }
+    public void deleteMarker() {
+        FolderData fd = pml.getCurrentFolder();
+        List<PersonalMapMarker> pmmList = fd.getPmmL();
+        int idMarker = 0;
+        for(PersonalMapMarker m: pmmList) {
+            if (m.getUniqueNo() == uniqueNoJs) {
+                idMarker = m.getId();
+            }
+        }
+        pme.deleteMarker(idMarker);
+        getFolderMarker();
+    }
+    public void userImportFolder() {
+        if (pme.addImport(folderId) == false) {
+            RequestContext.getCurrentInstance().execute("importFailed();");
+        }
+        System.out.println("Importing "+folderId);
+    }
+    public void userDeleteFolder() {
+        pme.addDelete(folderId);
+        resetMarkerList();
+    }
     public int getFolderId() {
         return folderId;
     }
@@ -146,5 +211,13 @@ public class PersonalMapController {
 
     public void setLng(Double lng) {
         this.lng = lng;
+    }
+
+    public int getUniqueNoJs() {
+        return uniqueNoJs;
+    }
+
+    public void setUniqueNoJs(int uniqueNoJs) {
+        this.uniqueNoJs = uniqueNoJs;
     }
 }

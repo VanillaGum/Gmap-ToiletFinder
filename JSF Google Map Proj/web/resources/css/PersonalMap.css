@@ -153,7 +153,11 @@
     width:450px;
     height:247px;
 }
-#testInfoWindow4 {
+.infoWindow3 {
+    width:450px;
+    height:247px;
+}
+#testInfo Window4 {
     width:380px;
 }
 .testWindows {
@@ -192,6 +196,10 @@
     height:34px;
 }
 #testIWTitle3 {
+    width:220px;
+    height:34px;
+}
+.IWTitle3 {
     width:220px;
     height:34px;
 }
@@ -257,6 +265,7 @@
     border: 1px solid black;
     text-align: center;
     float: right;
+    right:40px;
     top:40px;
     position:absolute;
 }
@@ -272,6 +281,7 @@
     overflow:auto;
     overflow-x:hidden;
     background-color:#9DA2C2;
+    font-weight:bold;
 }
 .testReviewSectionTitle {
     float: right;
@@ -307,7 +317,31 @@
     position: absolute;
     opacity: 0.4;
 }
+.personalDeleteButton3 {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    float: right;
+    top: 205px;
+    margin-left: 35%;
+    position: absolute;
+    opacity: 0.4;
+}
+.personalDeleteButton4 {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    float: right;
+    margin-left: 80%;
+    opacity: 0.4;
+}
 .personalDeleteButton:hover {
+    opacity: 1;
+}
+.personalDeleteButton3:hover {
+    opacity: 1;
+}
+.personalDeleteButton4:hover {
     opacity: 1;
 }
 .personalEditButton {
@@ -319,6 +353,15 @@
     top: 205px;
     position: absolute;
     opacity: 0.4;
+}
+.personalEditButton4 {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    opacity: 0.4;
+}
+.personalEditButton4:hover {
+    opacity: 1;
 }
 .personalEditButton:hover {
     opacity: 1;

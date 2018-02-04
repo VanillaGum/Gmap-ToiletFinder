@@ -181,7 +181,7 @@
 }
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
-#CancelAddToilet {
+.CancelAdd {
     cursor: pointer;
     visibility: hidden;
     min-width: 250px;
@@ -198,12 +198,12 @@
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
-#CancelAddToilet.show {
+.CancelAdd.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s;
     animation: fadein 0.5s;
 }
-#CancelAddToilet.hide {
+#CancelAdd.hide {
     -webkit-animation: fadein 0s, fadeout 0.5s;
     animation: fadein 0s, fadeout 0.5s;
 }
