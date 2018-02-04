@@ -174,7 +174,7 @@
     </div>
     <div id="filterBar" class="topbar">
         <h:form id="filterSelect">
-            <h:panelGrid columns="5">
+            <h:panelGrid columns="8">
                 <h:outputText value="Gender:"/>
                 <h:panelGroup>
                     <h:selectBooleanCheckbox id="male" value="#{filter.male}"/>
@@ -188,8 +188,24 @@
                     <h:selectBooleanCheckbox id="wheelchair" value="#{filter.wheelchairAccessible}"/>
                     <h:outputText value=" Wheelchair Accessible" for="wheelchair"/>
                 </h:panelGroup>
+                <h:panelGroup/>
+                <h:panelGroup/>
+                <h:panelGroup>
+                    <h:outputLabel for="radius" value="Within a " />
+                    <h:selectOneMenu id="radius" value="#{filter.radius}" style="width:150px">
+                        <f:selectItem itemLabel="100m radius" itemValue="100"/>
+                        <f:selectItem itemLabel="250m radius" itemValue="250"/>
+                        <f:selectItem itemLabel="500m radius" itemValue="500"/>
+                        <f:selectItem itemLabel="1km radius" itemValue="1000"/>
+                        <f:selectItem itemLabel="2.5km radius" itemValue="2500"/>
+                        <f:selectItem itemLabel="5km radius" itemValue="5000"/>
+                        <f:selectItem itemLabel="10km radius" itemValue="10000"/>
+                        <f:selectItem itemLabel="unlimited radius" itemValue="100000"/>
+                    </h:selectOneMenu>
+                </h:panelGroup>
                 <h:outputText value="Rating:"/>
                 <h:selectOneRadio value="#{filter.rating}">
+                    <f:selectItem itemValue="0" itemLabel="0"/>
                     <f:selectItem itemValue="1" itemLabel="1"/>
                     <f:selectItem itemValue="2" itemLabel="2"/>
                     <f:selectItem itemValue="3" itemLabel="3"/>
@@ -203,7 +219,9 @@
                     <h:outputText value=" Include toilets that requires an entry fee" for="needtoPay"/>
                 </h:panelGroup>
             </h:panelGrid>
-            <p:remoteCommand name="filterSearch" actionListener="#{filter.searchByFilter}" style="display: none;"/>
+            <p:remoteCommand name="filterSearch" actionListener="#{filter.searchByFilterStep1}" style="display: none;"/>
+            <p:remoteCommand name="filterReset" actionListener="#{filter.resetFilter}" style="display: none;"/>
+            <p:remoteCommand name="sendComputedDistance" actionListener="#{filter.searchByFilterStep2}" style="display: none;"/>
         </h:form>
         <button id="rightButton" onclick="closeFilter()">Cancel</button>
         <button id="rightButton" onclick="callFilterSearch()">Search</button>
