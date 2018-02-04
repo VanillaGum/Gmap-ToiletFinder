@@ -344,34 +344,34 @@ public class DatabaseClass {
 
 
 //    Personal Map Section
-    public List<FolderData> getFolders() {
-        try {
-        List<FolderData> fdL = new ArrayList<>();
-        PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders");
-        ResultSet folderRS = getFolders.executeQuery();
-        while (folderRS.next()) {
-            FolderData fd = new FolderData(
-                    folderRS.getInt("id"),
-                    "Empty",
-                    folderRS.getString("folder_name")
-            );
-            fdL.add(fd);
-        }
-        return fdL;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public List<FolderData> getFolders() {
+//        try {
+//        List<FolderData> fdL = new ArrayList<>();
+//        PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders");
+//        ResultSet folderRS = getFolders.executeQuery();
+//        while (folderRS.next()) {
+//            FolderData fd = new FolderData(
+//                    folderRS.getInt("id"),
+//                    "Empty",
+//                    folderRS.getString("folder_name")
+//            );
+//            fdL.add(fd);
+//        }
+//        return fdL;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
     public List<FolderData> getSponsorFolders() {
         try {
             List<FolderData> fdL = new ArrayList<>();
-            PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders WHERE sponsor = 1");
+            PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders uf INNER JOIN users u ON uf.user_id = u.id WHERE uf.sponsor = 1");
             ResultSet folderRS = getFolders.executeQuery();
             while (folderRS.next()) {
                 FolderData fd = new FolderData(
-                        folderRS.getInt("id"),
-                        "Empty",
+                        folderRS.getInt(1),
+                        folderRS.getString("username"),
                         folderRS.getString("folder_name")
                 );
                 fdL.add(fd);
@@ -385,14 +385,14 @@ public class DatabaseClass {
     public List<FolderData> getUserFolders() {
         try {
             List<FolderData> fdL = new ArrayList<>();
-            PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders WHERE user_id = ?");
+            PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders uf INNER JOIN users u ON uf.user_id = u.id WHERE uf.user_id = ?");
             UserController uc = UserController.getInstance();
             getFolders.setInt(1, uc.getUser_id());
             ResultSet folderRS = getFolders.executeQuery();
             while (folderRS.next()) {
                 FolderData fd = new FolderData(
-                        folderRS.getInt("id"),
-                        "Empty",
+                        folderRS.getInt(1),
+                        folderRS.getString("username"),
                         folderRS.getString("folder_name")
                 );
                 fdL.add(fd);
@@ -406,14 +406,14 @@ public class DatabaseClass {
     public List<FolderData> getImportedFolders() {
         try {
             List<FolderData> fdL = new ArrayList<>();
-            PreparedStatement getFolders = conn.prepareStatement("SELECT uf.* FROM user_folders uf INNER JOIN user_folders_import ufi ON ufi.folder_id = uf.id WHERE ufi.user_id = ?;");
+            PreparedStatement getFolders = conn.prepareStatement("SELECT uf.*, u.username FROM user_folders uf INNER JOIN user_folders_import ufi ON ufi.folder_id = uf.id INNER JOIN users u ON uf.user_id = u.id WHERE ufi.user_id = ?;");
             UserController uc = UserController.getInstance();
             getFolders.setInt(1, uc.getUser_id());
             ResultSet folderRS = getFolders.executeQuery();
             while (folderRS.next()) {
                 FolderData fd = new FolderData(
-                        folderRS.getInt("id"),
-                        "Empty",
+                        folderRS.getInt(1),
+                        folderRS.getString("username"),
                         folderRS.getString("folder_name")
                 );
                 fdL.add(fd);
@@ -427,15 +427,37 @@ public class DatabaseClass {
     public List<FolderData> getTrendingFolders() {
         try {
             List<FolderData> fdL = new ArrayList<>();
-            PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders WHERE import_amt > 0 ORDER BY import_amt DESC,id DESC;");
+            PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders uc INNER JOIN users u ON uc.user_id = u.id WHERE import_amt > 0 ORDER BY uc.import_amt DESC,uc.id DESC;");
             ResultSet folderRS = getFolders.executeQuery();
             while (folderRS.next()) {
                 FolderData fd = new FolderData(
-                        folderRS.getInt("id"),
-                        "Empty",
+                        folderRS.getInt(1),
+                        folderRS.getString("username"),
                         folderRS.getString("folder_name")
                 );
                 fdL.add(fd);
+            }
+            return fdL;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public List<FolderData> getSearchedFolder(String field) {
+        try {
+            List<FolderData> fdL = new ArrayList<>();
+            PreparedStatement getFolders = conn.prepareStatement("SELECT * FROM user_folders uc INNER JOIN users u ON uc.user_id = u.id");
+            ResultSet folderRS = getFolders.executeQuery();
+            UserController uc = UserController.getInstance();
+            while (folderRS.next()) {
+                if (folderRS.getString("folder_name").contains(field)) {
+                    FolderData fd = new FolderData(
+                            folderRS.getInt(1),
+                            folderRS.getString("username"),
+                            folderRS.getString("folder_name")
+                    );
+                    fdL.add(fd);
+                }
             }
             return fdL;
         } catch (SQLException e) {
@@ -650,4 +672,5 @@ public class DatabaseClass {
             e.printStackTrace();
         }
     }
+
 }

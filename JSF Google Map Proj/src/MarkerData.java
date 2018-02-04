@@ -235,6 +235,11 @@ public class MarkerData {
 
     public void addReviewAmt() {this.amt_of_ratings += 1;}
 
-    public void calAvg() {this.avg_rating = this.rating/this.amt_of_ratings;}
-
+    public void calAvg() {
+        try {
+            this.avg_rating = this.rating / this.amt_of_ratings;
+        } catch (java.lang.ArithmeticException exc) {
+            this.avg_rating = 0;
+        }
+    }
 }

@@ -18,7 +18,7 @@ public class UserController {
     private int userLevel=1;
     private int user_id = 1;
     //-1 user_id is default
-
+    private String username = "bob";
 
     public int getUserLevel() {
         return userLevel;
@@ -30,5 +30,17 @@ public class UserController {
 
     public void setUserLevel(int userLevel) {
         this.userLevel = userLevel;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

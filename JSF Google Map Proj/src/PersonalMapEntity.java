@@ -28,6 +28,9 @@ public class PersonalMapEntity {
         currentFolder.setFolderId(folderId);
         dc.getFolderMarkers(folderId);
     }
+    public List<FolderData> searchFolder(String field) {
+        return dc.getSearchedFolder(field);
+    }
     public void addMarker(PersonalMapMarker pmm) {
         dc.addMarker(pmm);
     }

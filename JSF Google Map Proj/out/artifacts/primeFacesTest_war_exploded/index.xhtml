@@ -18,7 +18,7 @@
 </h:head>
 
 <h:body>
-    <div id="greyOverlay" class="unselected-Overlay">
+    <div id="greyOverlay" class="selected-Overlay">
         <!--<div id="iwReviewScreen">-->
             <!--<div id="ReviewScreenRating">-->
                 <!--<img id="star1" src="images/star-unfilled.png" onclick="changeRating(1)"></img>-->
@@ -33,7 +33,12 @@
             <!--<div class="testCloseButton" onclick="closeIWReview()">✖</div>-->
         <!--</div>-->
 
-        <!--<div class="group-selected" id="groupScreen">-->
+        <div class="group-selected" id="groupScreen">
+            <div id="Search"><div id="SearchHeader">Search:</div><div id="SearchBox" contenteditable="true"></div><div id="SubmitSearch" onclick="submitSearch()">Submit</div></div>
+            <div class="folderListDivider"></div>
+            <div id="searchContainer" class="folderListContainer"></div>
+            <div class="testCloseButton">✖</div>
+        </div>
                                    <!--<div id="windowEdit" class="testWindows2 InfoWindow1">-->
                                        <!--<div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>-->
                                        <!--<div class="testTA1 testDesc" contenteditable="true">Description</div>-->
@@ -55,7 +60,7 @@
                             <!--<div class="testImageExample">-->
                                 <!--<img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>-->
                             <!--</div>-->
-                            <!--&lt;!&ndash;<div class="testCloseButton">✖</div>&ndash;&gt;-->
+                            <!--<div class="testCloseButton">✖</div>-->
                             <!--<img class="personalEditButton" src="images/edit-icon.png" onclick="editPWindow()"></img>-->
                             <!--<img class="personalDeleteButton" src="images/delete-icon.png" ></img>-->
                         <!--</div>-->
@@ -309,6 +314,7 @@
 
             <h:inputHidden id="reviewRating" value="#{personalMapController.reviewRating}"/>
             <h:inputHidden id="reviewComment" value="#{personalMapController.reviewComment}"/>
+            <h:inputHidden id="searchFolder" value="#{personalMapController.searchFolder}"/>
             <!--End-->
 
             <!--Was In Command Button Temp Removed-->
@@ -321,7 +327,6 @@
             <p:remoteCommand name="flagSubmit" actionListener="#{mapController.flagToilet}"/>
             <!--For Use On Suggestion And Approved Toilet-->
             <p:remoteCommand name="reviewToilet" actionListener="#{mapController.reviewToilet}"/>
-
             <!--Display Approved Toilets-->
             <p:remoteCommand name="displayApprovedToilet" actionListener="#{mapController.displayApproved()}"/>
             <!--Display Suggestion Toilets-->
@@ -350,6 +355,8 @@
             <p:remoteCommand name="removePMapMarkers" actionListener="#{personalMapController.resetMarkerList}"/>
             <!--Force Show Approved-->
             <p:remoteCommand name="forceShow" actionListener="#{mapController.forceShowApproved}"/>
+            <!--Search Folder-->
+            <p:remoteCommand name="searchForFolder" actionListener="#{personalMapController.folderSearch}"/>
         </h:form>
     </div>
 

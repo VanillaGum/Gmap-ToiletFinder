@@ -470,3 +470,45 @@
     font-weight:bold;
     margin-left:20px;
 }
+#Search {
+    width:100%;
+    margin-left:10px;
+    margin-top:30px;
+    display:inline-block;
+}
+#SearchHeader {
+    font-size:40px;
+    font-weight:bold;
+    color:white;
+    float:left;
+}
+#SearchBox {
+    width:600px;
+    height:40px;
+    border:2px solid white;
+    float:left;
+    font-size:30px;
+    color:white;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+#SubmitSearch {
+    width:150px;
+    height:44px;
+    background-color: white;
+    border-radius:0px 5px 5px 0px;
+    color:#6B739F;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 48px;
+    cursor: pointer;
+    float:left;
+}
+#SubmitSearch:hover {
+    background-color: #6B739F;
+    color:white;
+    cursor: pointer;
+}

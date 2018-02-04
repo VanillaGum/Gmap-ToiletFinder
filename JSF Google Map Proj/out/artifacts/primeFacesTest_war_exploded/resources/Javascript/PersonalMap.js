@@ -700,12 +700,12 @@ function changeRating(starNo) {
 }
 function submitIWReview(uniqueNo) {
     var Reviewrating = 0;
-    var starCurr = 1;
-    while (Reviewrating == 0 && starCurr < 6) {
+    var starCurr = 5;
+    while (Reviewrating == 0 && starCurr > 0) {
         if(document.getElementById("star"+starCurr).src = "images/star-filled.png") {
             Reviewrating = starCurr;
         }else {
-            starCurr++;
+            starCurr--;
         }
     }
     document.getElementById("formSubmitToilet:uniqueNoJs").value = uniqueNo;
@@ -737,4 +737,11 @@ function OpenReviewScreen(uniqueNo) {
         '<div class="testCloseButton" onclick="closeIWReview()">✖</div>' +
         '        </div>'
     greyOverlay.innerHTML = contentScreen;
+}
+function submitSearch() {
+    document.getElementById("formSubmitToilet:searchFolder").value = document.getElementById("SearchBox").innerHTML;
+    searchForFolder();
+}
+function closeSearch() {
+    document.getElementById("greyOverlay").innerHTML = "";
 }

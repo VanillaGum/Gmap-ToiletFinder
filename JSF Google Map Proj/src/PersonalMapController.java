@@ -20,6 +20,7 @@ public class PersonalMapController {
     public Double lng = 0.0;
     public int reviewRating = 0;
     public String reviewComment = "";
+    public String searchFolder = "";
     @PostConstruct
     public void init() {
         pme = new PersonalMapEntity();
@@ -65,6 +66,13 @@ public class PersonalMapController {
             }
         }
     }
+    public void folderSearch() {
+        List<FolderData> searchFolderL = pme.searchFolder(searchFolder);
+        for (FolderData f : searchFolderL) {
+            String script = "addFolder(" + f.getFolderId() + ", \"" + f.getUser_name() + " \", \"" + f.getFolderName() + " \" , \"searchContainer\")";
+            RequestContext.getCurrentInstance().execute(script);
+        }
+    }
     public void displayFolders() {
         List<FolderData> sponsorFolders = pme.getSponsorFolders();
         if (sponsorFolders != null) {
@@ -81,6 +89,7 @@ public class PersonalMapController {
         String userSection = "addDivider(\"User's Folder\",\"userFolder\")";
         RequestContext.getCurrentInstance().execute(userSection);
         for(FolderData f: userFolders) {
+            System.out.println("Displaying User Folder");
             String script = "addUserFolder(" + f.getFolderId() + ", \"" + f.getUser_name() +" \", \""+ f.getFolderName() + " \" , \"userFolder\")";
             RequestContext.getCurrentInstance().execute(script);
         }
@@ -258,5 +267,13 @@ public class PersonalMapController {
 
     public void setReviewComment(String reviewComment) {
         this.reviewComment = reviewComment;
+    }
+
+    public String getSearchFolder() {
+        return searchFolder;
+    }
+
+    public void setSearchFolder(String searchFolder) {
+        this.searchFolder = searchFolder;
     }
 }
