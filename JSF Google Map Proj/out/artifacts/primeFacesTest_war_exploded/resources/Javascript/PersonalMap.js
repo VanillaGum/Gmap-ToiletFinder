@@ -743,6 +743,7 @@ function submitSearch() {
     searchForFolder();
 }
 function closeSearchFolder() {
+    document.getElementById("viewPersonalMap").className = "left-controls-selected";
     document.getElementById("greyOverlay").innerHTML = "";
     document.getElementById("greyOverlay").className = "unselected-Overlay";
 }

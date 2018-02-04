@@ -225,11 +225,13 @@ function resetInfoWindowCheck() {
 function drawMapUi() {
     var viewToilets = $("#viewToilets");
     var viewPMap = $("#viewPersonalMap");
+    var viewSearch = $("#searchFolderMapBut");
     var centerControl = $("#centerLoc");
     var zoomoutControl = $("#zoomoutControl");
     var zoominControl = $("#zoominControl");
     mapdis.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(viewToilets[0]);
     mapdis.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(viewPMap[0]);
+    mapdis.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(viewSearch[0]);
     mapdis.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControl[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(zoomoutControl[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(zoominControl[0]);
