@@ -92,17 +92,86 @@ function createPersonalMarker(event) {
 }
 function createPersonalMarkerCurrentLoc() {
     navigator.geolocation.getCurrentPosition(function (position) {
-        confirmationMarkerLat=position.coords.latitude;
-        confirmationMarkerLng= position.coords.longitude;
-        confirmationMarker = new google.maps.Marker( {
-            position: {lat:confirmationMarkerLat,lng:confirmationMarkerLng},
+        personalCreateMarkerLat=position.coords.latitude;
+        personalCreateMarkerLng= position.coords.longitude;
+        personalCreateMarker = new google.maps.Marker( {
+            position: {lat:personalCreateMarkerLat,lng:personalCreateMarkerLng},
             map:mapdis
         });
-        mapdis.setCenter(new google.maps.LatLng(confirmationMarkerLat,confirmationMarkerLng));
-        confirmationMarker.addListener('click', function() {
-            confirmationInfowindow.open(mapdis, confirmationMarker);
+        mapdis.setCenter(new google.maps.LatLng(personalCreateMarkerLat,personalCreateMarkerLat));
+        var infowindowCreate = null
+        if (windowType == "1") {
+            infoWindowContent =
+                '                        <div id="windowEdit" class="testWindows2 infoWindow1">\n' +
+                '                            <div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>\n' +
+                '                            <div id="editDesc1" class="testTA1 testDesc" contenteditable="true">Description</div>\n' +
+                '                            <div class="testImageExample">\n' +
+                '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>\n' +
+                '                            </div>' +
+                '            <div class="addToiletSubmit">\n' +
+                '\n' +
+                '               <button class="markerSubmit" onclick="saveInfoWindow()">Confirm</button>\n' +
+                '               <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>\n' +
+                '            </div>' +
+                '                        </div>';
+            infowindowCreate = new google.maps.InfoWindow({
+                content: infoWindowContent,
+                maxwidth: 440,
+                maxheight: 260
+            });
+        }else if(windowType == "2") {
+            '</div>';
+            infoWindowContent =
+                '<div class="testWindows2 infoWindow2">' +
+                '                            <div id="testIWTitle2" class="testIWTitle IWTitle2" contenteditable="true">Title</div>' +
+                '                            <div id="editDesc2" class="testTA2 testDesc" contenteditable="true">Description</div>' +
+                '                            <div class="testImageExample">' +
+                '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
+                '                            </div>' +
+                '                            <div class="testRating">' +
+                '                                <img width="160" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>' +
+                '                            </div>' +
+                '            <div class="addToiletSubmit">\n' +
+                '               <button class="markerSubmit" onclick="saveInfoWindow()">Confirm</button>\n' +
+                '               <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>\n' +
+                '            </div>' +
+                '                        </div>' +
+                '</div>';
+            infowindowCreate = new google.maps.InfoWindow({
+                content: infoWindowContent
+            });
+        }else if (windowType == "3") {
+            var infoWindowContent = '                        <div class="testWindows2 infoWindow3">\n' +
+                '                            <div id="testIWTitle3" class="testIWTitle IWTitle3" contenteditable="true">Title</div>\n' +
+                '                            <div id="editDesc3" class="testTA3 testDesc" contenteditable="true">Description</div>\n' +
+                '                            <div class="testReviewSectionTitle">Reviews</div>\n' +
+                '                            <div class="testReviewSection">' +
+                '                            </div>\n' +
+                '                            <div class="testRating">\n' +
+                '                                <img width="197" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>\n' +
+                '                            </div>\n' +
+                '               <button class="markerSubmit" onclick="saveInfoWindow()" style="margin-top:5px;"">Confirm</button>\n' +
+                '               <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:20px;margin-top:5px;">Cancel</button>\n' +
+                '                        </div>';
+            infowindowCreate = new google.maps.InfoWindow({
+                content: infoWindowContent
+            });
+        }else {
+            infoWindowContent ='                            <div id="testIWTitle4" class="testIWTitle" contenteditable="true">Title</div>' +
+                '                                    <div class="addToiletSubmit">' +
+                '                                       <button class="markerSubmit" onclick="saveInfoWindow()">Confirm</button>' +
+                '                                       <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>' +
+                '                                    </div>';
+            infowindowCreate = new google.maps.InfoWindow({
+                content: infoWindowContent,
+                maxwidth:450,
+                maxheight:2
+            });
+        }
+        personalCreateMarker.addListener('click', function() {
+            infowindowCreate.open(mapdis, personalCreateMarker);
         });
-        confirmationInfowindow.open(mapdis,confirmationMarker);
+        infowindowCreate.open(mapdis,personalCreateMarker);
     });
 }
 

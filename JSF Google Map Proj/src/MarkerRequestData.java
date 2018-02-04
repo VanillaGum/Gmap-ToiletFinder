@@ -28,24 +28,24 @@ public class MarkerRequestData extends MarkerData {
         System.out.println("Hello U getting images?" + this.genderM);
         switch(this.genderM) {
             case 0:
-                this.image = "images/toilet_female.png";
+                this.image = "images/toilet_female_request.png";
                 break;
             case 1:
                 this.image = "images/toilet_male_request.png";
                 break;
             case 2:
-                this.image = "images/toilet_male_request.png";
+                this.image = "images/toilet_male_female_request.png";
                 break;
         }
     }
     private String getImageStrings(int genderM) {
         switch(genderM) {
             case 0:
-                return "images/toilet_female.png";
+                return "images/toilet_female_request.png";
             case 1:
                 return "images/toilet_male_request.png";
             case 2:
-                return "images/toilet_male_request.png";
+                return "images/toilet_male_female_request.png";
         }
         return null;
     }

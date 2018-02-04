@@ -122,7 +122,7 @@ public class MarkerData {
                 return "images/toilet_male.png";
             case 2:
                 //Both Genders
-                return "images/toilet_female.png";
+                return "images/toilet_male_female.png";
         }
         return null;
     }

@@ -33,7 +33,7 @@ $(function() {
                 position:{lat:poslat,lng:poslng},
                 map:mapdis,
                 title:"User Loc",
-                icon:"images/toilet_male.png",
+                icon:"images/user_loc2.png",
                  zIndex: -99999999
             });
             // var infoWindowContentz = '                            <div id="testIWTitle4" class="testIWTitle" contenteditable="true">Title</div>' +
@@ -68,7 +68,7 @@ function setMarkerAddType(num) {
         }
     }else {
         if (num == 1) {
-            createPersonalMarkerCurrentLoc
+            createPersonalMarkerCurrentLoc();
         }else {
             document.getElementById("CancelAddMarker").className = "CancelAdd show";
             personalMarkerStatus = num;
