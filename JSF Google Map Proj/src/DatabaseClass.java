@@ -550,7 +550,7 @@ public class DatabaseClass {
             e.printStackTrace();
         }
     }
-    public void addMarker(PersonalMapMarker pmm) {
+    public boolean addMarker(PersonalMapMarker pmm) {
         try {
             PreparedStatement addMarker = conn.prepareStatement("INSERT INTO user_folder_markers (latitude, longitude, folder_id) VALUES (?,?,?)" , Statement.RETURN_GENERATED_KEYS);
             addMarker.setDouble(1, pmm.getLatlng().getLat());
@@ -569,10 +569,11 @@ public class DatabaseClass {
             addMarkerInfo.setString(2, pmm.getField1());
             addMarkerInfo.setString(3, pmm.getField2());
             addMarkerInfo.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return true;
     }
     public void editPersonalMarker(int id, String field1, String field2) {
         try {

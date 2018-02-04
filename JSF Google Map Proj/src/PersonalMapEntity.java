@@ -33,8 +33,8 @@ public class PersonalMapEntity {
     public List<FolderData> searchFolder(String field) {
         return dc.getSearchedFolder(field);
     }
-    public void addMarker(PersonalMapMarker pmm) {
-        dc.addMarker(pmm);
+    public boolean addMarker(PersonalMapMarker pmm) {
+        return dc.addMarker(pmm);
     }
     public void editMarker(int id, String field1, String field2) {
         dc.editPersonalMarker(id, field1, field2);

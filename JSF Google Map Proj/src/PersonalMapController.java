@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class PersonalMapController {
     public int reviewRating = 0;
     public String reviewComment = "";
     public String searchFolder = "";
+
     @PostConstruct
     public void init() {
         pme = new PersonalMapEntity();
@@ -55,7 +57,24 @@ public class PersonalMapController {
                     "px\";");
         }
         if (fd.getWindowType() == 3) {
-
+            for (PersonalMapMarker m: pmmList) {
+                RequestContext.getCurrentInstance().execute( "resetConcat()");
+                for (PersonalMapReviews pmmr: m.getPmr()) {
+                    RequestContext.getCurrentInstance().execute( "addToConcat("+pmmr.getRating()+",\""+pmmr.getComments()+"\",\""+pmmr.getUsername()+"\")");
+                }
+                RequestContext.getCurrentInstance().execute(
+                        "var infowindowP" + m.getUniqueNo() + " = new google.maps.InfoWindow({" +
+                                "   content: returnPersonalWindow(" + fd.getWindowType() + "," + m.getUniqueNo() + ",\"" + m.getField1() + "\",\"" + m.getField2() + "\"," + fd.getIsEditable() + ", " + m.getAvg_rating() + "," + m.getAmt_of_ratings() + ")" +  //Fill In Content Methood Here
+                                "});" +
+                                "newPMarker" + m.getUniqueNo() + " = " +
+                                "new google.maps.Marker({ " +
+                                "position:new google.maps.LatLng(" + m.getLatlng().getLat() + ", " + m.getLatlng().getLng() + "), " +
+                                "map:PF('mapDisplay').getMap()});" +
+                                "newPMarker" + m.getUniqueNo() + ".addListener('click',function() {" +
+                                "   infowindowP" + m.getUniqueNo() + ".open(map,newPMarker" + m.getUniqueNo() + ");" +
+                                "});"
+                                + "markers.push(newPMarker" + m.getUniqueNo() + ");");
+            }
         }else {
             for (PersonalMapMarker m : pmmList) {
                 RequestContext.getCurrentInstance().execute(
@@ -154,8 +173,9 @@ public class PersonalMapController {
         field2 = "";
         LatLng loc = new LatLng(lat,lng);
         newPmm.setLatlng(loc);
-        pme.addMarker(newPmm);
-        getFolderMarker();
+        if(pme.addMarker(newPmm) != false) {
+            getFolderMarker();
+        }
     }
     public void submitReview() {
         FolderData fd = pml.getCurrentFolder();

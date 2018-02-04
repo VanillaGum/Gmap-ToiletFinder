@@ -334,6 +334,8 @@ function createFolderP1() {
     var submitBut = document.createElement('div');
     submitBut.className = "testViewReviews testButton";
     submitBut.onclick = function() {finishFolderP1();};
+    submitBut.style = "margin-top: 30px;" +
+        "margin-left: 5px;"
     submitBut.innerHTML = "Submit"
     screen.append(promptTitle);
     screen.append(enterFolderName);
@@ -662,7 +664,7 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner,rating,amtRa
             '                            <div id="3Title'+uniqueNo+'" class="testIWTitle IWTitle3" >Title</div>' +
             '                            <div id="3Desc'+uniqueNo+'" class="testTA3 testDesc" >Description</div>' +
             '                            <div class="testReviewSectionTitle">Reviews</div>' +
-            '                            <div class="testReviewSection">' +
+            '                            <div class="testReviewSection">' + concatDivs
             '                            </div>' +
             '                            <div class="testRating">' +
             '                                <img width="197" height="34" src="'+imageSrc+'" title="Based On '+amtRatings+' Rating" alt="rating"></img>' +
@@ -890,4 +892,41 @@ function noPersonalReview() {
 function closePersonalReview() {
     document.getElementById("greyOverlay").innerHTML = "";
     document.getElementById("greyOverlay").className = "unselected-Overlay";
+}
+concatDivs = '';
+function resetConcat() {
+    concatDivs = '';
+}
+function addToConcat(rating, comment, username) {
+    var imageSrc = "";
+    switch(rating) {
+        case 5:
+            imageSrc="images/5-stars-rating.png";
+            break;
+        case 4:
+            imageSrc="images/4-stars-rating.png";
+            break;
+        case 3:
+            imageSrc="images/3-stars-rating.png";
+            break;
+        case 2:
+            imageSrc="images/2-stars-rating.png";
+            break;
+        case 1:
+            imageSrc="images/1-star-rating.png";
+            break;
+        case 0:
+            imageSrc="images/0-star-rating.png";
+            break;
+        default:
+            imageSrc="images/0-star-rating.png";
+            break;
+    }
+    var content = '<div>\n' +
+        '                                    <img width="190" height="34" src="'+imageSrc+'" alt="rating"></img>\n' +
+        '                                    <div style="color:white;font-size:19px;">'+comment+'</div>\n' +
+        '                                    <div style="font-size:15px;color:white;">By '+username+'</div>\n' +
+        '                                    <hr/>\n' +
+        '                                </div>'
+    concatDivs = concatDivs.concat(content);
 }
