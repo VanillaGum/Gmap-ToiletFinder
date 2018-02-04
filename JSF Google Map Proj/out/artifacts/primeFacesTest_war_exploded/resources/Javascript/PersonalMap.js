@@ -40,7 +40,7 @@ function createPersonalMarker(event) {
                         '                            <div id="testIWTitle2" class="testIWTitle IWTitle2" contenteditable="true">Title</div>' +
                         '                            <div id="editDesc2" class="testTA2 testDesc" contenteditable="true">Description</div>' +
                         '                            <div class="testImageExample">' +
-                        '                                <img id="imgWindow2" width="150px" height="150px" alt="Test Image"></img>' +
+                        '                                <img id="imgWindow2" src="images/testImg.jpg" width="150px" height="150px" alt="Test Image"></img>' +
                         '                            </div>' +
                         '                            <div class="testRating">' +
                         '                                <img width="160" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>' +
@@ -77,9 +77,7 @@ function createPersonalMarker(event) {
                     '                                       <button class="markerCancel" onclick="removePersonalInfoWindow()" style="margin-left:170px;">Cancel</button>' +
                     '                                    </div>';
                 infowindowCreate = new google.maps.InfoWindow({
-                    content: infoWindowContent,
-                    maxwidth:450,
-                    maxheight:2
+                    content: infoWindowContent
                 });
             }
             personalCreateMarker.addListener('click', function() {
@@ -195,13 +193,17 @@ function personalMapDisplay() {
 function displayFolders() {
     document.getElementById("changeFolder").style.display = "none";
     document.getElementById("addPersonalMarkerButton").style.display = "none";
-    var displayFolderScreen = document.createElement('div');
-    displayFolderScreen.className = "group-selected";
-    displayFolderScreen.id = "groupScreen";
-    var greyOverlayScreen = document.getElementById("greyOverlay");
-    greyOverlayScreen.className = "selected-Overlay";
-    greyOverlayScreen.append(displayFolderScreen);
+    if(document.getElementById("groupScreen") == null) {
+        var displayFolderScreen = document.createElement('div');
+        displayFolderScreen.className = "group-selected";
+        displayFolderScreen.id = "groupScreen";
+        var greyOverlayScreen = document.getElementById("greyOverlay");
+        greyOverlayScreen.className = "selected-Overlay";
+        greyOverlayScreen.append(displayFolderScreen);
+    }
     displayFoldersControl();
+}
+function removeScreenFirst() {
 
 }
 function hideFolders() {
@@ -581,6 +583,7 @@ function finishFolderP2(typeNo){
             document.getElementById("greyOverlay").removeChild(screen);
             document.getElementById("greyOverlay").className = "unselected-Overlay";
             createFolderBean();
+            displayFolders();
             // document.getElementById("addPersonalMarkerButton").style.display = "block";
     }
 }
@@ -661,20 +664,18 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner,rating,amtRa
             '                            </div>';
     }else if(type == 3) {
         contentRtn1 = '                        <div class="testWindows2 infoWindow3">' +
-            '                            <div id="3Title'+uniqueNo+'" class="testIWTitle IWTitle3" >Title</div>' +
-            '                            <div id="3Desc'+uniqueNo+'" class="testTA3 testDesc" >Description</div>' +
+            '                            <div id="3Title'+uniqueNo+'" class="testIWTitle IWTitle3" >'+field1+'</div>' +
+            '                            <div id="3Desc'+uniqueNo+'" class="testTA3 testDesc" >'+field2+'</div>' +
             '                            <div class="testReviewSectionTitle">Reviews</div>' +
-            '                            <div class="testReviewSection">' + concatDivs
+            '                            <div class="testReviewSection">' + concatDivs +
             '                            </div>' +
             '                            <div class="testRating">' +
             '                                <img width="197" height="34" src="'+imageSrc+'" title="Based On '+amtRatings+' Rating" alt="rating"></img>' +
             '                            </div>';
+    }else if(type == 4) {
+        contentRtn1 = '                            <div id="4Title'+uniqueNo+'" style="min-width:200px" class="testIWTitle" >'+field1+'</div>';
     }
-
-    else if(type == 4) {
-        contentRtn1 = '                            <div id="4Title'+uniqueNo+'" style="min-width:200px" class="testIWTitle" >Title</div>';
-    }
-    var contentRtn2 ="";
+    var contentRtn2 ='';
     if (owner == 1) {
         if (type == 1) {
             contentRtn2 = '                                               <img id="edit' + uniqueNo + '" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(1,' + uniqueNo + ')"></img>' +
@@ -683,7 +684,7 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner,rating,amtRa
         }else if(type == 2) {
             contentRtn2 = '                                               <img id="edit' + uniqueNo +'" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(2,' + uniqueNo +')"></img>' +
                 '                                               <img id="delete'+uniqueNo +'" class="delete-unselected personalDeleteButton" src="images/delete-icon.png" onclick="deletePInfoWindow(' + uniqueNo +')"></img>' +
-                '                            <div class="testViewReviews testButton" onclick="displayPRBean()">View Reviews</div>' +
+                '                            <div class="testViewReviews testButton" onclick="displayPRBean('+uniqueNo+')">View Reviews</div>' +
                 '                        </div>';
         }else if(type == 3) {
             contentRtn2 = '                                               <img id="edit' + uniqueNo + '" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(3,' + uniqueNo + ')"></img>' +
@@ -700,7 +701,7 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner,rating,amtRa
             contentRtn2 = '</div>';
         }else if(type == 2) {
             contentRtn2 = '                            <div class="testAddReview testButton" onclick="OpenReviewScreen('+uniqueNo+')">Add Review</div>' +
-                '                            <div class="testViewReviews testButton" onclick="displayPRBean()">View Reviews</div>' +
+                '                            <div class="testViewReviews testButton" onclick="displayPRBean('+uniqueNo+')">View Reviews</div>' +
                 '                        </div>';
         }else if(type == 3) {
             contentRtn2 = '                            <div class="testAddReview testButton" onclick="OpenReviewScreen('+uniqueNo+')">Add Review</div>\n' +
@@ -753,14 +754,16 @@ function deletePInfoWindow(uniqueNo) {
 }
 function openFolder(folderId) {
     var screen = document.getElementById("groupScreen");
-    while (screen.firstChild) {
-        screen.removeChild(screen.firstChild);
+    if (screen != null) {
+        while (screen.firstChild) {
+            screen.removeChild(screen.firstChild);
+        }
+        var overlay = document.getElementById("greyOverlay");
+        overlay.removeChild(screen);
+        overlay.className = "unselected-Overlay";
     }
-    var overlay = document.getElementById("greyOverlay");
-    overlay.removeChild(screen);
-    overlay.className = "unselected-Overlay";
-    document.getElementById("formSubmitToilet:folderId").value = folderId;
-    displayFolderMarkerz();
+        document.getElementById("formSubmitToilet:folderId").value = folderId;
+        displayFolderMarkerz();
 }
 function changeRating(starNo) {
     var filled = "images/star-filled.png";
@@ -837,6 +840,9 @@ function openFolderSearch() {
     document.getElementById("greyOverlay").className = "selected-Overlay";
 }
 function createDisplayPersonalReview(folderName) {
+    if (folderName == null) {
+        folderName = "";
+    }
     var content =
         '        <div id="reviewsDisplay" style="position:relative;">\n' +
         '            <div id="reviewsHeader">Reviews For'+folderName+' </div>\n' +
@@ -847,44 +853,47 @@ function createDisplayPersonalReview(folderName) {
     document.getElementById("greyOverlay").innerHTML = content;
     document.getElementById("greyOverlay").className = "selected-Overlay";
 }
-function displayPRBean() {
-    displayPersonalReview();
+function displayPRBean(uniqueNo) {
+    document.getElementById("formSubmitToilet:uniqueNoJs").value =  uniqueNo;
+    displayPersonalReviewBean();
 }
 function displayPersonalReview(rating, comment, username,folderName) {
     if (document.getElementById("reviewsDisplay") == null) {
         createDisplayPersonalReview(folderName);
     }
-    var imageSrc = "";
-    switch(rating) {
-        case 5:
-            imageSrc="images/5-stars-rating.png";
-            break;
-        case 4:
-            imageSrc="images/4-stars-rating.png";
-            break;
-        case 3:
-            imageSrc="images/3-stars-rating.png";
-            break;
-        case 2:
-            imageSrc="images/2-stars-rating.png";
-            break;
-        case 1:
-            imageSrc="images/1-star-rating.png";
-            break;
-        case 0:
-            imageSrc="images/0-star-rating.png";
-            break;
-        default:
-            imageSrc="images/0-star-rating.png";
-            break;
+    if (comment != null || rating != null || username != null || comment == "undefined" || username == "undefined") {
+        var imageSrc = "";
+        switch (rating) {
+            case 5:
+                imageSrc = "images/5-stars-rating.png";
+                break;
+            case 4:
+                imageSrc = "images/4-stars-rating.png";
+                break;
+            case 3:
+                imageSrc = "images/3-stars-rating.png";
+                break;
+            case 2:
+                imageSrc = "images/2-stars-rating.png";
+                break;
+            case 1:
+                imageSrc = "images/1-star-rating.png";
+                break;
+            case 0:
+                imageSrc = "images/0-star-rating.png";
+                break;
+            default:
+                imageSrc = "images/0-star-rating.png";
+                break;
+        }
+        var content = '<div>\n' +
+            '                    <img width="400" height="60" src="' + imageSrc + '"/>\n' +
+            '                    <div class="reviewDisplayComment">' + comment + '</div>\n' +
+            '                    <div class="reviewDisplayUser">By ' + username + '</div>\n' +
+            '                </div>\n' +
+            '                <hr/>';
+        document.getElementById("reviewsContent").innerHTML = document.getElementById("reviewsContent").innerHTML + content;
     }
-    var content = '<div>\n' +
-        '                    <img width="400" height="60" src="'+imageSrc+'"/>\n' +
-        '                    <div class="reviewDisplayComment">'+comment+'</div>\n' +
-        '                    <div class="reviewDisplayUser">By '+username+'</div>\n' +
-        '                </div>\n' +
-        '                <hr/>';
-    document.getElementById("reviewsContent").innerHTML = document.getElementById("reviewsContent").innerHTML + content;
 }
 function noPersonalReview() {
     alert("No Reviews Found");
@@ -898,35 +907,35 @@ function resetConcat() {
     concatDivs = '';
 }
 function addToConcat(rating, comment, username) {
-    var imageSrc = "";
-    switch(rating) {
-        case 5:
-            imageSrc="images/5-stars-rating.png";
-            break;
-        case 4:
-            imageSrc="images/4-stars-rating.png";
-            break;
-        case 3:
-            imageSrc="images/3-stars-rating.png";
-            break;
-        case 2:
-            imageSrc="images/2-stars-rating.png";
-            break;
-        case 1:
-            imageSrc="images/1-star-rating.png";
-            break;
-        case 0:
-            imageSrc="images/0-star-rating.png";
-            break;
-        default:
-            imageSrc="images/0-star-rating.png";
-            break;
-    }
-    var content = '<div>\n' +
-        '                                    <img width="190" height="34" src="'+imageSrc+'" alt="rating"></img>\n' +
-        '                                    <div style="color:white;font-size:19px;">'+comment+'</div>\n' +
-        '                                    <div style="font-size:15px;color:white;">By '+username+'</div>\n' +
-        '                                    <hr/>\n' +
-        '                                </div>'
-    concatDivs = concatDivs.concat(content);
+        var imageSrc = "";
+        switch (rating) {
+            case 5:
+                imageSrc = "images/5-stars-rating.png";
+                break;
+            case 4:
+                imageSrc = "images/4-stars-rating.png";
+                break;
+            case 3:
+                imageSrc = "images/3-stars-rating.png";
+                break;
+            case 2:
+                imageSrc = "images/2-stars-rating.png";
+                break;
+            case 1:
+                imageSrc = "images/1-star-rating.png";
+                break;
+            case 0:
+                imageSrc = "images/0-star-rating.png";
+                break;
+            default:
+                imageSrc = "images/0-star-rating.png";
+                break;
+        }
+        var content = '<div>\n' +
+            '                                    <img width="190" height="34" src="' + imageSrc + '" alt="rating"></img>\n' +
+            '                                    <div style="color:white;font-size:19px;">' + comment + '</div>\n' +
+            '                                    <div style="font-size:15px;color:white;">By ' + username + '</div>\n' +
+            '                                    <hr/>\n' +
+            '                                </div>'
+        concatDivs = concatDivs.concat(content);
 }

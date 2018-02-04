@@ -55,6 +55,7 @@ public class PersonalMapController {
             RequestContext.getCurrentInstance().execute("document.getElementById(\"changeFolder\").style.display = \"block\";" +
                     " document.getElementById(\"changeFolder\").style.bottom = \"120" +
                     "px\";");
+            RequestContext.getCurrentInstance().execute("document.getElementById(\"addPersonalMarkerButton\").style.display=\"none\";");
         }
         if (fd.getWindowType() == 3) {
             for (PersonalMapMarker m: pmmList) {
@@ -93,6 +94,8 @@ public class PersonalMapController {
         }
     }
     public void folderSearch() {
+        String clearFolder = "clearSearchFolder()";
+        RequestContext.getCurrentInstance().execute(clearFolder);
         List<FolderData> searchFolderL = pme.searchFolder(searchFolder);
         for (FolderData f : searchFolderL) {
             String script = "addFolder(" + f.getFolderId() + ", \"" + f.getUser_name() + " \", \"" + f.getFolderName() + " \" , \"searchContainer\")";
@@ -149,16 +152,22 @@ public class PersonalMapController {
     }
 
     public void createFolder() {
-        folderId = 0;
         RequestContext.getCurrentInstance().execute("document.getElementById(\"addPersonalMarkerButton\").style.display=\"block\";");
         FolderData fd = pml.getCurrentFolder();
         fd.setFolderName(folderName);
         fd.setWindowType(folderType);
-        pme.createFolderDatabase();
+        if( pme.createFolderDatabase() == true) {
+            folderId = fd.getFolderId();
+            RequestContext.getCurrentInstance().execute( "displayFolders();");
+            RequestContext.getCurrentInstance().execute("document.getElementById(\"addPersonalMarkerButton\").style.display=\"block\";");
+            RequestContext.getCurrentInstance().execute("document.getElementById(\"changeFolder\").style.display = \"block\";" +
+                    " document.getElementById(\"changeFolder\").style.bottom = \"186px\";");
+        }
     }
 
     public void getFolderMarker() {
         FolderData fd = pml.getCurrentFolder();
+        System.out.println("Folder Id:" + folderId);
         pme.getFolderMarkers(folderId);
         folderType = fd.getWindowType();
         displayFolderMarker();
@@ -173,7 +182,7 @@ public class PersonalMapController {
         field2 = "";
         LatLng loc = new LatLng(lat,lng);
         newPmm.setLatlng(loc);
-        if(pme.addMarker(newPmm) != false) {
+        if(pme.addMarker(newPmm) == false) {
             getFolderMarker();
         }
     }
@@ -198,6 +207,8 @@ public class PersonalMapController {
             }
         }
         pme.editMarker(idMarker,field1,field2);
+        field1 = "";
+        field2 = "";
     }
     public void deleteMarker() {
         FolderData fd = pml.getCurrentFolder();
@@ -221,26 +232,6 @@ public class PersonalMapController {
         pme.addDelete(folderId);
         resetMarkerList();
     }
-    private UploadedFile uploadedFile;
-
-    public void handleFileUpload(FileUploadEvent event) throws IOException {
-        uploadedFile = event.getFile();
-        if (uploadedFile != null) {
-            FolderData fd = pml.getCurrentFolder();
-            List<PersonalMapMarker> pmmList = fd.getPmmL();
-            int idMarker = 0;
-            for(PersonalMapMarker m: pmmList) {
-                if (m.getUniqueNo() == uniqueNoJs) {
-                    idMarker = m.getId();
-                }
-            }
-            pme.saveImg(2, uploadedFile);
-            String image = Base64.getEncoder().encodeToString(uploadedFile.getContents());
-            System.out.println(image);
-            String script = "document.getElementById(\"2Image\").src = \" "+image+" \";";
-            RequestContext.getCurrentInstance().execute(script);
-        }
-    }
     public void displayPersonalReview() {
         FolderData fd = pml.getCurrentFolder();
         List<PersonalMapMarker> pmmList = fd.getPmmL();
@@ -248,13 +239,16 @@ public class PersonalMapController {
             for (PersonalMapMarker m : pmmList) {
                 if (m.getUniqueNo() == uniqueNoJs) {
                     List<PersonalMapReviews> pmr = m.getPmr();
-                    for (PersonalMapReviews pmmr : pmr) {
-                        RequestContext.getCurrentInstance().execute("displayPersonalReview(" + pmmr.getRating() + ",\"" + pmmr.getComments() + "\",\"" + pmmr.getUsername() + "\",\""+fd.getFolderName()+"\")");
+                    if (pmr.size() > 0) {
+                        System.out.println("Pmr Size" + pmr.size());
+                        for (PersonalMapReviews pmmr : pmr) {
+                            RequestContext.getCurrentInstance().execute("displayPersonalReview(" + pmmr.getRating() + ",\"" + pmmr.getComments() + "\",\"" + pmmr.getUsername() + "\",\"" + fd.getFolderName() + "\")");
+                        }
+                    }else {
+                        RequestContext.getCurrentInstance().execute("noPersonalReview()");
                     }
                 }
             }
-        }else {
-            RequestContext.getCurrentInstance().execute("noPersonalReview()");
         }
     }
     public int getFolderId() {

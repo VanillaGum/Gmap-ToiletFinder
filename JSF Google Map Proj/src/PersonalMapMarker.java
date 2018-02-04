@@ -1,6 +1,7 @@
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.map.LatLng;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonalMapMarker extends MarkerData{
@@ -13,7 +14,7 @@ public class PersonalMapMarker extends MarkerData{
 //    For Used To Display Image
     private String imageDisplay;
 
-    private List<PersonalMapReviews> pmr;
+    private List<PersonalMapReviews> pmr = new ArrayList<>();
 
     private int id;
 

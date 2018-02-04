@@ -40,7 +40,7 @@ public class PersonalMapEntity {
         dc.editPersonalMarker(id, field1, field2);
     }
     public void deleteMarker(int id) {dc.deletePersonalMarker(id);}
-    public int createFolderDatabase() {
+    public boolean createFolderDatabase() {
        return dc.createFolder();
     }
     public void submitReview(int markerId, int rating, String comments) {

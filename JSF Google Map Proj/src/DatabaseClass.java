@@ -466,7 +466,7 @@ public class DatabaseClass {
         }
         return null;
     }
-    public int createFolder() {
+    public boolean createFolder() {
         try {
             PersonalMapList pml = PersonalMapList.getInstance();
             FolderData fd = pml.getCurrentFolder();
@@ -487,13 +487,16 @@ public class DatabaseClass {
             while (setId.next()) {
                 fd.setFolderId( setId.getInt(1));
                 idRtn = setId.getInt(1);
-                System.out.println("Heyo");
+                System.out.println("Heyo" + idRtn);
             }
-            return idRtn;
+            fd.setFolderId(idRtn);
+            fd.setIsEditable(1);
+
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return -5;
+        return true;
     }
     public void getFolderMarkers(int folderId) {
         List<PersonalMapMarker> pmmList = new ArrayList<>();

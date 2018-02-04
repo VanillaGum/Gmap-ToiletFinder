@@ -10,6 +10,9 @@ function clearMarkerList() {
     });
     markers=[];
 }
+function clearSearchFolder() {
+    document.getElementById("searchContainer").innerHTML = "";
+}
 function createApprovedInfoWindow(id,rating,genderM, wheelchair, money, review_amt) {
     var mClass = "";
     var fClass = "";
