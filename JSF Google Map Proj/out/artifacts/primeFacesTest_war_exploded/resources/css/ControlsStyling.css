@@ -94,7 +94,7 @@
     color:white;
     cursor: pointer;
 }
-#addToiletButton #j_idt56\:toiletSubmit {
+#addToiletButton button {
     width:175px; !important;
     height:35px;!important;
     background-color: white; !important;
@@ -107,17 +107,17 @@
     text-align:center; !important;
     cursor: pointer; !important;
 }
-#addToiletButton #j_idt56\:toiletSubmit:hover {
+#addToiletButton button:hover {
     background: #E3746F ; !important;
     color:white;
     cursor: pointer; !important;
 }
-#j_idt56\3a toiletSubmit > span {
+#addToiletButton span {
     bottom:3px;
     position:relative;
 }
 
-#addPersonalMarkerButton #j_idt50\:markerCreate {
+#addPersonalMarkerButton button {
     width:175px; !important;
     height:35px;!important;
     background-color: white; !important;
@@ -130,12 +130,12 @@
     text-align:center; !important;
     cursor: pointer; !important;
 }
-#addPersonalMarkerButton #j_idt50\:markerCreate:hover {
+#addPersonalMarkerButton button:hover {
     background: #E3746F ; !important;
     color:white;
     cursor: pointer; !important;
 }
-#j_idt35\3a toiletSubmit > span {
+#addPersonalMarkerButton span {
     bottom:3px;
     position:relative;
 }

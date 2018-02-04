@@ -68,7 +68,7 @@ function setMarkerAddType(num) {
         }
     }else {
         if (num == 1) {
-            createPersonalMarkerCurrentLoc();
+
         }else {
             document.getElementById("CancelAddMarker").className = "CancelAdd show";
             personalMarkerStatus = num;

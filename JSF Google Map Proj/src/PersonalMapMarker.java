@@ -1,6 +1,8 @@
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.map.LatLng;
 
+import java.util.List;
+
 public class PersonalMapMarker extends MarkerData{
 //    Description Of Place
     private String description;
@@ -10,6 +12,8 @@ public class PersonalMapMarker extends MarkerData{
 
 //    For Used To Display Image
     private String imageDisplay;
+
+    private List<PersonalMapReviews> pmr;
 
     private int id;
 
@@ -68,5 +72,13 @@ public class PersonalMapMarker extends MarkerData{
 
     public int getUniqueNo() {
         return uniqueNo;
+    }
+
+    public List<PersonalMapReviews> getPmr() {
+        return pmr;
+    }
+
+    public void setPmr(List<PersonalMapReviews> pmr) {
+        this.pmr = pmr;
     }
 }

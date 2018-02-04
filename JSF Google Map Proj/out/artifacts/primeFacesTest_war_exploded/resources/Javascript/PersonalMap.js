@@ -13,8 +13,8 @@ function createPersonalMarker(event) {
             var windowType =  document.getElementById("formSubmitToilet:folderType").value;
             var infoWindowContent = null;
             mapdis.setCenter(new google.maps.LatLng(personalCreateMarkerLat,personalCreateMarkerLng));
-            var infowindowCreate = null
-            if (windowType == "1") {
+            var infowindowCreate = null;
+            if (windowType == 1) {
                 infoWindowContent =
                     '                        <div id="windowEdit" class="testWindows2 infoWindow1">\n' +
                     '                            <div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>\n' +
@@ -33,7 +33,7 @@ function createPersonalMarker(event) {
                     maxwidth: 440,
                     maxheight: 260
                 });
-            }else if(windowType == "2") {
+            }else if(windowType == 2) {
                 '</div>';
                     infoWindowContent =
                         '<div class="testWindows2 infoWindow2">' +
@@ -54,7 +54,7 @@ function createPersonalMarker(event) {
                     infowindowCreate = new google.maps.InfoWindow({
                         content: infoWindowContent
                     });
-            }else if (windowType == "3") {
+            }else if (windowType == 3) {
                 var infoWindowContent = '                        <div class="testWindows2 infoWindow3">\n' +
                     '                            <div id="testIWTitle3" class="testIWTitle IWTitle3" contenteditable="true">Title</div>\n' +
                     '                            <div id="editDesc3" class="testTA3 testDesc" contenteditable="true">Description</div>\n' +
@@ -825,6 +825,9 @@ function closeSearchFolder() {
     document.getElementById("greyOverlay").className = "unselected-Overlay";
 }
 function openFolderSearch() {
+    if (document.getElementById("viewToilets").className == "left-controls-selected") {
+        displayApproved();
+    }
     var searchContent = '<div class="group-selected" id="groupScreen">\n' +
         '            <div id="Search"><div id="SearchHeader">Search:</div><div id="SearchBox" contenteditable="true"></div><div id="SubmitSearch" onclick="submitSearch()">Submit</div></div>\n' +
         '            <div class="folderListDivider"></div>\n' +

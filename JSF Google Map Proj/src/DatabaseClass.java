@@ -513,9 +513,10 @@ public class DatabaseClass {
                     fd.setIsEditable(1);
                 }
             }
-            System.out.println("Folder:" + folderId);
+            System.out.println("Folder:" + folderId + "MarkerType:" + markerType);
             fd.setWindowType(markerType);
             PreparedStatement getMarkers = conn.prepareStatement("SELECT * FROM user_folder_markers usm INNER JOIN user_folder_marker_info ufmi ON ufmi.marker_id = usm.id WHERE usm.folder_id =  ?;");
+
             getMarkers.setInt(1, folderId);
             ResultSet markers = getMarkers.executeQuery();
             while (markers.next()) {
@@ -531,6 +532,15 @@ public class DatabaseClass {
                         pmm.setAmt_of_ratings(markers.getInt("amt_of_ratings"));
                         pmm.calAvg();
                     }
+                List<PersonalMapReviews> pmRL = new ArrayList<>();
+                PreparedStatement getReviews = conn.prepareStatement("SELECT * FROM user_folder_marker_review WHERE marker_id = ?");
+                getReviews.setInt(1,markers.getInt(1));
+                ResultSet reviews = getReviews.executeQuery();
+                while (reviews.next()) {
+                    PersonalMapReviews pmr = new PersonalMapReviews(reviews.getInt("rating"), reviews.getString("user_name"), reviews.getString("comment"));
+                    pmRL.add(pmr);
+                }
+                pmm.setPmr(pmRL);
                 pmmList.add(pmm);
             }
 
