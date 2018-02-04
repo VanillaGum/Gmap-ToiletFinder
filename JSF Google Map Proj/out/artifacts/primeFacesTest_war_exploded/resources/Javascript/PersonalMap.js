@@ -742,6 +742,10 @@ function submitSearch() {
     document.getElementById("formSubmitToilet:searchFolder").value = document.getElementById("SearchBox").innerHTML;
     searchForFolder();
 }
-function closeSearch() {
+function closeSearchFolder() {
     document.getElementById("greyOverlay").innerHTML = "";
+    document.getElementById("greyOverlay").className = "unselected-Overlay";
+}
+function openFolderSearch() {
+    var searchContent = '';
 }

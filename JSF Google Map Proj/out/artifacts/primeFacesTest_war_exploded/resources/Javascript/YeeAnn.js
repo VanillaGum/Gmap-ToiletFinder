@@ -59,8 +59,6 @@ function initialize() {
         infowindow.open(map, marker);
 
         map.setCenter(place.geometry.location)
-
-        alert("FOR DEBUGGING PURPORSES\n\n" + place.geometry.location) // FOR DEBUGGING PURPORSES
     });
 
     // Sets a listener on a radio button to change the filter type on Places
@@ -94,6 +92,7 @@ function openFilter() {
     document.getElementById("filterBar").style.display = "inline-block";
 }
 function closeFilter() {
+    filterReset();
     document.getElementById("homeBar").style.display = "inline-block";
     document.getElementById("filterBar").style.display = "none";
     return false;
@@ -103,34 +102,81 @@ function callFilterSearch() {
     filterSearch();
 }
 
-function addFilterMarker(Lat, Lng, title) {
-    var myLatlng = new google.maps.LatLng(Lat, Lng);
-
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        title: title
-    });
-
-    filterMarkers.push(marker);
-
-    marker.setMap(map);
-}
-
-function deleteFilterMarkers() {
-    clearMarkers();
-    filterMarkers = [];
-}
-
-// Sets the map on all markers in the array.
-function setMapOnAll(map) {
-    for (var i = 0; i < filterMarkers.length; i++) {
-        filterMarkers[i].setMap(map);
+function getCurrentUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var curPos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+        }, function() {
+            handleLocationError(true);
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false);
     }
 }
 
-// Removes the markers from the map, but keeps them in the array.
-function clearMarkers() {
-    setMapOnAll(null);
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    alert(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
 }
 
-var filterMarkers = [];
+function rad(x) {
+    return x * Math.PI / 180;
+};
+
+/*function calculateDistance(p2) {
+    p1 = getCurrentUserLocation();
+    var R = 6378137; // Earth’s mean radius in meter
+    var dLat = rad(p2.lat() - p1.lat());
+    var dLong = rad(p2.lng() - p1.lng());
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+        Math.sin(dLong / 2) * Math.sin(dLong / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    document.getElementById("computedDistance").value = d; // returns the distance in meter
+};*/
+
+function calculateDistance(i, markerLat, markerLng) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var p1 = new google.maps.LatLng({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                });
+
+            var p2 = new google.maps.LatLng({
+                lat: markerLat,
+                lng: markerLng
+            });
+
+            var R = 6378137; // Earth’s mean radius in meter
+            var dLat = rad(p2.lat() - p1.lat());
+            var dLong = rad(p2.lng() - p1.lng());
+            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+                Math.sin(dLong / 2) * Math.sin(dLong / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c;
+            console.log(d);
+            //document.getElementById("j_id1:javax.faces.ViewState:0").value = d; // returns the distance in meter
+
+            sendComputedDistance ([ {
+                name : 'distance',
+                value : d
+            }, {
+                name : 'i',
+                value : i
+            }]);
+        }, function() {
+            handleLocationError(true);
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false);
+    }
+}

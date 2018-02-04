@@ -37,7 +37,7 @@
             <div id="Search"><div id="SearchHeader">Search:</div><div id="SearchBox" contenteditable="true"></div><div id="SubmitSearch" onclick="submitSearch()">Submit</div></div>
             <div class="folderListDivider"></div>
             <div id="searchContainer" class="folderListContainer"></div>
-            <div class="testCloseButton">✖</div>
+            <div class="testCloseButton" onclick="closeSearchFolder()">✖</div>
         </div>
                                    <!--<div id="windowEdit" class="testWindows2 InfoWindow1">-->
                                        <!--<div id="testIWTitle1" class="testIWTitle " contenteditable="true">Title</div>-->
@@ -170,7 +170,7 @@
         <input type="radio" name="type" id="changetype-geocode"></input>
         <label for="changetype-geocode">Geocodes</label>
 
-        <button id="rightButton" onclick="closeSearch()">Cancel</button>
+        <button class="cancelYAButton" onclick="closeSearch()">Cancel</button>
     </div>
     <div id="filterBar" class="topbar">
         <h:form id="filterSelect">
@@ -223,8 +223,8 @@
             <p:remoteCommand name="filterReset" actionListener="#{filter.resetFilter}" style="display: none;"/>
             <p:remoteCommand name="sendComputedDistance" actionListener="#{filter.searchByFilterStep2}" style="display: none;"/>
         </h:form>
-        <button id="rightButton" onclick="closeFilter()">Cancel</button>
-        <button id="rightButton" onclick="callFilterSearch()">Search</button>
+        <button class="rightButton submitYAButon" onclick="callFilterSearch()">Search</button>
+        <button class="rightButton cancelYAButton" onclick="closeFilter()">Cancel</button>
     </div>
     <!--For Having Map Model IN MapController-->
     <p:gmap id="displayedMap" widgetVar="mapDisplay" center="1.378622, 103.849345" zoom="15" type="ROADMAP"
@@ -241,6 +241,9 @@
     </div>
     <div id="viewPersonalMap" style="width:220px;" class="left-controls-unselected" onclick="personalMapDisplay()">
         <div>View Personal Map</div>
+    </div>
+    <div id="searchFolderMapBut" class="left-controls-unselected">
+        <div>Search For Folder</div>
     </div>
 
     <!--Toilet View Controlls-->

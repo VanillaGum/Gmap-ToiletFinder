@@ -56,15 +56,43 @@ input.notfound {
     border: 2px solid rgba(255, 0, 0, 0.4);
 }
 
-#rightButton {
-    height: 100%;
-    width: 67.391px;
-    margin: 0;
-    float:right;
+.rightButton {
+    margin-top:20px;
 }
-
+.submitYAButon {
+    background-color: white; !important;
+    border-radius:15px; !important;
+    border: 2px solid #84BE44; !important;
+    color: #84BE44; !important;
+    font-size: 22px; !important;
+    font-weight: bold; !important;
+    margin-bottom:30px;!important;
+    text-align:center; !important;
+    cursor: pointer; !important;
+}
+.submitYAButon:hover {
+      background-color: #84BE44;
+      color:white;
+}
+.cancelYAButton {
+    margin-left:20px;
+    background-color: white; !important;
+    border-radius:15px; !important;
+    border: 2px solid #B34F4A; !important;
+    color: #B34F4A; !important;
+    font-size: 22px; !important;
+    font-weight: bold; !important;
+    margin-bottom:30px;!important;
+    text-align:center; !important;
+    cursor: pointer; !important;
+}
+.cancelYAButton:hover {
+    background-color: #E3746F;
+    color:white;
+}
 #searchTextField {
-    width: 82%;
+    font-size:29px;
+    width: 76%;
     height: 60px;
 }
 

@@ -742,6 +742,11 @@ function submitSearch() {
     document.getElementById("formSubmitToilet:searchFolder").value = document.getElementById("SearchBox").innerHTML;
     searchForFolder();
 }
-function closeSearch() {
+function closeSearchFolder() {
+    document.getElementById("viewToilets").className = "left-controls-selected";
     document.getElementById("greyOverlay").innerHTML = "";
+    document.getElementById("greyOverlay").className = "unselected-Overlay";
+}
+function openFolderSearch() {
+    var searchContent = '';
 }

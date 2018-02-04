@@ -225,6 +225,7 @@ function resetInfoWindowCheck() {
 function drawMapUi() {
     var viewToilets = $("#viewToilets");
     var viewPMap = $("#viewPersonalMap");
+    var viewSearch = $("#searchFolderMapBut");
     var centerControl = $("#centerLoc");
     var zoomoutControl = $("#zoomoutControl");
     var zoominControl = $("#zoominControl");
