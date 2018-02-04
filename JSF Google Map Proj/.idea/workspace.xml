@@ -7,14 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4c28cfe-ab85-49c9-8ec4-bf3a80a3ed0a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DatabaseClass.java" afterPath="$PROJECT_DIR$/src/DatabaseClass.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/resources/Javascript/PersonalMap.js" afterPath="$PROJECT_DIR$/out/artifacts/primeFacesTest_war_exploded/resources/Javascript/PersonalMap.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PersonalMapController.java" afterPath="$PROJECT_DIR$/src/PersonalMapController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PersonalMapEntity.java" afterPath="$PROJECT_DIR$/src/PersonalMapEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PersonalMapMarker.java" afterPath="$PROJECT_DIR$/src/PersonalMapMarker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserController.java" afterPath="$PROJECT_DIR$/src/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/index.xhtml" afterPath="$PROJECT_DIR$/web/index.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resources/Javascript/Controller's.js" afterPath="$PROJECT_DIR$/web/resources/Javascript/Controller's.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resources/Javascript/PersonalMap.js" afterPath="$PROJECT_DIR$/web/resources/Javascript/PersonalMap.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonalMap.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PersonalMap.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/resources/Javascript/PersonalMap.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="203" column="62" lean-forward="false" selection-start-line="203" selection-start-column="62" selection-end-line="203" selection-end-column="62" />
+              <caret line="203" column="16" lean-forward="true" selection-start-line="203" selection-start-column="16" selection-end-line="203" selection-end-column="16" />
               <folding>
                 <element signature="e#19553#19596#0" expanded="false" />
                 <marker date="1517776457114" expanded="true" signature="1813:1831" ph="..." />
@@ -83,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonalMapController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PersonalMapController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PersonalMapController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="160" column="75" lean-forward="false" selection-start-line="160" selection-start-column="75" selection-end-line="160" selection-end-column="75" />
+            <state relative-caret-position="200">
+              <caret line="105" column="107" lean-forward="true" selection-start-line="105" selection-start-column="107" selection-end-line="105" selection-end-column="107" />
               <folding />
             </state>
           </provider>
@@ -303,8 +298,8 @@
         <option value="$PROJECT_DIR$/src/UserController.java" />
         <option value="$PROJECT_DIR$/src/PersonalMapEntity.java" />
         <option value="$PROJECT_DIR$/src/DatabaseClass.java" />
-        <option value="$PROJECT_DIR$/src/PersonalMapController.java" />
         <option value="$PROJECT_DIR$/web/resources/Javascript/PersonalMap.js" />
+        <option value="$PROJECT_DIR$/src/PersonalMapController.java" />
       </list>
     </option>
   </component>
@@ -786,7 +781,7 @@
       <workItem from="1517739900997" duration="4656000" />
       <workItem from="1517745645898" duration="47000" />
       <workItem from="1517745848771" duration="2743000" />
-      <workItem from="1517751381579" duration="24490000" />
+      <workItem from="1517751381579" duration="24676000" />
     </task>
     <task id="LOCAL-00001" summary="Autocomplete Broke Main Map due to it creating a entire new map again, remove re-creating map autocomplete broke.">
       <created>1513409877165</created>
@@ -799,7 +794,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="540939000" />
+    <option name="totallyTimeSpent" value="541125000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -828,13 +823,13 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991228" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327748" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29057017" sideWeight="0.33385417" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29057017" sideWeight="0.33385417" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3026316" sideWeight="0.6875" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3026316" sideWeight="0.6875" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327748" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14947917" sideWeight="0.49659202" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1300,18 +1295,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PersonalMapController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="160" column="75" lean-forward="false" selection-start-line="160" selection-start-column="75" selection-end-line="160" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/resources/Javascript/PersonalMap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="203" column="62" lean-forward="false" selection-start-line="203" selection-start-column="62" selection-end-line="203" selection-end-column="62" />
+          <caret line="203" column="16" lean-forward="true" selection-start-line="203" selection-start-column="16" selection-end-line="203" selection-end-column="16" />
           <folding>
             <element signature="e#19553#19596#0" expanded="false" />
             <marker date="1517776457114" expanded="true" signature="1813:1831" ph="..." />
@@ -1335,6 +1322,14 @@
             <marker date="1517776457114" expanded="true" signature="50151:50178" ph="..." />
             <marker date="1517776457114" expanded="true" signature="50268:50295" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PersonalMapController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="105" column="107" lean-forward="true" selection-start-line="105" selection-start-column="107" selection-end-line="105" selection-end-column="107" />
+          <folding />
         </state>
       </provider>
     </entry>

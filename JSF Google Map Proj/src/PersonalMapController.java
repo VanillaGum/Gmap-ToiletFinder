@@ -103,6 +103,7 @@ public class PersonalMapController {
         }
     }
     public void displayFolders() {
+        RequestContext.getCurrentInstance().execute("document.getElementById(\"groupScreen\").innerHTML = \"\";");
         List<FolderData> sponsorFolders = pme.getSponsorFolders();
         if (sponsorFolders != null) {
             if (sponsorFolders.size() > 0) {

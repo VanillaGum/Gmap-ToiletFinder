@@ -200,6 +200,8 @@ function displayFolders() {
         var greyOverlayScreen = document.getElementById("greyOverlay");
         greyOverlayScreen.className = "selected-Overlay";
         greyOverlayScreen.append(displayFolderScreen);
+    }else {
+        document.getElementById("groupScreen").innerHTML = "";
     }
     displayFoldersControl();
 }
