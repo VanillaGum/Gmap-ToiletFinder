@@ -19,6 +19,37 @@
 
 <h:body>
     <div id="greyOverlay" class="unselected-Overlay">
+        <!--<div id="reviewsDisplay" style="position:relative;">-->
+            <!--<div id="reviewsHeader">Reviews For </div>-->
+            <!--<div id="reviewsContent">-->
+
+                <!--<div>-->
+                    <!--<img width="400" height="60" src="images/5-stars-rating.png"/>-->
+                    <!--<div class="reviewDisplayComment">The food was really excellant i really want to come again ahashgssaasijfjaisfijasfjiujaius</div>-->
+                    <!--<div class="reviewDisplayUser">By Anonymouse</div>-->
+                <!--</div>-->
+                <!--<hr/>-->
+                <!--<div>-->
+                    <!--<img width="400" height="60" src="images/5-stars-rating.png"/>-->
+                    <!--<div class="reviewDisplayComment">The food was really excellant i really want to come again ahashgssaasijfjaisfijasfjiujaius</div>-->
+                    <!--<div class="reviewDisplayUser">By Anonymouse</div>-->
+                <!--</div>-->
+                <!--<hr/>-->
+                <!--<div>-->
+                    <!--<img width="400" height="60" src="images/5-stars-rating.png"/>-->
+                    <!--<div class="reviewDisplayComment">The food was really excellant i really want to come again ahashgssaasijfjaisfijasfjiujaius</div>-->
+                    <!--<div class="reviewDisplayUser">By Anonymouse</div>-->
+                <!--</div>-->
+                <!--<hr/>-->
+                <!--<div>-->
+                    <!--<img width="400" height="60" src="images/5-stars-rating.png"/>-->
+                    <!--<div class="reviewDisplayComment">The food was really excellant i really want to come again ahashgssaasijfjaisfijasfjiujaius</div>-->
+                    <!--<div class="reviewDisplayUser">By Anonymouse</div>-->
+                <!--</div>-->
+                <!--<hr/>-->
+            <!--</div>-->
+            <!--<div style="font-size:28px;" class="testCloseButton">✖</div>-->
+        <!--</div>-->
         <!--<div id="iwReviewScreen">-->
             <!--<div id="ReviewScreenRating">-->
                 <!--<img id="star1" src="images/star-unfilled.png" onclick="changeRating(1)"></img>-->
@@ -376,6 +407,8 @@
             <p:remoteCommand name="forceShow" actionListener="#{mapController.forceShowApproved}"/>
             <!--Search Folder-->
             <p:remoteCommand name="searchForFolder" actionListener="#{personalMapController.folderSearch}"/>
+            <!--Search Folder-->
+            <p:remoteCommand name="displayPersonalReview" actionListener="#{personalMapController.displayPersonalReview}"/>
         </h:form>
     </div>
 

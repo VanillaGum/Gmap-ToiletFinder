@@ -250,9 +250,6 @@ function addDivider(titleName, catagory) {
     document.getElementById("groupScreen").append(title);
     document.getElementById("groupScreen").append(divider);
     document.getElementById("groupScreen").append(container);
-
-
-
 }
 function addNewGroupFolder() {
     var group = document.createElement('div');
@@ -684,7 +681,7 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner,rating,amtRa
         }else if(type == 2) {
             contentRtn2 = '                                               <img id="edit' + uniqueNo +'" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(2,' + uniqueNo +')"></img>' +
                 '                                               <img id="delete'+uniqueNo +'" class="delete-unselected personalDeleteButton" src="images/delete-icon.png" onclick="deletePInfoWindow(' + uniqueNo +')"></img>' +
-                '                            <div class="testViewReviews testButton">View Reviews</div>' +
+                '                            <div class="testViewReviews testButton" onclick="displayPRBean()">View Reviews</div>' +
                 '                        </div>';
         }else if(type == 3) {
             contentRtn2 = '                                               <img id="edit' + uniqueNo + '" class="edit-unselected personalEditButton" src="images/edit-icon.png" onclick="editPInfoWindow(3,' + uniqueNo + ')"></img>' +
@@ -701,7 +698,7 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner,rating,amtRa
             contentRtn2 = '</div>';
         }else if(type == 2) {
             contentRtn2 = '                            <div class="testAddReview testButton" onclick="OpenReviewScreen('+uniqueNo+')">Add Review</div>' +
-                '                            <div class="testViewReviews testButton">View Reviews</div>' +
+                '                            <div class="testViewReviews testButton" onclick="displayPRBean()">View Reviews</div>' +
                 '                        </div>';
         }else if(type == 3) {
             contentRtn2 = '                            <div class="testAddReview testButton" onclick="OpenReviewScreen('+uniqueNo+')">Add Review</div>\n' +
@@ -836,4 +833,61 @@ function openFolderSearch() {
         '        </div>';
     document.getElementById("greyOverlay").innerHTML = searchContent;
     document.getElementById("greyOverlay").className = "selected-Overlay";
+}
+function createDisplayPersonalReview(folderName) {
+    var content =
+        '        <div id="reviewsDisplay" style="position:relative;">\n' +
+        '            <div id="reviewsHeader">Reviews For'+folderName+' </div>\n' +
+        '            <div id="reviewsContent">\n' +
+        '            </div>\n' +
+        '            <div style="font-size:28px;" onclick="closePersonalReview()" class="testCloseButton">✖</div>\n' +
+        '        </div>';
+    document.getElementById("greyOverlay").innerHTML = content;
+    document.getElementById("greyOverlay").className = "selected-Overlay";
+}
+function displayPRBean() {
+    displayPersonalReview();
+}
+function displayPersonalReview(rating, comment, username,folderName) {
+    if (document.getElementById("reviewsDisplay") == null) {
+        createDisplayPersonalReview(folderName);
+    }
+    var imageSrc = "";
+    switch(rating) {
+        case 5:
+            imageSrc="images/5-stars-rating.png";
+            break;
+        case 4:
+            imageSrc="images/4-stars-rating.png";
+            break;
+        case 3:
+            imageSrc="images/3-stars-rating.png";
+            break;
+        case 2:
+            imageSrc="images/2-stars-rating.png";
+            break;
+        case 1:
+            imageSrc="images/1-star-rating.png";
+            break;
+        case 0:
+            imageSrc="images/0-star-rating.png";
+            break;
+        default:
+            imageSrc="images/0-star-rating.png";
+            break;
+    }
+    var content = '<div>\n' +
+        '                    <img width="400" height="60" src="'+imageSrc+'"/>\n' +
+        '                    <div class="reviewDisplayComment">'+comment+'</div>\n' +
+        '                    <div class="reviewDisplayUser">By '+username+'</div>\n' +
+        '                </div>\n' +
+        '                <hr/>';
+    document.getElementById("reviewsContent").innerHTML = document.getElementById("reviewsContent").innerHTML + content;
+}
+function noPersonalReview() {
+    alert("No Reviews Found");
+}
+function closePersonalReview() {
+    document.getElementById("greyOverlay").innerHTML = "";
+    document.getElementById("greyOverlay").className = "unselected-Overlay";
 }
