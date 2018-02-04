@@ -44,6 +44,7 @@ public class MapController implements Serializable{
     public void init() {
         me = new MarkerEntity();
         ml = MarkerList.getInstance();
+        System.out.println("Approved: Hi"+ ml.getDisplayApproved());
         if (ml.getDisplayApproved() == 1) {
             displayApprovedMarker();
         }
@@ -53,6 +54,7 @@ public class MapController implements Serializable{
         }
    }
    public void resetDisplay() {
+       System.out.println("Resetting Display");
        ml.setDisplayApproved(0);
        ml.setDisplaySuggestion(0);
        resetMarkerList();
@@ -85,6 +87,9 @@ public class MapController implements Serializable{
         Float lat = (Float) map.get("latval");
         Float lng = (Float) map.get("lngval");
     }
+    public void forceShowApproved() {
+        displayApprovedMarker();
+    }
     public void resetMarkerList() {
             RequestContext.getCurrentInstance().execute("clearMarkerList();");
     }
@@ -108,7 +113,6 @@ public class MapController implements Serializable{
     }
     public void displaySuggestionMarkers() {
         for (MarkerData m:ml.getSuggestionMarkers()) {
-            System.out.println("Cost" + m.getCost());
             RequestContext.getCurrentInstance().execute(
                "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
                     "content:createSuggestionInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getToiletId()+","+m.getWheelchair()+","+m.getCost()+","+m.getAmt_of_ratings()+")" +
@@ -125,7 +129,6 @@ public class MapController implements Serializable{
         }
     }
     public void displaySingleMarker(MarkerData m) {
-        System.out.println("Trying to display Single Marker" + m.getImage());
         RequestContext.getCurrentInstance().execute(
                 "var infowindow"+m.getRandomId()+" = new google.maps.InfoWindow({" +
                         "   content:createApprovedInfoWindow("+m.getRandomId()+","+m.getAvg_rating()+","+m.getGenderM()+","+m.getWheelchair()+","+m.getCost()+","+m.getAmt_of_ratings()+")" +
@@ -185,9 +188,6 @@ public class MapController implements Serializable{
         UserController uc = UserController.getInstance();
         MarkerRequestData newMarker= new MarkerRequestData();
         newMarker.setRandomId();
-        System.out.println("Cost:" + icon7);
-        System.out.println("Wheelchair:" + icon6);
-        System.out.println("Location:" + locLat + locLng);
         if (genderM == 1 && genderF == 0) {
             //Add Male Toilet
             newMarker.setLatlng(new LatLng(locLat,locLng));
@@ -249,7 +249,6 @@ public class MapController implements Serializable{
         for(MarkerData m:ml.getSuggestionMarkers()) {
             if(m.getRandomId() == uniqueId) {
                 ToiletId = m.getToiletId();
-                System.out.println("ToiletId:" + ToiletId);
                 me.flagSuggestionToilet(ToiletId);
             }
         }

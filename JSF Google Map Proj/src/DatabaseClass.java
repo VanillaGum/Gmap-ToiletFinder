@@ -486,6 +486,7 @@ public class DatabaseClass {
                 markerType = folType.getInt("window_type");
                 int folder_user_id = folType.getInt("user_id");
                 if (uc.getUser_id() == folder_user_id) {
+                    System.out.println("Editable");
                     fd.setIsEditable(1);
                 }
             }
@@ -502,7 +503,11 @@ public class DatabaseClass {
                     pmm.setId(markers.getInt(1));
                     pmm.setField1(markers.getString("field1"));
                     pmm.setField2(markers.getString("field2"));
-
+                    if(markerType == 2 || markerType == 3) {
+                        pmm.setRating(markers.getInt("rating"));
+                        pmm.setAmt_of_ratings(markers.getInt("amt_of_ratings"));
+                        pmm.calAvg();
+                    }
                 pmmList.add(pmm);
             }
 
@@ -622,6 +627,27 @@ public class DatabaseClass {
 
     }
     public void createReview(int markerId, int rating, String comments) {
-        PreparedStatement deleteMarker = conn.prepareStatement( "INSERT INTO user_folder_marker_review ("")"
+        try {
+            String userName = "Anonymous";
+            PreparedStatement getUserName = conn.prepareStatement("SELECT * FROM users WHERE id = ?");
+            UserController uc = UserController.getInstance();
+            getUserName.setInt(1, uc.getUser_id());
+            ResultSet name = getUserName.executeQuery();
+            while (name.next()) {
+                userName = name.getString("username");
+            }
+            PreparedStatement addReview = conn.prepareStatement( "INSERT INTO user_folder_marker_review (marker_id, rating, comment, user_name) VALUES (?,?,?,?)");
+            addReview.setInt(1, markerId);
+            addReview.setInt(2, rating);
+            addReview.setString(3, comments);
+            addReview.setString(4, userName);
+            addReview.executeUpdate();
+            PreparedStatement  addToInfo = conn.prepareStatement("UPDATE user_folder_marker_info SET rating = rating + ?, amt_of_ratings = amt_of_ratings + 1 WHERE marker_id = ?");
+            addToInfo.setInt(1, rating);
+            addToInfo.setInt(2, markerId);
+            addToInfo.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

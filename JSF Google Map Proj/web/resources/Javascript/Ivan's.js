@@ -236,12 +236,15 @@ function drawMapUi() {
     var toiletControl = $("#addToiletButton");
     var addSuggested = $("#displaySuggestedToilets");
     var addPersonalMarker = $("#addPersonalMarkerButton");
+    var changeFolder = $("#changeFolder");
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addPersonalMarker[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addSuggested[0]);
     mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(toiletControl[0]);
+    mapdis.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(changeFolder[0]);
     document.getElementById("displaySuggestedToilets").style.display = "none";
     document.getElementById("addToiletButton").style.display = "none";
     document.getElementById("addPersonalMarkerButton").style.display = "none";
+    document.getElementById("changeFolder").style.display = "none";
 }
 function displayToiletUi() {
     document.getElementById("displaySuggestedToilets").style.display = "block";
@@ -279,9 +282,15 @@ function addToiletLoc() {
 }
 
 function displayApproved() {
-    displayApprovedToilet();
     var change = document.getElementById("viewPersonalMap");
-    change.className = "left-controls-unselected";
+    if (change.className = "left-controls-selected") {
+        change.className = "left-controls-unselected";
+        removePMapMarkers();
+        document.getElementById("changeFolder").style.display = "none";
+        document.getElementById("addPersonalMarkerButton").style.display = "none";
+
+    }
+
     var check = document.getElementById("viewToilets");
     if (check.className == "left-controls-unselected") {
         check.className = "left-controls-selected";
@@ -290,6 +299,7 @@ function displayApproved() {
         check.className = "left-controls-unselected";
         removeToiletUi()
     }
+    displayApprovedToilet();
 }
 function displaySuggested() {
     displaySuggestionToilet();

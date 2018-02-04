@@ -18,19 +18,20 @@
 </h:head>
 
 <h:body>
-    <div id="greyOverlay" class="selected-Overlay">
-        <div id="iwReviewScreen">
-            <div id="ReviewScreenRating">
-                <img id="star1" src="images/star-unfilled.png" onclick="changeRating(1)"></img>
-                <img id="star2" src="images/star-unfilled.png" onclick="changeRating(2)"></img>
-                <img id="star3" src="images/star-unfilled.png" onclick="changeRating(3)"></img>
-                <img id="star4" src="images/star-unfilled.png" onclick="changeRating(4)"></img>
-                <img id="star5" src="images/star-unfilled.png" onclick="changeRating(5)"></img>
-            </div>
-            <div id="CommentHeader">Comment</div>
-            <textarea id="PersonalReviewComments" cols="52" rows="12"></textarea>
-            <div class="testButton submitReviewIW" onclick="submitIWReview()">Submit</div>
-        </div>
+    <div id="greyOverlay" class="unselected-Overlay">
+        <!--<div id="iwReviewScreen">-->
+            <!--<div id="ReviewScreenRating">-->
+                <!--<img id="star1" src="images/star-unfilled.png" onclick="changeRating(1)"></img>-->
+                <!--<img id="star2" src="images/star-unfilled.png" onclick="changeRating(2)"></img>-->
+                <!--<img id="star3" src="images/star-unfilled.png" onclick="changeRating(3)"></img>-->
+                <!--<img id="star4" src="images/star-unfilled.png" onclick="changeRating(4)"></img>-->
+                <!--<img id="star5" src="images/star-unfilled.png" onclick="changeRating(5)"></img>-->
+            <!--</div>-->
+            <!--<div id="CommentHeader">Comment</div>-->
+            <!--<textarea id="PersonalReviewComments" cols="52" rows="12"></textarea>-->
+            <!--<div class="testButton submitReviewIW" onclick="submitIWReview()">Submit</div>-->
+            <!--<div class="testCloseButton" onclick="closeIWReview()">✖</div>-->
+        <!--</div>-->
 
         <!--<div class="group-selected" id="groupScreen">-->
                                    <!--<div id="windowEdit" class="testWindows2 InfoWindow1">-->
@@ -237,6 +238,9 @@
     <div id="displaySuggestedToilets" class="right-controls-unselected" onclick="displaySuggested()">
         <div>View Unapproved Toilets</div>
     </div>
+    <div id="changeFolder" class="right-controls-unselected" onclick="displayFolders()">
+        <div>Change Folder</div>
+    </div>
     <div id="addPersonalMarkerButton" class="classForAddMarker">
         <h:form>
             <p:commandButton value="Add Marker"
@@ -342,6 +346,10 @@
             <p:remoteCommand name="deletePersonalMarker" actionListener="#{personalMapController.deleteMarker}"/>
             <!--Submit Review-->
             <p:remoteCommand name="submitPReview" actionListener="#{personalMapController.submitReview}"/>
+            <!--Remove Personal Map-->
+            <p:remoteCommand name="removePMapMarkers" actionListener="#{personalMapController.resetMarkerList}"/>
+            <!--Force Show Approved-->
+            <p:remoteCommand name="forceShow" actionListener="#{mapController.forceShowApproved}"/>
         </h:form>
     </div>
 

@@ -29,6 +29,7 @@ public class PersonalMapController {
     }
 
     public void resetMarkerList() {
+        System.out.println("Personal Map Closing");
         RequestContext.getCurrentInstance().execute("clearMarkerList();");
     }
 
@@ -38,20 +39,30 @@ public class PersonalMapController {
         List<PersonalMapMarker> pmmList = fd.getPmmL();
         if (fd.getIsEditable() == 1) {
             RequestContext.getCurrentInstance().execute("document.getElementById(\"addPersonalMarkerButton\").style.display=\"block\";");
+            RequestContext.getCurrentInstance().execute("document.getElementById(\"changeFolder\").style.display = \"block\";" +
+                    " document.getElementById(\"changeFolder\").style.bottom = \"186px\";");
+        }else {
+            RequestContext.getCurrentInstance().execute("document.getElementById(\"changeFolder\").style.display = \"block\";" +
+                    " document.getElementById(\"changeFolder\").style.bottom = \"120" +
+                    "px\";");
         }
         for (PersonalMapMarker m:pmmList) {
-            RequestContext.getCurrentInstance().execute(
-                    "var infowindowP"+m.getUniqueNo()+" = new google.maps.InfoWindow({" +
-                            "   content: returnPersonalWindow("+fd.getWindowType()+","+m.getUniqueNo()+",\""+m.getField1()+"\",\""+m.getField2()+"\","+fd.getIsEditable()+")" +  //Fill In Content Methood Here
-                            "});" +
-                            "newPMarker"+m.getUniqueNo()+" = " +
-                            "new google.maps.Marker({ " +
-                            "position:new google.maps.LatLng(" + m.getLatlng().getLat()+ ", " +  m.getLatlng().getLng() + "), " +
-                            "map:PF('mapDisplay').getMap()});" +
-                            "newPMarker"+m.getUniqueNo()+".addListener('click',function() {" +
-                            "   infowindowP"+m.getUniqueNo()+".open(map,newPMarker"+m.getUniqueNo()+");" +
-                            "});"
-                            + "markers.push(newPMarker"+m.getUniqueNo()+");");
+            if (fd.getWindowType() != 3) {
+                RequestContext.getCurrentInstance().execute(
+                        "var infowindowP" + m.getUniqueNo() + " = new google.maps.InfoWindow({" +
+                                "   content: returnPersonalWindow(" + fd.getWindowType() + "," + m.getUniqueNo() + ",\"" + m.getField1() + "\",\"" + m.getField2() + "\"," + fd.getIsEditable() + ", "+m.getAvg_rating()+","+m.getAmt_of_ratings()+")" +  //Fill In Content Methood Here
+                                "});" +
+                                "newPMarker" + m.getUniqueNo() + " = " +
+                                "new google.maps.Marker({ " +
+                                "position:new google.maps.LatLng(" + m.getLatlng().getLat() + ", " + m.getLatlng().getLng() + "), " +
+                                "map:PF('mapDisplay').getMap()});" +
+                                "newPMarker" + m.getUniqueNo() + ".addListener('click',function() {" +
+                                "   infowindowP" + m.getUniqueNo() + ".open(map,newPMarker" + m.getUniqueNo() + ");" +
+                                "});"
+                                + "markers.push(newPMarker" + m.getUniqueNo() + ");");
+            }else {
+
+            }
         }
     }
     public void displayFolders() {
@@ -113,10 +124,8 @@ public class PersonalMapController {
 
     public void getFolderMarker() {
         FolderData fd = pml.getCurrentFolder();
-        folderId = fd.getFolderId();
-        pme.getFolderMarkers(fd.getFolderId());
+        pme.getFolderMarkers(folderId);
         displayFolderMarker();
-        RequestContext.getCurrentInstance().execute("document.getElementById(\"formSubmitToilet:folderType\").value = "+fd.getWindowType()+"");
     }
 
     public void addMarker() {

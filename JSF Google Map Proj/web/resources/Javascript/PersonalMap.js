@@ -118,10 +118,14 @@ function personalMapDisplay() {
         displayFolders();
     }else {
         check.className = "left-controls-unselected";
-
+        removePMapMarkers();
+        document.getElementById("changeFolder").style.display = "none";
+        document.getElementById("addPersonalMarkerButton").style.display = "none";
     }
 }
 function displayFolders() {
+    document.getElementById("changeFolder").style.display = "none";
+    document.getElementById("addPersonalMarkerButton").style.display = "none";
     var displayFolderScreen = document.createElement('div');
     displayFolderScreen.className = "group-selected";
     displayFolderScreen.id = "groupScreen";
@@ -544,7 +548,31 @@ function removePersonalInfoWindow() {
     document.getElementById("CancelAddMarker").className = "CancelAdd";
 }
 
-function returnPersonalWindow (type, uniqueNo,field1, field2, owner) {
+function returnPersonalWindow (type, uniqueNo,field1, field2, owner,rating,amtRatings) {
+    var imageSrc = "";
+    switch(rating) {
+        case 5:
+            imageSrc="images/5-stars-rating.png";
+            break;
+        case 4:
+            imageSrc="images/4-stars-rating.png";
+            break;
+        case 3:
+            imageSrc="images/3-stars-rating.png";
+            break;
+        case 2:
+            imageSrc="images/2-stars-rating.png";
+            break;
+        case 1:
+            imageSrc="images/1-star-rating.png";
+            break;
+        case 0:
+            imageSrc="images/0-star-rating.png";
+            break;
+        default:
+            imageSrc="images/0-star-rating.png";
+            break;
+    }
     var contentRtn1;
     if(type == 1) {
         contentRtn1 = '                        <div class="testWindows2 infoWindow1">' +
@@ -561,7 +589,7 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner) {
             '                                <img width="150px" height="150px" src="images/testImg.jpg" alt="Test Image"></img>' +
             '                            </div>' +
             '                            <div class="testRating">' +
-            '                                <img width="160" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>' +
+            '                                <img width="160" height="34" src="'+imageSrc+'" title="Based On '+amtRatings+' Rating" alt="rating"></img>' +
             '                            </div>';
     }else if(type == 3) {
         contentRtn1 = '                        <div class="testWindows2 infoWindow3">' +
@@ -571,14 +599,13 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner) {
             '                            <div class="testReviewSection">' +
             '                            </div>' +
             '                            <div class="testRating">' +
-            '                                <img width="197" height="34" src="images/0-star-rating.png" title="Based On 0 Rating" alt="rating"></img>' +
+            '                                <img width="197" height="34" src="'+imageSrc+'" title="Based On '+amtRatings+' Rating" alt="rating"></img>' +
             '                            </div>';
     }
 
     else if(type == 4) {
         contentRtn1 = '                            <div id="4Title'+uniqueNo+'" class="testIWTitle" >Title</div>';
     }
-
     var contentRtn2 ="";
     if (owner == 1) {
         if (type == 1) {
@@ -604,15 +631,15 @@ function returnPersonalWindow (type, uniqueNo,field1, field2, owner) {
         if (type == 1) {
             contentRtn2 = '</div>';
         }else if(type == 2) {
-            contentRtn2 = '                            <div class="testAddReview testButton" >Add Review</div>' +
+            contentRtn2 = '                            <div class="testAddReview testButton" onclick="OpenReviewScreen('+uniqueNo+')">Add Review</div>' +
                 '                            <div class="testViewReviews testButton">View Reviews</div>' +
                 '                        </div>';
         }else if(type == 3) {
-            contentRtn2 = '                            <div class="testAddReview testButton" >Add Review</div>\n' +
+            contentRtn2 = '                            <div class="testAddReview testButton" onclick="OpenReviewScreen('+uniqueNo+')">Add Review</div>\n' +
                 '                        </div>';
         }else if(type == 4) {
+            contentRtn2 = '</div>';
         }
-        contentRtn2 = '</div>';
     }
     var contentRtn = contentRtn1.concat(contentRtn2);
     return contentRtn;
@@ -671,7 +698,7 @@ function changeRating(starNo) {
 
 
 }
-function submitIWReivew(uniqueNo) {
+function submitIWReview(uniqueNo) {
     var Reviewrating = 0;
     var starCurr = 1;
     while (Reviewrating == 0 && starCurr < 6) {
@@ -683,7 +710,31 @@ function submitIWReivew(uniqueNo) {
     }
     document.getElementById("formSubmitToilet:uniqueNoJs").value = uniqueNo;
     document.getElementById("formSubmitToilet:reviewRating").value = Reviewrating;
-    document.getElementById("formSubmitToilet:reviewComment").value = document.getElementById("PersonalReviewComments");
+    document.getElementById("formSubmitToilet:reviewComment").value = document.getElementById("PersonalReviewComments").value;
     submitPReview();
+    closeIWReview()
 
+}
+function closeIWReview(){
+    var greyOverlay = document.getElementById("greyOverlay");
+    greyOverlay.innerHTML = "";
+    greyOverlay.className = "unselected-Overlay"
+}
+function OpenReviewScreen(uniqueNo) {
+    var greyOverlay = document.getElementById("greyOverlay");
+    greyOverlay.className = "selected-Overlay";
+    var contentScreen = '<div id="iwReviewScreen">\n' +
+        '            <div id="ReviewScreenRating">\n' +
+        '                <img id="star1" src="images/star-unfilled.png" onclick="changeRating(1)"></img>\n' +
+        '                <img id="star2" src="images/star-unfilled.png" onclick="changeRating(2)"></img>\n' +
+        '                <img id="star3" src="images/star-unfilled.png" onclick="changeRating(3)"></img>\n' +
+        '                <img id="star4" src="images/star-unfilled.png" onclick="changeRating(4)"></img>\n' +
+        '                <img id="star5" src="images/star-unfilled.png" onclick="changeRating(5)"></img>\n' +
+        '            </div>\n' +
+        '            <div id="CommentHeader">Comment</div>\n' +
+        '            <textarea id="PersonalReviewComments" cols="52" rows="12"></textarea>\n' +
+        '            <div style="width:200px;height:30px;margin-left:33%;" class="testButton submitReviewIW" onclick="submitIWReview('+uniqueNo+')">Submit</div>\n' +
+        '<div class="testCloseButton" onclick="closeIWReview()">✖</div>' +
+        '        </div>'
+    greyOverlay.innerHTML = contentScreen;
 }

@@ -9,7 +9,7 @@ public class MarkerData {
 
     protected int rating = 0;
 
-    protected int amt_of_ratings;
+    protected int amt_of_ratings = 0;
 
     protected int avg_rating = 0;
 
