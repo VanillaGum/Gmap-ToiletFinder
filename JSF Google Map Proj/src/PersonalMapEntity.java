@@ -35,8 +35,11 @@ public class PersonalMapEntity {
         dc.editPersonalMarker(id, field1, field2);
     }
     public void deleteMarker(int id) {dc.deletePersonalMarker(id);}
-    public void createFolderDatabase() {
-        dc.createFolder();
+    public int createFolderDatabase() {
+       return dc.createFolder();
+    }
+    public void submitReview(int markerId, int rating, String comments) {
+        dc.createReview(markerId,rating,comments);
     }
 
 }

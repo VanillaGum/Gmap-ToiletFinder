@@ -18,10 +18,19 @@
 </h:head>
 
 <h:body>
-    <div id="greyOverlay" class="unselected-Overlay">
-        <!--<div id="iw2ReviewScreen">-->
-
-        <!--</div>-->
+    <div id="greyOverlay" class="selected-Overlay">
+        <div id="iwReviewScreen">
+            <div id="ReviewScreenRating">
+                <img id="star1" src="images/star-unfilled.png" onclick="changeRating(1)"></img>
+                <img id="star2" src="images/star-unfilled.png" onclick="changeRating(2)"></img>
+                <img id="star3" src="images/star-unfilled.png" onclick="changeRating(3)"></img>
+                <img id="star4" src="images/star-unfilled.png" onclick="changeRating(4)"></img>
+                <img id="star5" src="images/star-unfilled.png" onclick="changeRating(5)"></img>
+            </div>
+            <div id="CommentHeader">Comment</div>
+            <textarea id="PersonalReviewComments" cols="52" rows="12"></textarea>
+            <div class="testButton submitReviewIW" onclick="submitIWReview()">Submit</div>
+        </div>
 
         <!--<div class="group-selected" id="groupScreen">-->
                                    <!--<div id="windowEdit" class="testWindows2 InfoWindow1">-->
@@ -293,6 +302,9 @@
             <h:inputHidden id="pLat" value="#{personalMapController.lat}"/>
             <h:inputHidden id="pLng" value="#{personalMapController.lng}"/>
             <h:inputHidden id="uniqueNoJs" value="#{personalMapController.uniqueNoJs}"/>
+
+            <h:inputHidden id="reviewRating" value="#{personalMapController.reviewRating}"/>
+            <h:inputHidden id="reviewComment" value="#{personalMapController.reviewComment}"/>
             <!--End-->
 
             <!--Was In Command Button Temp Removed-->
@@ -328,6 +340,8 @@
             <p:remoteCommand name="deletePersonalFolder" actionListener="#{personalMapController.userDeleteFolder}"/>
             <!--Delete Personal Marker-->
             <p:remoteCommand name="deletePersonalMarker" actionListener="#{personalMapController.deleteMarker}"/>
+            <!--Submit Review-->
+            <p:remoteCommand name="submitPReview" actionListener="#{personalMapController.submitReview}"/>
         </h:form>
     </div>
 

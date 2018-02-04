@@ -424,6 +424,10 @@
     margin-top:10px;
     margin-left:83px;
 }
+.submitReviewIw {
+    width:100px;
+    height:30px;
+}
 .testButton {
     background-color: white;
     border-radius:5px;
@@ -438,4 +442,31 @@
 .testButton:hover {
     background-color: #84BE44;
     color:white;
+}
+#iwReviewScreen {
+    width: 600px;
+    height: 400px;
+    background: #EEEFF2;
+    top: 25%;
+    left: 31%;
+    position: absolute;
+}
+#iwReviewScreen textArea {
+    margin-left:15px;
+    overflow-x:hidden;
+    overflow-y:auto;
+    font-size: 19px;
+}
+#ReviewScreenRating {
+    display:inline-block;
+    cursor:pointer;
+}
+#ReviewScreenRating img {
+    width:60px;
+    height:50px;
+}
+#CommentHeader {
+    font-size:22px;
+    font-weight:bold;
+    margin-left:20px;
 }

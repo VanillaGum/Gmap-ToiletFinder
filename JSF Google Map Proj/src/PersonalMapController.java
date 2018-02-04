@@ -18,7 +18,8 @@ public class PersonalMapController {
     public String field2 = "";
     public Double lat = 0.0;
     public Double lng = 0.0;
-
+    public int reviewRating = 0;
+    public String reviewComment = "";
     @PostConstruct
     public void init() {
         pme = new PersonalMapEntity();
@@ -102,6 +103,7 @@ public class PersonalMapController {
     }
 
     public void createFolder() {
+        folderId = 0;
         RequestContext.getCurrentInstance().execute("document.getElementById(\"addPersonalMarkerButton\").style.display=\"block\";");
         FolderData fd = pml.getCurrentFolder();
         fd.setFolderName(folderName);
@@ -110,13 +112,15 @@ public class PersonalMapController {
     }
 
     public void getFolderMarker() {
-        pme.getFolderMarkers(folderId);
-        displayFolderMarker();
         FolderData fd = pml.getCurrentFolder();
+        folderId = fd.getFolderId();
+        pme.getFolderMarkers(fd.getFolderId());
+        displayFolderMarker();
         RequestContext.getCurrentInstance().execute("document.getElementById(\"formSubmitToilet:folderType\").value = "+fd.getWindowType()+"");
     }
 
     public void addMarker() {
+        System.out.println(folderId);
         PersonalMapMarker newPmm = new PersonalMapMarker();
         newPmm.setField1(field1);
         newPmm.setField2(field2);
@@ -127,7 +131,17 @@ public class PersonalMapController {
         pme.addMarker(newPmm);
         getFolderMarker();
     }
-
+    public void submitReview() {
+        FolderData fd = pml.getCurrentFolder();
+        List<PersonalMapMarker> pmmList = fd.getPmmL();
+        int idMarker = 0;
+        for(PersonalMapMarker m: pmmList) {
+            if (m.getUniqueNo() == uniqueNoJs) {
+                idMarker = m.getId();
+            }
+        }
+        pme.submitReview(idMarker,reviewRating, reviewComment);
+    }
     public void editMarkerInfo() {
         FolderData fd = pml.getCurrentFolder();
         List<PersonalMapMarker> pmmList = fd.getPmmL();
@@ -219,5 +233,21 @@ public class PersonalMapController {
 
     public void setUniqueNoJs(int uniqueNoJs) {
         this.uniqueNoJs = uniqueNoJs;
+    }
+
+    public int getReviewRating() {
+        return reviewRating;
+    }
+
+    public void setReviewRating(int reviewRating) {
+        this.reviewRating = reviewRating;
+    }
+
+    public String getReviewComment() {
+        return reviewComment;
+    }
+
+    public void setReviewComment(String reviewComment) {
+        this.reviewComment = reviewComment;
     }
 }

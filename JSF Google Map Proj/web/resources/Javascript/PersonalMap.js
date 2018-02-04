@@ -659,3 +659,31 @@ function openFolder(folderId) {
     document.getElementById("formSubmitToilet:folderId").value = folderId;
     displayFolderMarkerz();
 }
+function changeRating(starNo) {
+    var filled = "images/star-filled.png";
+    var unfilled = "images/star-unfilled.png";
+    for(i=1; i <= starNo; i++) {
+        document.getElementById("star"+i).src = filled
+    }
+    for(i=(starNo+1);i <= 5;i++) {
+        document.getElementById("star"+i).src = unfilled
+    }
+
+
+}
+function submitIWReivew(uniqueNo) {
+    var Reviewrating = 0;
+    var starCurr = 1;
+    while (Reviewrating == 0 && starCurr < 6) {
+        if(document.getElementById("star"+starCurr).src = "images/star-filled.png") {
+            Reviewrating = starCurr;
+        }else {
+            starCurr++;
+        }
+    }
+    document.getElementById("formSubmitToilet:uniqueNoJs").value = uniqueNo;
+    document.getElementById("formSubmitToilet:reviewRating").value = Reviewrating;
+    document.getElementById("formSubmitToilet:reviewComment").value = document.getElementById("PersonalReviewComments");
+    submitPReview();
+
+}

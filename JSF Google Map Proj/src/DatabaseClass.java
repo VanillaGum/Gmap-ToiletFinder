@@ -443,7 +443,7 @@ public class DatabaseClass {
         }
         return null;
     }
-    public void createFolder() {
+    public int createFolder() {
         try {
             PersonalMapList pml = PersonalMapList.getInstance();
             FolderData fd = pml.getCurrentFolder();
@@ -460,12 +460,17 @@ public class DatabaseClass {
             createFolder.executeUpdate();
 
             ResultSet setId = createFolder.getGeneratedKeys();
+            int idRtn = 0;
             while (setId.next()) {
                 fd.setFolderId( setId.getInt(1));
+                idRtn = setId.getInt(1);
+                System.out.println("Heyo");
             }
+            return idRtn;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return -5;
     }
     public void getFolderMarkers(int folderId) {
         List<PersonalMapMarker> pmmList = new ArrayList<>();
@@ -615,5 +620,8 @@ public class DatabaseClass {
             e.printStackTrace();
         }
 
+    }
+    public void createReview(int markerId, int rating, String comments) {
+        PreparedStatement deleteMarker = conn.prepareStatement( "INSERT INTO user_folder_marker_review ("")"
     }
 }
